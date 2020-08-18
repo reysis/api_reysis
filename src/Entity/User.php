@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * A person (alive, dead, undead, or fictional).
@@ -29,8 +30,14 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  *      denormalizationContext={"groups"={"user:write"}},
  * )
  * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "username":"partial",
+ *          "tipoUsuario":"exact"
+ *      }
+ * )
  * @UniqueEntity("username")
- * @UniqueEntity("email")
  */
 class User implements UserInterface
 {
@@ -43,6 +50,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\OneToOne(targetEntity=Persona::class, cascade={"persist", "remove"})
      * @Groups({"user:read", "user:write"})
      * @Assert\NotBlank()
      */
@@ -62,52 +70,33 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     * @Groups({"user:read", "user:write"})
-     * @ApiProperty(iri="http://schema.org/email")
-     * @Assert\NotBlank()
-     * @Assert\Email()
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read", "user:write"})
-     * @ApiProperty(iri="http://schema.org/address")
-     */
-    private $address;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     * @Groups({"user:read", "user:write"})
-     * @ApiProperty(iri="http://schema.org/telephone")
-     * @Assert\NotBlank()
-     */
-    private $telephone;
-
-    /**
-     * @ORM\Column(type="string", length=11)
-     * @Groups({"user:read", "user:write"})
-     */
-    private $ci;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read", "user:write"})
-     * @ApiProperty(iri="http://schema.org/name")
-     */
-    private $name;
-
-    /**
      * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="personaCitada", cascade={"persist"}, orphanRemoval=true)
      * @Groups({"user:read"})
      * @Assert\Valid()
      */
     private $turnos;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Empresa::class, mappedBy="username", cascade={"persist", "remove"})
+     */
+    private $empresa;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="username", cascade={"persist", "remove"})
+     */
+    private $persona;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=TipoUsuario::class)
+     * @ORM\JoinColumn(nullable=false)
+     *@Groups({"user:write", "user:read"})
+     */
+    private $tipoUsuario;
+
     public function __construct()
     {
         $this->turnos = new ArrayCollection();
+        $this->tipoUser = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -183,66 +172,6 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(string $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getCi(): ?string
-    {
-        return $this->ci;
-    }
-
-    public function setCi(string $ci): self
-    {
-        $this->ci = $ci;
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Turno[]
      */
@@ -271,6 +200,59 @@ class User implements UserInterface
             }
         }
 
+        return $this;
+    }
+
+    /**
+     * @return Collection|TipoUser[]
+     */
+    public function getTipoUser(): Collection
+    {
+        return $this->tipoUser;
+    }
+
+    public function getEmpresa(): ?Empresa
+    {
+        return $this->empresa;
+    }
+
+    public function setEmpresa(Empresa $empresa): self
+    {
+        $this->empresa = $empresa;
+
+        // set the owning side of the relation if necessary
+        if ($empresa->getUsername() !== $this) {
+            $empresa->setUsername($this);
+        }
+
+        return $this;
+    }
+
+    public function getPersona(): ?Persona
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(Persona $persona): self
+    {
+        $this->persona = $persona;
+
+        // set the owning side of the relation if necessary
+        if ($persona->getUsername() !== $this) {
+            $persona->setUsername($this);
+        }
+
+        return $this;
+    }
+
+    public function getTipoUsuario(): ?TipoUsuario
+    {
+        return $this->tipoUsuario;
+    }
+
+    public function setTipoUsuario(?TipoUsuario $tipoUsuario): self
+    {
+        $this->tipoUsuario = $tipoUsuario;
         return $this;
     }
 }

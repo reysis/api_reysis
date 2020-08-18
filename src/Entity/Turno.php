@@ -12,6 +12,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *      collectionOperations={
+ *          "get",
+ *          "post" = {"security"="is_granted('ROLE_USER')"}
+ *      },
+ *      itemOperations={
+ *          "get",
+ *          "put" = {"security"="is_granted('ROLE_USER')"},
+ *          "delete" = {"security"="is_granted('ROLE_ADMIN')"}
+ *      },
  *      normalizationContext={"groups"={"turno:read"}},
  *      denormalizationContext={"groups"={"turno:write"}},
  *      attributes={
