@@ -12,7 +12,7 @@ class TurnoResourceTest extends CustomApiTestCase{
     public function testCreateTurno(){
         $client = self::createClient();
         $tipo = $this->createTipoUsuario('Persona Natural');
-        $user = $this->createUser('testUser', 'foo', $tipo);
+        $user = $this->createUser('testUser', 'foo', '123456789',$tipo);
 
         //Testeando que no se pueda crear Turnos a no ser que este logueado
         $client->request('POST', '/api/turnos',[
@@ -39,8 +39,8 @@ class TurnoResourceTest extends CustomApiTestCase{
         $client = self::createClient();
         $tipo1 = $this->createTipoUsuario('Persona Natural');
         $tipo2 = $this->createTipoUsuario('Empresa');
-        $user1 = $this->createUser('testUser1', 'foo', $tipo1);
-        $user2 = $this->createUser('testUser2', 'foo', $tipo2);
+        $user1 = $this->createUser('testUser1', 'foo', '123456789',$tipo1);
+        $user2 = $this->createUser('testUser2', 'foo', '123456789',$tipo2);
 
         //creando turno de usuario 1
         $this->logIn($client, 'testUser1', 'foo');
@@ -94,8 +94,8 @@ class TurnoResourceTest extends CustomApiTestCase{
     {
         $client = self::createClient();
         $tipo1 = $this->createTipoUsuario('Persona Natural');
-        $user1 = $this->createUser('testUser1', 'foo', $tipo1);
-        $user2 = $this->createUser('testUser2', 'foo', $tipo1);
+        $user1 = $this->createUser('testUser1', 'foo','123456789' ,$tipo1);
+        $user2 = $this->createUser('testUser2', 'foo', '123456789',$tipo1);
 
         //creando turno de usuario 1
         $this->logIn($client, 'testUser1', 'foo');
@@ -133,7 +133,7 @@ class TurnoResourceTest extends CustomApiTestCase{
     {
         $client = self::createClient();
         $tipo1 = $this->createTipoUsuario('Persona Natural');
-        $user = $this->createUser('testUser1', 'foo', $tipo1);
+        $user = $this->createUser('testUser1', 'foo','123456789', $tipo1);
 
         //Testeando que haya que loguearse para acceder
         $client->request('GET', '/api/turnos',[

@@ -25,6 +25,7 @@ class UserResourceTest extends CustomApiTestCase
             'json' => [
                 'username' => 'testUser',
                 'password' => 'foo',
+                'telephone' => '123456789',
                 'tipoUsuario' => '/api/tipo_usuarios/1'
             ],
         ]);

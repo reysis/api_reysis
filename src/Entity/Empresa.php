@@ -25,16 +25,6 @@ class Empresa
     private $address;
 
     /**
-     * @ORM\Column(type="string", length=25)
-     */
-    private $telephone;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $email;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $legalName;
@@ -58,30 +48,6 @@ class Empresa
     public function setAddress(string $address): self
     {
         $this->address = $address;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(string $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email): self
-    {
-        $this->email = $email;
 
         return $this;
     }

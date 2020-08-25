@@ -37,7 +37,7 @@ class CustomApiTestCase extends ApiTestCase
      * @param TipoUsuario $tipoUsuario
      * @return User
      */
-    protected function createUser(string $username, string $password, TipoUsuario $tipoUsuario):User
+    protected function createUser(string $username, string $password, string $telephone,TipoUsuario $tipoUsuario):User
     {
         $user = new User();
         $user->setUsername($username);
@@ -46,6 +46,7 @@ class CustomApiTestCase extends ApiTestCase
             ->encodePassword($user, $password);
         $user->setPassword($encoded);
         $user->setTipoUsuario($tipoUsuario);
+        $user->setTelephone($telephone);
 
         $em = self::$container->get('doctrine')->getManager();
         $em->persist($user);

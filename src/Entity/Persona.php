@@ -56,29 +56,6 @@ class Persona
      */
     private $ci;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @ApiProperty(iri="http://schema.org/address")
-     * @Groups({"user:read","persona:read", "persona:write"})
-     * @Assert\NotBlank()
-     */
-    private $address;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @ApiProperty(iri="http://schema.org/email")
-     * @Groups({"user:read","persona:read", "persona:write"})
-     * @Assert\NotBlank()
-     * @Assert\Email()
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=25)
-     * @ApiProperty(iri="http://schema.org/telephone")
-     * @Groups({"user:read","persona:read", "persona:write"})
-     */
-    private $telephone;
 
     /**
      * Usuario linkeado a esta persona (iri)
@@ -114,42 +91,6 @@ class Persona
     public function setCi(string $ci): self
     {
         $this->ci = $ci;
-
-        return $this;
-    }
-
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(string $telephone): self
-    {
-        $this->telephone = $telephone;
 
         return $this;
     }

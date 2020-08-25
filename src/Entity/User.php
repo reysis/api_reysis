@@ -71,6 +71,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"user:write"})
      */
     private $roles = [];
 
@@ -104,16 +105,37 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="username", cascade={"persist", "remove"})
+     * @Groups({"user:read", "user:write"})
      */
     private $persona;
 
     /**
      * @ORM\ManyToOne(targetEntity=TipoUsuario::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      *@Groups({"user:write", "user:read"})
      */
     private $tipoUsuario;
+    /**
+     * @ORM\Column(type="string", length=25)
+     * @ApiProperty(iri="http://schema.org/telephone")
+     * @Groups({"user:read", "user:write"})
+     */
+    private $telephone;
 
+    /**
+     * @ApiProperty(iri="http://schema.org/email")
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Email()
+     * @Groups({"user:read", "user:write"})
+     */
+    private $email;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ApiProperty(iri="http://schema.org/address")
+     * @Groups({"user:read","user:write"})
+     */
+    private $address;
+    
     public function __construct()
     {
         $this->turnos = new ArrayCollection();
@@ -297,6 +319,66 @@ class User implements UserInterface
     public function setPlainPassword(string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of telephone
+     */ 
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set the value of telephone
+     *
+     * @return  self
+     */ 
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @return  self
+     */ 
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of address
+     */ 
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set the value of address
+     *
+     * @return  self
+     */ 
+    public function setAddress($address)
+    {
+        $this->address = $address;
 
         return $this;
     }
