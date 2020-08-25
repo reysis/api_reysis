@@ -112,13 +112,15 @@ class User implements UserInterface
     /**
      * @ORM\ManyToOne(targetEntity=TipoUsuario::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
-     *@Groups({"user:write", "user:read"})
+     * @Groups({"user:write", "user:read"})
+     * @Assert\NotBlank()
      */
     private $tipoUsuario;
     /**
      * @ORM\Column(type="string", length=25)
      * @ApiProperty(iri="http://schema.org/telephone")
      * @Groups({"user:read", "user:write"})
+     * @Assert\NotBlank()
      */
     private $telephone;
 
