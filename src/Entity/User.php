@@ -17,15 +17,28 @@ use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
- * A person (alive, dead, undead, or fictional).
+ * Una persona natural o una empresa
  * 
  * @see http://schema.org/Person Documentation on Schema.org
  * 
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource(
  *      iri="http://schema.org/Person",
+ *      collectionOperations={
+ *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "post" = {
+ *              "accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
+ *              "validation_groups"={"Default", "create"}
+ *          }
+ *      },
+ *      itemOperations={
+ *          "get" = {"accessControl" = "is_granted('ROLE_USER') and object == user"},
+ *          "put" = {"accessControl" = "is_granted('ROLE_USER') and object == user"},
+ *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *      },
  *      normalizationContext={"groups"={"user:read"}},
  *      denormalizationContext={"groups"={"user:write"}},
  * )
@@ -64,10 +77,18 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Groups({"user:write"})
-     * @Assert\NotBlank()
      */
     private $password;
+
+    /**
+     * Undocumented variable
+     *
+     * @var string The plain password
+     * @Groups({"user:write"})
+     * @Assert\NotBlank(groups={"create"})
+     * @SerializedName("password")
+     */
+    private $plainPassword;
 
     /**
      * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="personaCitada", cascade={"persist"}, orphanRemoval=true)
@@ -87,7 +108,7 @@ class User implements UserInterface
     private $persona;
 
     /**
-     * @ORM\ManyToOne(targetEntity=TipoUsuario::class)
+     * @ORM\ManyToOne(targetEntity=TipoUsuario::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      *@Groups({"user:write", "user:read"})
      */
@@ -129,7 +150,7 @@ class User implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
+ 
         return array_unique($roles);
     }
 
@@ -169,7 +190,7 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 
     /**
@@ -253,6 +274,30 @@ class User implements UserInterface
     public function setTipoUsuario(?TipoUsuario $tipoUsuario): self
     {
         $this->tipoUsuario = $tipoUsuario;
+        return $this;
+    }
+
+    /**
+     * Get the plain password
+     *
+     * @return  string
+     */ 
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * Set the plain password
+     *
+     * @param  string  $plainPassword  The plain password
+     *
+     * @return  self
+     */ 
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+
         return $this;
     }
 }

@@ -6,9 +6,11 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TipoUsuarioRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ApiResource()
+ * @UniqueEntity("tipo")
  * @ORM\Entity(repositoryClass=TipoUsuarioRepository::class)
  */
 class TipoUsuario
@@ -21,7 +23,7 @@ class TipoUsuario
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Groups({"user:read"})
      */
     private $tipo;
