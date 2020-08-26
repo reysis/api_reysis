@@ -39,8 +39,6 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  *          "put" = {"accessControl" = "is_granted('ROLE_USER') and object == user"},
  *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
- *      normalizationContext={"groups"={"user:read"}},
- *      denormalizationContext={"groups"={"user:write"}},
  * )
  * @ApiFilter(PropertyFilter::class)
  * @ApiFilter(
@@ -71,7 +69,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"user:write"})
+     * @Groups({"admin:write"})
      */
     private $roles = [];
 
@@ -119,7 +117,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=25)
      * @ApiProperty(iri="http://schema.org/telephone")
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"admin:read", "user:write"})
      * @Assert\NotBlank()
      */
     private $telephone;
@@ -172,9 +170,9 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
+
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
- 
         return array_unique($roles);
     }
 
