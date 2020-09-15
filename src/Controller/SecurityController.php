@@ -21,8 +21,9 @@ class SecurityController extends AbstractController
                 'error' => 'Invalid login request: check that the Content-Type header is application/json'
             ], 400);
         }
-        return new Response(null, 204, [
-            'Location' => $iriConverter->getIriFromItem($this->getUser())
+        return new Response(null, 204,[
+            'Access-Control-Expose-Headers' => 'Location',
+            'Location' => $iriConverter->getIriFromItem( $this->getUser()),
         ]);
     }
 

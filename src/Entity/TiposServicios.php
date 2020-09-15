@@ -7,11 +7,23 @@ use App\Repository\TiposServiciosRepository;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     iri="http://schema.org/Service",
+ *     collectionOperations={
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "post" = {"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *     },
+ *     itemOperations={
+ *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *      },
+ * )
  * @ORM\Entity(repositoryClass=TiposServiciosRepository::class)
  */
 class TiposServicios
@@ -25,6 +37,7 @@ class TiposServicios
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"tiposservicios:read", "admin:write"})
      */
     private $nombre;
 
@@ -33,6 +46,7 @@ class TiposServicios
      * 
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
+     * @Groups({"tiposservicios:read", "admin:write"})
      */
     private $descripcion;
 
@@ -42,6 +56,7 @@ class TiposServicios
      * @ORM\Column(type="text", nullable=true)
      * @ApiProperty(iri="http://schema.org/image")
      * @Assert\Url
+     * @Groups({"tiposservicios:read", "admin:write"})
      */
     private $image;
 

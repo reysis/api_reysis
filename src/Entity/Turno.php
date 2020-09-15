@@ -35,8 +35,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                  "security_message"="No puede realizar esta acción a menos que sea administrador."
  *          }
  *      },
- *      normalizationContext={"groups"={"turno:read"}},
- *      denormalizationContext={"groups"={"turno:write"}},
  *      attributes={
  *          "pagination_items_per_page"=10,
  *      }

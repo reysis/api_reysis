@@ -63,13 +63,13 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @ORM\OneToOne(targetEntity=Persona::class, cascade={"persist", "remove"})
      * @Groups({"user:read", "user:write"})
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"create"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"admin:write"})
+     * @Groups({"admin:read","admin:write"})
      */
     private $roles = [];
 
@@ -80,7 +80,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * Undocumented variable
+     * Una variable temporal para almacenar la password y poder encriptarla en el proceso de normalización
      *
      * @var string The plain password
      * @Groups({"user:write"})
@@ -90,6 +90,8 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
+     * Los Turnos que tenga el usuario reservados
+     * 
      * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="personaCitada", cascade={"persist"}, orphanRemoval=true)
      * @Groups({"user:read"})
      * @Assert\Valid()
@@ -97,11 +99,15 @@ class User implements UserInterface
     private $turnos;
 
     /**
+     * Empresa a la que pertenece este usuario en caso de que sea una cuenta empresarial
+     * 
      * @ORM\OneToOne(targetEntity=Empresa::class, mappedBy="username", cascade={"persist", "remove"})
      */
     private $empresa;
 
     /**
+     * Descripción mas detallada de la persona a la que pertenece esta cuenta en caso de que sea una Persona Natural
+     * 
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="username", cascade={"persist", "remove"})
      * @Groups({"user:read", "user:write"})
      */
@@ -111,14 +117,14 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity=TipoUsuario::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      * @Groups({"user:write", "user:read"})
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"create"})
      */
     private $tipoUsuario;
     /**
      * @ORM\Column(type="string", length=25)
      * @ApiProperty(iri="http://schema.org/telephone")
      * @Groups({"admin:read", "user:write"})
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"create"})
      */
     private $telephone;
 
