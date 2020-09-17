@@ -7,9 +7,13 @@ use App\Repository\TiposServiciosRepository;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
@@ -23,6 +27,14 @@ use Doctrine\ORM\Mapping as ORM;
  *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
  *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
+ * )
+ * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "nombre":"partial",
+ *          "descripcion":"partial",
+ *      }
  * )
  * @ORM\Entity(repositoryClass=TiposServiciosRepository::class)
  */

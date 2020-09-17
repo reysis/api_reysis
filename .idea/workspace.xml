@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/my-api_reysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my-api_reysis.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" afterPath="$PROJECT_DIR$/.env.test" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +25,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -157,7 +161,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -171,18 +175,38 @@
       <workItem from="1599750080121" duration="19729000" />
       <workItem from="1600171794873" duration="2349000" />
       <workItem from="1600177874859" duration="1354000" />
-      <workItem from="1600182829646" duration="5133000" />
+      <workItem from="1600182829646" duration="5504000" />
+      <workItem from="1600193121171" duration="5698000" />
+      <workItem from="1600363968873" duration="3095000" />
     </task>
+    <task id="LOCAL-00001" summary="Se instalo el symfony y las librerias de prueba">
+      <created>1600191549056</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600191549056</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Se instalo el symfony y las librerias de prueba" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se instalo el symfony y las librerias de prueba" />
   </component>
   <component name="WindowStateProjectService">
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1599753837861">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1599753837861" />
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1600191543335">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1600191543335" />
     <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600178191974">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
