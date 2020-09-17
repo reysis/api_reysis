@@ -16,15 +16,15 @@ class TipoServiciosResourceTest extends CustomApiTestCase
         $client = self::createClient();
 
         $client->request('POST', '/api/tipos_servicios',[
-            'headers'=> ['ContentType'=>'application/json'],
+            'headers'=> ['ContentType'=>'application/json+ld'],
             'json' => [
-                'nombre' => 'Servicio1',
-                'descripcion' => 'algo',
-                'image' => 'algo'
+//                'nombre' => 'Servicio1',
+//                'descripcion' => 'algo',
+//                'image' => 'http://schema.org/image.jpg'
             ],
         ]);
 
-        $this->assertResponseStatusCodeSame(401);
+        $this->assertResponseStatusCodeSame(400);
     }
 
     public function testGetTipoServicios(){

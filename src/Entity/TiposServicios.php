@@ -20,7 +20,10 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *     iri="http://schema.org/Service",
  *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
- *          "post" = {"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *          "post" = {
+ *                  "accessControl" = "is_granted('ROLE_ADMIN')",
+ *                  "validation_groups" = {"Default", "create"}
+ *       }
  *     },
  *     itemOperations={
  *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
@@ -50,6 +53,7 @@ class TiposServicios
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"tiposservicios:read", "admin:write"})
+     * @Assert\NotBlank(groups={"create"})
      */
     private $nombre;
 
@@ -59,6 +63,7 @@ class TiposServicios
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
      * @Groups({"tiposservicios:read", "admin:write"})
+     * @Assert\NotBlank(groups={"create"})
      */
     private $descripcion;
 
@@ -69,6 +74,7 @@ class TiposServicios
      * @ApiProperty(iri="http://schema.org/image")
      * @Assert\Url
      * @Groups({"tiposservicios:read", "admin:write"})
+     * @Assert\NotBlank(groups={"create"})
      */
     private $image;
 
