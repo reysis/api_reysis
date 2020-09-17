@@ -19,7 +19,11 @@ class TiposServiciosVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        // replace with your own logic
+        /* Si Modificas alguna Operaci'on, para que el Voter
+            la vea tienes que agregarla aqui por ejemplo:
+            return in_array($atribute, ['POST', 'GET_SPECIFI', 'CUALQUIER_COSA'])
+                && $subject instance of TiposServicios;
+        */
         // https://symfony.com/doc/current/security/voters.html
         return in_array($attribute, ['POST'])
             && $subject instanceof TiposServicios;
@@ -36,7 +40,11 @@ class TiposServiciosVoter extends Voter
         /**
          * @var TiposServicios $subject
          */
-        // ... (check conditions and return true to grant permission) ...
+        /*
+         * Aqui tienes que agregar la logica de seguridad...
+         * Si es Admin return true, sino return false... etc,
+         * un case para cada Operacion Custom que realices
+         * */
         switch ($attribute) {
             case 'POST':
                 if(in_array('ROLE_ADMIN', $user->getRoles()))
