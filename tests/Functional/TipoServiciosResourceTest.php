@@ -4,9 +4,9 @@
 namespace App\Tests\Functional;
 
 
+use App\Entity\User;
 use App\Test\CustomApiTestCase;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
-use App\Entity\User;
 
 class TipoServiciosResourceTest extends CustomApiTestCase
 {
@@ -14,45 +14,44 @@ class TipoServiciosResourceTest extends CustomApiTestCase
 
     public function testCreateTipoServicio(){
         $client = self::createClient();
+        $tipo1 = $this->createTipoUsuario('Persona Natural');
+        $user = $this->createUser('testUser1', 'foo','123456789', $tipo1);
 
         $client->request('POST', '/api/tipos_servicios',[
             'headers'=> ['ContentType'=>'application/json+ld'],
             'json' => [
-//                'nombre' => 'Servicio1',
-//                'descripcion' => 'algo',
-//                'image' => 'http://schema.org/image.jpg'
-            ],
+                'nombre' => 'Servicio 1',
+                'descripcion' => 'Esto es una pequena descripcion',
+            ]
         ]);
+        $this->assertResponseStatusCodeSame(401);
 
-        $this->assertResponseStatusCodeSame(400);
-    }
-
-    public function testGetTipoServicios(){
-        $client = self::createClient();
-
-        $client->request('GET', '/api/tipos_servicios',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
-        ]);
-
-        $this->assertResponseStatusCodeSame(200);
-
-        $tipo1 = $this->createTipoUsuario('Persona Natural');
-        $user = $this->createUser('testUser1', 'foo','123456789', $tipo1);
-
-        //Refrescando el usuario y dandole permisos de administración
+        //Creando el Tipo de Servicio como Admin
         $em = $this->getEntityManager();
         $user = $em->getRepository(User::class)->find($user->getId());
         $user->setRoles(['ROLE_ADMIN']);
         $em->flush();
 
-        //Reloguenado para que Symfony note los permisos de administración
         $this->logIn($client, 'testUser1', 'foo');
+        $client->request('POST', '/api/tipos_servicios',[
+            'headers'=> ['ContentType'=>'application/json+ld'],
+            'json' => [
+                'nombre' => 'Servicio 1',
+                'descripcion' => 'Esto es una pequena descripcion',
+            ]
+        ]);
+        $this->assertResponseStatusCodeSame(201);
+    }
+
+    public function testGetTipoServicios(){
+        $client = self::createClient();
+        $tipo1 = $this->createTipoUsuario('Persona Natural');
+        $user = $this->createUser('testUser1', 'foo','123456789', $tipo1);
 
         $client->request('GET', '/api/tipos_servicios',[
             'headers'=> ['ContentType'=>'application/json+ld'],
         ]);
-
-        $this->assertResponseStatusCodeSame(200);
+        $this->assertJsonContains(['Location'=>'marlon']);
 
     }
 

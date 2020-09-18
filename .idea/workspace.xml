@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="" />
+    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Security/Voter/TiposServiciosVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/TiposServiciosVoter.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,11 +21,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -139,7 +136,6 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
       <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
       <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
-      <path value="$PROJECT_DIR$/vendor/symfony/test-pack" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -151,17 +147,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../reysis-front" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="" />
@@ -171,72 +164,37 @@
       <updated>1599750078921</updated>
       <workItem from="1599750080121" duration="19729000" />
       <workItem from="1600171794873" duration="2349000" />
-      <workItem from="1600177874859" duration="1354000" />
-      <workItem from="1600182829646" duration="5504000" />
-      <workItem from="1600193121171" duration="5698000" />
-      <workItem from="1600363968873" duration="3323000" />
-      <workItem from="1600367701746" duration="5642000" />
-      <workItem from="1600403905565" duration="99000" />
+      <workItem from="1600177874859" duration="11793000" />
+      <workItem from="1600258963447" duration="3756000" />
+      <workItem from="1600361408898" duration="771000" />
+      <workItem from="1600367078885" duration="2863000" />
+      <workItem from="1600383039666" duration="1000" />
+      <workItem from="1600383067646" duration="225000" />
     </task>
-    <task id="LOCAL-00001" summary="Se instalo el symfony y las librerias de prueba">
-      <created>1600191549056</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1600191549056</updated>
-    </task>
-    <task id="LOCAL-00002" summary="probando el test unitario de tipo de servicio">
-      <created>1600367346403</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1600367346403</updated>
-    </task>
-    <task id="LOCAL-00003" summary="se esta probando tipo de servicio">
-      <created>1600374241461</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1600374241461</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Se instalo el symfony y las librerias de prueba" />
-    <MESSAGE value="probando el test unitario de tipo de servicio" />
-    <MESSAGE value="se esta probando tipo de servicio" />
-    <option name="LAST_COMMIT_MESSAGE" value="se esta probando tipo de servicio" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1599753837861">
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600376146938">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1599753837861" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1600374233881">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1600374233881" />
-    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600178191974">
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
+    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600361836425">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600178191974" />
+    <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600361836425" />
     <state x="567" y="153" key="NewPhpClassDialog" timestamp="1599753792718">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1599753792718" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1600374246610">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1600374246610" />
-    <state x="456" y="195" key="run.anything.popup" timestamp="1599937894473">
+    <state x="456" y="195" key="run.anything.popup" timestamp="1600383263838">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1599937894473" />
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1600383263838" />
   </component>
 </project>

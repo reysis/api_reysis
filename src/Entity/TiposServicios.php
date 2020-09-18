@@ -7,37 +7,24 @@ use App\Repository\TiposServiciosRepository;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
  *     iri="http://schema.org/Service",
  *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
- *          "post" = {
- *                  "accessControl" = "is_granted('ROLE_ADMIN')",
- *                  "validation_groups" = {"Default", "create"}
- *       }
+ *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
+ *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios"
+ *          }
  *     },
  *     itemOperations={
  *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
  *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
  *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
- * )
- * @ApiFilter(PropertyFilter::class)
- * @ApiFilter(
- *      SearchFilter::class,
- *      properties={
- *          "nombre":"partial",
- *          "descripcion":"partial",
- *      }
  * )
  * @ORM\Entity(repositoryClass=TiposServiciosRepository::class)
  */
@@ -53,7 +40,6 @@ class TiposServicios
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"tiposservicios:read", "admin:write"})
-     * @Assert\NotBlank(groups={"create"})
      */
     private $nombre;
 
@@ -63,7 +49,6 @@ class TiposServicios
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
      * @Groups({"tiposservicios:read", "admin:write"})
-     * @Assert\NotBlank(groups={"create"})
      */
     private $descripcion;
 
@@ -74,7 +59,6 @@ class TiposServicios
      * @ApiProperty(iri="http://schema.org/image")
      * @Assert\Url
      * @Groups({"tiposservicios:read", "admin:write"})
-     * @Assert\NotBlank(groups={"create"})
      */
     private $image;
 
