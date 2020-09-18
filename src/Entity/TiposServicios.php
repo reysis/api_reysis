@@ -16,7 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
  *     iri="http://schema.org/Service",
  *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
- *          "post" = {"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
+ *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios"
+ *          }
  *     },
  *     itemOperations={
  *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
