@@ -6,9 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Security/Voter/TipoUsuarioVoter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +27,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="TipoServicio" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
@@ -223,7 +228,7 @@
       <workItem from="1600383067646" duration="225000" />
       <workItem from="1600529262826" duration="2289000" />
       <workItem from="1600532696507" duration="10972000" />
-      <workItem from="1600554095198" duration="603000" />
+      <workItem from="1600554095198" duration="951000" />
     </task>
     <task id="LOCAL-00001" summary="se termino el voter de tipo de servicio">
       <created>1600532291122</created>
@@ -239,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600546419947</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Se agregaron los fitros para la entidad TipoServicio">
+      <created>1600554875957</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600554875957</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,7 +299,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="se termino el voter de tipo de servicio" />
     <MESSAGE value="ya estan listos los test de tipo de servicio" />
-    <option name="LAST_COMMIT_MESSAGE" value="ya estan listos los test de tipo de servicio" />
+    <MESSAGE value="Se agregaron los fitros para la entidad TipoServicio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Se agregaron los fitros para la entidad TipoServicio" />
   </component>
   <component name="WindowStateProjectService">
     <state x="307" y="84" key="#CLI_Interpreters" timestamp="1600533056508">
@@ -314,10 +327,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
-    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600546417599">
+    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600554874496">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600546417599" />
+    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600554874496" />
     <state x="522" y="185" key="FileChooserDialogImpl" timestamp="1600533885334">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
@@ -347,10 +360,10 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="221" y="74" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1600533939929" />
-    <state x="312" y="162" key="Vcs.Push.Dialog.v2" timestamp="1600554277872">
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2" timestamp="1600554891977">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="312" y="162" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1600554277872" />
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1600554891977" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1600383263838">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

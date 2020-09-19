@@ -16,7 +16,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
- *     iri="http://schema.org/Service",
+ *     iri="http://schema.org/TiposServicios",
  *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
