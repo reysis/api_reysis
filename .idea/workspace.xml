@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="ya estan listos">
+      <change beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/Voter/TiposServiciosVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/TiposServiciosVoter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/vendor/namshi/jose" />
@@ -153,9 +155,53 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bin/.phpunit/phpunit-8.2-0/phpunit" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="PHPUnit.TipoServiciosResourceTest.testGetTipoServicio">
+    <configuration name="TipoServiciosResourceTest.testCreateTipoServicio" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP 7.4" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="App\Tests\Functional\TipoServiciosResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" method="testCreateTipoServicio" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TipoServiciosResourceTest.testDeleteTipoServicio" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\TipoServiciosResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" method="testDeleteTipoServicio" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TipoServiciosResourceTest.testGetTipoServicio" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\TipoServiciosResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" method="testGetTipoServicio" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TipoServiciosResourceTest.testGetTipoServicios" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\TipoServiciosResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" method="testGetTipoServicios" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TipoServiciosResourceTest.testUpdateTipoServicio" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\TipoServiciosResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" method="testUpdateTipoServicio" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="PHPUnit.TipoServiciosResourceTest.testCreateTipoServicio" />
+      <item itemvalue="PHPUnit.TipoServiciosResourceTest.testGetTipoServicios" />
+      <item itemvalue="PHPUnit.TipoServiciosResourceTest.testUpdateTipoServicio" />
+      <item itemvalue="PHPUnit.TipoServiciosResourceTest.testDeleteTipoServicio" />
+      <item itemvalue="PHPUnit.TipoServiciosResourceTest.testGetTipoServicio" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.TipoServiciosResourceTest.testGetTipoServicio" />
+        <item itemvalue="PHPUnit.TipoServiciosResourceTest.testDeleteTipoServicio" />
+        <item itemvalue="PHPUnit.TipoServiciosResourceTest.testUpdateTipoServicio" />
+        <item itemvalue="PHPUnit.TipoServiciosResourceTest.testGetTipoServicios" />
+        <item itemvalue="PHPUnit.TipoServiciosResourceTest.testCreateTipoServicio" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -173,29 +219,87 @@
       <workItem from="1600367078885" duration="2863000" />
       <workItem from="1600383039666" duration="1000" />
       <workItem from="1600383067646" duration="225000" />
-      <workItem from="1600529262826" duration="1800000" />
+      <workItem from="1600529262826" duration="2289000" />
+      <workItem from="1600532696507" duration="10039000" />
     </task>
+    <task id="LOCAL-00001" summary="se termino el voter de tipo de servicio">
+      <created>1600532291122</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600532291122</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="se termino el voter de tipo de servicio" />
+    <option name="LAST_COMMIT_MESSAGE" value="se termino el voter de tipo de servicio" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="307" y="84" key="#CLI_Interpreters" timestamp="1600533056508">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="307" y="84" key="#CLI_Interpreters/0.0.1440.860@0.0.1440.860" timestamp="1600533056507" />
+    <state x="475" y="253" key="#Notifications" timestamp="1600532700196">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="475" y="253" key="#Notifications/0.0.1440.860@0.0.1440.860" timestamp="1600532700196" />
+    <state x="434" y="72" key="#PHP" timestamp="1600533058954">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="434" y="72" key="#PHP/0.0.1440.860@0.0.1440.860" timestamp="1600533058954" />
+    <state x="300" y="84" key="#Test_Frameworks" timestamp="1600533248208">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="300" y="84" key="#Test_Frameworks/0.0.1440.860@0.0.1440.860" timestamp="1600533248208" />
+    <state x="174" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600533416196">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="174" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.860@0.0.1440.860" timestamp="1600533416196" />
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600376146938">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
-    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600361836425">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600545274560">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600545274560" />
+    <state x="522" y="185" key="FileChooserDialogImpl" timestamp="1600533885334">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="522" y="185" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1600533885334" />
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600361836425" />
+    <state width="1397" height="164" key="GridCell.Tab.0.bottom" timestamp="1600546089430">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="164" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1600546089430" />
+    <state width="1397" height="164" key="GridCell.Tab.0.center" timestamp="1600546089430">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="164" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1600546089430" />
+    <state width="1397" height="164" key="GridCell.Tab.0.left" timestamp="1600546089429">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="164" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1600546089429" />
+    <state width="1397" height="164" key="GridCell.Tab.0.right" timestamp="1600546089430">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="164" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1600546089430" />
     <state x="567" y="153" key="NewPhpClassDialog" timestamp="1599753792718">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1599753792718" />
+    <state x="221" y="74" key="SettingsEditor" timestamp="1600533939929">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="221" y="74" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1600533939929" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1600383263838">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
