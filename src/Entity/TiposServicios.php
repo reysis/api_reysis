@@ -10,6 +10,9 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
@@ -33,6 +36,14 @@ use Doctrine\ORM\Mapping as ORM;
  *      },
  *      attributes={
  *          "pagination_items_per_page"=10,
+ *      }
+ * )
+ * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "nombre":"partial",
+ *          "descripcion":"partial",
  *      }
  * )
  * @ORM\Entity(repositoryClass=TiposServiciosRepository::class)
