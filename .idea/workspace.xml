@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Security/Voter/TiposServiciosVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/TiposServiciosVoter.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,6 +138,7 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
       <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
       <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/test-pack" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -170,6 +173,7 @@
       <workItem from="1600367078885" duration="2863000" />
       <workItem from="1600383039666" duration="1000" />
       <workItem from="1600383067646" duration="225000" />
+      <workItem from="1600529262826" duration="1800000" />
     </task>
     <servers />
   </component>

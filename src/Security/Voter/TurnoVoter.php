@@ -58,6 +58,6 @@ class TurnoVoter extends Voter
                 return false;
         }
 
-        throw new \Exception(sprint('Atributo no manejado "%s" ', $atribute));
+        throw new \Exception(sprint('Atributo no manejado "%s" ', $attribute));
     }
 }

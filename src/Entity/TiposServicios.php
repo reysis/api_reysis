@@ -22,9 +22,18 @@ use Doctrine\ORM\Mapping as ORM;
  *     },
  *     itemOperations={
  *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
- *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
- *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *          "put" = {
+ *                  "security"="is_granted('EDIT', object)",
+ *                  "security_message"="Solo un Administrador puede editar Tipos de Servicios."
+ *          },
+ *          "delete" = {
+ *                  "security"="is_granted('ERASE', object)",
+ *                  "security_message"="No puede realizar esta acción a menos que sea administrador."
+ *          }
  *      },
+ *      attributes={
+ *          "pagination_items_per_page"=10,
+ *      }
  * )
  * @ORM\Entity(repositoryClass=TiposServiciosRepository::class)
  */
