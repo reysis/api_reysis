@@ -6,9 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20200920011814.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/PreguntaFrecuente.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/PreguntaFrecuenteRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="TipoServicio" />
+        <entry key="$PROJECT_DIR$" value="TipoUsuario" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -282,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600563771403</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Ya esta listo el test de eliminar los Tipos de Usuarios">
+      <created>1600564222946</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1600564222946</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +344,8 @@
     <MESSAGE value="Ya esta listo el test de crear un TipoUsuario" />
     <MESSAGE value="Ya esta listo el test de obtener los Tipos de Usuarios" />
     <MESSAGE value="Ya esta listo el test de editar los Tipos de Usuarios" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ya esta listo el test de editar los Tipos de Usuarios" />
+    <MESSAGE value="Ya esta listo el test de eliminar los Tipos de Usuarios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ya esta listo el test de eliminar los Tipos de Usuarios" />
   </component>
   <component name="WindowStateProjectService">
     <state x="307" y="84" key="#CLI_Interpreters" timestamp="1600533056508">
@@ -363,31 +372,31 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
-    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600563770179">
+    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600564221937">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600563770179" />
+    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600564221937" />
     <state x="522" y="185" key="FileChooserDialogImpl" timestamp="1600533885334">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="522" y="185" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1600533885334" />
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600361836425" />
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1600564150162">
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1600564465599">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1600564150162" />
-    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1600564150162">
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1600564465599" />
+    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1600564465598">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1600564150162" />
-    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1600564150161">
+    <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1600564465598" />
+    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1600564465598">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1600564150161" />
-    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1600564150162">
+    <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1600564465598" />
+    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1600564465598">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1600564150162" />
+    <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1600564465598" />
     <state x="567" y="153" key="NewPhpClassDialog" timestamp="1599753792718">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -396,10 +405,10 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="221" y="74" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1600533939929" />
-    <state x="312" y="162" key="Vcs.Push.Dialog.v2" timestamp="1600554891977">
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2" timestamp="1600564234038">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="312" y="162" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1600554891977" />
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1600564234038" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1600383263838">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
