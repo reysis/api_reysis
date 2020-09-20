@@ -81,7 +81,7 @@ class TipoUsuarioResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/tipo_usuarios', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                  'tipo' => 'Persona Natural'
+                  'tipo' => 'Persona Natural 1'
             ]
         ]);
         $this->assertResponseStatusCodeSame(401);
@@ -97,7 +97,7 @@ class TipoUsuarioResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/tipo_usuarios', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                  'tipo' => 'Persona Natural'
+                  'tipo' => 'Persona Natural 1'
             ]
         ]);
 

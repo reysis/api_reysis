@@ -168,11 +168,7 @@
     <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="PHPUnit.TipoUsuarioResourceTest.testGetTipoUsuario">
-    <configuration name="TipoServiciosResourceTest.testDeleteTipoServicio" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="App\Tests\Functional\TipoServiciosResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" method="testDeleteTipoServicio" scope="Method" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="PHPUnit.TipoUsuarioResourceTest.testUpdateTipoUsuario">
     <configuration name="TipoServiciosResourceTest.testGetTipoServicio" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="App\Tests\Functional\TipoServiciosResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" method="testGetTipoServicio" scope="Method" />
       <method v="2" />
@@ -189,20 +185,24 @@
       <TestRunner class="App\Tests\Functional\TipoUsuarioResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" method="testGetTipoUsuario" scope="Method" />
       <method v="2" />
     </configuration>
+    <configuration name="TipoUsuarioResourceTest.testUpdateTipoUsuario" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\TipoUsuarioResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" method="testUpdateTipoUsuario" scope="Method" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="PHPUnit.TipoServiciosResourceTest.testDeleteTipoServicio" />
       <item itemvalue="PHPUnit.TipoServiciosResourceTest.testGetTipoServicio" />
       <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testCreateTipoServicio" />
       <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testCreateTipoUsuario" />
       <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testGetTipoUsuario" />
+      <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testUpdateTipoUsuario" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testUpdateTipoUsuario" />
         <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testGetTipoUsuario" />
         <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testCreateTipoUsuario" />
         <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testCreateTipoServicio" />
         <item itemvalue="PHPUnit.TipoServiciosResourceTest.testGetTipoServicio" />
-        <item itemvalue="PHPUnit.TipoServiciosResourceTest.testDeleteTipoServicio" />
       </list>
     </recent_temporary>
   </component>
