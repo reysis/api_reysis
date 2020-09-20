@@ -5,10 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Entity/PreguntaFrecuente.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PreguntaFrecuente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
-    </list>
+    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -295,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600564882983</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="se estan haciendo las anotaciones para el apiResource">
+      <created>1600565736134</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1600565736134</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -351,7 +355,8 @@
     <MESSAGE value="Ya esta listo el test de editar los Tipos de Usuarios" />
     <MESSAGE value="Ya esta listo el test de eliminar los Tipos de Usuarios" />
     <MESSAGE value="se creo la entidad PreguntaFrecuente.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="se creo la entidad PreguntaFrecuente.php" />
+    <MESSAGE value="se estan haciendo las anotaciones para el apiResource" />
+    <option name="LAST_COMMIT_MESSAGE" value="se estan haciendo las anotaciones para el apiResource" />
   </component>
   <component name="WindowStateProjectService">
     <state x="307" y="84" key="#CLI_Interpreters" timestamp="1600533056508">
@@ -378,10 +383,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
-    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600564882165">
+    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600565734987">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600564882165" />
+    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600565734987" />
     <state x="522" y="185" key="FileChooserDialogImpl" timestamp="1600533885334">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
@@ -411,10 +416,10 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="221" y="74" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1600533939929" />
-    <state x="312" y="162" key="Vcs.Push.Dialog.v2" timestamp="1600564234038">
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2" timestamp="1600565759449">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="312" y="162" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1600564234038" />
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1600565759449" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1600383263838">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
