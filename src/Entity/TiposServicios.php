@@ -59,6 +59,7 @@ class TiposServicios
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ApiProperty(iri="http://schema.org/nombre")
      * @Groups({"tiposservicios:read", "admin:write"})
      */
     private $nombre;
