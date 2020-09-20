@@ -7,7 +7,7 @@
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TipoUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TipoUsuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -168,17 +168,17 @@
     <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="PHPUnit.TipoUsuarioResourceTest.testUpdateTipoUsuario">
-    <configuration name="TipoServiciosResourceTest.testGetTipoServicio" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="App\Tests\Functional\TipoServiciosResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" method="testGetTipoServicio" scope="Method" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="PHPUnit.TipoUsuarioResourceTest.testDeleteTipoUsuario">
     <configuration name="TipoUsuarioResourceTest.testCreateTipoServicio" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="App\Tests\Functional\TipoUsuarioResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" method="testCreateTipoServicio" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="TipoUsuarioResourceTest.testCreateTipoUsuario" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="App\Tests\Functional\TipoUsuarioResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" method="testCreateTipoUsuario" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TipoUsuarioResourceTest.testDeleteTipoUsuario" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\TipoUsuarioResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/TipoUsuarioResourceTest.php" method="testDeleteTipoUsuario" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="TipoUsuarioResourceTest.testGetTipoUsuario" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -190,19 +190,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="PHPUnit.TipoServiciosResourceTest.testGetTipoServicio" />
       <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testCreateTipoServicio" />
       <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testCreateTipoUsuario" />
       <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testGetTipoUsuario" />
       <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testUpdateTipoUsuario" />
+      <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testDeleteTipoUsuario" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testDeleteTipoUsuario" />
         <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testUpdateTipoUsuario" />
         <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testGetTipoUsuario" />
         <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testCreateTipoUsuario" />
         <item itemvalue="PHPUnit.TipoUsuarioResourceTest.testCreateTipoServicio" />
-        <item itemvalue="PHPUnit.TipoServiciosResourceTest.testGetTipoServicio" />
       </list>
     </recent_temporary>
   </component>
@@ -268,7 +268,21 @@
       <option name="project" value="LOCAL" />
       <updated>1600557879852</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ya esta listo el test de obtener los Tipos de Usuarios">
+      <created>1600563491713</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600563491713</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Ya esta listo el test de editar los Tipos de Usuarios">
+      <created>1600563771403</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600563771403</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +334,9 @@
     <MESSAGE value="Se agregaron los fitros para la entidad TipoUsuario" />
     <MESSAGE value="Se realizo el voter de TipoUsuario" />
     <MESSAGE value="Ya esta listo el test de crear un TipoUsuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ya esta listo el test de crear un TipoUsuario" />
+    <MESSAGE value="Ya esta listo el test de obtener los Tipos de Usuarios" />
+    <MESSAGE value="Ya esta listo el test de editar los Tipos de Usuarios" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ya esta listo el test de editar los Tipos de Usuarios" />
   </component>
   <component name="WindowStateProjectService">
     <state x="307" y="84" key="#CLI_Interpreters" timestamp="1600533056508">
@@ -347,31 +363,31 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
-    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600557877800">
+    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600563770179">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600557877800" />
+    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600563770179" />
     <state x="522" y="185" key="FileChooserDialogImpl" timestamp="1600533885334">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="522" y="185" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1600533885334" />
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600361836425" />
-    <state width="1397" height="293" key="GridCell.Tab.0.bottom" timestamp="1600563424897">
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1600564150162">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="293" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1600563424897" />
-    <state width="1397" height="293" key="GridCell.Tab.0.center" timestamp="1600563424897">
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1600564150162" />
+    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1600564150162">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="293" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1600563424897" />
-    <state width="1397" height="293" key="GridCell.Tab.0.left" timestamp="1600563424897">
+    <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1600564150162" />
+    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1600564150161">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="293" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1600563424897" />
-    <state width="1397" height="293" key="GridCell.Tab.0.right" timestamp="1600563424897">
+    <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1600564150161" />
+    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1600564150162">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="293" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1600563424897" />
+    <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1600564150162" />
     <state x="567" y="153" key="NewPhpClassDialog" timestamp="1599753792718">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

@@ -115,7 +115,7 @@ class User implements UserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=TipoUsuario::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="cascade")
      * @Groups({"user:write", "user:read"})
      * @Assert\NotBlank(groups={"create"})
      */
