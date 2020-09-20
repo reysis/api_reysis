@@ -16,7 +16,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ApiResource(
  *  iri="http://schema.org/TipoUsuario",
  *     collectionOperations={
- *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "get" = {"security" = "is_granted('ROLE_ADMIN')"},
  *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
  *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios"
  *          }
