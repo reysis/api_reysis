@@ -51,7 +51,7 @@ class TipoServiciosResourceTest extends CustomApiTestCase
         $client->request('GET', '/api/tipos_servicios',[
             'headers'=> ['ContentType'=>'application/json+ld'],
         ]);
-        $this->assertJsonContains(['Location'=>'marlon']);
+        $this->assertResponseStatusCodeSame(200);
 
     }
 

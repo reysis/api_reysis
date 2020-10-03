@@ -9,7 +9,19 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
+ *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios"
+ *          }
+ *     },
+ *     itemOperations={
+ *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *      },
+ * )
  * @UniqueEntity("tipo")
  * @ORM\Entity(repositoryClass=TipoUsuarioRepository::class)
  */
@@ -24,7 +36,7 @@ class TipoUsuario
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Groups({"user:read"})
+     * @Groups({"tipousuario:read"})
      */
     private $tipo;
 
