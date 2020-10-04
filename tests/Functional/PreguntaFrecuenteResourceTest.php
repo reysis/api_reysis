@@ -25,7 +25,7 @@ class PreguntaFrecuenteResourceTest extends CustomApiTestCase
                 'pregunta' => 'pregunta 1'
             ]
         ]);
-        $this->assertResponseStatusCodeSame(201);
+        $this->assertResponseStatusCodeSame(401);
 
         //Creando el Tipo de Servicio como Admin
         $em = $this->getEntityManager();

@@ -25,7 +25,7 @@ class PreguntaFrecuenteVoter extends Voter
                 && $subject instance of PreguntaFrecuente;
         */
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['ERASE', 'EDIT'])
+        return in_array($attribute, ['ERASE', 'EDIT','POST'])
             && $subject instanceof PreguntaFrecuente;
     }
 
@@ -46,6 +46,10 @@ class PreguntaFrecuenteVoter extends Voter
          * un case para cada Operacion Custom que realices
          * */
         switch ($attribute) {
+            case 'POST':
+                if(in_array('ROLE_ADMIN', $user->getRoles()))
+                    return true;
+                return false;
             case 'EDIT':
                 if(in_array('ROLE_ADMIN', $user->getRoles()))
                     return true;

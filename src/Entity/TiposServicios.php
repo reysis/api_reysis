@@ -20,7 +20,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
- *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios"
+ *                  "security_post_denormalize_message"="Solo un Administrador puede crear tipos de servicios"
  *          }
  *     },
  *     itemOperations={
