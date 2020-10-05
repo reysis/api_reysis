@@ -2,24 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200926202844.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200926203215.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200926205414.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200928035700.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200928042401.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/FAQ.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Reviews.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/FAQRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ReviewsRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataProvider/UserDataProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TipoEquipo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TipoEquipo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TipoUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TipoUsuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,6 +164,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -199,7 +187,7 @@
       <workItem from="1600699447616" duration="5633000" />
       <workItem from="1601135506657" duration="19388000" />
       <workItem from="1601749387771" duration="2549000" />
-      <workItem from="1601763488114" duration="472000" />
+      <workItem from="1601763488114" duration="9320000" />
     </task>
     <servers />
   </component>
@@ -210,6 +198,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1601831006701">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1601831006701" />
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600376146938">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -218,10 +210,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1601749684091">
+    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1601828653730">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1601749684091" />
+    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1601828653730" />
     <state x="626" y="132" key="RollbackChangesDialog" timestamp="1600699993313">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -230,5 +222,9 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1601749965299" />
+    <state x="463" y="180" key="search.everywhere.popup" timestamp="1601828747433">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="463" y="180" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1601828747433" />
   </component>
 </project>

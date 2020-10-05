@@ -141,7 +141,14 @@ class User implements UserInterface
      * @Groups({"user:read","user:write"})
      */
     private $address;
-    
+
+    /**
+     * Retorna verdadero si este es el usuario autenticado actualmente
+     *
+     * @Groups({"user:read"})
+    */
+    private $isMe;
+
     public function __construct()
     {
         $this->turnos = new ArrayCollection();
@@ -388,4 +395,18 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getIsMe(): bool
+    {
+        if($this->isMe === null){
+            throw new \LogicException("El campo isMe no ha sido inicializado");
+        }
+        return $this->isMe;
+    }
+
+    public function setIsMe(bool $isMe): void
+    {
+        $this->isMe = $isMe;
+    }
+
 }
