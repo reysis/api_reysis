@@ -1,0 +1,7 @@
+.page{
+  @include flexbox();
+  justify-content: center;
+  align-content: center;
+  flex-flow: row wrap;
+  padding: 20px;
+}

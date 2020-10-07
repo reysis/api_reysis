@@ -1,0 +1,122 @@
+.landing-page{
+    @include flexbox();
+    background-color: $color1;
+    //background-image: linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
+    //background-image: -webkit-linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: auto;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    justify-content: center;
+}
+
+.landing-content{
+    @include flexbox();
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 100px 0;
+}
+
+.landing-text{
+    @include flexbox();
+    @include order(2);
+    justify-content: center;
+    align-content: center;
+    flex-flow: column nowrap;
+    width: auto;
+    height: auto;
+    font-size: $sizeNormalText;
+    font-family: "IBMPlexSans";
+    color: rgba(189, 185, 185, 0.9);
+    line-height: 1.8;
+    text-align: left;
+}
+
+.landing-parrafo{
+    padding: 20px;
+    color: rgba(189, 185, 185, 0.9);
+}
+
+.landing-image{
+    @include order(1);
+    width: 95%;
+    height: auto;
+}
+
+.slogan-text{
+    font-size: $sizeH1;
+    font-family: "Myriad Pro";
+    color: $color5;
+    line-height: 1.147;
+    text-align: left;
+    padding: 25px 0 0 20px;
+}
+
+.landing-button-container{
+    padding-left: 20px;
+}
+
+.landing-button {
+    border-radius: 1.4rem;
+    background-image: linear-gradient( 30deg, rgb(246,93,23) 0%, rgb(251,122,29) 33%, rgb(255,150,35) 100%) !important;
+    background-image: -webkit-linear-gradient( 30deg, rgb(246,93,23) 0%, rgb(251,122,29) 33%, rgb(255,150,35) 100%) !important;
+    width: 250px;
+    height: 50px;
+    box-shadow:  -4px 3px 18px 0px #0000007d;
+    border-color: transparent !important;
+}
+
+.landing-button-text{
+    font-size: calc(14.875px + 3.125*(100vw - 480px)/760);
+    font-family: "IBMPlexSans";
+    color: $color5;
+    font-weight: bold;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Medium screens */
+@media all and (min-width: 600px) {
+    .landing-image{
+        margin: 0;
+        padding: 0;
+        width: 80%;
+    }
+}
+
+/* Large screens */
+@media all and (min-width: 1000px) {
+    .landing-button{
+        //@include flex(1 4 4 auto);
+        display: inline !important;
+        word-spacing: unset;
+        width: 50% !important;
+    }
+   .landing-text{
+       order: 1;
+       padding: 50px;
+       width: 50%;
+   }
+   .landing-image-container{
+       @include flexbox();
+       justify-content: center;
+       order: 2;
+       width: 50%;
+       margin: 0;
+       padding: 0;
+   }
+   .landing-content{
+       display: flex;
+       flex-direction: row;
+       width: 100%;
+       padding: 30px 0 100px 0;
+       margin-left: 50px !important;
+       margin-right: 50px !important;
+       justify-content: center;
+       align-content: center;
+   }
+}
+

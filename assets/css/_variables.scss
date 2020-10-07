@@ -1,0 +1,41 @@
+$sizeH1: calc(40px + 15*(100vw - 480px)/760);
+$sizeH2: calc(35px + 10*(100vw - 480px)/760);
+$sizeH3-small-screen: calc(15px + 5*(100vw - 480px)/760);
+$sizeH3-big-screen: calc(10px + 5*(100vw - 480px)/760);
+$sizeNormalText: calc(14.875px + 3.125*(100vw - 480px)/760);
+/* Paleta de color 1 */
+/*$color1: #2E279D;
+$color2: #4D80E4;
+$color3: #46B3E6;
+$color4: #ACE5FF;
+$color5: #FFFFFF;
+//$color6: #0c0818;*/
+$color6: #13111B;
+
+/* Paleta de Color 2 */
+/*$color1: #300065;
+$color2: #7A08FA;
+$color3: #A82FFC;
+$color4: #D189FF;
+$color5: #FFFFFF;*/
+
+/* Paleta de Color 3 */
+/*$color1: #311D3F;
+$color2: #522546;
+$color3: #88304E;
+$color4: #E23E57;
+$color5: #FFFFFF;*/
+
+/* Paleta de Color 4 */
+/*$color1: #6730EC;
+$color2: #7984EE;
+$color3: #A9D2FF;
+$color4: #D2F6FC;
+$color5: #FFFFFF;*/
+
+/* Paleta de Color 5 */
+$color1: #163172;
+$color2: #1E56A0;
+$color3: #D6E4F0;
+$color4: #F6F6F6;
+$color5: #FFFFFF;

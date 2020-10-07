@@ -1,0 +1,67 @@
+.navbar{
+    align-items: center;
+    transition: 0.25s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.fixed-top{
+    .n-container{
+        background-color: darken($color1,5%);
+    }
+}
+
+.navbar-light .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml, <svg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'><path stroke='rgba(255,255,255,0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/></svg>") !important;
+}
+
+.navbar-light .navbar-toggler{
+    border-color: $color5 !important;
+}
+
+.navbar-brand svg{
+    width: 50px;
+    height: 60px;
+}
+
+.nav-item{
+    height: 40px;
+    display: flex;
+    padding: 3px;
+    padding-top: 5px;
+    justify-content: left;
+    align-content: center;
+    align-items: center;
+}
+
+.nav-item a{
+    font-size: 20px;
+    font-family: "Myriad Pro";
+    color: $color5;
+    padding: 5px;
+}
+
+.nav-item-link:hover{
+    background: rgba(0, 21, 76, 0.5);
+    color: $color4;
+    text-decoration: none;
+}
+
+/* Medium screens */
+@media all and (min-width: 600px) {
+    .navbar-brand svg{
+        width: 70px;
+        height: 80px;
+    }
+}
+
+/* Large screens */
+@media all and (min-width: 860px) {
+    .n-container{
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+}

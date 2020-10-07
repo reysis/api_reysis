@@ -147,12 +147,11 @@ class User implements UserInterface
      *
      * @Groups({"user:read"})
     */
-    private $isMe;
+    private $isMe = false;
 
     public function __construct()
     {
         $this->turnos = new ArrayCollection();
-        $this->tipoUser = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -257,14 +256,6 @@ class User implements UserInterface
         }
 
         return $this;
-    }
-
-    /**
-     * @return Collection|TipoUser[]
-     */
-    public function getTipoUser(): Collection
-    {
-        return $this->tipoUser;
     }
 
     public function getEmpresa(): ?Empresa
@@ -398,9 +389,6 @@ class User implements UserInterface
 
     public function getIsMe(): bool
     {
-        if($this->isMe === null){
-            throw new \LogicException("El campo isMe no ha sido inicializado");
-        }
         return $this->isMe;
     }
 

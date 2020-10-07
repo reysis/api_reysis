@@ -2,11 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DataProvider/UserDataProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/App.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/actions/user/logout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/Logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/estadisticas-background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/landing-background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/landing-image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/logo-footer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/logo222.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/opinion-img-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/opinion-img-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/opinion-img-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/assets/serviceImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/components/user/Logout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/reducers/user/logout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/serviceWorker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/assets.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/prod/webpack_encore.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/test/webpack_encore.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/webpack_encore.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Configurations.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/SetIsMeOnCurrentUserSubscriber.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/ConfigurationsRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/my-api_reysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my-api_reysis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataProvider/UserDataProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataProvider/UserDataProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +60,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="composer.json" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -148,6 +188,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
       <path value="$PROJECT_DIR$/vendor/symfony/form" />
+      <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -187,7 +228,11 @@
       <workItem from="1600699447616" duration="5633000" />
       <workItem from="1601135506657" duration="19388000" />
       <workItem from="1601749387771" duration="2549000" />
-      <workItem from="1601763488114" duration="9320000" />
+      <workItem from="1601763488114" duration="12194000" />
+      <workItem from="1601938956258" duration="898000" />
+      <workItem from="1601990842773" duration="8363000" />
+      <workItem from="1602001602670" duration="132000" />
+      <workItem from="1602002063398" duration="21688000" />
     </task>
     <servers />
   </component>
@@ -202,10 +247,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1601831006701" />
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600376146938">
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602085872703">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1602085872703" />
     <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600700043484">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

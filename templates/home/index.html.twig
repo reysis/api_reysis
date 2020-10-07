@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido a Reysis{% endblock %}
+{% block body %}
+    <script>
+        window.user = {{ user|raw }}
+    </script>
+    <div id="root"></div>
+{% endblock %}

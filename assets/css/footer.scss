@@ -1,0 +1,143 @@
+.footer-component{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    //background-color: #0c0818;
+    background-color: $color6;
+    border-top-left-radius: 120px;
+    height: auto;
+    width: 100%;
+}
+
+.footer-container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.menu-footer{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 15px;
+    width: 50%;
+}
+
+.footer-menu-list{
+    list-style-type: none;
+    padding-inline-start: unset !important;
+}
+
+.menu-title{
+    font-size: 22px;
+    font-family: "Myriad Pro";
+    color: rgb(255, 255, 255);
+    text-align: left;  
+}
+
+.menu-item{
+    font-size: 18px;
+    font-family: "Myriad Pro";
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 2;
+    text-align: left;      
+}
+
+.menu-item:hover{
+    color: $color5;
+    cursor: pointer;
+}
+
+.menu-footer span{
+    padding-right: 10px;
+}
+
+.logo-footer{
+    width: 200px;
+    height: 220px;
+    order: 1;
+}
+.copyright{
+    color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 1;
+    padding-bottom: 0 !important;
+    width: 100%;
+}
+
+.developed-container{
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.copyright-container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Medium screens*/
+
+@media all and (min-width:600px){
+    .footer-container{
+        flex-flow: row wrap;
+        align-items: flex-start;
+    }
+    .logo-menu{
+        order: 1;
+        flex: 1 60%;
+    }
+    .logo-menu a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .learn-more-menu, .our-company-menu{
+        order: 2;
+        //padding-left: 15% !important;
+    }
+    .website-menu, .contact-menu{
+        order: 3;
+        //padding-left: 15% !important;
+    }
+
+}
+
+/* Large screens */
+@media all and (min-width: 1000px) {
+    .footer-container{
+        flex-flow: row nowrap;
+    }
+    .logo-menu{
+        order: 3;
+    }
+    .learn-more-menu{
+        order: 1;
+    }
+    .our-company-menu{
+        order: 2;
+        padding-right: 1px !important;
+        padding-left: 60px !important;
+    }
+    .contact-menu{
+        order: 5;
+    }
+    .website-menu{
+        order: 4;
+    }
+    .menu-footer{
+        padding-left: 20px;
+    }
+}

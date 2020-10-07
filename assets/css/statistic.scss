@@ -1,0 +1,47 @@
+.statistic-component, .statistic-container,
+.single-statistic{
+    display: flex;
+}
+
+.statistic-component{
+    flex-direction: column;
+    background-color: $color1;
+    //background-image: linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
+    //background-image: -webkit-linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%; 
+    z-index: 118;
+}
+
+.statistic-container{
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: space-between;
+}
+
+.single-statistic{
+    flex-direction: column;
+    flex-grow: 12;
+    color: $color5;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+    padding: 10px;
+}
+
+.single-statistic-value{
+    font-size: $sizeH3-small-screen;
+    font-family: "Raleway";
+    color: $color5;
+    font-weight: bold;
+    width: 86px;
+    height: 72px;   
+    flex-grow: 12;   
+}
+
+.single-statistic-title{
+    font-size: $sizeH2;
+}

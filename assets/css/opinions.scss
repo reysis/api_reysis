@@ -1,0 +1,48 @@
+.opinions-component{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    align-items: center;
+    padding: 20px 0 20px 0;
+}
+
+.opinions-header{
+    font-size: $sizeH2;
+    padding-top: 20px;
+}
+
+.carousel{
+    height: auto;
+    width: 100%;
+}
+
+.carousel-inner{
+    height: 290px;
+}
+
+.carousel-caption{
+    bottom: unset !important;
+}
+
+.carousel-indicators li{
+//    position: relative !important;
+    width: 15px !important;
+    height: 15px !important;
+    border: 2px solid rgb(246,93,23) !important;
+    border-radius: 50%;
+}
+
+.carousel-caption p{
+    color: black;
+}
+
+.carousel-item.active{
+    height: 200px;
+}
+
+.carousel-caption img{
+    height: 70px;
+    width: 70px;
+    clip-path: circle(50% at 50% 50%);
+}

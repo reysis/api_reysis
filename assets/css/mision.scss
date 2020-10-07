@@ -1,0 +1,16 @@
+.mision-section{
+    padding: 15px;
+    order: 1;
+}
+
+/* Medium screens */
+@media all and (min-width: 600px) {
+
+}
+
+/* Large screens */
+@media all and (min-width: 800px) {
+    .mision-section{
+        width: 33.3%;
+    }
+}
