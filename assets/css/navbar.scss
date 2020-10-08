@@ -5,6 +5,12 @@
     top: 0;
     left: 0;
     width: 100%;
+    //background-color: darken($color1,5%);
+    height: 80px;
+}
+
+.header{
+    background-color: darken($color1,5%);
 }
 
 .fixed-top{
@@ -20,10 +26,9 @@
 .navbar-light .navbar-toggler{
     border-color: $color5 !important;
 }
-
-.navbar-brand svg{
-    width: 50px;
-    height: 60px;
+.navbar-brand, .navbar-brand img{
+    width: 70px;
+    height: 80px;
 }
 
 .nav-item{
@@ -39,8 +44,16 @@
 .nav-item a{
     font-size: 20px;
     font-family: "Myriad Pro";
-    color: $color5;
+    color: $color5 !important;
     padding: 5px;
+}
+
+.dropdown-item{
+    background-color: $color1;
+}
+
+.nav-item-link{
+    width: 100%;
 }
 
 .nav-item-link:hover{
@@ -51,7 +64,7 @@
 
 /* Medium screens */
 @media all and (min-width: 600px) {
-    .navbar-brand svg{
+    .navbar-brand img, .navbar-brand{
         width: 70px;
         height: 80px;
     }

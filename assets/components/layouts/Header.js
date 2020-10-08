@@ -25,21 +25,21 @@ class Header extends Component {
 
     componentDidMount(){
         window.addEventListener('scroll', () =>{
-            const isTop = window.scrollY < 300;
+            const isTop = window.scrollY < 15;
             isTop !== true ? this.setState({scrolled: true}) : this.setState({scrolled: false});
         })
     }
 
     componentWillUnmount(){
         window.removeEventListener('scroll',() =>{
-            const isTop = window.scrollY < 300;
+            const isTop = window.scrollY < 15;
             isTop !== true ? this.setState({scrolled: true}) : this.setState({scrolled: false});
         });
     }
     render() {
         return (
             <div className={this.state.scrolled ? "fixed-top header" : "header"}>
-                <div className="n-container">
+                <div className="nav n-container">
                     <BrandContainer scrolled={this.state.scrolled}/>
                     <NavigationBar loggedUser={this.state.logged}/>
                 </div>

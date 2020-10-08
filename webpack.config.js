@@ -58,13 +58,13 @@ Encore
     .configureBabel((config)=>{
         config.plugins.push('@babel/plugin-proposal-class-properties');
     })
-    .addRule({
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
-    })
     .copyFiles({
         from: './assets/assets/',
         to: 'images/[path][name].[hash:8].[ext]'
+    })
+    .copyFiles({
+        from: './assets/js/',
+        to: 'js/[path][name].[hash:8].[ext]'
     })
 
     // uncomment if you use TypeScript

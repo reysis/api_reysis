@@ -6,7 +6,7 @@ import SVG from 'react-inlinesvg';
 export default function BrandContainer({scrolled}) {
     return (
         <Link to='/' className={scrolled ? "logo-small navbar-brand" : "navbar-brand"}>
-            <img src={Logo} />
+            <img src={Logo} color="red"/>
         </Link>
     )
 }

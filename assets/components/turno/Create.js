@@ -37,7 +37,7 @@ class Create extends Component {
         />
       );
     return (
-      <div className="page container">
+      <div className="container">
         <h1>Hacer una cita</h1>
 
         {this.props.loading && (

@@ -21,7 +21,6 @@ export function loading(state = false, action) {
 }
 
 export function logged(state = window.user, action) {
-    window.user = null;
     switch (action.type) {
         case 'USER_LOGIN_SUCCESS' || 'USER_LOGOUT_SUCCESS':
             return action.logged;

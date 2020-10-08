@@ -9,7 +9,7 @@ import {
 
 const NavigationBar = (props) =>{
     return (
-        <Navbar expand="md">
+        <Navbar expand="md" id="bt-menu" className="bt-menu">
             <Navbar.Toggle  aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
