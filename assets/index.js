@@ -62,6 +62,7 @@ class Index extends Component{
     }
     render(){
         return(
+            <React.Fragment>
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <Header userLogged={window.user}/>
@@ -74,6 +75,7 @@ class Index extends Component{
                     </Switch>
                 </ConnectedRouter>
             </Provider>
+            </React.Fragment>
         )
     }
 };

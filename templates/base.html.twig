@@ -5,12 +5,15 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            <script src="build/js/snap.svg-min.js"></script>
         {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            <script src="build/js/classie.js"></script>
+            <script src="build/js/main4.js"></script>
         {% endblock %}
     </body>
 </html>

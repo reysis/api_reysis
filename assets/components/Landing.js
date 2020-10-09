@@ -6,13 +6,13 @@ import {
     Col,
     Button
 } from 'reactstrap';
-import LandingImg from '../assets/landing-image.png';
+import LandingImg from '../assets/Logo.png';
 import {Image} from 'react-bootstrap';
 
 class Landing extends Component {
     render() {
         return (
-            <section id="landing" className="landing-page container-fluid">
+            <section id="landing" className="landing-page container-fluid page">
                 <div data-aos="zoom-in" className="landing-content container">
                     <div className="landing-text">
                         <h1 className="slogan-text">Servicios Técnicos</h1>

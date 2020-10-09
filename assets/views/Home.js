@@ -10,7 +10,7 @@ import 'aos/dist/aos.css';
 class Home extends Component {
     render() {
         return (
-            <div className="home-page">
+            <div className="content-wrap">
                 <Landing />
                 <ServicesHome />
                 <Estadisticas />

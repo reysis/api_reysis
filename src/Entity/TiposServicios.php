@@ -53,14 +53,29 @@ class TiposServicios
     private $descripcion;
 
     /**
-     * @var string|null Es una imagen. Que puede ser una \[\[URL\]\] un totalmente descrito \[\[ImageObject\]\].
-     * 
-     * @ORM\Column(type="text", nullable=true)
+     * @var MediaObject|null
+     *
+     * @ORM\ManyToOne(targetEntity=MediaObject::class)
+     * @ORM\JoinColumn(nullable=true)
      * @ApiProperty(iri="http://schema.org/image")
-     * @Assert\Url
-     * @Groups({"tiposservicios:read", "admin:write"})
      */
-    private $image;
+    public $image;
+
+    /**
+     * @return MediaObject|null
+     */
+    public function getImage(): ?MediaObject
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param MediaObject|null $image
+     */
+    public function setImage(?MediaObject $image): void
+    {
+        $this->image = $image;
+    }
 
     /**
      * @ORM\OneToMany(targetEntity=Servicio::class, mappedBy="tipoServicio", orphanRemoval=true)
@@ -97,18 +112,6 @@ class TiposServicios
     public function setDescripcion(string $descripcion): self
     {
         $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }

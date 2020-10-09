@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavigationBar from './NavigationBar';
 import BrandContainer from './BrandContainer';
+import Authentication from "./Authentication";
 import {connect} from 'react-redux';
 
 class Header extends Component {
@@ -13,6 +14,7 @@ class Header extends Component {
             error: null
         };
     }
+
     componentWillReceiveProps(nextProps) {
         if(this.props.logged !== nextProps.logged){
             this.setState({
@@ -25,24 +27,23 @@ class Header extends Component {
 
     componentDidMount(){
         window.addEventListener('scroll', () =>{
-            const isTop = window.scrollY < 15;
+            const isTop = window.scrollY < 200;
             isTop !== true ? this.setState({scrolled: true}) : this.setState({scrolled: false});
         })
     }
 
     componentWillUnmount(){
         window.removeEventListener('scroll',() =>{
-            const isTop = window.scrollY < 15;
+            const isTop = window.scrollY < 200;
             isTop !== true ? this.setState({scrolled: true}) : this.setState({scrolled: false});
         });
     }
     render() {
         return (
-            <div className={this.state.scrolled ? "fixed-top header" : "header"}>
-                <div className="nav n-container">
-                    <BrandContainer scrolled={this.state.scrolled}/>
-                    <NavigationBar loggedUser={this.state.logged}/>
-                </div>
+            <div className={this.state.scrolled ? "fixed-top container-fluid nav-header": "container-fluid nav-header"}>
+                    <NavigationBar />
+                    {/*<BrandContainer scrolled={this.state.scrolled}/>*/}
+                    <Authentication loggedUser={this.state.logged}/>
             </div>
         )
     }

@@ -64,7 +64,11 @@ Encore
     })
     .copyFiles({
         from: './assets/js/',
-        to: 'js/[path][name].[hash:8].[ext]'
+        to: 'js/[path][name].[ext]'
+    })
+    .copyFiles({
+        from: './assets/fonts/',
+        to: 'fonts/[path][name].[ext]'
     })
 
     // uncomment if you use TypeScript

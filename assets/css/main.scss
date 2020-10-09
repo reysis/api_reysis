@@ -18,21 +18,15 @@ p{
     width: 100%;
     //padding-top: 135px;
   }
-
+  .container-fluid{
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;
+  }
   .flexbox-centered{
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
     flex-flow: row nowrap;
-  }
-
-  .n-container{
-    display: flex;
-    flex-flow: column wrap;
-    /*justify-content: center;
-    align-items: center;*/
-    padding-right: 20px;
-    padding-left: 20px;
-    background-color: $color1;
-    //background-image: linear-gradient( 80deg, rgba(5,20,100, 0.9) 0%, rgba(8,40,170,0.9) 33%, rgba(8,40,222, 0.9) 100%);;
   }
