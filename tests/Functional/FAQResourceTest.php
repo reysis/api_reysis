@@ -8,46 +8,46 @@ use App\Entity\User;
 use App\Test\CustomApiTestCase;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
-class PreguntaFrecuenteResourceTest extends CustomApiTestCase
+class FAQResourceTest extends CustomApiTestCase
 {
     use ReloadDatabaseTrait;
 
-    public function testCreatePreguntaFrecuente()
+    public function testCreatequestionFrecuente()
     {
         $client = self::createClient();
 
         $tipo1 = $this->createTipoUsuario('Persona Natural');
         $user = $this->createUser('testUser1', 'foo', '123456789', $tipo1);
 
-        $client->request('POST', '/api/pregunta_frecuentes', [
+        $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'pregunta' => 'pregunta 1'
+                'question' => 'question 1'
             ]
         ]);
         $this->assertResponseStatusCodeSame(401);
 
-        //Creando la Pregunta Frecuente como Admin
+        //Creando la question Frecuente como Admin
         $em = $this->getEntityManager();
         $user = $em->getRepository(User::class)->find($user->getId());
         $user->setRoles(['ROLE_ADMIN']);
         $em->flush();
 
         $this->logIn($client, 'testUser1', 'foo');
-        $client->request('POST', '/api/pregunta_frecuentes', [
+        $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'pregunta' => 'pregunta 2'
+                'question' => 'question 2'
             ]
         ]);
         $this->assertResponseStatusCodeSame(201);
     }
 
-    public function testGetPreguntaFrecuente()
+    public function testGetquestionFrecuente()
     {
         $client = self::createClient();
 
-        $client->request('GET', '/api/pregunta_frecuentes', [
+        $client->request('GET', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
         ]);
 
@@ -65,7 +65,7 @@ class PreguntaFrecuenteResourceTest extends CustomApiTestCase
         //Reloguenado para que Symfony note los permisos de administración
         $this->logIn($client, 'testUser1', 'foo');
 
-        $client->request('GET', '/api/pregunta_frecuentes', [
+        $client->request('GET', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
         ]);
 
@@ -73,21 +73,21 @@ class PreguntaFrecuenteResourceTest extends CustomApiTestCase
 
     }
 
-    public function testUpdatePreguntaFrecuente(){
+    public function testUpdatequestionFrecuente(){
         $client = self::createClient();
 
         $tipo1 = $this->createTipoUsuario('Persona Natural');
         $user = $this->createUser('testUser1', 'foo', '123456789', $tipo1);
 
-        $client->request('POST', '/api/pregunta_frecuentes', [
+        $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'pregunta' => 'pregunta 1'
+                'question' => 'question 1'
             ]
         ]);
         $this->assertResponseStatusCodeSame(401);
 
-        //Creando la Pregunta Frecuente como Admin
+        //Creando la question Frecuente como Admin
         $em = $this->getEntityManager();
         $user = $em->getRepository(User::class)->find($user->getId());
         $user->setRoles(['ROLE_ADMIN']);
@@ -95,41 +95,41 @@ class PreguntaFrecuenteResourceTest extends CustomApiTestCase
 
         $this->logIn($client, 'testUser1', 'foo');
 
-        $client->request('POST', '/api/pregunta_frecuentes', [
+        $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'pregunta' => 'pregunta 2'
+                'question' => 'question 2'
             ]
         ]);
 
         $this->assertResponseStatusCodeSame(201);
 
-        $client->request('PUT', '/api/pregunta_frecuentes/1', [
+        $client->request('PUT', '/api/f_a_qs/1', [
             'headers'=> ['ContentType'=>'application/json+ld'],
             'json' => [
-                'pregunta' => 'pregunta 3'
+                'question' => 'question 3'
             ],
         ]);
         $this->assertResponseStatusCodeSame(200);
 
     }
 
-    public function testDeletePreguntaFrecuente(){
+    public function testDeletequestionFrecuente(){
         $client = self::createClient();
 
         $tipo1 = $this->createTipoUsuario('Persona Natural');
         $user = $this->createUser('testUser1', 'foo', '123456789', $tipo1);
 
-        $client->request('POST', '/api/pregunta_frecuentes', [
+        $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'pregunta' => 'pregunta 1'
+                'question' => 'question 1'
             ]
         ]);
 
         $this->assertResponseStatusCodeSame(401);
 
-        //Creando la Pregunta Frecuente como Admin
+        //Creando la question Frecuente como Admin
         $em = $this->getEntityManager();
         $user = $em->getRepository(User::class)->find($user->getId());
         $user->setRoles(['ROLE_ADMIN']);
@@ -137,16 +137,16 @@ class PreguntaFrecuenteResourceTest extends CustomApiTestCase
 
         $this->logIn($client, 'testUser1', 'foo');
 
-        $client->request('POST', '/api/pregunta_frecuentes', [
+        $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'pregunta' => 'pregunta 2'
+                'question' => 'question 2'
             ]
         ]);
 
         $this->assertResponseStatusCodeSame(201);
 
-        $client->request('DELETE', '/api/pregunta_frecuentes/1',[
+        $client->request('DELETE', '/api/f_a_qs/1',[
             'headers'=> ['ContentType'=>'application/json+ld'],
         ]);
 

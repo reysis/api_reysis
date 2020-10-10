@@ -2,13 +2,13 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\PreguntaFrecuente;
+use App\Entity\FAQ;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class PreguntaFrecuenteVoter extends Voter
+class FAQVoter extends Voter
 {
     private $security;
 
@@ -22,11 +22,11 @@ class PreguntaFrecuenteVoter extends Voter
         /* Si Modificas alguna Operaci'on, para que el Voter
             la vea tienes que agregarla aqui por ejemplo:
             return in_array($atribute, ['POST', 'GET_SPECIFI', 'CUALQUIER_COSA'])
-                && $subject instance of PreguntaFrecuente;
+                && $subject instance of FAQ;
         */
         // https://symfony.com/doc/current/security/voters.html
         return in_array($attribute, ['ERASE', 'EDIT','POST'])
-            && $subject instanceof PreguntaFrecuente;
+            && $subject instanceof FAQ;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -38,7 +38,7 @@ class PreguntaFrecuenteVoter extends Voter
         }
 
         /**
-         * @var PreguntaFrecuente $subject
+         * @var FAQ $subject
          */
         /*
          * Aqui tienes que agregar la logica de seguridad...

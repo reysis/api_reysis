@@ -6,16 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Security/Voter/MarcaVoter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Functional/MarcaResourceTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Marca.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Marca.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/PreguntaFrecuente.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PreguntaFrecuente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/PreguntaFrecuenteResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/PreguntaFrecuenteResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/FAQ.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FAQ.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/PreguntaFrecuente.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/PreguntaFrecuenteRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/Voter/PreguntaFrecuenteVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/FAQVoter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/PreguntaFrecuenteResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="PreguntasFrecuentes" />
+        <entry key="$PROJECT_DIR$" value="Marca" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -188,7 +184,11 @@
       <recent name="D:\sfprojects\api_reysis\src\Security\Voter" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.MarcaResourceTest.testDeleteMarca">
+  <component name="RunManager" selected="PHPUnit.FAQResourceTest">
+    <configuration name="FAQResourceTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\FAQResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
     <configuration name="MarcaResourceTest.testDeleteMarca" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="App\Tests\Functional\MarcaResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/MarcaResourceTest.php" method="testDeleteMarca" scope="Method" />
       <method v="2" />
@@ -197,32 +197,28 @@
       <TestRunner class="App\Tests\Functional\MarcaResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/MarcaResourceTest.php" method="testUpdateMarca" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="PreguntaFrecuenteResourceTest.testCreatePreguntaFrecuente" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="App\Tests\Functional\PreguntaFrecuenteResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/PreguntaFrecuenteResourceTest.php" method="testCreatePreguntaFrecuente" scope="Method" />
-      <method v="2" />
-    </configuration>
     <configuration name="PreguntaFrecuenteResourceTest.testDeletePreguntaFrecuente" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="App\Tests\Functional\PreguntaFrecuenteResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/PreguntaFrecuenteResourceTest.php" method="testDeletePreguntaFrecuente" scope="Method" />
+      <TestRunner class="App\Tests\Functional\PreguntaFrecuenteResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" method="testDeletePreguntaFrecuente" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="PreguntaFrecuenteResourceTest.testUpdatePreguntaFrecuente" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="App\Tests\Functional\PreguntaFrecuenteResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/PreguntaFrecuenteResourceTest.php" method="testUpdatePreguntaFrecuente" scope="Method" />
+      <TestRunner class="App\Tests\Functional\PreguntaFrecuenteResourceTest" configuration_file="$PROJECT_DIR$/phpunit.xml.dist" file="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" method="testUpdatePreguntaFrecuente" scope="Method" />
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="PHPUnit.PreguntaFrecuenteResourceTest.testUpdatePreguntaFrecuente" />
-      <item itemvalue="PHPUnit.PreguntaFrecuenteResourceTest.testCreatePreguntaFrecuente" />
       <item itemvalue="PHPUnit.PreguntaFrecuenteResourceTest.testDeletePreguntaFrecuente" />
       <item itemvalue="PHPUnit.MarcaResourceTest.testUpdateMarca" />
       <item itemvalue="PHPUnit.MarcaResourceTest.testDeleteMarca" />
+      <item itemvalue="PHPUnit.FAQResourceTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.FAQResourceTest" />
         <item itemvalue="PHPUnit.MarcaResourceTest.testDeleteMarca" />
         <item itemvalue="PHPUnit.MarcaResourceTest.testUpdateMarca" />
         <item itemvalue="PHPUnit.PreguntaFrecuenteResourceTest.testDeletePreguntaFrecuente" />
         <item itemvalue="PHPUnit.PreguntaFrecuenteResourceTest.testUpdatePreguntaFrecuente" />
-        <item itemvalue="PHPUnit.PreguntaFrecuenteResourceTest.testCreatePreguntaFrecuente" />
       </list>
     </recent_temporary>
   </component>
@@ -247,7 +243,16 @@
       <workItem from="1601135506657" duration="19388000" />
       <workItem from="1601749387771" duration="2549000" />
       <workItem from="1601763488114" duration="472000" />
+      <workItem from="1602344554985" duration="1004000" />
     </task>
+    <task id="LOCAL-00001" summary="Ya esta listo el test de marca">
+      <created>1602344598964</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602344598964</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +271,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Ya esta listo el test de marca" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ya esta listo el test de marca" />
   </component>
   <component name="WindowStateProjectService">
     <state x="434" y="72" key="#PHP" timestamp="1602341497565">
@@ -277,31 +286,39 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="300" y="84" key="#Test_Frameworks/0.0.1440.860@0.0.1440.860" timestamp="1602341574765" />
+    <state x="349" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602345232637">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="349" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.860@0.0.1440.860" timestamp="1602345232637" />
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600376146938">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
+    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1602344596295">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1602344596295" />
     <state x="522" y="185" key="FileChooserDialogImpl" timestamp="1602341566377">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="522" y="185" key="FileChooserDialogImpl/0.0.1440.860@0.0.1440.860" timestamp="1602341566377" />
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1602343423059">
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1602345500944">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602343423059" />
-    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1602343423059">
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602345500944" />
+    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1602345500944">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1602343423059" />
-    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1602343423058">
+    <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1602345500944" />
+    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1602345500944">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1602343423058" />
-    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1602343423059">
+    <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1602345500944" />
+    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1602345500944">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1602343423059" />
+    <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1602345500944" />
     <state x="567" y="153" key="NewPhpClassDialog" timestamp="1601749684091">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -314,6 +331,10 @@
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="221" y="74" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1602341454940" />
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2" timestamp="1602344650954">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1602344650954" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1601749965299">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
