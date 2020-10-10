@@ -2,26 +2,31 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\Turno;
+use App\Entity\Marca;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class TurnoVoter extends Voter
+class MarcaVoter extends Voter
 {
-    private $security = null;
+    private $security;
 
     public function __construct(Security $security)
     {
         $this->security = $security;
     }
+
     protected function supports($attribute, $subject)
     {
-        // replace with your own logic
+        /* Si Modificas alguna Operaci'on, para que el Voter
+            la vea tienes que agregarla aqui por ejemplo:
+            return in_array($atribute, ['POST', 'GET_SPECIFI', 'CUALQUIER_COSA'])
+                && $subject instance of Marca;
+        */
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['ERASE', 'EDIT', 'POST', 'GET_SPECIFIC'])
-            && $subject instanceof Turno;
+        return in_array($attribute, ['ERASE', 'EDIT','POST'])
+            && $subject instanceof Marca;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -31,25 +36,22 @@ class TurnoVoter extends Voter
         if (!$user instanceof UserInterface) {
             return false;
         }
-  
-        //dump( $user->getRoles() );
+
         /**
-         * @var Turno $subject
+         * @var Marca $subject
          */
-        // ... (check conditions and return true to grant permission) ...
+        /*
+         * Aqui tienes que agregar la logica de seguridad...
+         * Si es Admin return true, sino return false... etc,
+         * un case para cada Operacion Custom que realices
+         * */
         switch ($attribute) {
-            case 'POST':{
-                if($subject->getPersonaCitada() === $user){
-                    return true;
-                }
-                return false;
-            }
-            case 'GET_SPECIFC':
-                if($subject->getPersonaCitada() === $user || in_array('ROLE_ADMIN', $user->getRoles()))
+            case 'POST':
+                if(in_array('ROLE_ADMIN', $user->getRoles()))
                     return true;
                 return false;
             case 'EDIT':
-                if($subject->getPersonaCitada() === $user || in_array('ROLE_ADMIN', $user->getRoles()))
+                if(in_array('ROLE_ADMIN', $user->getRoles()))
                     return true;
                 return false;
             case 'ERASE':

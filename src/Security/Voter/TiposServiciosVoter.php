@@ -25,7 +25,7 @@ class TiposServiciosVoter extends Voter
                 && $subject instance of TiposServicios;
         */
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['POST'])
+        return in_array($attribute, ['ERASE', 'EDIT', 'POST'])
             && $subject instanceof TiposServicios;
     }
 
@@ -50,8 +50,16 @@ class TiposServiciosVoter extends Voter
                 if(in_array('ROLE_ADMIN', $user->getRoles()))
                     return true;
                 return false;
+            case 'EDIT':
+                if(in_array('ROLE_ADMIN', $user->getRoles()))
+                    return true;
+                return false;
+            case 'ERASE':
+                if(in_array('ROLE_ADMIN', $user->getRoles()))
+                    return true;
+                return false;
         }
 
-        return false;
+        throw new \Exception(sprint('Atributo no manejado "%s" ', $attribute));
     }
 }

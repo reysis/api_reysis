@@ -6,18 +6,40 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\FAQRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
- *      collectionOperations={
+ *     iri="http://schema.org/FAQ",
+ *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
- *          "post" = {"security_post_denormalize"="is_granted('ROLE_USER')"},
+ *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
+ *                  "security_post_denormalize_message"="Solo un Administrador puede crear FAQ."
+ *          }
  *     },
  *     itemOperations={
- *          "get" = {"accessControl" = "is_granted('GET_SPECIFIC')"},
- *          "put" = {"accessControl" = "is_granted('EDIT_SPECIFIC')"},
- *          "delete" ={"accessControl" = "is_granted('DELETE_SPECIFIC')"}
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "put" = {"security"="is_granted('EDIT', object)",
+ *                  "security_message"="Solo un Administrador puede editar FAQ."},
+ *          "delete" = {
+ *                  "security"="is_granted('ERASE', object)",
+ *                  "security_message"="No puede realizar esta acción a menos que sea administrador."
+ *          }
  *      },
+ *      attributes={
+ *          "pagination_items_per_page"=10,
+ *      }
+ * )
+ * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "question":"partial",
+ *          "answer":"partial",
+ *      }
  * )
  * @ORM\Entity(repositoryClass=FAQRepository::class)
  */
@@ -32,13 +54,15 @@ class FAQ
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"faq:read"})
+     * @ApiProperty(iri="http://schema.org/question")
+     * @Groups({"faq:read", "admin:write"})
      */
     private $question;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"faq:read"})
+     * @ApiProperty(iri="http://schema.org/answer")
+     * @Groups({"faq:read", "admin:write"})
      */
     private $answer;
 

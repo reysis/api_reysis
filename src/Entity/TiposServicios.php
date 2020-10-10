@@ -10,21 +10,41 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
- *     iri="http://schema.org/Service",
+ *     iri="http://schema.org/TiposServicios",
  *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
- *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios"
+ *                  "security_post_denormalize_message"="Solo un Administrador puede crear tipos de servicios"
  *          }
  *     },
  *     itemOperations={
  *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
- *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
- *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *          "put" = {
+ *                  "security"="is_granted('EDIT', object)",
+ *                  "security_message"="Solo un Administrador puede editar tipos de servicios."
+ *          },
+ *          "delete" = {
+ *                  "security"="is_granted('ERASE', object)",
+ *                  "security_message"="No puede realizar esta acción a menos que sea administrador."
+ *          }
  *      },
+ *      attributes={
+ *          "pagination_items_per_page"=10,
+ *      }
+ * )
+ * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "nombre":"partial",
+ *          "descripcion":"partial",
+ *      }
  * )
  * @ORM\Entity(repositoryClass=TiposServiciosRepository::class)
  */
@@ -39,6 +59,7 @@ class TiposServicios
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @ApiProperty(iri="http://schema.org/nombre")
      * @Groups({"tiposservicios:read", "admin:write"})
      */
     private $nombre;

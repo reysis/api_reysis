@@ -70,7 +70,7 @@ class Servicio
 
     /**
      * @ORM\ManyToOne(targetEntity=TiposServicios::class, inversedBy="servicios")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $tipoServicio;
 
