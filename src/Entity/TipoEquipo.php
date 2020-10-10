@@ -6,10 +6,15 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TipoEquipoRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *     },
+ * )
  * @ORM\Entity(repositoryClass=TipoEquipoRepository::class)
  */
 class TipoEquipo
@@ -23,6 +28,7 @@ class TipoEquipo
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"tipoequipo:read"})
      */
     private $nombre;
 

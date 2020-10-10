@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ChangeListManager">
-    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200926202844.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200926203215.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200926205414.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200928035700.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20200928042401.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/FAQ.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Reviews.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/FAQRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ReviewsRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TipoEquipo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TipoEquipo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TipoUsuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TipoUsuario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="composer.json" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpIncludePathManager">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/vendor/namshi/jose" />
@@ -163,72 +123,5 @@
       <path value="$PROJECT_DIR$/vendor/symfony/form" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="" />
-      <created>1599750078921</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1599750078921</updated>
-      <workItem from="1599750080121" duration="19729000" />
-      <workItem from="1600171794873" duration="2349000" />
-      <workItem from="1600177874859" duration="11793000" />
-      <workItem from="1600258963447" duration="3756000" />
-      <workItem from="1600361408898" duration="771000" />
-      <workItem from="1600367078885" duration="2863000" />
-      <workItem from="1600383039666" duration="1000" />
-      <workItem from="1600383067646" duration="5775000" />
-      <workItem from="1600638717859" duration="648000" />
-      <workItem from="1600699447616" duration="5633000" />
-      <workItem from="1601135506657" duration="19388000" />
-      <workItem from="1601749387771" duration="2549000" />
-      <workItem from="1601763488114" duration="472000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1600376146938">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
-    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600700043484">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1601749684091">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1601749684091" />
-    <state x="626" y="132" key="RollbackChangesDialog" timestamp="1600699993313">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="626" y="132" key="RollbackChangesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600699993313" />
-    <state x="456" y="195" key="run.anything.popup" timestamp="1601749965299">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1601749965299" />
-  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
 </project>
