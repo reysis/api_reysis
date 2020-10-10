@@ -5,13 +5,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/PreguntaFrecuente.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PreguntaFrecuente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/Voter/PreguntaFrecuenteVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/PreguntaFrecuenteVoter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/PreguntaFrecuenteResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/PreguntaFrecuenteResourceTest.php" afterDir="false" />
-    </list>
+    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,6 +144,14 @@
       <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
       <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
       <path value="$PROJECT_DIR$/vendor/symfony/test-pack" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/symfony/intl" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/vendor/symfony/form" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -328,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600613498227</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="preparando para actualizar">
+      <created>1602336699981</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1602336699981</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,7 +398,8 @@
     <MESSAGE value="se incorporo la propiedad ApiProperty" />
     <MESSAGE value="se incorporo la propiedad Group" />
     <MESSAGE value="ya esta listo los test de PreguntaFrecuente.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="ya esta listo los test de PreguntaFrecuente.php" />
+    <MESSAGE value="preparando para actualizar" />
+    <option name="LAST_COMMIT_MESSAGE" value="preparando para actualizar" />
   </component>
   <component name="WindowStateProjectService">
     <state x="307" y="84" key="#CLI_Interpreters" timestamp="1600533056508">
@@ -416,10 +426,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600376146938" />
-    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1600613496023">
+    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1602336699131">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1600613496023" />
+    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1602336699131" />
     <state x="522" y="185" key="FileChooserDialogImpl" timestamp="1600533885334">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
