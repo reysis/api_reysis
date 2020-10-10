@@ -22,7 +22,8 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'question' => 'question 1'
+                'question' => 'question 1',
+                'answer' => 'answer 1'
             ]
         ]);
         $this->assertResponseStatusCodeSame(401);
@@ -37,7 +38,8 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'question' => 'question 2'
+                'question' => 'question 2',
+                'answer' => 'answer 2'
             ]
         ]);
         $this->assertResponseStatusCodeSame(201);
@@ -82,7 +84,8 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'question' => 'question 1'
+                'question' => 'question 1',
+                'answer' => 'answer 1'
             ]
         ]);
         $this->assertResponseStatusCodeSame(401);
@@ -98,7 +101,8 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'question' => 'question 2'
+                'question' => 'question 2',
+                'answer' => 'answer 2'
             ]
         ]);
 
@@ -107,7 +111,8 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('PUT', '/api/f_a_qs/1', [
             'headers'=> ['ContentType'=>'application/json+ld'],
             'json' => [
-                'question' => 'question 3'
+                'question' => 'question 3',
+                'answer' => 'answer 3'
             ],
         ]);
         $this->assertResponseStatusCodeSame(200);
@@ -123,7 +128,8 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'question' => 'question 1'
+                'question' => 'question 1',
+                'answer' => 'answer 1'
             ]
         ]);
 
@@ -140,7 +146,8 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
-                'question' => 'question 2'
+                'question' => 'question 2',
+                'answer' => 'answer 2'
             ]
         ]);
 
