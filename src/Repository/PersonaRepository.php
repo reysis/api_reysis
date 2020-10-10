@@ -23,7 +23,7 @@ class PersonaRepository extends ServiceEntityRepository
     //  * @return Persona[] Returns an array of Persona objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')
@@ -37,7 +37,7 @@ class PersonaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Persona
+    public_html function findOneBySomeField($value): ?Persona
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

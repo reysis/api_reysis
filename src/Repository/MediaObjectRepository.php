@@ -23,7 +23,7 @@ class MediaObjectRepository extends ServiceEntityRepository
     //  * @return MediaObject[] Returns an array of MediaObject objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')
@@ -37,7 +37,7 @@ class MediaObjectRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?MediaObject
+    public_html function findOneBySomeField($value): ?MediaObject
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

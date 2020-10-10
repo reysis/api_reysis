@@ -23,7 +23,7 @@ class ConfigurationsRepository extends ServiceEntityRepository
     //  * @return Configurations[] Returns an array of Configurations objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')
@@ -37,7 +37,7 @@ class ConfigurationsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Configurations
+    public_html function findOneBySomeField($value): ?Configurations
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

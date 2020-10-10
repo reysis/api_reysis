@@ -23,7 +23,7 @@ class AccesoriosRepository extends ServiceEntityRepository
     //  * @return Accesorios[] Returns an array of Accesorios objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')
@@ -37,7 +37,7 @@ class AccesoriosRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Accesorios
+    public_html function findOneBySomeField($value): ?Accesorios
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')

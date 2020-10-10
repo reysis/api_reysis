@@ -23,7 +23,7 @@ class ReviewsRepository extends ServiceEntityRepository
     //  * @return Reviews[] Returns an array of Reviews objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')
@@ -37,7 +37,7 @@ class ReviewsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Reviews
+    public_html function findOneBySomeField($value): ?Reviews
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')

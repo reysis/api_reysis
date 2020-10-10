@@ -23,7 +23,7 @@ class EquipoRepository extends ServiceEntityRepository
     //  * @return Equipo[] Returns an array of Equipo objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.exampleField = :val')
@@ -37,7 +37,7 @@ class EquipoRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Equipo
+    public_html function findOneBySomeField($value): ?Equipo
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.exampleField = :val')

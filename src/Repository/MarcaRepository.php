@@ -23,7 +23,7 @@ class MarcaRepository extends ServiceEntityRepository
     //  * @return Marca[] Returns an array of Marca objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')
@@ -37,7 +37,7 @@ class MarcaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Marca
+    public_html function findOneBySomeField($value): ?Marca
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')
