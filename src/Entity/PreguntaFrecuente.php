@@ -23,7 +23,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *     itemOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "put" = {"security"="is_granted('EDIT', object)",
- *                  "security_message"="Solo un Administrador puede editar Tipos de Servicios."},
+ *                  "security_message"="Solo un Administrador puede editar preguntas frecuentes."},
  *          "delete" = {
  *                  "security"="is_granted('ERASE', object)",
  *                  "security_message"="No puede realizar esta acción a menos que sea administrador."
@@ -55,7 +55,7 @@ class PreguntaFrecuente
     /**
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/pregunta")
-     * @Groups({"preguntafrecuente:read", "preguntafrecuente:write", "admin:write"})
+     * @Groups({"preguntafrecuente:read", "admin:write"})
      */
     private $pregunta;
 

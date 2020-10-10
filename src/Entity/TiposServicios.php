@@ -27,7 +27,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
  *          "put" = {
  *                  "security"="is_granted('EDIT', object)",
- *                  "security_message"="Solo un Administrador puede editar Tipos de Servicios."
+ *                  "security_message"="Solo un Administrador puede editar tipos de servicios."
  *          },
  *          "delete" = {
  *                  "security"="is_granted('ERASE', object)",
