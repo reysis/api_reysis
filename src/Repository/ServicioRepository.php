@@ -23,7 +23,7 @@ class ServicioRepository extends ServiceEntityRepository
     //  * @return Servicio[] Returns an array of Servicio objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')
@@ -37,7 +37,7 @@ class ServicioRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Servicio
+    public_html function findOneBySomeField($value): ?Servicio
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')

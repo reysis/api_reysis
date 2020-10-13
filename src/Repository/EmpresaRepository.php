@@ -23,7 +23,7 @@ class EmpresaRepository extends ServiceEntityRepository
     //  * @return Empresa[] Returns an array of Empresa objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.exampleField = :val')
@@ -37,7 +37,7 @@ class EmpresaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Empresa
+    public_html function findOneBySomeField($value): ?Empresa
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.exampleField = :val')

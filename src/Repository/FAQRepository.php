@@ -23,7 +23,7 @@ class FAQRepository extends ServiceEntityRepository
     //  * @return FAQ[] Returns an array of FAQ objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')
@@ -37,7 +37,7 @@ class FAQRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?FAQ
+    public_html function findOneBySomeField($value): ?FAQ
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')

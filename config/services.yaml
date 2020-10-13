@@ -42,3 +42,12 @@ services:
         decorates: 'api_platform.metadata.resource.metadata_factory'
         arguments: ['@App\ApiPlatform\AutoGroupResourceMetadataFactory.inner']
         decoration_priority: -20
+
+    App\DataPersister\UserDataPersister:
+        bind:
+            $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
+
+    App\DataProvider\UserDataProvider:
+        bind:
+            $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
+            $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'

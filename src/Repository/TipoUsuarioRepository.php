@@ -23,7 +23,7 @@ class TipoUsuarioRepository extends ServiceEntityRepository
     //  * @return TipoUsuario[] Returns an array of TipoUsuario objects
     //  */
     /*
-    public function findByExampleField($value)
+    public_html function findByExampleField($value)
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')
@@ -37,7 +37,7 @@ class TipoUsuarioRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?TipoUsuario
+    public_html function findOneBySomeField($value): ?TipoUsuario
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

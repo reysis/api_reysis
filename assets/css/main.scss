@@ -1,0 +1,32 @@
+h1{
+  font-size: $sizeH1;
+}
+
+p{
+  font-size: $sizeNormalText;
+}
+
+  .row{
+    margin: 0;
+  }
+
+  .home-page{
+    width: 100%;
+  }
+
+  .page{
+    width: 100%;
+    //padding-top: 135px;
+  }
+  .container-fluid{
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .flexbox-centered{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-flow: row nowrap;
+  }

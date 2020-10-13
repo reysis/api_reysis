@@ -3,23 +3,30 @@
 namespace App\DataPersister;
 
 use ApiPlatform\Core\Bridge\Doctrine\Common\DataPersister;
+use ApiPlatform\Core\DataPersister\ContextAwareDataPersisterInterface;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 
-class UserDataPersister implements DataPersisterInterface
+class UserDataPersister implements ContextAwareDataPersisterInterface
 {
-    private $entityManager;
     private $userPasswordEncoder;
+    private $security;
+    private $logger;
+    private $decoratedDataPersister;
 
-    public function __construct(EntityManagerInterface $entityManager, UserPasswordEncoderInterface $userPasswordEncoder)
+    public function __construct(DataPersisterInterface $decoratedDataPersister,UserPasswordEncoderInterface $userPasswordEncoder, LoggerInterface $logger,Security $security)
     {
-        $this->entityManager = $entityManager;
         $this->userPasswordEncoder = $userPasswordEncoder;
+        $this->security = $security;
+        $this->logger = $logger;
+        $this->decoratedDataPersister = $decoratedDataPersister;
     }
 
-    public function supports($data): bool
+    public function supports($data, array $context = []): bool
     {
         return $data instanceof User;
     }
@@ -29,20 +36,32 @@ class UserDataPersister implements DataPersisterInterface
      *
      * @param User $data
      */
-    public function persist($data)
+    public function persist($data, array $context = [])
     {
+        if(($context['item_opeartion_name'] ?? null) === 'put'){
+            $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
+        }
+
+        if(!$data->getId()){
+            //Aqui se puede hacer cualquier cosa con el usuario
+            //Como mandar un email de confirmacion o un mensaje
+            //O añadirlo a cualquier sistema de pago
+            $this->logger->info(sprintf('Usuario $s se acaba de registrar', $data->getId()));
+        }
+
         if($data->getPlainPassword()){
             $data->setPassword(
                 $this->userPasswordEncoder->encodePassword($data,$data->getPlainPassword())
             );
             $data->eraseCredentials();
         }
-        $this->entityManager->persist($data);
-        $this->entityManager->flush();
+
+        //$data->setIsMe($this->security->getUser() === $data);
+
+        $this->decoratedDataPersister->persist($data);
     }
-    public function remove($data)
+    public function remove($data, array $context = [])
     {
-        $this->entityManager->remove($data);
-        $this->entityManager->flush();
+        $this->decoratedDataPersister->remove($data);
     }
 }

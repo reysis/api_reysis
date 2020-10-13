@@ -141,11 +141,17 @@ class User implements UserInterface
      * @Groups({"user:read","user:write"})
      */
     private $address;
-    
+
+    /**
+     * Retorna verdadero si este es el usuario autenticado actualmente
+     *
+     * @Groups({"user:read"})
+    */
+    private $isMe = false;
+
     public function __construct()
     {
         $this->turnos = new ArrayCollection();
-        $this->tipoUser = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -250,14 +256,6 @@ class User implements UserInterface
         }
 
         return $this;
-    }
-
-    /**
-     * @return Collection|TipoUser[]
-     */
-    public function getTipoUser(): Collection
-    {
-        return $this->tipoUser;
     }
 
     public function getEmpresa(): ?Empresa
@@ -388,4 +386,15 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getIsMe(): bool
+    {
+        return $this->isMe;
+    }
+
+    public function setIsMe(bool $isMe): void
+    {
+        $this->isMe = $isMe;
+    }
+
 }
