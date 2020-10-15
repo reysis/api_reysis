@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/composerJson.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/my-api_reysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my-api_reysis.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +179,11 @@
       <recent name="D:\trabajo pagiNA\my-api_reysis\assets" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.FAQResourceTest.testCreateFAQ">
+    <configuration name="FAQResourceTest.testCreateFAQ" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\FAQResourceTest" configuration_file="$PROJECT_DIR$/bin/phpunit" file="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" method="testCreateFAQ" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="FAQResourceTest.testCreatequestionFrecuente" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
@@ -192,9 +193,26 @@
       <TestRunner class="App\Tests\Functional\FAQResourceTest" configuration_file="$PROJECT_DIR$/bin/phpunit" file="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" method="testCreatequestionFrecuente" scope="Class" />
       <method v="2" />
     </configuration>
+    <configuration name="MarcaResourceTest.testCreateMarca" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\MarcaResourceTest" file="$PROJECT_DIR$/tests/Functional/MarcaResourceTest.php" method="testCreateMarca" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TipoServiciosResourceTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="App\Tests\Functional\TipoServiciosResourceTest" file="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="PHPUnit.FAQResourceTest.testCreatequestionFrecuente" />
+      <item itemvalue="PHPUnit.MarcaResourceTest.testCreateMarca" />
+      <item itemvalue="PHPUnit.TipoServiciosResourceTest" />
+      <item itemvalue="PHPUnit.FAQResourceTest.testCreateFAQ" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.FAQResourceTest.testCreateFAQ" />
+        <item itemvalue="PHPUnit.TipoServiciosResourceTest" />
         <item itemvalue="PHPUnit.FAQResourceTest.testCreatequestionFrecuente" />
+        <item itemvalue="PHPUnit.MarcaResourceTest.testCreateMarca" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +253,7 @@
       <workItem from="1602717951549" duration="2625000" />
       <workItem from="1602770801576" duration="1911000" />
       <workItem from="1602784590619" duration="2516000" />
-      <workItem from="1602787174153" duration="439000" />
+      <workItem from="1602787174153" duration="1655000" />
     </task>
     <task id="LOCAL-00001" summary="revisa la entidad y el voter para ver si estan bien">
       <created>1602771623501</created>
@@ -244,7 +262,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602771623501</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="tratando de configurar los test">
+      <created>1602787762437</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1602787762437</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,7 +280,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="revisa la entidad y el voter para ver si estan bien" />
-    <option name="LAST_COMMIT_MESSAGE" value="revisa la entidad y el voter para ver si estan bien" />
+    <MESSAGE value="tratando de configurar los test" />
+    <option name="LAST_COMMIT_MESSAGE" value="tratando de configurar los test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="228" y="0" key="#CLI_Interpreters" timestamp="1602785546061">
@@ -286,34 +312,35 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1602085872703" />
-    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1602771621592">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="307" y="0" key="CommitChangelistDialog2" timestamp="1602787761449">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="307" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1602787761449" />
     <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1602771621592" />
     <state x="464" y="146" key="FileChooserDialogImpl" timestamp="1602787473054">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="464" y="146" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602787473054" />
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1602787614958">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1602788854721">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602787614958" />
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
     <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
-    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1602787614958">
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1602788854721">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602787614958" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
     <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
-    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1602787614958">
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1602788854721">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602787614958" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
     <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
-    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1602787614958">
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1602788854721">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602787614958" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
     <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
     <state x="567" y="153" key="NewPhpClassDialog" timestamp="1602261885417">
       <screen x="0" y="0" width="1600" height="860" />
@@ -327,13 +354,14 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="626" y="132" key="RollbackChangesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600699993313" />
-    <state x="144" y="0" key="SettingsEditor" timestamp="1602787612463">
+    <state x="144" y="0" key="SettingsEditor" timestamp="1602788830207">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="144" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602787612463" />
-    <state x="312" y="162" key="Vcs.Push.Dialog.v2" timestamp="1602771636391">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state x="144" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602788830207" />
+    <state x="277" y="128" key="Vcs.Push.Dialog.v2" timestamp="1602787772340">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="277" y="128" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602787772340" />
     <state x="312" y="162" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1602771636391" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1602253708472">
       <screen x="0" y="0" width="1600" height="860" />

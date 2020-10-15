@@ -12,7 +12,7 @@ class FAQResourceTest extends CustomApiTestCase
 {
     use ReloadDatabaseTrait;
 
-    public function testCreatequestionFrecuente()
+    public function testCreateFAQ()
     {
         $client = self::createClient();
 
@@ -45,7 +45,7 @@ class FAQResourceTest extends CustomApiTestCase
         $this->assertResponseStatusCodeSame(201);
     }
 
-    public function testGetquestionFrecuente()
+    public function testGetFAQ()
     {
         $client = self::createClient();
 
@@ -75,7 +75,7 @@ class FAQResourceTest extends CustomApiTestCase
 
     }
 
-    public function testUpdatequestionFrecuente(){
+    public function testUpdateFAQ(){
         $client = self::createClient();
 
         $tipo1 = $this->createTipoUsuario('Persona Natural');
@@ -119,7 +119,7 @@ class FAQResourceTest extends CustomApiTestCase
 
     }
 
-    public function testDeletequestionFrecuente(){
+    public function testDeleteFAQ(){
         $client = self::createClient();
 
         $tipo1 = $this->createTipoUsuario('Persona Natural');
