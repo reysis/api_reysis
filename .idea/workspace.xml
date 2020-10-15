@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/composerJson.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/my-api_reysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my-api_reysis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/FAQ.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FAQ.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/Voter/FAQVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/FAQVoter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +17,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -31,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/dependency-injection" />
@@ -153,7 +154,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
       <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
-      <path value="$PROJECT_DIR$/vendor/symfony/test-pack" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -167,10 +167,13 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bin/phpunit" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -179,7 +182,26 @@
       <recent name="D:\trabajo pagiNA\my-api_reysis\assets" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="RunManager">
+    <configuration name="FAQResourceTest.testCreatequestionFrecuente" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP 7.4" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner class="App\Tests\Functional\FAQResourceTest" configuration_file="$PROJECT_DIR$/bin/phpunit" file="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" method="testCreatequestionFrecuente" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.FAQResourceTest.testCreatequestionFrecuente" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="" />
@@ -211,20 +233,51 @@
       <workItem from="1602262686442" duration="3888000" />
       <workItem from="1602270267253" duration="10903000" />
       <workItem from="1602717951549" duration="2625000" />
-      <workItem from="1602770801576" duration="565000" />
+      <workItem from="1602770801576" duration="1911000" />
+      <workItem from="1602784590619" duration="2516000" />
+      <workItem from="1602787174153" duration="439000" />
     </task>
+    <task id="LOCAL-00001" summary="revisa la entidad y el voter para ver si estan bien">
+      <created>1602771623501</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602771623501</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="oldMeFiltersMigrated" value="true" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="revisa la entidad y el voter para ver si estan bien" />
+    <option name="LAST_COMMIT_MESSAGE" value="revisa la entidad y el voter para ver si estan bien" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="228" y="0" key="#CLI_Interpreters" timestamp="1602785546061">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="228" y="0" key="#CLI_Interpreters/0.0.1280.680@0.0.1280.680" timestamp="1602785546061" />
+    <state x="338" y="0" width="618" height="680" key="#FAQResourceTest.testCreatequestionFrecuente" timestamp="1602785548905">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="338" y="0" width="618" height="680" key="#FAQResourceTest.testCreatequestionFrecuente/0.0.1280.680@0.0.1280.680" timestamp="1602785548905" />
+    <state x="372" y="0" key="#PHP" timestamp="1602785547521">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="372" y="0" key="#PHP/0.0.1280.680@0.0.1280.680" timestamp="1602785547521" />
+    <state x="221" y="0" key="#Test_Frameworks" timestamp="1602785809495">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="221" y="0" key="#Test_Frameworks/0.0.1280.680@0.0.1280.680" timestamp="1602785809495" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602787605493">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1602787605493" />
     <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1602262156896">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -233,25 +286,34 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1602085872703" />
-    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600700043484">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="345" y="0" key="CommitChangelistDialog2" timestamp="1602771621592">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
+    <state x="345" y="0" key="CommitChangelistDialog2/0.0.1440.860@0.0.1440.860" timestamp="1602771621592" />
+    <state x="464" y="146" key="FileChooserDialogImpl" timestamp="1602787473054">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="464" y="146" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602787473054" />
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1602639141744">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1602787614958">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602787614958" />
     <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
-    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1602639141744">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1602787614958">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602787614958" />
     <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
-    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1602639141744">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1602787614958">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602787614958" />
     <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
-    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1602639141744">
-      <screen x="0" y="0" width="1440" height="860" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1602787614958">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602787614958" />
     <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
     <state x="567" y="153" key="NewPhpClassDialog" timestamp="1602261885417">
       <screen x="0" y="0" width="1600" height="860" />
@@ -265,6 +327,14 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="626" y="132" key="RollbackChangesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600699993313" />
+    <state x="144" y="0" key="SettingsEditor" timestamp="1602787612463">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="144" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602787612463" />
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2" timestamp="1602771636391">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="312" y="162" key="Vcs.Push.Dialog.v2/0.0.1440.860@0.0.1440.860" timestamp="1602771636391" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1602253708472">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
