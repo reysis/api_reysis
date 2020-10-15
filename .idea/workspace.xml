@@ -2,41 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/preload.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public_html/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/config/entrypoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/config/entrypoint.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_reset.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_reset.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/assets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/assets.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/webpack_encore.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/webpack_encore.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AccesoriosRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AccesoriosRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ConfigurationsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ConfigurationsRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EmpresaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/EmpresaRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EquipoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/EquipoRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/FAQRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FAQRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MarcaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MarcaRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MediaObjectRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MediaObjectRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PersonaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PersonaRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ReviewsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReviewsRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ServicioRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ServicioRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TipoEquipoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TipoEquipoRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TipoUsuarioRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TipoUsuarioRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TiposServiciosRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TiposServiciosRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TurnoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TurnoRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/FAQ.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FAQ.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/Voter/FAQVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/FAQVoter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +30,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="PackageJsonUpdateNotifier">
-    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -183,6 +153,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
       <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/symfony/test-pack" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -239,11 +210,16 @@
       <workItem from="1602190652720" duration="21520000" />
       <workItem from="1602262686442" duration="3888000" />
       <workItem from="1602270267253" duration="10903000" />
+      <workItem from="1602717951549" duration="2625000" />
+      <workItem from="1602770801576" duration="565000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -261,6 +237,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1602639141744">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
+    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1602639141744">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
+    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1602639141744">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
+    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1602639141744">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1602639141744" />
     <state x="567" y="153" key="NewPhpClassDialog" timestamp="1602261885417">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

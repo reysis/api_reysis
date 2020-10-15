@@ -25,7 +25,7 @@ class FAQVoter extends Voter
                 && $subject instance of FAQ;
         */
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['ERASE', 'EDIT','POST'])
+        return in_array($attribute, ['ERASE', 'EDIT','POST', 'GET_SPECIFIC'])
             && $subject instanceof FAQ;
     }
 
@@ -47,11 +47,15 @@ class FAQVoter extends Voter
          * */
         switch ($attribute) {
             case 'POST':
-                if(in_array('ROLE_ADMIN', $user->getRoles()))
+                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()))
+                    return true;
+                return false;
+            case 'GET_SPECIFC':
+                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()))
                     return true;
                 return false;
             case 'EDIT':
-                if(in_array('ROLE_ADMIN', $user->getRoles()))
+                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()))
                     return true;
                 return false;
             case 'ERASE':
