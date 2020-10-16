@@ -15,6 +15,7 @@ export function loading(loading) {
 }
 
 export function success(logged) {
+    console.log(logged);
     return { type: 'USER_LOGIN_SUCCESS', logged };
 }
 
@@ -22,11 +23,12 @@ export function login(values) {
     return dispatch => {
         dispatch(loading(true));
 
-        return fetch('/login', {
+        return fetch('/api/login', {
             method: 'POST',
             body: JSON.stringify(values),
             })
             .then(response => {
+                console.log(response);
                 fetch(response.headers.get('location'))
                     .then(response2 => {
                         dispatch(loading(false));

@@ -7,7 +7,10 @@ import Mision from '../components/Mision';
 class AboutPage extends Component {
     render() {
         return (
-            <main className="about-page page">
+            <main className="content-wrap about-page page">
+                <div className="header">
+                    <h1><span>Acerca de Nosotros!</span></h1>
+                </div>
                 <div className="section-container container">
                     <LocalizacionSection/>
                     <HistorySection/>

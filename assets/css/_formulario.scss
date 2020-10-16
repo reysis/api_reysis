@@ -1,6 +1,6 @@
 .form-group{
-  width: 70%;
-  padding: 10px;
+  margin: 0.5em auto;
+  padding: 0.5em 1em;
   @include flexbox();
   justify-content: center;
   flex-flow: column wrap;
@@ -8,24 +8,27 @@
   flex: 1 100%;
 }
 .form-group .btn{
-  width: 30%;
   align-self: center;
 }
   .form-label{
     font-size: $sizeH3-small-screen;
-    font-weight: bold;
+    margin: 0.5em auto;
     width: 100%;
+    font-weight: 800;
+    line-height: 1;
   }
-  .form-login{
-    width: 70%;
+  .form-login, .form-register{
     background-color: $color3;
-    margin: 50px;
-    padding: 20px;
+    margin: 0 auto 2em auto;
     @include flexbox;
     flex-flow: column nowrap;
     justify-content: flex-end;
     align-content: flex-end;
     align-self: center;
+  }
+  .form-control{
+    margin: 0 auto;
+
   }
 
   /* Large screens */

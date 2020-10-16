@@ -6,7 +6,10 @@ import {List} from "../components/turno";
 class TurnosListPage extends Component {
     render() {
         return (
-            <div className="turnos-list-page">
+            <div className="content-wrap turnos-list-page">
+                <div className="header">
+                    <h1><span>Listado de Turnos</span></h1>
+                </div>
                 <List/>
                 <Footer/>
             </div>

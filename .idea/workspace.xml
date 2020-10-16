@@ -2,41 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/preload.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public_html/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/headers.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/actions/user/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/user/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/actions/user/logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/user/logout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/Landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Landing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/BrandContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/BrandContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/user/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/user/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/Register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/config/entrypoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/config/entrypoint.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_reset.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_reset.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/assets.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/assets.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/webpack_encore.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/webpack_encore.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public_html/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AccesoriosRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AccesoriosRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ConfigurationsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ConfigurationsRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EmpresaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/EmpresaRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EquipoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/EquipoRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/FAQRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/FAQRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MarcaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MarcaRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/MediaObjectRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MediaObjectRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PersonaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PersonaRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ReviewsRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ReviewsRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ServicioRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ServicioRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TipoEquipoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TipoEquipoRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TipoUsuarioRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TipoUsuarioRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TiposServiciosRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TiposServiciosRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TurnoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TurnoRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_formulario.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_formulario.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/landing.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/landing.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/menu_bubble.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/menu_bubble.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/navbar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/page.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/registerForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/registerForm.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/someStyles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/someStyles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/main4.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/main4.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/AboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/AboutPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/ContactPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ContactPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/FaqPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/FaqPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/RegisterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/ServiciosPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ServiciosPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/TurnosCreatePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/TurnosCreatePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/TurnosListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/TurnosListPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/TurnosUpdatePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/TurnosUpdatePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,6 +200,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+    <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -238,7 +239,8 @@
       <workItem from="1602190468776" duration="167000" />
       <workItem from="1602190652720" duration="21520000" />
       <workItem from="1602262686442" duration="3888000" />
-      <workItem from="1602270267253" duration="10903000" />
+      <workItem from="1602270267253" duration="16049000" />
+      <workItem from="1602520224948" duration="27838000" />
     </task>
     <servers />
   </component>
@@ -249,6 +251,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602552384043">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1602552384043" />
     <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1602262156896">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -273,13 +279,17 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="626" y="132" key="RollbackChangesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600699993313" />
-    <state x="456" y="195" key="run.anything.popup" timestamp="1602253708472">
+    <state x="301" y="75" key="SettingsEditor" timestamp="1602790991465">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1602253708472" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1602276757541">
+    <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1602790991465" />
+    <state x="456" y="195" key="run.anything.popup" timestamp="1602819677322">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1602276757541" />
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1602819677322" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1602447095658">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1602447095658" />
   </component>
 </project>

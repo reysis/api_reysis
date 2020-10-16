@@ -4,10 +4,12 @@ import Footer from '../components/Footer'
 class ServiciosPage extends Component {
     render() {
         return (
-            <div className="services-page page">
-                <p>Servicios</p>
+            <main className="content-wrap services-page page">
+                <div className="header">
+                    <h1><span>Servicios</span></h1>
+                </div>
                 <Footer />
-            </div>
+            </main>
         )
     }
 }
