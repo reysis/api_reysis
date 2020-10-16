@@ -35,6 +35,7 @@ class FAQResourceTest extends CustomApiTestCase
         $em->flush();
 
         $this->logIn($client, 'testUser1', 'foo');
+
         $client->request('POST', '/api/f_a_qs', [
             'headers' => ['ContentType' => 'application/json+ld'],
             'json' => [
