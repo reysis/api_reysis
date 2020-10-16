@@ -15,19 +15,13 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ApiResource(
  *     iri="http://schema.org/FAQ",
  *     collectionOperations={
- *          "get" = {
- *                  "security" = "is_granted('GET_SPECIFIC', object)",
- *                  "security_message"="Solo un usuario del sistema puede acceder a este recurso.",
- *          },
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
  *                  "security_post_denormalize_message"="Solo un usuario del sistema puede crear FAQ."
  *          }
  *     },
  *     itemOperations={
- *          "get" = {
- *                  "security" = "is_granted('GET_SPECIFIC', object)",
- *                  "security_message"="Solo un usuario del sistema puede acceder a este recurso.",
- *          },
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "put" = {"security"="is_granted('EDIT', object)",
  *                  "security_message"="Solo un usuario del sistema puede editar FAQ."},
  *          "delete" = {

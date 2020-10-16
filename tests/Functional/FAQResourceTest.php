@@ -54,7 +54,7 @@ class FAQResourceTest extends CustomApiTestCase
             'headers' => ['ContentType' => 'application/json+ld'],
         ]);
 
-        $this->assertResponseStatusCodeSame(401);
+        $this->assertResponseStatusCodeSame(200);
 
         $tipo1 = $this->createTipoUsuario('Persona Natural');
         $user = $this->createUser('testUser1', 'foo', '123456789', $tipo1);
