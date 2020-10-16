@@ -19,14 +19,14 @@ class FAQResourceTest extends CustomApiTestCase
         $tipo1 = $this->createTipoUsuario('Persona Natural');
         $user = $this->createUser('testUser1', 'foo', '123456789', $tipo1);
 
-        $client->request('POST', '/api/f_a_qs', [
-            'headers' => ['ContentType' => 'application/json+ld'],
-            'json' => [
-                'question' => 'question 1',
-                'answer' => 'answer 1'
-            ]
-        ]);
-        $this->assertResponseStatusCodeSame(401);
+//        $client->request('POST', '/api/f_a_qs', [
+//            'headers' => ['ContentType' => 'application/json+ld'],
+//            'json' => [
+//                'question' => 'question 1',
+//                'answer' => 'answer 1'
+//            ]
+//        ]);
+//        $this->assertResponseStatusCodeSame(401);
 
         //Creando la FAQ como Admin
         $em = $this->getEntityManager();
