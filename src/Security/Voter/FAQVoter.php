@@ -50,7 +50,7 @@ class FAQVoter extends Voter
                 if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()))
                     return true;
                 return false;
-            case 'GET_SPECIFC':
+            case 'GET_SPECIFIC':
                 if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()))
                     return true;
                 return false;
