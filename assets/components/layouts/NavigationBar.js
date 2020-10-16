@@ -18,6 +18,9 @@ const NavigationBar = (props) =>{
                         <NavLink to="/contact"><span>CONTÁCTENOS</span></NavLink>
                         <NavLink to="/about"><span>ACERCA DE</span></NavLink>
                         <NavLink to="/faq"><span>FAQ</span></NavLink>
+                        { !props.loggedUser &&  <NavLink to="/login" className="authentication-link"><span>ENTRAR</span></NavLink>}
+                        { !props.loggedUser &&  <NavLink to="/register" className="authentication-link"><span>REGISTRARSE</span></NavLink> }
+                        { props.loggedUser && <NavLink to="/logout" className="authentication-link"><span>SALIR</span></NavLink> }
                     </div>
                 </nav>
                 <button className="close-button" id="close-button"></button>
@@ -29,7 +32,6 @@ const NavigationBar = (props) =>{
                 </div>
             </div>
             <button className="menu-button" id="open-button"></button>
-            <NavLink to="/"><Image src={LogoLetras} className="logo-letras"/></NavLink>
         </React.Fragment>
     )
 }

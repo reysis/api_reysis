@@ -22,7 +22,7 @@ export function logout() {
     return dispatch => {
         dispatch(loading(true));
 
-        return fetch('/logout', {
+        return fetch('/api/logout', {
             method: 'POST',
         })
         .then(retrieved => dispatch(success("Sesión cerrada con éxito!!")))

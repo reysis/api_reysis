@@ -10,13 +10,13 @@ import 'aos/dist/aos.css';
 class Home extends Component {
     render() {
         return (
-            <div className="content-wrap">
+            <main className="content-wrap">
                 <Landing />
                 <ServicesHome />
                 <Estadisticas />
                 <Opinions />
                 <Footer />
-            </div>
+            </main>
         )
     }
 }

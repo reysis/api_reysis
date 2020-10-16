@@ -21,6 +21,7 @@ body,
   -webkit-overflow-scrolling: touch;
   -webkit-transition: -webkit-transform 0.4s;
   transition: transform 0.4s;
+  z-index: 900;
 }
 
 .content {
@@ -46,25 +47,27 @@ body,
 
 /* Menu Button */
 .menu-button {
-  position: fixed;
+  position: absolute;
+  right: 0;
   z-index: 1000;
   margin: 1em;
   padding: 0;
-  width: 2.5em;
+  //width: 2.5em;
   height: 2.25em;
   border: none;
-  text-indent: 2.5em;
+  //text-indent: 2.5em;
   font-size: 1.5em;
   color: transparent;
   background: transparent;
 }
 
 .menu-button::before {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
+  position: relative;
+  z-index: 900;
+  //top: 0.5em;
+  left: 0;
   bottom: 0.5em;
-  left: 0.5em;
+  //left: 0.5em;
   color: $color5;
   font-weight: bold;
   //background: linear-gradient($color5 20%, transparent 20%, transparent 40%, $color5 40%, $color5 60%, transparent 60%, transparent 80%, $color5 80%);
@@ -118,8 +121,8 @@ body,
   width: 280px;
   height: 100%;
   font-size: 1.15em;
-  -webkit-transform: translate3d(-280px,0,0);
-  transform: translate3d(-280px,0,0);
+  -webkit-transform: translate3d(280px,0,0);
+  transform: translate3d(280px,0,0);
   -webkit-transition: -webkit-transform 0.4s;
   transition: transform 0.4s;
 }
@@ -128,17 +131,22 @@ body,
   position: relative;
   z-index: 1000;
   padding: 3em 1em 0;
+  //overflow: hidden;
 }
 
 .menu,
 .close-button {
   opacity: 0;
-  -webkit-transform: translate3d(-160px,0,0);
-  transform: translate3d(-160px,0,0);
+  -webkit-transform: translate3d(160px,0,0);
+  transform: translate3d(160px,0,0);
   -webkit-transition: opacity 0s 0.3s, -webkit-transform 0s 0.3s;
   transition: opacity 0s 0.3s, transform 0s 0.3s;
   -webkit-transition-timing-function: cubic-bezier(.17,.67,.1,1.27);
   transition-timing-function: cubic-bezier(.17,.67,.1,1.27);
+}
+
+.icon-list{
+  justify-content: flex-end;
 }
 
 .icon-list a {
@@ -161,6 +169,7 @@ body,
   top: 0;
   right: 0;
   fill: $color2;
+  z-index: 999;
 }
 
 /* Shown menu */

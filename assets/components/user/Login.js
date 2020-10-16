@@ -13,7 +13,6 @@ class Login extends Component {
         error: PropTypes.string,
         login: PropTypes.func.isRequired,
         reset: PropTypes.func.isRequired,
-        loadUserData: PropTypes.func.isRequired,
         username: PropTypes.string,
         password: PropTypes.string
     };
@@ -31,6 +30,7 @@ class Login extends Component {
         })
     }
     render() {
+        console.log(this.props.logged);
         if (this.props.logged){
             return (
                 <Redirect to='/'
@@ -38,8 +38,7 @@ class Login extends Component {
             );
         }
         return (
-            <div className="login-page page container">
-                <h1 className="page-title">Formulario para Loguearse</h1>
+            <div className="container">
                 {this.props.loading && (
                     <div className="alert alert-info" role="status">
                         Loading...

@@ -19,7 +19,6 @@
 		morphEl = document.getElementById( 'morph-shape' ),
 
 		s = Snap( morphEl.querySelector( 'svg' ) );
-		console.log(content, openbtn, closebtn, morphEl);
 
 		path = s.select( 'path' );
 

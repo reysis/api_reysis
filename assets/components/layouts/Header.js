@@ -3,6 +3,9 @@ import NavigationBar from './NavigationBar';
 import BrandContainer from './BrandContainer';
 import Authentication from "./Authentication";
 import {connect} from 'react-redux';
+import {Image} from "react-bootstrap";
+import {NavLink} from "react-router-dom";
+import LogoLetras from "../../assets/logo-letras.png";
 
 class Header extends Component {
     constructor(props){
@@ -40,10 +43,11 @@ class Header extends Component {
     }
     render() {
         return (
-            <div className={this.state.scrolled ? "fixed-top container-fluid nav-header": "container-fluid nav-header"}>
+            <div className="header-container">
+                    <NavLink to="/"><Image src={LogoLetras} className="logo-letras"/></NavLink>
                     <NavigationBar />
                     {/*<BrandContainer scrolled={this.state.scrolled}/>*/}
-                    <Authentication loggedUser={this.state.logged}/>
+                    {/*<Authentication loggedUser={this.state.logged}/>*/}
             </div>
         )
     }
