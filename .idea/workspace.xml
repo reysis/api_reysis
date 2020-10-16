@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +181,7 @@
       <recent name="D:\trabajo pagiNA\my-api_reysis\assets" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.FAQResourceTest.testGetFAQ">
+  <component name="RunManager" selected="PHPUnit.FAQResourceTest.testCreatequestionFrecuente">
     <configuration name="FAQResourceTest.testCreateFAQ" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <CommandLine>
         <PhpTestInterpreterSettings>
@@ -222,10 +221,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.FAQResourceTest.testGetFAQ" />
-        <item itemvalue="PHPUnit.FAQResourceTest.testCreateFAQ" />
-        <item itemvalue="PHPUnit.api_reysis" />
         <item itemvalue="PHPUnit.FAQResourceTest.testCreatequestionFrecuente" />
+        <item itemvalue="PHPUnit.FAQResourceTest.testCreateFAQ" />
+        <item itemvalue="PHPUnit.FAQResourceTest.testGetFAQ" />
+        <item itemvalue="PHPUnit.api_reysis" />
         <item itemvalue="PHPUnit.TipoServiciosResourceTest" />
       </list>
     </recent_temporary>
@@ -318,10 +317,11 @@
     </state>
     <state x="221" y="0" key="#Test_Frameworks/0.0.1280.680@0.0.1280.680" timestamp="1602785809495" />
     <state x="249" y="0" key="#Test_Frameworks/0.0.1440.860@0.0.1440.860" timestamp="1602814059720" />
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602787605493">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="108" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602814929763">
+      <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1602787605493" />
+    <state x="108" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.860@0.0.1440.860" timestamp="1602814929763" />
     <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1602262156896">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -340,26 +340,26 @@
     </state>
     <state x="464" y="146" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602787473054" />
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1602814263156">
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1602816005171">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602814263156" />
-    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1602814263156">
+    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602816005171" />
+    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1602816005171">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
-    <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1602814263156" />
-    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1602814263156">
+    <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1602816005171" />
+    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1602816005171">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
-    <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1602814263156" />
-    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1602814263156">
+    <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1602816005171" />
+    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1602816005171">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
-    <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1602814263156" />
+    <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1602816005171" />
     <state width="1397" height="276" key="GridCell.Tab.1.bottom" timestamp="1602814048560">
       <screen x="0" y="0" width="1440" height="860" />
     </state>

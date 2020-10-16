@@ -5,7 +5,6 @@ namespace App\Test;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\TipoEquipo;
 use App\Entity\TipoUsuario;
 use App\Entity\User;
 
