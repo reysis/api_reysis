@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" afterDir="false" />
-    </list>
+    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -213,11 +210,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="PHPUnit.FAQResourceTest.testCreatequestionFrecuente" />
-      <item itemvalue="PHPUnit.TipoServiciosResourceTest" />
       <item itemvalue="PHPUnit.FAQResourceTest.testCreateFAQ" />
-      <item itemvalue="PHPUnit.api_reysis" />
+      <item itemvalue="PHPUnit.FAQResourceTest.testCreatequestionFrecuente" />
       <item itemvalue="PHPUnit.FAQResourceTest.testGetFAQ" />
+      <item itemvalue="PHPUnit.TipoServiciosResourceTest" />
+      <item itemvalue="PHPUnit.api_reysis" />
     </list>
     <recent_temporary>
       <list>
@@ -340,42 +337,42 @@
     </state>
     <state x="464" y="146" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602787473054" />
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom" timestamp="1602816005171">
+    <state width="1397" height="276" key="GridCell.Tab.0.bottom" timestamp="1602817399127">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
-    <state width="1397" height="228" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602816005171" />
-    <state width="1397" height="228" key="GridCell.Tab.0.center" timestamp="1602816005171">
+    <state width="1397" height="276" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602817399127" />
+    <state width="1397" height="276" key="GridCell.Tab.0.center" timestamp="1602817399127">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
-    <state width="1397" height="228" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1602816005171" />
-    <state width="1397" height="228" key="GridCell.Tab.0.left" timestamp="1602816005171">
+    <state width="1397" height="276" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1602817399127" />
+    <state width="1397" height="276" key="GridCell.Tab.0.left" timestamp="1602817399127">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
-    <state width="1397" height="228" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1602816005171" />
-    <state width="1397" height="228" key="GridCell.Tab.0.right" timestamp="1602816005171">
+    <state width="1397" height="276" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1602817399127" />
+    <state width="1397" height="276" key="GridCell.Tab.0.right" timestamp="1602817399127">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602788854721" />
-    <state width="1397" height="228" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1602816005171" />
-    <state width="1397" height="276" key="GridCell.Tab.1.bottom" timestamp="1602814048560">
+    <state width="1397" height="276" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1602817399127" />
+    <state width="1397" height="276" key="GridCell.Tab.1.bottom" timestamp="1602817399127">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="276" key="GridCell.Tab.1.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602814048560" />
-    <state width="1397" height="276" key="GridCell.Tab.1.center" timestamp="1602814048559">
+    <state width="1397" height="276" key="GridCell.Tab.1.bottom/0.0.1440.860@0.0.1440.860" timestamp="1602817399127" />
+    <state width="1397" height="276" key="GridCell.Tab.1.center" timestamp="1602817399127">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="276" key="GridCell.Tab.1.center/0.0.1440.860@0.0.1440.860" timestamp="1602814048559" />
-    <state width="1397" height="276" key="GridCell.Tab.1.left" timestamp="1602814048559">
+    <state width="1397" height="276" key="GridCell.Tab.1.center/0.0.1440.860@0.0.1440.860" timestamp="1602817399127" />
+    <state width="1397" height="276" key="GridCell.Tab.1.left" timestamp="1602817399127">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="276" key="GridCell.Tab.1.left/0.0.1440.860@0.0.1440.860" timestamp="1602814048559" />
-    <state width="1397" height="276" key="GridCell.Tab.1.right" timestamp="1602814048560">
+    <state width="1397" height="276" key="GridCell.Tab.1.left/0.0.1440.860@0.0.1440.860" timestamp="1602817399127" />
+    <state width="1397" height="276" key="GridCell.Tab.1.right" timestamp="1602817399127">
       <screen x="0" y="0" width="1440" height="860" />
     </state>
-    <state width="1397" height="276" key="GridCell.Tab.1.right/0.0.1440.860@0.0.1440.860" timestamp="1602814048560" />
+    <state width="1397" height="276" key="GridCell.Tab.1.right/0.0.1440.860@0.0.1440.860" timestamp="1602817399127" />
     <state x="567" y="153" key="NewPhpClassDialog" timestamp="1602261885417">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
