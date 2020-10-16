@@ -6,10 +6,13 @@ import Register from "../components/user/Register";
 class RegisterPage extends Component {
     render() {
         return (
-            <div className="register-page">
+            <main className="content-wrap register-page page">
+                <div className="header">
+                    <h1><span>Súmese a nosotros!</span></h1>
+                </div>
                 <Register />
                 <Footer/>
-            </div>
+            </main>
         );
     }
 }

@@ -6,7 +6,10 @@ import {Update} from "../components/turno";
 class TurnosUpdatePage extends Component {
     render() {
         return (
-            <div className="turnos-update-page">
+            <div className="content-wrap turnos-update-page">
+                <div className="header">
+                    <h1><span>Editar Turno</span></h1>
+                </div>
                 <Update />
                 <Footer />
             </div>

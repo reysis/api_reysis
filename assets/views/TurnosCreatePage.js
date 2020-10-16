@@ -6,10 +6,13 @@ import {Create} from "../components/turno";
 class TurnosCreatePage extends Component {
     render() {
         return (
-            <div className="turnos-crete-page">
+            <main className="content-wrap turnos-crete-page">
+                <div className="header">
+                    <h1><span>Crear Turno</span></h1>
+                </div>
                 <Create />
                 <Footer />
-            </div>
+            </main>
         );
     }
 }

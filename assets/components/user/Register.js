@@ -22,8 +22,7 @@ class Register extends Component {
             );
         }
         return (
-            <div className="register-page page container">
-                <h1 className="page-title">Registrese con nosotros!</h1>
+            <div className="content-wrap container">
                 {this.props.loading && (
                     <div className="alert alert-info" role="status">
                         Loading...

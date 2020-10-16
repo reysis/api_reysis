@@ -58,9 +58,11 @@ class FaqPage extends Component {
                 )
             })
             return (
-                <main className="faq-page page">
+                <main className="content-wrap faq-page page">
+                    <div className="header">
+                        <h1><span>Preguntas Frecuentes</span></h1>
+                    </div>
                     <div className="question-container container">
-                        <h1 data-aos="zoom-out" className="question-header">Preguntas Frecuentes y sus respuestas</h1>
                         <ol className="question-list">
                             {questionList}
                         </ol>
