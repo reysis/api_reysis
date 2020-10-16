@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\TiposServiciosRepository;
+use App\Repository\TipoServicioRepository;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,7 +16,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
- *     iri="http://schema.org/TiposServicios",
+ *     iri="http://schema.org/TipoServicio",
  *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
@@ -46,9 +46,9 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *          "descripcion":"partial",
  *      }
  * )
- * @ORM\Entity(repositoryClass=TiposServiciosRepository::class)
+ * @ORM\Entity(repositoryClass=TipoServicioRepository::class)
  */
-class TiposServicios
+class TipoServicio
 {
     /**
      * @ORM\Id()

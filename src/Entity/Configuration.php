@@ -3,14 +3,14 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ConfigurationsRepository;
+use App\Repository\ConfigurationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass=ConfigurationsRepository::class)
+ * @ORM\Entity(repositoryClass=ConfigurationRepository::class)
  */
-class Configurations
+class Configuration
 {
     /**
      * @ORM\Id()

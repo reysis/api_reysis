@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Configurations;
+use App\Entity\Configuration;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Configurations|null find($id, $lockMode = null, $lockVersion = null)
- * @method Configurations|null findOneBy(array $criteria, array $orderBy = null)
- * @method Configurations[]    findAll()
- * @method Configurations[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Configuration|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Configuration|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Configuration[]    findAll()
+ * @method Configuration[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ConfigurationsRepository extends ServiceEntityRepository
+class ConfigurationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Configurations::class);
+        parent::__construct($registry, Configuration::class);
     }
 
     // /**
-    //  * @return Configurations[] Returns an array of Configurations objects
+    //  * @return Configuration[] Returns an array of Configuration objects
     //  */
     /*
     public_html function findByExampleField($value)
@@ -37,7 +37,7 @@ class ConfigurationsRepository extends ServiceEntityRepository
     */
 
     /*
-    public_html function findOneBySomeField($value): ?Configurations
+    public_html function findOneBySomeField($value): ?Configuration
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

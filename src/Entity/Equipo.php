@@ -2,22 +2,38 @@
 
 namespace App\Entity;
 
-use App\Repository\EquipoRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EntidadRepository;
 
 /**
+ * @ApiResource(
+ *      collectionOperations={"get", "post"},
+ *      itemOperations={"get", "put", "delete"}
+ * )
+ * Equipo
+ * @ORM\InheritanceType("JOINED" )
+ * @ORM\DiscriminatorColumn(name="discriminante",type="string")
+ * @ORM\DiscriminatorMap({"equipo" = "Equipo", "equipoEstatal" = "EquipoEstatal"})
  * @ORM\Entity(repositoryClass=EquipoRepository::class)
  */
 class Equipo
 {
+    const EQUIPOESTATAL = 'equipoEstatal';
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TipoEquipo", inversedBy="equipos")
+     * @ORM\JoinColumn(nullable=false, onDelete="cascade")
+     */
+    private $tipoEquipo;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -30,36 +46,42 @@ class Equipo
     private $numeroSerie;
 
     /**
-     * @ORM\ManyToOne(targetEntity=TipoEquipo::class, inversedBy="equipos")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $tipoEquipo;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Servicio::class, mappedBy="equipo")
+     * @ORM\OneToMany(targetEntity="App\Entity\Servicio", mappedBy="equipo")
      */
     private $servicios;
 
     /**
-     * @ORM\OneToMany(targetEntity=Accesorios::class, mappedBy="equipo")
+     * @ORM\OneToMany(targetEntity="App\Entity\EquipoAccesorio", mappedBy="equipo")
      */
-    private $accesorios;
+    private $equipoAccesorios;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Marca::class, inversedBy="equipos")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Marca", inversedBy="equipos")
+     * @ORM\JoinColumn(nullable=false, onDelete="cascade")
      */
     private $marca;
 
     public function __construct()
     {
         $this->servicios = new ArrayCollection();
-        $this->accesorios = new ArrayCollection();
+        $this->equipoAccesorios = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getTipoEquipo(): ?TipoEquipo
+    {
+        return $this->tipoEquipo;
+    }
+
+    public function setTipoEquipo(?TipoEquipo $tipoEquipo): self
+    {
+        $this->tipoEquipo = $tipoEquipo;
+
+        return $this;
     }
 
     public function getModelo(): ?string
@@ -82,18 +104,6 @@ class Equipo
     public function setNumeroSerie(string $numeroSerie): self
     {
         $this->numeroSerie = $numeroSerie;
-
-        return $this;
-    }
-
-    public function getTipoEquipo(): ?TipoEquipo
-    {
-        return $this->tipoEquipo;
-    }
-
-    public function setTipoEquipo(?TipoEquipo $tipoEquipo): self
-    {
-        $this->tipoEquipo = $tipoEquipo;
 
         return $this;
     }
@@ -130,34 +140,39 @@ class Equipo
     }
 
     /**
-     * @return Collection|Accesorios[]
+     * @return Collection|EquipoAccesorio[]
      */
-    public function getAccesorios(): Collection
+    public function getEquipoAccesorios(): Collection
     {
-        return $this->accesorios;
+        return $this->equipoAccesorios;
     }
 
-    public function addAccesorio(Accesorios $accesorio): self
+    public function addEquipoAccesorio(EquipoAccesorio $equipoAccesorio): self
     {
-        if (!$this->accesorios->contains($accesorio)) {
-            $this->accesorios[] = $accesorio;
-            $accesorio->setEquipo($this);
+        if (!$this->equipoAccesorios->contains($equipoAccesorio)) {
+            $this->equipoAccesorios[] = $equipoAccesorio;
+            $equipoAccesorio->setEquipo($this);
         }
 
         return $this;
     }
 
-    public function removeAccesorio(Accesorios $accesorio): self
+    public function removeEquipoAccesorio(EquipoAccesorio $equipoAccesorio): self
     {
-        if ($this->accesorios->contains($accesorio)) {
-            $this->accesorios->removeElement($accesorio);
+        if ($this->equipoAccesorios->contains($equipoAccesorio)) {
+            $this->equipoAccesorios->removeElement($equipoAccesorio);
             // set the owning side to null (unless already changed)
-            if ($accesorio->getEquipo() === $this) {
-                $accesorio->setEquipo(null);
+            if ($equipoAccesorio->getEquipo() === $this) {
+                $equipoAccesorio->setEquipo(null);
             }
         }
 
         return $this;
+    }
+
+    public function __toString(): ?string
+    {
+       return $this->getTipoEquipo()." - ".$this->getNumeroSerie();
     }
 
     public function getMarca(): ?Marca

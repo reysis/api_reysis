@@ -2,13 +2,13 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\TiposServicios;
+use App\Entity\TipoServicio;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class TiposServiciosVoter extends Voter
+class TipoServicioVoter extends Voter
 {
     private $security;
 
@@ -22,11 +22,11 @@ class TiposServiciosVoter extends Voter
         /* Si Modificas alguna Operaci'on, para que el Voter
             la vea tienes que agregarla aqui por ejemplo:
             return in_array($atribute, ['POST', 'GET_SPECIFI', 'CUALQUIER_COSA'])
-                && $subject instance of TiposServicios;
+                && $subject instance of TipoServicio;
         */
         // https://symfony.com/doc/current/security/voters.html
         return in_array($attribute, ['ERASE', 'EDIT', 'POST'])
-            && $subject instanceof TiposServicios;
+            && $subject instanceof TipoServicio;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -38,7 +38,7 @@ class TiposServiciosVoter extends Voter
         }
 
         /**
-         * @var TiposServicios $subject
+         * @var TipoServicio $subject
          */
         /*
          * Aqui tienes que agregar la logica de seguridad...

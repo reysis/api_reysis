@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\TiposServicios;
+use App\Entity\TipoServicio;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method TiposServicios|null find($id, $lockMode = null, $lockVersion = null)
- * @method TiposServicios|null findOneBy(array $criteria, array $orderBy = null)
- * @method TiposServicios[]    findAll()
- * @method TiposServicios[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TipoServicio|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TipoServicio|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TipoServicio[]    findAll()
+ * @method TipoServicio[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TiposServiciosRepository extends ServiceEntityRepository
+class TipoServicioRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TiposServicios::class);
+        parent::__construct($registry, TipoServicio::class);
     }
 
     // /**
-    //  * @return TiposServicios[] Returns an array of TiposServicios objects
+    //  * @return TipoServicio[] Returns an array of TipoServicio objects
     //  */
     /*
     public_html function findByExampleField($value)
@@ -37,7 +37,7 @@ class TiposServiciosRepository extends ServiceEntityRepository
     */
 
     /*
-    public_html function findOneBySomeField($value): ?TiposServicios
+    public_html function findOneBySomeField($value): ?TipoServicio
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

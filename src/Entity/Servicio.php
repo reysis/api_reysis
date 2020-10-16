@@ -3,10 +3,16 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ServicioRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ServicioRepository;
 
 /**
+ * @ApiResource(
+ *      collectionOperations={"get", "post"},
+ *      itemOperations={"get", "put", "delete"}
+ * )
  * @ORM\Entity(repositoryClass=ServicioRepository::class)
  */
 class Servicio
@@ -19,6 +25,29 @@ class Servicio
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TipoServicio", inversedBy="servicios")
+     * @ORM\JoinColumn(nullable=false, onDelete="cascade")
+     */
+    private $tipoServicio;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Equipo", inversedBy="servicios")
+     * @ORM\JoinColumn(nullable=false, onDelete="cascade")
+     */
+    private $equipo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Contrato", inversedBy="servicios")
+     */
+    private $contrato;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Persona", inversedBy="serviciosPersona")
+     * @ORM\JoinColumn(nullable=false, onDelete="cascade")
+     */
+    private $persona;
+
+    /**
      * @ORM\Column(type="string", length=100)
      */
     private $noServicio;
@@ -29,7 +58,7 @@ class Servicio
     private $fechaInicio;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $totalHoraTrabajada;
 
@@ -49,12 +78,17 @@ class Servicio
     private $costo;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=11)
      */
     private $estado;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trabajador", inversedBy="serviciosTrabajador")
+     */
+    private $trabajador;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $defecto;
 
@@ -64,24 +98,88 @@ class Servicio
     private $FT;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $garantia;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ControlPiezaServicio", mappedBy="servicio")
+     */
+    private $controlPiezaServicios;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Garantia", mappedBy="servicio")
+     */
+    private $garantias;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TrasladoServicio", mappedBy="servicio")
+     */
+    private $trasladoServicios;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $descripcion;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=TiposServicios::class, inversedBy="servicios")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $tipoServicio;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Equipo::class, inversedBy="servicios")
-     */
-    private $equipo;
+    public function __construct()
+    {
+        $this->controlPiezaServicios = new ArrayCollection();
+        $this->garantias = new ArrayCollection();
+        $this->trasladoServicios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getTipoServicio(): ?TipoServicio
+    {
+        return $this->tipoServicio;
+    }
+
+    public function setTipoServicio(?TipoServicio $tipoServicio): self
+    {
+        $this->tipoServicio = $tipoServicio;
+
+        return $this;
+    }
+
+    public function getEquipo(): ?Equipo
+    {
+        return $this->equipo;
+    }
+
+    public function setEquipo(?Equipo $equipo): self
+    {
+        $this->equipo = $equipo;
+
+        return $this;
+    }
+
+    public function getContrato(): ?Contrato
+    {
+        return $this->contrato;
+    }
+
+    public function setContrato(?Contrato $contrato): self
+    {
+        $this->contrato = $contrato;
+
+        return $this;
+    }
+
+    public function getPersona(): ?Persona
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(?Persona $persona): self
+    {
+        $this->persona = $persona;
+
+        return $this;
     }
 
     public function getNoServicio(): ?string
@@ -161,9 +259,21 @@ class Servicio
         return $this->estado;
     }
 
-    public function setEstado(string $estado): self
+    public function setEstado(?string $estado): self
     {
         $this->estado = $estado;
+
+        return $this;
+    }
+
+    public function getTrabajador(): ?Trabajador
+    {
+        return $this->trabajador;
+    }
+
+    public function setTrabajador(?Trabajador $trabajador): self
+    {
+        $this->trabajador = $trabajador;
 
         return $this;
     }
@@ -173,7 +283,7 @@ class Servicio
         return $this->defecto;
     }
 
-    public function setDefecto(?string $defecto): self
+    public function setDefecto(string $defecto): self
     {
         $this->defecto = $defecto;
 
@@ -185,9 +295,114 @@ class Servicio
         return $this->FT;
     }
 
-    public function setFT(?bool $FT): self
+    public function setFT(bool $FT): self
     {
         $this->FT = $FT;
+
+        return $this;
+    }
+
+    public function getGarantia(): ?int
+    {
+        return $this->garantia;
+    }
+
+    public function setGarantia(int $garantia): self
+    {
+        $this->garantia = $garantia;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ControlPiezaServicio[]
+     */
+    public function getControlPiezaServicios(): Collection
+    {
+        return $this->controlPiezaServicios;
+    }
+
+    public function addControlPiezaServicio(ControlPiezaServicio $controlPiezaServicio): self
+    {
+        if (!$this->controlPiezaServicios->contains($controlPiezaServicio)) {
+            $this->controlPiezaServicios[] = $controlPiezaServicio;
+            $controlPiezaServicio->setServicio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeControlPiezaServicio(ControlPiezaServicio $controlPiezaServicio): self
+    {
+        if ($this->controlPiezaServicios->contains($controlPiezaServicio)) {
+            $this->controlPiezaServicios->removeElement($controlPiezaServicio);
+            // set the owning side to null (unless already changed)
+            if ($controlPiezaServicio->getServicio() === $this) {
+                $controlPiezaServicio->setServicio(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Garantia[]
+     */
+    public function getGarantias(): Collection
+    {
+        return $this->garantias;
+    }
+
+    public function addGarantia(Garantia $garantia): self
+    {
+        if (!$this->garantias->contains($garantia)) {
+            $this->garantias[] = $garantia;
+            $garantia->setServicio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGarantia(Garantia $garantia): self
+    {
+        if ($this->garantias->contains($garantia)) {
+            $this->garantias->removeElement($garantia);
+            // set the owning side to null (unless already changed)
+            if ($garantia->getServicio() === $this) {
+                $garantia->setServicio(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TrasladoServicio[]
+     */
+    public function getTrasladoServicios(): Collection
+    {
+        return $this->trasladoServicios;
+    }
+
+    public function addTrasladoServicio(TrasladoServicio $trasladoServicio): self
+    {
+        if (!$this->trasladoServicios->contains($trasladoServicio)) {
+            $this->trasladoServicios[] = $trasladoServicio;
+            $trasladoServicio->setServicio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrasladoServicio(TrasladoServicio $trasladoServicio): self
+    {
+        if ($this->trasladoServicios->contains($trasladoServicio)) {
+            $this->trasladoServicios->removeElement($trasladoServicio);
+            // set the owning side to null (unless already changed)
+            if ($trasladoServicio->getServicio() === $this) {
+                $trasladoServicio->setServicio(null);
+            }
+        }
 
         return $this;
     }
@@ -204,27 +419,8 @@ class Servicio
         return $this;
     }
 
-    public function getTipoServicio(): ?TiposServicios
+    public function __toString(): ?string
     {
-        return $this->tipoServicio;
-    }
-
-    public function setTipoServicio(?TiposServicios $tipoServicio): self
-    {
-        $this->tipoServicio = $tipoServicio;
-
-        return $this;
-    }
-
-    public function getEquipo(): ?Equipo
-    {
-        return $this->equipo;
-    }
-
-    public function setEquipo(?Equipo $equipo): self
-    {
-        $this->equipo = $equipo;
-
-        return $this;
+        return $this->getNoServicio();
     }
 }

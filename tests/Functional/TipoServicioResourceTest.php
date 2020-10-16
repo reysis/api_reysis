@@ -8,7 +8,7 @@ use App\Entity\User;
 use App\Test\CustomApiTestCase;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 
-class TipoServiciosResourceTest extends CustomApiTestCase
+class TipoServicioResourceTest extends CustomApiTestCase
 {
     use ReloadDatabaseTrait;
 

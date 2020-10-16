@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ReviewsRepository;
+use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -19,9 +19,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "delete" ={"accessControl" = "is_granted('DELETE_SPECIFIC')"}
  *      },
  * )
- * @ORM\Entity(repositoryClass=ReviewsRepository::class)
+ * @ORM\Entity(repositoryClass=ReviewRepository::class)
  */
-class Reviews
+class Review
 {
     /**
      * @ORM\Id()
