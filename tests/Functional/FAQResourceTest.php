@@ -28,7 +28,7 @@ class FAQResourceTest extends CustomApiTestCase
         ]);
         $this->assertResponseStatusCodeSame(401);
 
-        //Creando la question Frecuente como Admin
+        //Creando la FAQ como Admin
         $em = $this->getEntityManager();
         $user = $em->getRepository(User::class)->find($user->getId());
         $user->setRoles(['ROLE_ADMIN']);
