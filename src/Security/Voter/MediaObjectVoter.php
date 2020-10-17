@@ -2,13 +2,13 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\FAQ;
+use App\Entity\MediaObject;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class FAQVoter extends Voter
+class MediaObjectVoter extends Voter
 {
     private $security;
 
@@ -22,11 +22,11 @@ class FAQVoter extends Voter
         /* Si Modificas alguna Operaci'on, para que el Voter
             la vea tienes que agregarla aqui por ejemplo:
             return in_array($atribute, ['POST', 'GET_SPECIFI', 'CUALQUIER_COSA'])
-                && $subject instance of FAQ;
+                && $subject instance of MediaObject;
         */
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['POST', 'EDIT', 'ERASE'])
-            && $subject instanceof FAQ;
+        return in_array($attribute, ['GET', 'POST', 'EDIT', 'ERASE' ])
+            && $subject instanceof MediaObject;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -38,7 +38,7 @@ class FAQVoter extends Voter
         }
 
         /**
-         * @var FAQ $subject
+         * @var MediaObject $subject
          */
         /*
          * Aqui tienes que agregar la logica de seguridad...
@@ -46,12 +46,16 @@ class FAQVoter extends Voter
          * un case para cada Operacion Custom que realices
          * */
         switch ($attribute) {
+            case 'GET':
+                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()) || in_array('ROLE_TECNICO', $user->getRoles()))
+                    return true;
+                return false;
             case 'POST':
-                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()))
+                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()) || in_array('ROLE_TECNICO', $user->getRoles()))
                     return true;
                 return false;
             case 'EDIT':
-                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()))
+                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()) || in_array('ROLE_TECNICO', $user->getRoles()))
                     return true;
                 return false;
             case 'ERASE':

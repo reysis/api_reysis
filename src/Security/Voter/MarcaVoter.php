@@ -25,7 +25,7 @@ class MarcaVoter extends Voter
                 && $subject instance of Marca;
         */
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['ERASE', 'EDIT','POST'])
+        return in_array($attribute, ['GET', 'POST', 'EDIT', 'ERASE' ])
             && $subject instanceof Marca;
     }
 
@@ -46,12 +46,16 @@ class MarcaVoter extends Voter
          * un case para cada Operacion Custom que realices
          * */
         switch ($attribute) {
+            case 'GET':
+                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()) || in_array('ROLE_TECNICO', $user->getRoles()))
+                    return true;
+                return false;
             case 'POST':
-                if(in_array('ROLE_ADMIN', $user->getRoles()))
+                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()) || in_array('ROLE_TECNICO', $user->getRoles()))
                     return true;
                 return false;
             case 'EDIT':
-                if(in_array('ROLE_ADMIN', $user->getRoles()))
+                if(in_array('ROLE_ADMIN', $user->getRoles()) || in_array('ROLE_SECRETARIA', $user->getRoles()) || in_array('ROLE_TECNICO', $user->getRoles()))
                     return true;
                 return false;
             case 'ERASE':

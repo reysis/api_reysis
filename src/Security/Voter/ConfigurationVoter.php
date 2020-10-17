@@ -25,7 +25,7 @@ class ConfigurationVoter extends Voter
                 && $subject instance of FAQ;
         */
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['ERASE', 'EDIT','POST', 'GET_SPECIFIC'])
+        return in_array($attribute, ['POST', 'EDIT', 'ERASE'])
             && $subject instanceof Configuration;
     }
 
@@ -38,7 +38,7 @@ class ConfigurationVoter extends Voter
         }
 
         /**
-         * @var FAQ $subject
+         * @var Configuration $subject
          */
         /*
          * Aqui tienes que agregar la logica de seguridad...
@@ -47,10 +47,6 @@ class ConfigurationVoter extends Voter
          * */
         switch ($attribute) {
             case 'POST':
-                if(in_array('ROLE_ADMIN', $user->getRoles()))
-                    return true;
-                return false;
-            case 'GET_SPECIFIC':
                 if(in_array('ROLE_ADMIN', $user->getRoles()))
                     return true;
                 return false;
