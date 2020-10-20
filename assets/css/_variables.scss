@@ -34,9 +34,10 @@ $color4: #D2F6FC;
 $color5: #FFFFFF;*/
 
 /* Paleta de Color 5 */
-$color1: #163172;
+$color1: #3e61b5;
 $color1-degradado: rgba(18,40,93,0.3);
 $color2: #1E56A0;
-$color3: #D6E4F0;
+//$color3: #D6E4F0;
+$color3: linear-gradient( 20deg, rgb(246,248,250) 0%, rgb(246,248,250) 33%, rgb(246,248,250) 100%);
 $color4: #F6F6F6;
 $color5: #FFFFFF;

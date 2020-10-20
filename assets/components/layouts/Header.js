@@ -13,7 +13,7 @@ class Header extends Component {
         this.state = {
             scrolled: false,
             loading: true,
-            logged: {},
+            logged: this.props.logged,
             error: null
         };
     }
@@ -43,11 +43,9 @@ class Header extends Component {
     }
     render() {
         return (
-            <div className="header-container">
+            <div className={this.state.scrolled ? "fixed-top header-container":"header-container"}>
                     <NavLink to="/"><Image src={LogoLetras} className="logo-letras"/></NavLink>
-                    <NavigationBar />
-                    {/*<BrandContainer scrolled={this.state.scrolled}/>*/}
-                    {/*<Authentication loggedUser={this.state.logged}/>*/}
+                    <NavigationBar loggedUser={this.state.logged}/>
             </div>
         )
     }
@@ -58,7 +56,7 @@ const mapStateToProps = state =>{
         error,
         logged,
         loading
-    } = state.user.login;
+    } = state.user.auth;
     return {error, logged, loading};
 }
 

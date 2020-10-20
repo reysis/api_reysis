@@ -1,10 +1,10 @@
 .landing-page{
     @include flexbox();
-    background-color: $color1;
+    //background-color: $color1;
     //background-image: linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
     //background-image: -webkit-linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     width: 100%;
     height: auto;
     border-bottom-left-radius: 50px;
@@ -14,47 +14,67 @@
     padding-top: 0;
 }
 
-.fondo-landing{
-    z-index: -1000;
+.fondo-landing, .fondo-landing-left,
+.fondo-landing-right{
+    position: absolute;
+    z-index: 0;
     background-position: center;
     background-repeat: repeat;
-    background-size: 100px 100px;
+    opacity: 20%;
+}
+
+.fondo-landing-left{
+    left: -100px;
+    top: -100px;
+    position: absolute;
+    z-index: 0;
+    background-position: center;
+    background-repeat: repeat;
+    opacity: 20%;
+}
+.fondo-landing-right{
+    right: -100px;
+    top: 100px;
+    position: absolute;
+    z-index: 0;
+    background-position: center;
+    background-repeat: repeat;
+    opacity: 20%;
 }
 
 .landing-content{
     @include flexbox();
     flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+    //justify-content: center;
+    //align-items: center;
     padding: 10px 0 30px 0;
-    margin-top: 70px;
+    margin-top: 30px;
     z-index: 900;
+    flex: 1 100%;
 }
-
 .landing-text{
     @include flexbox();
     @include order(2);
-    justify-content: center;
-    align-content: center;
+    //justify-content: center;
+    //align-content: center;
     flex-flow: column nowrap;
-    width: auto;
+    width: 100% !important;
     height: auto;
     font-size: $sizeNormalText;
     font-family: "IBMPlexSans";
-    color: rgba(189, 185, 185, 0.9);
+    color: white;
     line-height: 1.8;
-    text-align: left;
+    //text-align: left;
 }
 
 .landing-parrafo{
     padding: 20px;
-    color: rgba(189, 185, 185, 0.9);
+    color: white;
 }
 
 .landing-image{
     @include order(1);
-    width: 1700px;
-    height: 600px;
+    width: 90%;
 }
 
 .slogan-text{
@@ -62,18 +82,21 @@
     font-family: "Myriad Pro";
     color: $color5;
     line-height: 1.147;
-    text-align: left;
+    //text-align: left;
     padding: 25px 0 0 20px;
 }
 
 .landing-button-container{
     padding-left: 20px;
+    width: 50%;
+    align-self: center;
 }
 
 .landing-button {
     border-radius: 1.4rem;
-    background-image: linear-gradient( 30deg, rgb(246,93,23) 0%, rgb(251,122,29) 33%, rgb(255,150,35) 100%) !important;
-    background-image: -webkit-linear-gradient( 30deg, rgb(246,93,23) 0%, rgb(251,122,29) 33%, rgb(255,150,35) 100%) !important;
+    background-color: $color1;
+    //background-image: linear-gradient( 30deg, rgb(246,93,23) 0%, rgb(251,122,29) 33%, rgb(255,150,35) 100%) !important;
+    //background-image: -webkit-linear-gradient( 30deg, rgb(246,93,23) 0%, rgb(251,122,29) 33%, rgb(255,150,35) 100%) !important;
     width: 250px;
     height: 50px;
     box-shadow:  -4px 3px 18px 0px #0000007d;
@@ -108,8 +131,9 @@
     }
    .landing-text{
        order: 1;
-       padding: 50px;
+       padding: 0;
        width: 50%;
+
    }
    .landing-image-container{
        @include flexbox();
@@ -124,8 +148,8 @@
        flex-direction: row;
        width: 100%;
        padding: 30px 0 100px 0;
-       margin-left: 50px !important;
-       margin-right: 50px !important;
+       //margin-left: 50px !important;
+       //margin-right: 50px !important;
        justify-content: center;
        align-content: center;
    }

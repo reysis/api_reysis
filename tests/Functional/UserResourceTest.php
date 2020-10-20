@@ -93,3 +93,4 @@ class UserResourceTest extends CustomApiTestCase
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
     }
 }
+

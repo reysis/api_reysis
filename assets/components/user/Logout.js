@@ -1,15 +1,24 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { logout, reset } from '../../actions/user/login';
+import { logout, reset } from '../../actions/user/authentication';
 import { connect } from "react-redux";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class Logout extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            scrolled: false,
+            loading: true,
+            logged: this.props.logged,
+            error: null
+        };
+    }
     componentDidMount() {
-        console.log(this.props.logoutUser());
+        this.props.logoutUser();
     }
 
-    componentWillReceiveProps(nextProps) {
+    /*componentWillReceiveProps(nextProps) {
         console.log("WILL RECIEVE PROPS ",nextProps.logged);
         if(this.props.logged !== nextProps.logged){
             this.setState({
@@ -18,7 +27,7 @@ class Logout extends Component {
                 error: nextProps.error,
             })
         }
-    }
+    }*/
 
     render() {
         if (!this.props.logged){
@@ -29,7 +38,7 @@ class Logout extends Component {
         }
         return (
             <div>
-            {this.props.loading && (
+            {!this.props.error && (
                 <div className="alert alert-info" role="status">
                     Sesión cerrada satisfactoriamente...
                 </div>
@@ -41,16 +50,15 @@ class Logout extends Component {
 
 Logout.propTypes = {};
 
-const mapStateToProps = state => {
-    const{
-        logged,
-        loading,
-        error,
-    } = state.user.login;
-    return {logged, loading, error};
+const mapStateToProps = (state, ownProps) => {
+    return {
+        logged: ownProps.logged = state.user.auth.logged,
+        error: ownProps.error = state.user.auth.error,
+        loading: ownProps.loading = state.user.auth.loading,
+    };
 }
 
-const mapDispatchToProps = dispatch =>({
+const mapDispatchToProps = (dispatch, ownProps) =>({
     logoutUser: () => dispatch(logout()),
     reset: () => dispatch(reset())
 });

@@ -1,12 +1,5 @@
 import React from 'react';
 import {NavLink, Link} from "react-router-dom";
-import { connect } from 'react-redux'
-import LogoLetras from '../../assets/logo-letras.png'
-import {
-    Navbar,
-    Nav,
-    NavDropdown, Image,
-} from "react-bootstrap";
 
 const NavigationBar = (props) =>{
     return (
@@ -36,10 +29,4 @@ const NavigationBar = (props) =>{
     )
 }
 
-const mapStateToProps = (state)=>{
-    return {
-        loggedUser: state.user.login.logged
-    }
-}
-
-export default connect(mapStateToProps)(NavigationBar);
+export default NavigationBar;

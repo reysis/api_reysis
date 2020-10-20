@@ -65,7 +65,7 @@ class CustomApiTestCase extends ApiTestCase
      */
     protected function logIn(Client $client, string $username, string $password)
     {
-        $client->request('POST', '/login',[
+        $client->request('POST', '/api/login',[
             'headers'=> ['ContentType'=>'application/json+ld'],
             'json' => [
                 'username' => $username,

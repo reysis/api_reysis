@@ -13,7 +13,7 @@ const Authentication = (props) =>{
             {!props.loggedUser && (
                 <div className="authentication-links-group">
                     <Nav.Item>
-                        <NavLink className="nav-item-link"  to="/login">ENTRAR</NavLink>
+                        <NavLink className="nav-item-link"  to="/authentication">ENTRAR</NavLink>
                     </Nav.Item>
                     <Nav.Item>
                         <NavLink className="nav-item-link"  to="/register">REGISTRARSE</NavLink>

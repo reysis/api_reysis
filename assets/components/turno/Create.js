@@ -24,11 +24,11 @@ class Create extends Component {
 
   render() {
     if(!this.props.loggedUser){
-      /*return (
+      return (
           <Redirect
             to={`/login`}
           />
-      );*/
+      );
     }
     if (this.props.created)
       return (
@@ -38,8 +38,6 @@ class Create extends Component {
       );
     return (
       <div className="container">
-        <h1>Hacer una cita</h1>
-
         {this.props.loading && (
           <div className="alert alert-info" role="status">
             Loading...
@@ -63,7 +61,7 @@ class Create extends Component {
 
 const mapStateToProps = state => {
   const { created, error, loading } = state.turno.create;
-  const loggedUser = state.user.login.logged
+  const loggedUser = state.user.auth.logged
   return { created, error, loading, loggedUser };
 };
 

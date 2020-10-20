@@ -7,9 +7,6 @@ class LoginPage extends Component {
     render() {
         return (
             <main className="content-wrap login-page page">
-                <div className="header">
-                    <h1><span>Iniciar sesión</span></h1>
-                </div>
                 <Login />
                 <Footer />
             </main>

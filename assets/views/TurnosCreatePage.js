@@ -6,9 +6,9 @@ import {Create} from "../components/turno";
 class TurnosCreatePage extends Component {
     render() {
         return (
-            <main className="content-wrap turnos-crete-page">
+            <main className="content-wrap turnos-crete-page page">
                 <div className="header">
-                    <h1><span>Crear Turno</span></h1>
+                    <h1><span>Busquemos el momento adecuado!</span></h1>
                 </div>
                 <Create />
                 <Footer />

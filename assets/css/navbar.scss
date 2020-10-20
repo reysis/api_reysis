@@ -15,7 +15,7 @@
 
 .header-container{
   width: 100%;
-  background-color: $color1;
+  //background-color: $color1;
   position: fixed;
   z-index: 2000;
 }
@@ -29,6 +29,7 @@
   order: 2;
   position: relative;
   right: 0;
+  top: 0;
 }
 
 .authentication-links{
@@ -41,9 +42,11 @@
 }
 
 .logo-letras{
+  position: relative;
   width: 150px;
-  height: 40px;
-  top: 0.2em;
+  height: 60px;
+  left: 2em;
+  top: 0.1em;
   z-index: 1000;
   margin: 1em;
   padding: 0;
@@ -80,4 +83,20 @@
 .nav-header{
   height: 80px;
   background-color: $color1;
+}
+
+/* Medium screens */
+@media all and (min-width: 600px) {
+/*  .logo-letras{
+    width: 250px;
+    height: 70px;
+  }*/
+}
+
+/* Large screens */
+@media all and (min-width: 1000px) {
+/*  .logo-letras{
+    width: 250px;
+    height: 70px;
+  }*/
 }

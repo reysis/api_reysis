@@ -1,7 +1,7 @@
 import React, {Component, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Form} from "react-bootstrap";
-import { login } from "../../actions/user/login";
+import { login } from "../../actions/user/authentication";
 import { connect } from 'react-redux';
 import {Redirect} from "react-router-dom";
 import {reset} from "../../actions/turno/create";
@@ -51,6 +51,9 @@ class Login extends Component {
                     </div>
                 )}
                 <Form onSubmit={this.handleSubmit} className="form-login">
+                    <div className="header">
+                        <h1><span>Iniciar sesión</span></h1>
+                    </div>
                     <Form.Group>
                         <Form.Label>Usuario</Form.Label>
                         <Form.Control id='username' type="user" placeholder="Entre su Usuario" onChange={this.handleChange}/>
@@ -73,7 +76,7 @@ const mapStateToProps = state => {
         logged,
         loading,
         error,
-    } = state.user.login;
+    } = state.user.auth;
     return {logged, loading, error};
 }
 

@@ -80,7 +80,9 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-
+    .configureLoaderRule('images', (loaderRule) => {
+        loaderRule.options.esModule = false;
+    })
     // uncomment if you use API Platform Admin (composer req api-admin)
     .enableReactPreset()
     //.addEntry('admin', './assets/admin.js')

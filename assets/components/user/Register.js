@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Redirect} from "react-router-dom";
 import {Button, Form} from "react-bootstrap";
-import {login} from "../../actions/user/login";
-import {register, reset} from "../../actions/user/register";
+import {register, reset} from "../../actions/user/authentication";
+import {connect} from 'react-redux';
 
 class Register extends Component {
     handleSubmit = (e) => {
@@ -35,17 +35,20 @@ class Register extends Component {
                     </div>
                 )}
                 <Form onSubmit={this.handleSubmit} className="form-register wrapper">
+                    <div className="header">
+                        <h1><span>Súmese a nosotros!</span></h1>
+                    </div>
                     <Form.Group className="user-group">
                         <Form.Label>Nombre de usuario</Form.Label>
                         <Form.Control id='username' type="user" placeholder="Entre su Usuario" onChange={this.handleChange}/>
                     </Form.Group>
                     <Form.Group className="password-group-1 form-control-small">
                         <Form.Label>Contraseña</Form.Label>
-                        <Form.Control id="password" type="password" placeholder="Entre su password" onChange={this.handleChange}></Form.Control>
+                        <Form.Control id="password" type="password" placeholder="Entre su contraseña" onChange={this.handleChange}></Form.Control>
                     </Form.Group>
                     <Form.Group className="password-group-2 form-control-small">
                         <Form.Label>Repita la contraseña</Form.Label>
-                        <Form.Control id="passwordCheck" type="password" placeholder="Entre su password" onChange={this.handleChange}></Form.Control>
+                        <Form.Control id="passwordCheck" type="password" placeholder="Entre su contraseña" onChange={this.handleChange}></Form.Control>
                     </Form.Group>
                     <Form.Group className="tipo-usuario-group form-control-small">
                         <Form.Label>Tipo de Usuario</Form.Label>
@@ -58,10 +61,10 @@ class Register extends Component {
                         <Form.Label>Teléfono</Form.Label>
                         <Form.Control id="telephone" type="text" placeholder="Entre su número telefónico" onChange={this.handleChange}></Form.Control>
                     </Form.Group>
-                    <Form.Group className="email-group form-control-small">
+                    {/*<Form.Group className="email-group form-control-small">
                         <Form.Label>Email</Form.Label>
                         <Form.Control id="email" type="email" placeholder="Entre su correo electrónico" onChange={this.handleChange}></Form.Control>
-                    </Form.Group>
+                    </Form.Group>*/}
                     <Form.Group className="address-group">
                         <Form.Label>Dirección</Form.Label>
                         <Form.Control id="address" type="text" placeholder="Entre su dirección" onChange={this.handleChange}></Form.Control>
@@ -81,10 +84,10 @@ const mapStateToProps = (state) =>{
     const{
         error,
         loading,
-        registered
-    } = state.user.register
+        logged
+    } = state.user.auth
 
-    return {error, loading, registered};
+    return {error, loading, logged};
 }
 
 const mapDispatchToProps = dispatch => ({
@@ -92,4 +95,4 @@ const mapDispatchToProps = dispatch => ({
     reset: () => dispatch(reset()),
 });
 
-export default Register;
+export default connect(mapStateToProps,mapDispatchToProps)(Register);

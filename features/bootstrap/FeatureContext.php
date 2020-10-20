@@ -24,7 +24,7 @@ class FeatureContext implements SnippetAcceptingContext
     }
     /**
      * @BeforeScenario
-     * @login
+     * @authentication
      *
      * @see https://symfony.com/doc/current/security/entity_provider.html#creating-your-first-user
      */

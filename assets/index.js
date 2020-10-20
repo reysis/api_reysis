@@ -34,7 +34,7 @@ import authenticationsRoutes from './routes/authentication';
 
 import { library} from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import {logged} from "./reducers/user/login";
+import {logged} from "./reducers/user/auth";
 //import { faFacebook, faInstagram, faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 library.add(fab)//, faFacebook, faLinkedin, faTwitter, faInstagram)

@@ -20,7 +20,7 @@ class Form extends Component {
   componentDidMount() {
       this.props.loadData()
   }
-    componentWillReceiveProps(nextProps) {
+/*    componentWillReceiveProps(nextProps) {
         if(this.props.data !== nextProps.data){
             this.setState({
                 data: nextProps.data,
@@ -28,7 +28,7 @@ class Form extends Component {
                 error: nextProps.error,
             })
         }
-    }
+    }*/
 
     componentWillUnmount() {
         this.controller.abort();
@@ -48,10 +48,10 @@ class Form extends Component {
     }
 
     return (
-      <div className={`form-group`}>
+      <div className={`form-group form-group-turno`}>
         <label
           htmlFor={`turno_${data.input.name}`}
-          className="form-control-label"
+          className="form-label"
         >
           {data.input.name}
         </label>
@@ -73,7 +73,7 @@ class Form extends Component {
       //console.log(data, loading)
 
       return(
-          <select className={`form-group`} {...input}>
+          <select className={`form-group form-group-turno`} {...input}>
               <option value="">Seleccione uno..</option>
               {
                   loading ? (<option/>) :(
@@ -91,22 +91,22 @@ class Form extends Component {
       console.log(this.props.data);
         return (
             this.props.loading ? (<div>Loading...</div>):(
-          <form onSubmit={this.props.handleSubmit}>
+          <form className="form-turno" onSubmit={this.props.handleSubmit}>
             <Field
               component={TurnoCalendar}
-              name="fecha"
+              name="Fecha"
               placeholder=""
               type="datetime"
             />
             <Field
               component={this.renderField}
-              name="nombrePersonaCita"
+              name="Nombre de la persona citada"
               type="text"
               placeholder=""
             />
             <Field
               component={this.renderTipoEquipos}
-              name="tipoEquipo"
+              name="Tipo de Equipo"
               type="select"
               placeholder=""
               data={this.state.data['hydra:member']}
@@ -114,19 +114,21 @@ class Form extends Component {
             />
             <Field
               component={this.renderField}
-              name="defecto"
+              name="Defecto"
               type="text"
               placeholder=""
             />
             <Field
               component={this.renderField}
-              name="telefono"
+              name="Teléfono"
               type="string"
               placeholder=""
             />
-            <button type="submit" className="btn btn-success">
-              Submit
-            </button>
+            <div className="form-group">
+                <button type="submit" className="btn btn-success">
+                  Submit
+                </button>
+            </div>
           </form>)
         );
   }
