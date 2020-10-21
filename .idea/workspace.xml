@@ -2,52 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/'testUser1'" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assertJsonContains([" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/modernizr.custom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/toucheffects.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/createTipoUsuario('Persona" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/createUserAndLogin($client" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getId())" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/actions/user/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions/user/authentication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/actions/user/logout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/actions/user/register.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/Logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/Logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/landing-background.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/landing-background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/landing-image.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/landing-image.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/logo-letras.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets/logo-letras.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Estadisticas.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Estadisticas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Landing.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Landing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/Authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/Authentication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/user/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/user/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/Logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/user/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_formulario.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_formulario.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/landing.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/landing.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/navbar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/reducers/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/user/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/reducers/user/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/reducers/user/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/reducers/user/logout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/reducers/user/register.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/routes/authentication.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/routes/authentication.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/RegisterPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/TurnosCreatePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/TurnosCreatePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/UserResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/UserResourceTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +208,8 @@
       <workItem from="1602262686442" duration="3888000" />
       <workItem from="1602270267253" duration="16049000" />
       <workItem from="1602520224948" duration="27838000" />
-      <workItem from="1602853804174" duration="44002000" />
+      <workItem from="1602853804174" duration="45387000" />
+      <workItem from="1603289194801" duration="6665000" />
     </task>
     <servers />
   </component>
