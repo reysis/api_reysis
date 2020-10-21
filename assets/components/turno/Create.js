@@ -22,14 +22,8 @@ class Create extends Component {
     this.props.reset();
   }
 
+
   render() {
-    if(!this.props.loggedUser){
-      return (
-          <Redirect
-            to={`/login`}
-          />
-      );
-    }
     if (this.props.created)
       return (
         <Redirect
