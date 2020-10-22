@@ -1,6 +1,7 @@
-@import "./css/variables";
-@import "./css/mixins";
-@import "./css/reset";
+@import "./css/normalize.scss";
+@import "./css/_variables";
+@import "./css/_mixins";
+@import "./css/_reset";
 @import "./css/main.scss";
 @import "./css/landing.scss";
 @import "./css/navbar.scss";
@@ -14,11 +15,10 @@
 @import "./css/localization.scss";
 @import "./css/mision.scss";
 @import "./css/calendar.scss";
-@import "./css/formulario.scss";
+@import "./css/_formulario.scss";
 @import "css/page";
 @import "./css/registerForm.scss";
 @import "./css/menu_bubble.scss";
-@import "./css/normalize.scss";
-//@import "./css/someStyles.scss";
+@import "./css/someStyles.scss";
 @import "./css/fontAwesome.scss";
 @import "./css/headers.scss";

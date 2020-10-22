@@ -11,7 +11,6 @@ class TurnosUpdatePage extends Component {
                     <h1><span>Editar Turno</span></h1>
                 </div>
                 <Update />
-                <Footer />
             </div>
         );
     }

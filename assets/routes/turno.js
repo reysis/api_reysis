@@ -9,6 +9,6 @@ export default [
   <Route path="/turnos/create" component={TurnosCreatePage} exact key="create" />,
   <Route path="/turnos/edit/:id" component={TurnosUpdatePage} exact key="update" />,
   <Route path="/turnos/show/:id" component={Show} exact key="show" />,
-  <Route path="/turnos/" component={TurnosListPage} exact strict key="list" />,
+  <Route path="/turnos/" component={TurnosListPage} exact key="list" />,
   <Route path="/turnos/:page" component={List} exact strict key="page" />
 ];

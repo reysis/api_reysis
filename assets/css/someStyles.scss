@@ -1,13 +1,14 @@
-@import url(http://fonts.googleapis.com/css?family=Raleway:200,400,700,800);
+// @import url(http://fonts.googleapis.com/css?family=Raleway:200,400,700,800);
+
 @font-face {
   font-weight: normal;
   font-style: normal;
   font-family: 'codropsicons';
-  src:url('../fonts/codropsicons/codropsicons.eot');
-  src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/codropsicons/codropsicons.woff') format('woff'),
-  url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
-  url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+  // src:url('../fonts/codropsicons/codropsicons.eot');
+  // src: url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+  src: url('../fonts/codropsicons/codropsicons.woff') format('woff');
+    // url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+    // url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
 }
 
 .codrops-icon:before {
@@ -16,7 +17,7 @@
   font-weight: normal;
   font-style: normal;
   font-variant: normal;
-  font-family: 'codropsicons';
+  font-family: 'codropsicons', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
   line-height: 1;
   speak: none;
   -webkit-font-smoothing: antialiased;
@@ -38,7 +39,7 @@
   padding: 2em 10em 0;
 }
 
-.codrops-demos > a {
+.codrops-demos>a {
   display: inline-block;
   margin: 0.75em;
   padding: 1.35em 1.1em;
@@ -52,7 +53,7 @@
   border-radius: 20px/50px;
 }
 
-.codrops-demos > a.current-demo {
+.codrops-demos>a.current-demo {
   background: #c94e50;
   color: #fffce1;
 }
@@ -68,7 +69,7 @@
   font-weight: 700;
 }
 
-.related > a {
+.related>a {
   display: inline-block;
   text-align: center;
   margin: 20px 10px;
@@ -101,7 +102,7 @@ body #cdawrap {
   bottom: 35px;
   right: 35px;
   background: #b4bad2;
-  border: 1px solid rgba(131,135,151,0.6);
+  border: 1px solid rgba(131, 135, 151, 0.6);
 }
 
 .demo-wave body #cdawrap {
@@ -114,14 +115,17 @@ body #cdawrap {
   body {
     font-size: 80%;
   }
+
   .codrops-header h1 {
     font-size: 2.5em;
   }
+
   .codrops-demos {
     max-width: 900px;
     padding: 2em 2em 0;
   }
-  .related > a {
+
+  .related>a {
     margin: 20px 0;
   }
 }

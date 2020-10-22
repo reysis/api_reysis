@@ -8,7 +8,6 @@ class RegisterPage extends Component {
         return (
             <main className="content-wrap register-page page">
                 <Register />
-                <Footer/>
             </main>
         );
     }

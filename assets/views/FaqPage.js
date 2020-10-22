@@ -46,9 +46,11 @@ class FaqPage extends Component {
         ];
         if(this.state.loading){
             return (
-                <div className="alert alert-info" role="status">
-                    Loading...
-                </div>
+                <main className="content-wrap faq-page page">
+                    <div className="alert alert-info" role="status">
+                        Loading...
+                    </div>
+                </main>
             );
         }
         else{
@@ -67,7 +69,6 @@ class FaqPage extends Component {
                             {questionList}
                         </ol>
                     </div>
-                    <Footer/>
                 </main>
             )
         }

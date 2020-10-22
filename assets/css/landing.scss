@@ -61,7 +61,7 @@
     width: 100% !important;
     height: auto;
     font-size: $sizeNormalText;
-    font-family: "IBMPlexSans";
+    font-family: 'IBMPlexSans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: white;
     line-height: 1.8;
     //text-align: left;
@@ -79,7 +79,7 @@
 
 .slogan-text{
     font-size: $sizeH1;
-    font-family: "Myriad Pro";
+    font-family: 'Myriad Pro', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: $color5;
     line-height: 1.147;
     //text-align: left;
@@ -105,7 +105,7 @@
 
 .landing-button-text{
     font-size: calc(14.875px + 3.125*(100vw - 480px)/760);
-    font-family: "IBMPlexSans";
+    font-family: 'IBMPlexSans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: $color5;
     font-weight: bold;
     line-height: 1.6;

@@ -8,7 +8,6 @@ class LoginPage extends Component {
         return (
             <main className="content-wrap login-page page">
                 <Login />
-                <Footer />
             </main>
         );
     }

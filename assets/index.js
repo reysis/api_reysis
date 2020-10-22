@@ -18,6 +18,7 @@ import './App.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import Home from './views/Home';
 import Header from './components/layouts/Header';
+import Footer from './components/Footer';
 import NotFoundPage from './components/Errors/NotFoundPage';
 
 // Import your reducers here
@@ -57,7 +58,8 @@ const store = createStore(
 class Index extends Component{
     componentDidMount(){
         AOS.init({
-            duration : 1500
+            duration : 1500,
+            once: true
         })
     }
     render(){
@@ -73,6 +75,7 @@ class Index extends Component{
                         {authenticationsRoutes}
                         <Route component={NotFoundPage} />
                     </Switch>
+                    <Footer />
                 </ConnectedRouter>
             </Provider>
             </React.Fragment>

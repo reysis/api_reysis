@@ -17,7 +17,7 @@
 }
 
 .card:hover{
-    width: 365px;
+    // width: 365px;
     background-color: $color2 !important;
     .card-text, .card-title{
         color: $color5;
@@ -52,7 +52,7 @@
 
 .card-title{
     font-size: $sizeH3-small-screen;
-    font-family: "Raleway";
+    // font-family: "Raleway";
     color: $color1;
     font-weight: bold;
     margin: 0;
@@ -63,7 +63,7 @@
 
 .card-text{
     font-size: $sizeNormalText;
-    font-family: "Roboto";
+    // font-family: "Roboto";
     color: $color2;
     font-weight: bold;
     text-align: center;
