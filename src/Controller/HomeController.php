@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\TurnoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -15,7 +16,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'user'=> $serializer->serialize($this->getUser(), 'jsonld')
+            'user'=> $serializer->serialize($this->getUser(), 'jsonld',['groups' => 'user:read'])
         ]);
     }
 }

@@ -25,7 +25,6 @@ class UserDataProvider implements ContextAwareCollectionDataProviderInterface, R
         $this->collectionDataProvider = $collectionDataProvider;
         $this->itemDataProvider = $itemDataProvider;
         $this->security = $security;
-
     }
 
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = [])

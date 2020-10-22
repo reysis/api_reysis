@@ -83,7 +83,7 @@ class User implements UserInterface
      * Una variable temporal para almacenar la password y poder encriptarla en el proceso de normalización
      *
      * @var string The plain password
-     * @Groups({"user:write"})
+     * @Groups({"admin:read", "user:write"})
      * @Assert\NotBlank(groups={"create"})
      * @SerializedName("password")
      */
