@@ -1,14 +1,81 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
+import React, { useEffect, Fragment } from 'react';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { reducer as form } from 'redux-form';
+import { createBrowserHistory } from 'history';
+import { Route, Switch } from 'react-router-dom';
+import {
+    ConnectedRouter,
+    connectRouter,
+    routerMiddleware
+} from 'connected-react-router';
 
-// any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+import Home from './views/Home';
+import Header from './components/layouts/Header';
+import Footer from './components/Footer';
+import NotFoundPage from './components/Errors/NotFoundPage';
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
+// Import your reducers here
+import turno from './reducers/turno';
+import user from './reducers/user';
+import tipoEquipo from './reducers/tipo equipo';
+import services from './reducers/services';
+import opinions from './reducers/opinions';
+import faq from './reducers/faq';
 
-console.log('Hello Webpack Encore! Edit me in assets/app.js');
+//Import your Routes here
+import turnoRoutes from './routes/turno';
+import navbarRoutes from './routes/navbar';
+import authenticationsRoutes from './routes/authentication';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import './App.scss';
+
+const history = createBrowserHistory();
+
+const store = createStore(
+    combineReducers({
+        router: connectRouter(history),
+        form,
+        turno,
+        user,
+        tipoEquipo,
+        services,
+        opinions,
+        faq,
+        /* Add your reducers here */
+    }),
+    applyMiddleware(routerMiddleware(history), thunk)
+);
+
+const App = () => {
+    useEffect(() => {
+        AOS.init({
+            duration: 1500,
+            once: true
+        });
+    });
+
+    return (
+        <Fragment>
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <Header userLogged={window.user} />
+                    <Switch>
+                        <Route path="/" component={Home} strict exact />
+                        {navbarRoutes}
+                        {turnoRoutes}
+                        {authenticationsRoutes}
+                        <Route component={NotFoundPage} />
+                    </Switch>
+                    <Footer />
+                </ConnectedRouter>
+            </Provider>
+        </Fragment>
+    )
+};
+
+export default App;

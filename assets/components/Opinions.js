@@ -13,7 +13,7 @@ class Opinions extends Component {
     };
 
     state={
-        loading: true,
+        loading: true, 
         error: null,
         loaded: {}
     };
