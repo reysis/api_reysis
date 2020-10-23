@@ -1,18 +1,20 @@
 import React from 'react';
 import {NavLink, Link} from "react-router-dom";
 
-const NavigationBar = (props) =>{
+const NavigationBar = (props) => {
+
     return (
         <React.Fragment>
             <div className={props.scrolled ? "fixed-top menu-wrap": "menu-wrap"}>
                 <nav expand="md" className="menu">
                     <div className="icon-list">
+                        { props.loggedUser && <a className="menu-user"><span>BIENVENIDO {window.user.username.toUpperCase()}</span></a> }
                         <NavLink to="/"><span>HOME</span></NavLink>
                         <NavLink to="/contact"><span>CONTÁCTENOS</span></NavLink>
                         <NavLink to="/about"><span>ACERCA DE</span></NavLink>
                         <NavLink to="/faq"><span>FAQ</span></NavLink>
-                        { !props.loggedUser &&  <NavLink to="/login" className="authentication-link"><span>ENTRAR</span></NavLink>}
-                        { !props.loggedUser &&  <NavLink to="/register" className="authentication-link"><span>REGISTRARSE</span></NavLink> }
+                        { !props.loggedUser && <NavLink to="/login" className="authentication-link"><span>ENTRAR</span></NavLink>}
+                        { !props.loggedUser && <NavLink to="/register" className="authentication-link"><span>REGISTRARSE</span></NavLink> }
                         { props.loggedUser && <NavLink to="/logout" className="authentication-link"><span>SALIR</span></NavLink> }
                     </div>
                 </nav>

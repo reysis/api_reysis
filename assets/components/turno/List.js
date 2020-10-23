@@ -22,7 +22,7 @@ class List extends Component {
     );
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.match.params.page !== nextProps.match.params.page)
       nextProps.list(
         nextProps.match.params.page &&

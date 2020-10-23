@@ -20,7 +20,7 @@ class Form extends Component {
 	componentDidMount() {
 		this.props.loadData()
 	}
-	/*componentWillReceiveProps(nextProps) {
+	/*UNSAFE_componentWillReceiveProps(nextProps) {
 		if(this.props.data !== nextProps.data){
 			this.setState({
 				data: nextProps.data,

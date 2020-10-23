@@ -50,10 +50,9 @@ body,
   position: absolute;
   right: 0;
   z-index: 1000;
-  margin: 1em;
-  padding: 0;
+  padding: 1em;
   //width: 2.5em;
-  height: 2.25em;
+  height: 100%;
   border: none;
   //text-indent: 2.5em;
   font-size: 1.5em;
@@ -62,7 +61,7 @@ body,
 }
 
 .menu-button::before {
-  position: relative;
+  // position: relative;
   z-index: 900;
   //top: 0.5em;
   left: 0;
@@ -132,6 +131,10 @@ body,
   z-index: 1000;
   padding: 3em 1em 0;
   //overflow: hidden;
+}
+
+.menu-user {
+  color: white;
 }
 
 .menu,

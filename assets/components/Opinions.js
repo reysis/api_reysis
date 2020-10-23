@@ -22,7 +22,7 @@ class Opinions extends Component {
         this.props.loadData()
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if(this.props.loaded !== nextProps.loaded){
             this.setState({
                 loaded: nextProps.loaded,

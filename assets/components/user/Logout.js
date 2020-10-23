@@ -18,7 +18,7 @@ class Logout extends Component {
         this.props.logoutUser();
     }
 
-    /*componentWillReceiveProps(nextProps) {
+    /*UNSAFE_componentWillReceiveProps(nextProps) {
         console.log("WILL RECIEVE PROPS ",nextProps.logged);
         if(this.props.logged !== nextProps.logged){
             this.setState({

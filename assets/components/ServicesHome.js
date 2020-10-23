@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ServiceCard from '../components/ServiceCard';
 import serviceImg from '../assets/serviceImage.png';
 import PropTypes from "prop-types";
-import {list, reset} from "../actions/servicios/list";
-import {connect} from "react-redux";
+import { list, reset } from "../actions/servicios/list";
+import { connect } from "react-redux";
 
 class ServicesHome extends Component {
     static propTypes = {
@@ -20,11 +20,13 @@ class ServicesHome extends Component {
         error: null,
         retrieved: {},
     };
+    
     componentDidMount() {
         this.props.listServices();
     }
-    componentWillReceiveProps(nextProps) {
-        if(this.props.retrieved !== nextProps.retrieved){
+    
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (this.props.retrieved !== nextProps.retrieved) {
             this.setState({
                 retrieved: nextProps.retrieved,
                 loading: nextProps.loading,
@@ -33,14 +35,16 @@ class ServicesHome extends Component {
         }
     }
     render() {
-        if(this.state.loading){
-            return <div className="alert alert-info" role="status">
-                Loading...
-            </div>
-        }else{
-            const Cards = this.props.retrieved['hydra:member'].map((card, index) =>{
+        if (this.state.loading) {
+            return (
+                <div className="alert alert-info" role="status">
+                    Loading...
+                </div>
+            )
+        } else {
+            const Cards = this.props.retrieved['hydra:member'].map((card, index) => {
                 return (
-                    <ServiceCard key={card['@id']} layout={ index % 2 === 0 ? false : true } title={card['nombre']} text={card['descripcion']} img={card['image']}/>
+                    <ServiceCard key={card['@id']} layout={index % 2 === 0 ? false : true} title={card['nombre']} text={card['descripcion']} img={card['image']} />
                 )
             })
             return (

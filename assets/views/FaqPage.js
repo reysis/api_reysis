@@ -26,7 +26,8 @@ class FaqPage extends Component {
     componentWillUnmount() {
         this.props.reset();
     }
-    componentWillReceiveProps(nextProps) {
+    
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if(this.props.loaded !== nextProps.loaded){
             this.setState({
                 loaded: nextProps.loaded,

@@ -8,7 +8,7 @@
     border-top-left-radius: 120px;
     height: auto;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .footer-container {
@@ -16,7 +16,7 @@
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 50px 10px;
 }
 
 .menu-footer {
@@ -58,7 +58,7 @@
 }
 
 .logo-footer {
-    width: 200px;
+    // width: 200px;
     height: 220px;
     order: 1;
 }

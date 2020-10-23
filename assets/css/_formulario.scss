@@ -1,4 +1,4 @@
-.form-group{
+.form-group {
   margin: 0.5em auto;
   padding: 0.5em 1em;
   @include flexbox();
@@ -8,65 +8,74 @@
   flex: 1 100%;
 }
 
-.password-group-1, .password-group-2{
+.password-group-1,
+.password-group-2 {
   width: 49% !important;
   flex: 1 auto !important;
 }
 
-.form-group .btn{
+.form-group .btn {
   align-self: center;
 }
-  .form-label{
-    font-size: $sizeH3-small-screen;
-    margin: 0.5em auto;
-    width: 100%;
-    font-weight: 800;
-    line-height: 1;
+
+.form-label {
+  // font-size: $sizeH3-small-screen;
+  margin: 0.5em auto;
+  width: 100%;
+  // font-weight: 800;
+  line-height: 1;
+}
+
+.password-group-1,
+.password-group-2 {
+  flex: 1 auto;
+}
+
+.form-login,
+.form-register,
+.form-turno {
+  //border: 1px solid $color2 ;
+  margin: 1em auto 1em auto;
+  @include flexbox;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-self: center;
+  padding: 0 29px 0 29px;
+  //margin: 60px 0 0 0;
+  background-color: rgba(123, 156, 157, 0.1);
+  border: 1px solid rgba(108, 145, 146, 0.1);
+  -webkit-box-shadow: 2px 2px 4px #999999;
+  -moz-box-shadow: 2px 2px 4px #999999;
+  box-shadow: 2px 2px 4px #999999;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #000000;
+  flex: 1 100%;
+}
+
+.form-control {
+  margin: 0 auto;
+
+}
+
+/* Large screens */
+@media all and (min-width: 1000px) {
+  .form-group-turno {
+    width: 80%;
   }
 
-  .password-group-1, .password-group-2{
+  .form-login {
+    width: 50%;
+  }
+
+  .form-label {
+    font-size: $sizeH3-big-screen;
+  }
+
+  .form-control-small {
+    width: 50%;
     flex: 1 auto;
   }
-
-  .form-login, .form-register, .form-turno{
-    //border: 1px solid $color2 ;
-    margin: 0 auto 2em auto;
-    @include flexbox;
-    flex-flow: row wrap;
-    justify-content: flex-end;
-    align-content: flex-end;
-    align-self: center;
-    padding: 0 29px 0 29px;
-    //margin: 60px 0 0 0;
-    background-color: rgba(123, 156, 157, 0.1);
-    border: 1px solid rgba(108, 145, 146, 0.1);
-    -webkit-box-shadow: 2px 2px 4px #999999;
-    -moz-box-shadow: 2px 2px 4px #999999;
-    box-shadow: 2px 2px 4px #999999;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    color: #000000;
-    flex: 1 100%;
-  }
-  .form-control{
-    margin: 0 auto;
-
-  }
-
-  /* Large screens */
-  @media all and (min-width: 1000px) {
-    .form-group-turno{
-      width: 80%;
-    }
-    .form-login{
-      width: 50%;
-    }
-    .form-label{
-      font-size: $sizeH3-big-screen;
-    }
-    .form-control-small{
-      width: 50%;
-      flex: 1 auto;
-    }
-  }
+}

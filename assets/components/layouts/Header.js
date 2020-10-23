@@ -18,7 +18,7 @@ class Header extends Component {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (this.props.logged !== nextProps.logged) {
             this.setState({
                 logged: nextProps.logged,
@@ -43,7 +43,8 @@ class Header extends Component {
     }
     render() {
         return (
-            <div className={this.state.scrolled ? "fixed-top header-container" : "header-container"}>
+            <div className={
+                (document.location.pathname != "/" || this.state.scrolled) ? "fixed-top header-container" : "header-container"}>
                 <NavLink to="/"><Image src={LogoLetras} className="logo-letras" /></NavLink>
                 <NavigationBar loggedUser={this.state.logged} />
             </div>
