@@ -1,10 +1,13 @@
-import React, {Component, useContext} from 'react';
+import React, { Component, useContext } from 'react';
 import PropTypes from 'prop-types';
-import {Button, Form} from "react-bootstrap";
 import { login } from "../../actions/user/authentication";
 import { connect } from 'react-redux';
-import {Redirect} from "react-router-dom";
-import {reset} from "../../actions/turno/create";
+import { Redirect } from "react-router-dom";
+import { reset } from "../../actions/turno/create";
+
+import { Button, Form, InputGroup, FormLabel } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 
 class Login extends Component {
     static propTypes = {
@@ -24,14 +27,14 @@ class Login extends Component {
             'password': this.state.password
         })
     }
-    handleChange = (e) =>{
+    handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
     render() {
         console.log(this.props.logged);
-        if (this.props.logged){
+        if (this.props.logged) {
             return (
                 <Redirect to='/'
                 />
@@ -56,12 +59,26 @@ class Login extends Component {
                     </div>
                     <Form.Group>
                         <Form.Label>Usuario</Form.Label>
-                        <Form.Control id='username' type="user" placeholder="Entre su Usuario" onChange={this.handleChange}/>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <label for="username" >
+                                    <FontAwesomeIcon icon={faUser} />
+                                </label>
+                            </InputGroup.Prepend>
+                            <Form.Control id='username' type="user" placeholder="Usuario" onChange={this.handleChange} />
+                        </InputGroup>
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control id="password" type="password" placeholder="Entre su password" onChange={this.handleChange}></Form.Control>
-                    </Form.Group>
+                    {/* <Form.Group> */}
+                    {/* <Form.Label>Password</Form.Label> */}
+                    <InputGroup>
+                        <InputGroup.Prepend>
+                            <label className="input-group-text" for="password">
+                                <FontAwesomeIcon icon={faLock} />
+                            </label>
+                        </InputGroup.Prepend>
+                        <Form.Control id="password" type="password" placeholder="Contraseña" onChange={this.handleChange}></Form.Control>
+                    </InputGroup>
+                    {/* </Form.Group> */}
                     <Form.Group>
                         <Button variant="primary" type="submit">Entrar</Button>
                     </Form.Group>
@@ -72,16 +89,16 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-    const{
+    const {
         logged,
         loading,
         error,
     } = state.user.auth;
-    return {logged, loading, error};
+    return { logged, loading, error };
 }
 
 const mapDispatchToProps = dispatch => ({
-    login: user => dispatch( login(user) ),
+    login: user => dispatch(login(user)),
     reset: () => dispatch(reset()),
 });
 

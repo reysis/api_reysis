@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {Image} from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import LogoFoter from '../assets/logo-footer.png';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 class Footer extends Component {
     render() {
@@ -10,7 +12,7 @@ class Footer extends Component {
                 <div className="footer-container container">
                     <div data-aos="zoom-in" className="logo-menu menu-footer">
                         <a href="#landing">
-                            <Image className="logo-footer" src={LogoFoter} alt="Variante de Logo Reysis"/>
+                            <Image className="logo-footer" src={LogoFoter} alt="Variante de Logo Reysis" />
                         </a>
                     </div>
                     <div data-aos="fade-up" className="learn-more-menu menu-footer">
@@ -34,19 +36,19 @@ class Footer extends Component {
                         <ul className="footer-menu-list">
                             <li className="menu-item">
                                 <span>Linkedin</span>
-                                <FontAwesomeIcon icon={['fab', 'linkedin']} />
+                                <FontAwesomeIcon icon={faLinkedin} />
                             </li>
                             <li className="menu-item">
                                 <span>Facebook</span>
-                                <FontAwesomeIcon icon={['fab', 'facebook']} />
+                                <FontAwesomeIcon icon={faFacebook} />
                             </li>
                             <li className="menu-item">
                                 <span>Instagram</span>
-                                <FontAwesomeIcon icon={['fab', 'instagram']} />
+                                <FontAwesomeIcon icon={faInstagram} />
                             </li>
                             <li className="menu-item">
                                 <span>Whatsapp</span>
-                                <FontAwesomeIcon icon={['fab', 'whatsapp']} />
+                                <FontAwesomeIcon icon={faWhatsapp} />
                             </li>
                         </ul>
                     </div>
@@ -63,7 +65,7 @@ class Footer extends Component {
                         <span>©Reysis 2020. Todos los derechos reservados</span>
                     </div>
                     <div className="developed-container">
-                        <span>Developed by: </span>
+                        <span>Developed by:</span>
                         <a href="https://www.github.com/MarlonAEC">Marlon A. Espinosa Castañeiras</a>
                     </div>
                 </div>

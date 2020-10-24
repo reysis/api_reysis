@@ -2,14 +2,14 @@ import React from 'react'
 import {
     Image
 } from 'react-bootstrap';
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Statistic = ({title, value, img, alt})=> {
+const Statistic = ({ title, value, img, alt }) => {
     return (
         <div className="single-statistic">
-            <FontAwesomeIcon className="single-statistic-img" icon={img}/>
+            <FontAwesomeIcon className="single-statistic-img" icon={img} size="2x" />
             <h2 className="single-statistic-title">{title}</h2>
-            <p className="single-statistic-value">{value}</p>            
+            <p className="single-statistic-value">{value}</p>
         </div>
     )
 }
