@@ -1,6 +1,6 @@
 .form-group {
   margin: 0.5em auto;
-  padding: 0.5em 1em;
+  // padding: 0.5em 1em;
   @include flexbox();
   justify-content: center;
   flex-flow: column wrap;
@@ -31,6 +31,10 @@
   flex: 1 auto;
 }
 
+.form-in-center {
+  text-align: center;
+}
+
 .form-login,
 .form-register,
 .form-turno {
@@ -55,9 +59,43 @@
   flex: 1 100%;
 }
 
+.form-header {
+  margin: 1em auto;
+}
+
 .form-control {
   margin: 0 auto;
 
+}
+
+.login-separator {
+  text-align: center;
+
+  .hr {
+    font-size: 13px;
+    opacity: .4;
+  }
+
+  .hr::before,
+  .hr::after {
+    content: "";
+    background-color: #8C969D;
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+
+  .hr::before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+
+  .hr::after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
 }
 
 /* Large screens */
