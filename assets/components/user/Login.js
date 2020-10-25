@@ -25,8 +25,8 @@ class Login extends Component {
         this.props.reset();
 
         this.props.login({
-            'username': this.state.username,
-            'password': this.state.password
+            username: this.state.username,
+            password: this.state.password
         })
     }
     handleChange = (e) => {

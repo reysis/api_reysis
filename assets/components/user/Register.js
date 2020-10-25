@@ -14,20 +14,24 @@ class Register extends Component {
         super(props);
         
         this.state = {
-            arePasswordMatch: false
+            arePasswordMatch: false,
+            invalidEmail: false,
+            validEmail: false
         }
+
+        this.timeout = null;
     }
     
     handleSubmit = (e) => {
         e.preventDefault();
 
         this.props.registerUser({
-            'username': this.state.username,
-            'password': this.state.password,
-            'email': this.state.email,
-            'tipoUsuario': this.state.tipoUsuario,
-            'telephone': this.state.telephone,
-            'address': this.state.address
+            username: this.state.username,
+            password: this.state.password,
+            email: this.state.email,
+            tipoUsuario: this.state.tipoUsuario,
+            telephone: this.state.telephone,
+            address: this.state.address
         })
     }
 
@@ -37,12 +41,34 @@ class Register extends Component {
         })
     }
 
+    emailChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        }, () => {
+            if(this.timeout) 
+                clearTimeout(this.timeout)
+            this.timeout = setTimeout(() => {
+                let check = false;
+                let t;
+                if( this.state.email ) {
+                    t = /[a-z](\.?[a-z0-9-_]+)*@[a-z0-9-_](\.?[a-z0-9-_]+)*\.[a-z]+/.exec(this.state.email);
+                    if( t && this.state.email.length == t[0].length && t.index == 0 )
+                        check = true;
+                }
+                this.setState({
+                    invalidEmail: this.state.email != undefined && this.state.email.length > 0 && !check,
+                    validEmail: this.state.email != undefined && this.state.email.length > 0 && check
+                })
+            }, 1000);
+        })
+    }
+
     passwordCheckChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         }, () => {
             this.setState({
-                arePasswordMatch: (this.state.password && this.state.passwordCheck && this.state.password == this.state.passwordCheck)
+                arePasswordMatch: this.state.password && this.state.passwordCheck && this.state.password == this.state.passwordCheck
             })
         })
     }
@@ -88,7 +114,7 @@ class Register extends Component {
                                     <FontAwesomeIcon icon={faAt} />
                                 </label>
                             </InputGroup.Prepend>
-                            <Form.Control id="email" type="email" placeholder="Correo Electrónico" onChange={this.handleChange}></Form.Control>
+                            <Form.Control id="email" type="email" placeholder="Correo Electrónico" isInvalid={this.state.invalidEmail} isValid={this.state.validEmail} onChange={this.emailChange}></Form.Control>
                         </InputGroup>
                     </Form.Group>
 
