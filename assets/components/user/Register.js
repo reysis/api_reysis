@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 
 import { Button, Form, InputGroup, Col, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationTriangle, faUserTag, faTag } from '@fortawesome/free-solid-svg-icons';
 
 class Register extends Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             arePasswordMatch: false,
             invalidEmail: false,
@@ -20,16 +20,24 @@ class Register extends Component {
         }
 
         this.timeout = null;
+
+        this.refSelect = React.createRef();
     }
-    
+
     handleSubmit = (e) => {
         e.preventDefault();
+
+        let iriTipoUsuario;
+        if (this.state.tipoUsuario == "persona-natural")
+            iriTipoUsuario = "/api/tipo_usuarios/1";
+        else if (this.state.tipoUsuario == "empresa")
+            iriTipoUsuario = "/api/tipo_usuarios/2";
 
         this.props.registerUser({
             username: this.state.username,
             password: this.state.password,
             email: this.state.email,
-            tipoUsuario: this.state.tipoUsuario,
+            tipoUsuario: iriTipoUsuario,
             telephone: this.state.telephone,
             address: this.state.address
         })
@@ -45,14 +53,14 @@ class Register extends Component {
         this.setState({
             [e.target.id]: e.target.value
         }, () => {
-            if(this.timeout) 
+            if (this.timeout)
                 clearTimeout(this.timeout)
             this.timeout = setTimeout(() => {
                 let check = false;
                 let t;
-                if( this.state.email ) {
+                if (this.state.email) {
                     t = /[a-z](\.?[a-z0-9-_]+)*@[a-z0-9-_](\.?[a-z0-9-_]+)*\.[a-z]+/.exec(this.state.email);
-                    if( t && this.state.email.length == t[0].length && t.index == 0 )
+                    if (t && this.state.email.length == t[0].length && t.index == 0)
                         check = true;
                 }
                 this.setState({
@@ -74,7 +82,9 @@ class Register extends Component {
     }
 
     selectChange = (e) => {
-        console.log(e);
+        this.setState({
+            [e.target.id]: this.refSelect.current.value
+        })
     }
 
     render() {
@@ -143,11 +153,19 @@ class Register extends Component {
                     </Form.Group>
 
                     <Form.Group className="tipo-usuario-group" >
-                        <Form.Label className="mt-0" htmlFor="tipoUsuario">Tipo de Usuario</Form.Label>
-                        <Form.Control className="custom-select" id="tipoUsuario" as="select" value="empresa">
-                            <option value="persona-natural">Persona Natural</option>
-                            <option value="empresa">Empresa</option>
-                        </Form.Control>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <label className="input-group-text" htmlFor="passwordCheck">
+                                    <FontAwesomeIcon icon={faTag} />
+                                </label>
+                            </InputGroup.Prepend>
+                            {/* <Form.Label className="mt-0" htmlFor="tipoUsuario">Tipo de Usuario</Form.Label> */}
+                            <Form.Control ref={this.refSelect} className="custom-select" id="tipoUsuario" as="select" onChange={this.selectChange} >
+                                <option value="" selected >Tipo de Usuario ...</option>
+                                <option value="persona-natural" >Persona Natural</option>
+                                <option value="empresa" >Empresa</option>
+                            </Form.Control>
+                        </InputGroup>
                     </Form.Group>
 
                     <Form.Group className="telephone-group">
