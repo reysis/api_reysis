@@ -43,7 +43,7 @@ class Register extends Component {
         }, () => {
             this.setState({
                 arePasswordMatch: (this.state.password && this.state.passwordCheck && this.state.password == this.state.passwordCheck)
-            }, () => { console.log(this.state) })
+            })
         })
     }
 
