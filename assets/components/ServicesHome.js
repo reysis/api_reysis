@@ -49,8 +49,8 @@ class ServicesHome extends Component {
             })
             return (
                 <section id="services" className="services-home">
-                    {/* <div className="shape-background"></div>
-                    <div className="shape-background-2"></div> */}
+                    {/* <div className="shape-background"></div> */}
+                    {/* <div className="shape-background-2"></div> */}
                     {this.props.error && (
                         <div className="alert alert-danger" role="alert">
                             <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}

@@ -65,7 +65,7 @@ class Footer extends Component {
                         <span>©Reysis 2020. Todos los derechos reservados</span>
                     </div>
                     <div className="developed-container">
-                        <span>Developed by:</span>
+                        <span className="mr-1">Developed by:</span>
                         <a href="https://www.github.com/MarlonAEC">Marlon A. Espinosa Castañeiras</a>
                     </div>
                 </div>

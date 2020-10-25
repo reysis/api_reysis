@@ -8,11 +8,11 @@
   flex: 1 100%;
 }
 
-.password-group-1,
-.password-group-2 {
-  width: 49% !important;
-  flex: 1 auto !important;
-}
+// .password-group-1,
+// .password-group-2 {
+//   width: 49% !important;
+//   flex: 1 auto !important;
+// }
 
 .form-group .btn {
   align-self: center;
@@ -26,10 +26,10 @@
   line-height: 1;
 }
 
-.password-group-1,
-.password-group-2 {
-  flex: 1 auto;
-}
+// .password-group-1,
+// .password-group-2 {
+//   flex: 1 auto;
+// }
 
 .form-in-center {
   text-align: center;
@@ -68,7 +68,8 @@
 
 }
 
-.login-separator {
+.login-separator,
+.register-separator {
   text-align: center;
 
   .hr {
@@ -98,22 +99,34 @@
   }
 }
 
+.form-group-password {
+  // flex-flow: row;
+  // flex-wrap: 1 1;
+  // justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+}
+
+
+.password-group-1,
+.password-group-2 {
+  display: contents;
+}
+
 /* Large screens */
 @media all and (min-width: 1000px) {
   .form-group-turno {
     width: 80%;
   }
 
-  .form-login {
-    width: 50%;
-  }
-
   .form-label {
     font-size: $sizeH3-big-screen;
   }
+}
 
-  .form-control-small {
-    width: 50%;
-    flex: 1 auto;
+@media (max-width: 425px) {
+  .form-group-password {
+    display: inherit;
   }
 }

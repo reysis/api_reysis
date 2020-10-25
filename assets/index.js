@@ -19,10 +19,11 @@ import turnoRoutes from './routes/turno';
 import navbarRoutes from './routes/navbar';
 import authenticationsRoutes from './routes/authentication';
 
-// import { library } from '@fortawesome/fontawesome-svg-core';
+import { library } from '@fortawesome/fontawesome-svg-core';
 // import { fab, faFacebook, faInstagram, faTwitter, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-// import { fas, faChartArea, faChartLine, faChartBar } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 // library.add(faFacebook, faInstagram, faTwitter, faLinkedin, faWhatsapp, faChartArea, faChartLine, faChartBar);
+library.add(faExclamationTriangle);
 
 import store from "./store"
 

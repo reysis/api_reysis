@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from "react-router-dom";
 import { reset } from "../../actions/turno/create";
 
-import { Button, Form, InputGroup, Card } from "react-bootstrap";
+import { Button, Form, InputGroup, Col, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 class Login extends Component {
     static propTypes = {
@@ -22,6 +22,8 @@ class Login extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        this.props.reset();
+
         this.props.login({
             'username': this.state.username,
             'password': this.state.password
@@ -33,32 +35,21 @@ class Login extends Component {
         })
     }
     render() {
-        console.log(this.props.logged);
         if (this.props.logged) {
             return (
-                <Redirect to='/'
-                />
+                <Redirect to='/' />
             );
         }
         return (
-            <div className="container">
-                {this.props.loading && (
-                    <div className="alert alert-info" role="status">
-                        Loading...
-                    </div>
-                )}
-                {this.props.error && (
-                    <div className="alert alert-danger" role="alert">
-                        <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
-                        {this.props.error}
-                    </div>
-                )}
+            <Col className="content-wrap container" lg={6} >
+                <Alert role={"status"} variant={"info"} show={this.props.loading}>Loading...</Alert>
+                <Alert role={"alert"} variant={"danger"} show={this.props.error} >
+                    <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
+                    {this.props.error}
+                </Alert>
                 <Form onSubmit={this.handleSubmit} className="form-login" >
-                    {/* <div className="header">
-                        <h1><span>Iniciar sesión</span></h1>
-                    </div> */}
                     <Form.Group className="form-header form-in-center">
-                        <h3>Iniciar Sesión</h3>
+                        <h2>Iniciar Sesión</h2>
                         <p>Entre sus datos para iniciar sessión</p>
                     </Form.Group>
 
@@ -66,7 +57,7 @@ class Login extends Component {
                         {/* <Form.Label>Usuario</Form.Label> */}
                         <InputGroup>
                             <InputGroup.Prepend>
-                                <label className="input-group-text" for="username" >
+                                <label className="input-group-text" htmlFor="username" >
                                     <FontAwesomeIcon icon={faUser} />
                                 </label>
                             </InputGroup.Prepend>
@@ -78,7 +69,7 @@ class Login extends Component {
                         {/* <Form.Label>Password</Form.Label> */}
                         <InputGroup>
                             <InputGroup.Prepend>
-                                <label className="input-group-text" for="password">
+                                <label className="input-group-text" htmlFor="password">
                                     <FontAwesomeIcon icon={faLock} />
                                 </label>
                             </InputGroup.Prepend>
@@ -87,18 +78,18 @@ class Login extends Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Button variant="primary" block >Entrar</Button>
+                        <Button variant="primary" block type="submit" >Entrar</Button>
                     </Form.Group>
 
                     <Form.Group className="form-in-center">
-                        <p className="my-2 text-left">¿Olvidaste tu contraseña?, click <a href="#">aquí</a></p>
+                        <small className="form-text text-muted my-2 text-left">¿Olvidaste tu contraseña?, Haga <a href="#">click aquí</a></small>
                         <div className="mb-3 mx-4 login-separator">
-                            <p className="my-2 hr">o</p>
-                            <Link to="/register" className="card-link">Regístrese</Link>
+                            <p className="mt-2 mb-3 hr">o</p>
+                            <Link to="/register" className="form-link">Registrarse</Link>
                         </div>
                     </Form.Group>
                 </Form>
-            </div >
+            </Col>
         );
     }
 }
@@ -114,7 +105,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     login: user => dispatch(login(user)),
-    reset: () => dispatch(reset()),
+    reset: () => dispatch(reset())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

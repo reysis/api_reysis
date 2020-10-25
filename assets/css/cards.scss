@@ -1,11 +1,12 @@
-.cards-container{
+.cards-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
-.card{
+
+.service-card {
     width: 351px;
     height: 265px;
     margin: 5px;
@@ -16,80 +17,84 @@
     z-index: 118;
 }
 
-.card:hover{
-    // width: 365px;
+.service-card:hover {
     background-color: $color2 !important;
-    .card-text, .card-title{
+    // transform: scale(1.05) !important;
+
+    .service-card-text,
+    .service-card-title {
         color: $color5;
     }
-    //background-image: linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
-    //background-image: -webkit-linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
+
+    // background-image: linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
+    // background-image: -webkit-linear-gradient( 20deg, rgb(2,3,123) 0%, rgb(8,40,183) 33%, rgb(13,76,242) 100%);
 }
 
-.card-body, .services-home{
+.service-card-body,
+.services-home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.service-white-card{
+.service-white-card {
     border-radius: 5px;
     background-color: $color5 !important;
     box-shadow: 0px 4px 8.1px 0.9px rgba(13, 27, 70, 0.27);
 }
 
-.service-grey-card{
+.service-grey-card {
     border-radius: 5px;
     background-color: $color4 !important;
     box-shadow: 0px 4px 8.1px 0.9px rgba(13, 27, 70, 0.27);
 }
 
-.card-img{
+.service-card-img {
     width: 70px !important;
-    height: 70px; 
+    height: 70px;
 }
 
-.card-title{
+.service-card-title {
     font-size: $sizeH3-small-screen;
-    // font-family: "Raleway";
+    font-family: 'Raleway', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: $color1;
     font-weight: bold;
     margin: 0;
-    -moz-transform: matrix( 0.82167848232592,0,0,0.82167848232592,0,0);
-    -webkit-transform: matrix( 0.82167848232592,0,0,0.82167848232592,0,0);
-    -ms-transform: matrix( 0.82167848232592,0,0,0.82167848232592,0,0);     
+    -moz-transform: matrix(0.82167848232592, 0, 0, 0.82167848232592, 0, 0);
+    -webkit-transform: matrix(0.82167848232592, 0, 0, 0.82167848232592, 0, 0);
+    -ms-transform: matrix(0.82167848232592, 0, 0, 0.82167848232592, 0, 0);
 }
 
-.card-text{
+.service-card-text {
     font-size: $sizeNormalText;
     // font-family: "Roboto";
     color: $color2;
     font-weight: bold;
     text-align: center;
-    -moz-transform: matrix( 0.68769171686702,0,0,0.68769171686702,0,0);
-    -webkit-transform: matrix( 0.68769171686702,0,0,0.68769171686702,0,0);
-    -ms-transform: matrix( 0.68769171686702,0,0,0.68769171686702,0,0);
+    -moz-transform: matrix(0.68769171686702, 0, 0, 0.68769171686702, 0, 0);
+    -webkit-transform: matrix(0.68769171686702, 0, 0, 0.68769171686702, 0, 0);
+    -ms-transform: matrix(0.68769171686702, 0, 0, 0.68769171686702, 0, 0);
 }
 
-.services-title{
+.services-title {
     margin: 15px;
     font-size: $sizeH2;
     color: $color1;
 }
 
-.services-home{
+.services-home {
     margin-bottom: 50px;
 }
 
-.shape-background{
+.shape-background {
     background-color: $color2;
     opacity: 0.102;
     position: absolute;
     left: 900px;
     width: 530px;
     height: 530px;
-    z-index: 117;     
+    z-index: 117;
     border-radius: 100px;
     overflow: hidden;
     transform: rotate(20deg);
@@ -107,10 +112,10 @@
     border-radius: 100px;
     overflow: hidden;
 }
-  
+
 /* Medium screens */
 @media all and (min-width: 600px) {
-    .shape-background{
+    .shape-background {
         left: 25%;
         top: -50%;
     }
