@@ -12,8 +12,8 @@ class ServicesHome extends Component {
         error: PropTypes.string,
         eventSource: PropTypes.instanceOf(EventSource),
         deletedItem: PropTypes.object,
-        list: PropTypes.func.isRequired,
-        //reset: PropTypes.func.isRequired
+        // list: PropTypes.func.isRequired,
+        // reset: PropTypes.func.isRequired
     };
     state = {
         loading: true,

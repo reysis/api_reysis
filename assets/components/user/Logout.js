@@ -1,11 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { logout, reset } from '../../actions/user/authentication';
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+import { Col, Row, Alert } from 'react-bootstrap';
+
 class Logout extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             scrolled: false,
@@ -30,20 +32,17 @@ class Logout extends Component {
     }*/
 
     render() {
-        if (!this.props.logged){
+        if (!this.props.logged) {
             return (
-                <Redirect to='/'
-                />
+                <Redirect to='/' />
             );
         }
         return (
-            <div>
-            {!this.props.error && (
-                <div className="alert alert-info" role="status">
-                    Sesión cerrada satisfactoriamente...
-                </div>
-                )}
-            </div>
+            <Row className="content-wrap login-page page">
+                <Col className="content-wrap container" lg={6} >
+                    <Alert role={"status"} variant={"info"} show={!this.props.error}>Sesión cerrada satisfactoriamente...</Alert>
+                </Col>
+            </Row>
         );
     }
 }
@@ -52,15 +51,15 @@ Logout.propTypes = {};
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        logged: ownProps.logged = state.user.auth.logged,
+                    logged: ownProps.logged = state.user.auth.logged,
         error: ownProps.error = state.user.auth.error,
         loading: ownProps.loading = state.user.auth.loading,
     };
 }
 
-const mapDispatchToProps = (dispatch, ownProps) =>({
-    logoutUser: () => dispatch(logout()),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+                    logoutUser: () => dispatch(logout()),
     reset: () => dispatch(reset())
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(Logout);
+export default connect(mapStateToProps, mapDispatchToProps)(Logout);

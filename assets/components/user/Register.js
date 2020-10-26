@@ -87,6 +87,11 @@ class Register extends Component {
         })
     }
 
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log(this.props.logged);
+        console.log(nextProps.logged);
+    }
+
     render() {
         if (this.props.logged) {
             return (
@@ -160,8 +165,8 @@ class Register extends Component {
                                 </label>
                             </InputGroup.Prepend>
                             {/* <Form.Label className="mt-0" htmlFor="tipoUsuario">Tipo de Usuario</Form.Label> */}
-                            <Form.Control ref={this.refSelect} className="custom-select" id="tipoUsuario" as="select" onChange={this.selectChange} >
-                                <option value="" selected >Tipo de Usuario ...</option>
+                            <Form.Control ref={this.refSelect} className="custom-select" id="tipoUsuario" as="select" defaultValue="" onChange={this.selectChange} >
+                                <option value="" >Tipo de Usuario ...</option>
                                 <option value="persona-natural" >Persona Natural</option>
                                 <option value="empresa" >Empresa</option>
                             </Form.Control>

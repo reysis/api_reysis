@@ -8,7 +8,9 @@ const NavigationBar = (props) => {
             <div className={props.scrolled ? "fixed-top menu-wrap": "menu-wrap"}>
                 <nav expand="md" className="menu">
                     <div className="icon-list">
-                        { props.loggedUser && <a className="menu-user"><span>BIENVENIDO {window.user.username.toUpperCase()}</span></a> }
+                        { props.loggedUser && props.loggedUser.username && 
+                            <a className="menu-user"><span>BIENVENIDO {props.loggedUser.username.toUpperCase()}</span></a>
+                        }
                         <NavLink to="/"><span>HOME</span></NavLink>
                         <NavLink to="/contact"><span>CONTÁCTENOS</span></NavLink>
                         <NavLink to="/about"><span>ACERCA DE</span></NavLink>

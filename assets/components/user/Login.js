@@ -34,6 +34,12 @@ class Login extends Component {
             [e.target.id]: e.target.value
         })
     }
+
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log(this.props.logged);
+        console.log(nextProps.logged);
+    }
+
     render() {
         if (this.props.logged) {
             return (
