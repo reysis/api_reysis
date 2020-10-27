@@ -8,3 +8,7 @@ vich_uploader:
             upload_destination: public_uploads_filesystem
             # Will rename uploaded files using a uniqueid as a prefix.
             namer: Vich\UploaderBundle\Naming\OrignameNamer
+        type_service:
+            uri_prefix: /media/servicios
+            upload_destination: public_uploads_filesystem
+            namer: Vich\UploaderBundle\Naming\OrignameNamer

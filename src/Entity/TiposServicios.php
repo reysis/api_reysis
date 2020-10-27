@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource(
@@ -17,7 +18,20 @@ use Doctrine\ORM\Mapping as ORM;
  *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
- *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios"
+ *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios",
+ *                  "swagger_context"={
+         *                 "consumes"={
+         *                     "multipart/form-data",
+         *                 },
+         *                 "parameters"={
+         *                     {
+         *                         "in"="formData",
+         *                         "name"="image",
+         *                         "type"="file",
+         *                         "description"="The file to upload",
+         *                     },
+         *          },
+ *             },
  *          }
  *     },
  *     itemOperations={
@@ -25,8 +39,12 @@ use Doctrine\ORM\Mapping as ORM;
  *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
  *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
+ *     attributes={
+ *          "pagination_items_per_page" = 10
+ *     }
  * )
  * @ORM\Entity(repositoryClass=TiposServiciosRepository::class)
+ * @Vich\Uploadable
  */
 class TiposServicios
 {
@@ -58,6 +76,7 @@ class TiposServicios
      * @ORM\ManyToOne(targetEntity=MediaObject::class)
      * @ORM\JoinColumn(nullable=true)
      * @ApiProperty(iri="http://schema.org/image")
+     * @Groups({"tiposservicios:read", "admin:write"})
      */
     public $image;
 

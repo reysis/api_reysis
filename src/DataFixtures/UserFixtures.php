@@ -4,12 +4,14 @@
 namespace App\DataFixtures;
 
 
-use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use App\DataFixtures\TipoUserFixtures;
+use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends BaseFixture implements DependentFixtureInterface
 {
     private $passwordEncoder;
 
@@ -17,27 +19,41 @@ class UserFixtures extends Fixture
     {
         $this->passwordEncoder = $passwordEncoder;
     }
-
-    public function load(ObjectManager $manager)
+    public function getDependencies()
     {
-        for($i = 0; $i < 20; $i++){
+        return [
+            TipoUserFixtures::class,
+        ];
+    }
+
+    protected function loadData(\Doctrine\Common\Persistence\ObjectManager $manager)
+    {
+        $this->createMany(10, 'normal_users', function($i) use ($manager) {
             $user = new User();
-            $user->setUsername(sprintf('user%d', $i));
-            $user->setTelephone(sprintf('%d', random_int(50000000,59999999)));
             $user->setEmail(sprintf('user%d@example.com', $i));
+            $user->setUsername(sprintf('user%d', $i));
+            $user->setTipoUsuario($this->getRandomReference('normal_types'));
+            $user->setTelephone(sprintf("%i",$this->faker->randomNumber(8)) );
+            $user->setAddress(sprintf("%s", $this->faker->randomAscii()));
+
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
                 'engage'
             ));
 
             $manager->persist($user);
-        }
 
-        for($i = 0; $i < 3; $i++){
+
+            return $user;
+        });
+
+        $this->createMany(3, 'admin_users', function($i) {
             $user = new User();
-            $user->setUsername(sprintf('admin%d', $i));
-            $user->setTelephone(sprintf('%d', random_int(50000000,59999999)));
             $user->setEmail(sprintf('admin%d@reysis.com', $i));
+            $user->setUsername(sprintf('admin%d', $i));
+            $user->setTipoUsuario($this->getReference(TipoUserFixtures::ADMIN_TYPE_REFERENCE));
+            $user->setTelephone(sprintf("%i",$this->faker->randomNumber(8)) );
+            $user->setAddress(sprintf("%s", $this->faker->randomAscii()));
             $user->setRoles(['ROLE_ADMIN']);
 
             $user->setPassword($this->passwordEncoder->encodePassword(
@@ -45,9 +61,10 @@ class UserFixtures extends Fixture
                 'engage'
             ));
 
-            $manager->persist($user);
-        }
+            return $user;
+        });
 
         $manager->flush();
+
     }
 }

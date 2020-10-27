@@ -39,6 +39,9 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  *          "put" = {"accessControl" = "is_granted('ROLE_USER') and object == user"},
  *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
+ *     attributes={
+ *          "pagination_items_per_page" = 30
+ *     },
  * )
  * @ApiFilter(PropertyFilter::class)
  * @ApiFilter(
