@@ -15,3 +15,9 @@ api_platform:
             mime_types:
                 - application/hal+json
 
+    swagger:
+        versions: [ 3 ]
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
