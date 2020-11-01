@@ -44,7 +44,7 @@ class Update extends Component {
 
     return (
       <div>
-        <h1>Edit {item && item['@id']}</h1>
+        <h2>Edit {item && item['@id']}</h2>
 
         {this.props.created && (
           <div className="alert alert-success" role="status">
@@ -59,10 +59,10 @@ class Update extends Component {
         {(this.props.retrieveLoading ||
           this.props.updateLoading ||
           this.props.deleteLoading) && (
-          <div className="alert alert-info" role="status">
-            Loading...
-          </div>
-        )}
+            <div className="alert alert-info" role="status">
+              Loading...
+            </div>
+          )}
         {this.props.retrieveError && (
           <div className="alert alert-danger" role="alert">
             <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}

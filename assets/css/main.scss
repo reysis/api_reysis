@@ -12,6 +12,12 @@ h1 {
 	font-size: $sizeH1;
 }
 
+section h2 {
+    font-size: $sizeH2;
+    line-height: 1.3;
+    font-weight: 400;
+}
+
 *,
 *:after,
 *:before {

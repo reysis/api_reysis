@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Form from './Form';
 import { create, reset } from '../../actions/turno/create';
-import { load } from "../../actions/tipo equipo/load";
+import { load } from "../../actions/tipo_equipo/load";
 
 
 class Create extends Component {
@@ -21,7 +21,6 @@ class Create extends Component {
   componentWillUnmount() {
     this.props.reset();
   }
-
 
   render() {
     if (this.props.created)
@@ -44,7 +43,7 @@ class Create extends Component {
           </div>
         )}
 
-        <Form onSubmit={this.props.create} values={this.props.item}/>
+        <Form onSubmit={this.props.create} values={this.props.item} />
         <Link to="." className="btn btn-primary">
           Back to list
         </Link>

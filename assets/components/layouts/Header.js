@@ -55,6 +55,7 @@ class Header extends Component {
             isTop !== true ? this.setState({ scrolled: true }) : this.setState({ scrolled: false });
         });
     }
+    
     render() {
         if(this.props.pathname != "/") {
             return (
@@ -65,7 +66,7 @@ class Header extends Component {
             )
         }
         return (
-            <div className={(this.state.scrolled) ? "fixed-top header-container" : "header-container"}>
+            <div className={(this.state.scrolled) ? "header-minimized fixed-top header-container" : "header-container"}>
                 <NavLink to="/"><Image src={LogoLetras} className="logo-letras" /></NavLink>
                 <NavigationBar loggedUser={this.state.logged} />
             </div>

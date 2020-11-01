@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
 import TurnoCalendar from "./TurnoCalendar";
-import { load } from "../../actions/tipo equipo/load";
+import { load } from "../../actions/tipo_equipo/load";
 import { connect } from "react-redux";
 import { fetch } from "../../utils/dataAccess";
 

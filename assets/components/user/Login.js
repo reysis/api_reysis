@@ -56,7 +56,7 @@ class Login extends Component {
                 <Form onSubmit={this.handleSubmit} className="form-login" >
                     <Form.Group className="form-header form-in-center">
                         <h2>Iniciar Sesión</h2>
-                        <p>Entre sus datos para iniciar sessión</p>
+                        <spam>Entre sus datos para iniciar sessión</spam>
                     </Form.Group>
 
                     <Form.Group>

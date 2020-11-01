@@ -108,7 +108,7 @@ class Register extends Component {
                 <Form onSubmit={this.handleSubmit} className="form-register wrapper">
                     <Form.Group className="form-header form-in-center">
                         <h2>Súmese a nosotros!</h2>
-                        <p>Entre todos los datos para completar el registro</p>
+                        <spam>Entre todos los datos para completar el registro</spam>
                     </Form.Group>
 
                     <Form.Group>

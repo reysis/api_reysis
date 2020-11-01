@@ -18,7 +18,7 @@ class List extends Component {
   componentDidMount() {
     this.props.list(
       this.props.match.params.page &&
-        decodeURIComponent(this.props.match.params.page)
+      decodeURIComponent(this.props.match.params.page)
     );
   }
 
@@ -26,7 +26,7 @@ class List extends Component {
     if (this.props.match.params.page !== nextProps.match.params.page)
       nextProps.list(
         nextProps.match.params.page &&
-          decodeURIComponent(nextProps.match.params.page)
+        decodeURIComponent(nextProps.match.params.page)
       );
   }
 
@@ -37,7 +37,7 @@ class List extends Component {
   render() {
     return (
       <div>
-        <h1>Turno List</h1>
+        <h2>Turno List</h2>
 
         {this.props.loading && (
           <div className="alert alert-info">Loading...</div>
