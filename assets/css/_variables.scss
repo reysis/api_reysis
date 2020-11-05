@@ -3,6 +3,11 @@ $sizeH2: calc(35px + 10*(100vw - 480px)/760);
 $sizeH3-small-screen: calc(17px + 5*(100vw - 480px)/760);
 $sizeH3-big-screen: calc(10px + 5*(100vw - 480px)/760);
 $sizeNormalText: calc(14.875px + 3.125*(100vw - 480px)/760);
+
+$size-small: .75em;
+$size-normal: 1em;
+$size-big: 1.25em;
+
 /* Paleta de color 1 */
 /*$color1: #2E279D;
 $color2: #4D80E4;

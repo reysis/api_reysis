@@ -1,7 +1,4 @@
 import React from 'react'
-import {
-    Image
-} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Statistic = ({ title, value, img, alt }) => {

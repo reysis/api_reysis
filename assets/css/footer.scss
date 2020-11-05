@@ -16,6 +16,7 @@
     justify-content: center;
     align-items: center;
     padding: 50px 10px;
+    padding-bottom: 10px;
 }
 
 .menu-footer {
@@ -30,17 +31,18 @@
 .footer-menu-list {
     list-style-type: none;
     padding-inline-start: unset !important;
+    margin-bottom: 0;
 }
 
 .menu-title {
-    font-size: 22px;
+    font-size: 1.2em;
     font-family: "Myriad Pro", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: rgb(255, 255, 255);
     text-align: left;
 }
 
 .menu-item {
-    font-size: 18px;
+    // font-size: 1em;
     font-family: "Myriad Pro", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: rgba(255, 255, 255, 0.6);
     line-height: 2;
@@ -79,6 +81,10 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 20px;
+
+    a {
+        text-decoration: none;
+    }
 }
 
 .copyright-container {

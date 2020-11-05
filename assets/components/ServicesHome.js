@@ -48,7 +48,7 @@ class ServicesHome extends Component {
     render() {
         if (this.state.loading) {
             return (
-                <Alert role={"status"} variant={"info"} show={this.state.loading}>Loading...</Alert>
+                <Alert className="my-3" role={"status"} variant={"info"} show={this.state.loading}>Loading...</Alert>
             )
         } else {
             const Cards = this.state.retrieved['hydra:member'].map((card, index) => {

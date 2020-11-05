@@ -45,7 +45,7 @@ class Opinions extends Component {
 
         if (this.state.loading) {
             return (
-                <Alert role={"status"} variant={"info"} show={this.state.loading}>Loading...</Alert>
+                <Alert className="my-3" role={"status"} variant={"info"} show={this.state.loading}>Loading...</Alert>
             );
         } else {
             const carouselInfo = this.state.loaded['hydra:member'].map(item => {

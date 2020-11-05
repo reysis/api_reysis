@@ -1,15 +1,6 @@
-.services-home {
-    padding: 0;
-    margin: 2em 0;
-
-    .cards-container {
-        margin: 3em auto;
-    }
-}
-
 .shape-background {
     background-color: $color2;
-    opacity: 0.050;
+    opacity: 0.06;
     position: absolute;
     left: 75%;
     width: 530px;
@@ -22,7 +13,7 @@
 
 .shape-background-2 {
     background-color: $color1;
-    opacity: 0.050;
+    opacity: 0.05;
     position: absolute;
     left: -25%;
     width: 70%;
@@ -33,89 +24,73 @@
     overflow: hidden;
 }
 
-.cards-container {
+.services-home {
+    padding: 0;
+    margin: 2em 0;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
-    // align-items: center;
+    .cards-container {
+        margin: 3em auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: left;
 
-    // padding: 20px 20px 100px 20px;
-    // max-width: 1300px;
-    // margin: 0 auto;
-    // list-style: none;
-    text-align: left;
-
-    .service-card {
-
-        width: 350px;
-        margin: 10px;
-        border: none;
-        // height: 265px;
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: center;
-        // align-items: center;
-        // z-index: 118;
-
-        display: inline-block;
-        // width: 351px;
-        // height: 265px;
-        // margin: 0;
-        // padding: 20px;
-        // text-align: left;
-        // position: relative;
-    }
-
-    figure {
-        margin: 0;
-        position: relative;
-
-        img {
-            max-width: 100%;
-            display: block;
-            position: relative;
-        }
-    }
-
-    figcaption {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 20px;
-        background: #2c3f52;
-        // color: #ed4e6e;
-
-        h3 {
-            margin: 0;
-            padding: 0;
-            color: #fff;
-            font-size: 1.4em;
-            margin-bottom: 5px;
-        }
-
-        p {
-            font-size: 1em;
-            color: #ffffffdd;
-        }
-
-        a {
-            text-align: center;
-            padding: 5px 10px;
-            border-radius: 2px;
+        .service-card {
+            width: 350px;
+            margin: 10px;
+            border: none;
             display: inline-block;
-            background: $color1;
-            color: #fff;
-            text-decoration: none;
+        }
+
+        figure {
+            margin: 0;
+            position: relative;
+
+            img {
+                max-width: 100%;
+                display: block;
+                position: relative;
+            }
+        }
+
+        figcaption {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            background: #2c3f52;
+
+            h3 {
+                margin: 0;
+                padding: 0;
+                color: #fff;
+                font-size: 1.2em;
+                margin-bottom: 5px;
+            }
+
+            p {
+                font-size: .8em;
+                color: #ffffffdd;
+            }
+
+            a {
+                text-align: center;
+                padding: 5px 10px;
+                border-radius: 2px;
+                display: inline-block;
+                background: $color1;
+                color: #fff;
+                text-decoration: none;
+            }
         }
     }
 }
 
 /* Caption Style */
-
 .no-touch .cards-style {
     figure:hover figcaption {
         opacity: 1;

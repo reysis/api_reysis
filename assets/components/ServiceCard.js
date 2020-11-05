@@ -1,11 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import {
-    Card,
-    CardBody,
-    CardText,
-    CardImg,
-    CardTitle,
-} from 'reactstrap';
+import { Card } from 'reactstrap';
 
 import serviceImage from '../assets/service1.png';
 
@@ -17,15 +11,15 @@ const ServiceCard = ({ layout, title, text, img }) => {
 
     /* is the same that componentWillMount */
     useEffect(() => {
-        if(document.head.parentNode.classList.contains("touch")) {
+        if (document.head.parentNode.classList.contains("touch")) {
 
-            card_button.current.addEventListener( 'touchstart', function(e) {
+            card_button.current.addEventListener('touchstart', function (e) {
                 e.stopPropagation();
-            }, false );
+            }, false);
 
-            card.current.addEventListener( 'touchstart', function(e) {
-                this.classList.toggle( 'cs-hover' );
-            }, false );
+            card.current.addEventListener('touchstart', function (e) {
+                this.classList.toggle('cs-hover');
+            }, false);
         }
     }, []);
 
