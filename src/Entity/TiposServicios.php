@@ -60,6 +60,10 @@ class TiposServicios
      * @ApiProperty(iri="http://schema.org/image")
      */
     public $image;
+    /**
+     * @ORM\OneToMany(targetEntity=Servicio::class, mappedBy="tipoServicio", orphanRemoval=true)
+     */
+    private $servicios;
 
     /**
      * @return MediaObject|null
@@ -76,11 +80,6 @@ class TiposServicios
     {
         $this->image = $image;
     }
-
-    /**
-     * @ORM\OneToMany(targetEntity=Servicio::class, mappedBy="tipoServicio", orphanRemoval=true)
-     */
-    private $servicios;
 
     public function __construct()
     {
@@ -145,5 +144,17 @@ class TiposServicios
         }
 
         return $this;
+    }
+
+
+    /**
+     * @Groups({"tiposservicios:read"})
+     */
+    public function getShortDescription(): ?string
+    {
+        if(strlen($this->descripcion) < 70){
+            return $this->descripcion;
+        }
+        return substr($this->descripcion, 0, 70).'...';
     }
 }
