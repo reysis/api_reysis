@@ -4,7 +4,7 @@ import statBackground from '../assets/estadisticas-background.jpg';
 import Statistic from './Statistic';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartArea, faChartLine, faChartBar, faCheck, faCheckSquare, faCheckDouble, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faChartArea, faChartLine, faChartBar, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
 class Estadisticas extends Component {
     render() {
@@ -60,7 +60,7 @@ class Estadisticas extends Component {
                             return (
                                 <div key={why.id} className="d-flex flex-row item-why-us">
                                     <div className="p-2 icon-why-us">
-                                        <FontAwesomeIcon icon={faCheck} />
+                                        <FontAwesomeIcon icon={faCheckSquare} />
                                     </div>
                                     <div className="p-2 reason-why-us">
                                         {why.reason}

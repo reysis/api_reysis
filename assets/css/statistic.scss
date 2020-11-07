@@ -9,7 +9,7 @@
     background-color: $color1;
     width: 100%;
     padding: 0;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    // clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 
     .stat-bg {
         position: absolute;
@@ -41,16 +41,15 @@
                 margin: 0 10px;
 
                 .icon-why-us {
-                    color: $color1;
-                    background: #fff;
-                    padding: 4px;
-                    border-radius: 5px;
+                    padding: 5px;
                     font-size: 1.5em;
                 }
             }
 
             .reason-why-us {
                 text-align: left;
+                margin: auto 0;
+                padding: 5px !important;
             }
         }
 
