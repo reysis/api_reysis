@@ -120,13 +120,6 @@ class User implements UserInterface
      * @Assert\NotBlank(groups={"create"})
      */
     private $tipoUsuario;
-    /**
-     * @ORM\Column(type="string", length=25)
-     * @ApiProperty(iri="http://schema.org/telephone")
-     * @Groups({"admin:read", "user:write"})
-     * @Assert\NotBlank(groups={"create"})
-     */
-    private $telephone;
 
     /**
      * @ApiProperty(iri="http://schema.org/email")
@@ -135,12 +128,6 @@ class User implements UserInterface
      * @Groups({"user:read", "user:write"})
      */
     private $email;
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @ApiProperty(iri="http://schema.org/address")
-     * @Groups({"user:read","user:write"})
-     */
-    private $address;
 
     /**
      * Retorna verdadero si este es el usuario autenticado actualmente
@@ -149,9 +136,26 @@ class User implements UserInterface
     */
     private $isMe = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=PhoneNumber::class, mappedBy="user", orphanRemoval=true, cascade={"persist", "remove"})
+     */
+    private $phoneNumbers;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Address::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $address;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CuentaBancaria::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $cuentaBancaria;
+
     public function __construct()
     {
         $this->turnos = new ArrayCollection();
+        $this->phoneNumbers = new ArrayCollection();
+        $this->cuentaBancaria = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -328,26 +332,6 @@ class User implements UserInterface
     }
 
     /**
-     * Get the value of telephone
-     */ 
-    public function getTelephone()
-    {
-        return $this->telephone;
-    }
-
-    /**
-     * Set the value of telephone
-     *
-     * @return  self
-     */ 
-    public function setTelephone($telephone)
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    /**
      * Get the value of email
      */ 
     public function getEmail()
@@ -367,26 +351,6 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * Get the value of address
-     */ 
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * Set the value of address
-     *
-     * @return  self
-     */ 
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     public function getIsMe(): bool
     {
         return $this->isMe;
@@ -395,6 +359,85 @@ class User implements UserInterface
     public function setIsMe(bool $isMe): void
     {
         $this->isMe = $isMe;
+    }
+
+    /**
+     * @return Collection|PhoneNumber[]
+     */
+    public function getPhoneNumbers(): Collection
+    {
+        return $this->phoneNumbers;
+    }
+
+    public function addPhoneNumber(PhoneNumber $phoneNumber): self
+    {
+        if (!$this->phoneNumbers->contains($phoneNumber)) {
+            $this->phoneNumbers[] = $phoneNumber;
+            $phoneNumber->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhoneNumber(PhoneNumber $phoneNumber): self
+    {
+        if ($this->phoneNumbers->contains($phoneNumber)) {
+            $this->phoneNumbers->removeElement($phoneNumber);
+            // set the owning side to null (unless already changed)
+            if ($phoneNumber->getUser() === $this) {
+                $phoneNumber->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(Address $address): self
+    {
+        $this->address = $address;
+
+        // set the owning side of the relation if necessary
+        if ($address->getUser() !== $this) {
+            $address->setUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CuentaBancaria[]
+     */
+    public function getCuentaBancaria(): Collection
+    {
+        return $this->cuentaBancaria;
+    }
+
+    public function addCuentaBancarium(CuentaBancaria $cuentaBancarium): self
+    {
+        if (!$this->cuentaBancaria->contains($cuentaBancarium)) {
+            $this->cuentaBancaria[] = $cuentaBancarium;
+            $cuentaBancarium->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCuentaBancarium(CuentaBancaria $cuentaBancarium): self
+    {
+        if ($this->cuentaBancaria->contains($cuentaBancarium)) {
+            $this->cuentaBancaria->removeElement($cuentaBancarium);
+            // set the owning side to null (unless already changed)
+            if ($cuentaBancarium->getUser() === $this) {
+                $cuentaBancarium->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 }

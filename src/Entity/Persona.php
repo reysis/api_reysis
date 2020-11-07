@@ -36,18 +36,14 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 class Persona
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * Usuario linkeado a esta persona (iri)
+     *
+     * @ORM\Id
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"persona:read", "persona:write"})
      */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read","persona:read", "persona:write"})
-     * @Assert\NotBlank()
-     */
-    private $nombre;
+    private $user;
 
     /**
      * @ORM\Column(type="string", length=11)
@@ -56,20 +52,12 @@ class Persona
      */
     private $ci;
 
-
     /**
-     * Usuario linkeado a esta persona (iri)
-     * 
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups({"persona:read", "persona:write"})
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"user:read","persona:read", "persona:write"})
+     * @Assert\NotBlank()
      */
-    private $username;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    private $nombre;
 
     public function getNombre(): ?string
     {
@@ -95,14 +83,14 @@ class Persona
         return $this;
     }
 
-    public function getUsername(): ?User
+    public function getUser(): ?User
     {
-        return $this->username;
+        return $this->user;
     }
 
-    public function setUsername(User $username): self
+    public function setUsername(User $user): self
     {
-        $this->username = $username;
+        $this->user = $user;
 
         return $this;
     }

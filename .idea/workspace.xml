@@ -2,8 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201106202704.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20201107024355.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Banco.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/CuentaBancaria.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/CuentaBanco.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Provider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/TipoCuenta.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/AddressRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/BancoRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/CuentaBancariaRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/CuentaBancoRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/CuentaMNRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/PhoneNumberRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/ProviderRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/TipoCuentaRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/api_platform.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200804151434.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200818231248.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200819151711.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200821185252.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200824194947.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200825143847.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200825144139.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200825144735.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200926202844.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200926203215.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200926205414.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200928035700.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20200928042401.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201009164009.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201009165049.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Empresa.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Empresa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Persona.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,10 +268,14 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1602552384043" />
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1602262156896">
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1604729150282">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1602262156896" />
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1604729150282" />
+    <state x="386" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604636877413">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="386" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1604636877413" />
     <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602867674534">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -249,10 +288,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1602261885417">
+    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1604631351212">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1602261885417" />
+    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1604631351212" />
     <state x="634" y="353" key="NewPhpFileDialog" timestamp="1602167511276">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -265,10 +304,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1602790991465" />
-    <state x="456" y="195" key="run.anything.popup" timestamp="1602899922734">
+    <state x="456" y="195" key="run.anything.popup" timestamp="1604727780870">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1602899922734" />
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1604727780870" />
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1602952168779">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
