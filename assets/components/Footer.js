@@ -1,77 +1,97 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Image } from 'react-bootstrap';
 import LogoFoter from '../assets/logo-footer.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faLinkedin, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import {
+    faEnvelope, faQuestionCircle, faUserSecret,
+    faSitemap, faEye, faBullseye,
+    faUsers, faArrowCircleUp
+} from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
-class Footer extends Component {
-    render() {
-        return (
-            <footer className="footer-component">
-                <div className="footer-container container">
-                    <div data-aos="zoom-in" className="logo-menu menu-footer">
-                        <a href="#landing">
-                            <Image className="logo-footer" src={LogoFoter} alt="Variante de Logo Reysis" />
-                        </a>
-                    </div>
-                    <div data-aos="fade-up" className="learn-more-menu menu-footer">
-                        <h3 className="menu-title">Aprenda más</h3>
-                        <ul className="footer-menu-list">
-                            <li className="menu-item">Contáctenos</li>
-                            <li className="menu-item">Preguntas frecuentes</li>
-                            <li className="menu-item">Terminos y políticas de privacidad</li>
-                        </ul>
-                    </div>
-                    <div data-aos="fade-up" className="our-company-menu menu-footer">
-                        <h3 className="menu-title">Nuestra compañía</h3>
-                        <ul className="footer-menu-list">
-                            <li className="menu-item">Nuestro Equipo</li>
-                            <li className="menu-item">Misión</li>
-                            <li className="menu-item">Visión</li>
-                        </ul>
-                    </div>
-                    <div data-aos="fade-up" className="contact-menu menu-footer">
-                        <h3 className="menu-title">Conecte con nosotros</h3>
-                        <ul className="footer-menu-list">
-                            <li className="menu-item">
-                                <span>Linkedin</span>
-                                <FontAwesomeIcon icon={faLinkedin} />
-                            </li>
-                            <li className="menu-item">
-                                <span>Facebook</span>
-                                <FontAwesomeIcon icon={faFacebook} />
-                            </li>
-                            <li className="menu-item">
-                                <span>Instagram</span>
-                                <FontAwesomeIcon icon={faInstagram} />
-                            </li>
-                            <li className="menu-item">
-                                <span>Whatsapp</span>
-                                <FontAwesomeIcon icon={faWhatsapp} />
-                            </li>
-                        </ul>
-                    </div>
-                    <div data-aos="fade-up" className="website-menu menu-footer">
-                        <h3 className="menu-title">Sitio web</h3>
-                        <ul className="footer-menu-list">
-                            <li className="menu-item">Mapa del sitio</li>
-                            <li className="menu-item">Regresar al inicio</li>
-                        </ul>
-                    </div>
+const Footer = () => {
+    return (
+        <footer className="footer-component">
+            <div className="footer-container container">
+                <div data-aos="zoom-in" className="logo-menu menu-footer mb-4">
+                    <a href="#landing">
+                        <Image className="logo-footer" src={LogoFoter} alt="Variante de Logo Reysis" />
+                    </a>
                 </div>
-                <div className="copyright-container container">
-                    <div className="copyright menu-footer">
-                        <span>©Reysis 2020. Todos los derechos reservados</span>
-                    </div>
-                    <div className="developed-container">
-                        <span className="mr-1">Developed by:</span>
-                        <a href="https://www.github.com/MarlonAEC">Marlon A. Espinosa Castañeiras</a>
-                    </div>
+                <div data-aos="fade-up" className="learn-more-menu menu-footer">
+                    <h3 className="menu-title">Aprenda más</h3>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2"><FontAwesomeIcon icon={faEnvelope} /></div>
+                        Contáctenos
+                    </Link>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2"><FontAwesomeIcon icon={faQuestionCircle} /></div>
+                        Preguntas frecuentes
+                    </Link>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2"><FontAwesomeIcon icon={faUserSecret} /></div>
+                        Terminos y privacidad
+                    </Link>
                 </div>
-            </footer>
-        )
-    }
+                <div data-aos="fade-up" className="our-company-menu menu-footer">
+                    <h3 className="menu-title">Nuestra compañía</h3>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2"><FontAwesomeIcon icon={faUsers} /></div>
+                        Nuestro Equipo
+                    </Link>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2"><FontAwesomeIcon icon={faBullseye} /></div>
+                        Misión
+                    </Link>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2"><FontAwesomeIcon icon={faEye} /></div>
+                        Visión
+                    </Link>
+                </div>
+                <div data-aos="fade-up" className="contact-menu menu-footer">
+                    <h3 className="menu-title">Conecte con nosotros</h3>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2 li"><FontAwesomeIcon icon={faLinkedin} /></div>
+                        Linkedin
+                    </Link>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2 fb"><FontAwesomeIcon icon={faFacebook} /></div>
+                        Facebook
+                    </Link>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2 ig"><FontAwesomeIcon icon={faInstagram} /></div>
+                        Instagram
+                    </Link>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2 wa"><FontAwesomeIcon icon={faWhatsapp} /></div>
+                        Whatsapp
+                    </Link>
+                </div>
+                <div data-aos="fade-up" className="website-menu menu-footer">
+                    <h3 className="menu-title">Sitio web</h3>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2"><FontAwesomeIcon icon={faSitemap} /></div>
+                        Mapa del sitio
+                    </Link>
+                    <Link className="menu-item d-flex flex-row">
+                        <div className="pr-2"><FontAwesomeIcon icon={faArrowCircleUp} /></div>
+                        Regresar al inicio
+                    </Link>
+                </div>
+            </div>
+            <div className="copyright-container p-4">
+                <div className="copyright pb-2">
+                    <span>©Reysis 2020. Todos los derechos reservados</span>
+                </div>
+                <div className="developed-container">
+                    <span className="mr-1">Developed by:</span>
+                    <a href="https://www.github.com/MarlonAEC">Marlon A. Espinosa Castañeiras</a>
+                </div>
+            </div>
+        </footer>
+    )
 }
 
 export default Footer;
