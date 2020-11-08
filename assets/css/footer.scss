@@ -1,57 +1,112 @@
-$color-facebook: #3B579C;
-$color-linkedin: #05649A;
-$color-whatsapp: #22D16A;
+$color-facebook: #005aff;
+$color-linkedin: #047ccc;
+$color-whatsapp: #22d13f;
 $color-instagram: #ca2edf;
 
 .footer-component {
-    // display: flex;
-    // flex-direction: column;
     background-color: $color6;
     border-top-left-radius: 120px;
-    // justify-content: flex-start;
-    // align-items: flex-start;
+    color: #ccc;
+
+    .phrase-container {
+        padding-top: 100px;
+        padding-bottom: .5rem;
+
+        .background {
+            position: absolute;
+            display: block;
+        }
+
+        .phrase {
+            font-size: 1.2rem;
+        }
+    }
+
+    .profiles-container {
+        margin: 0 auto;
+
+        .profiles {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+
+            .profile-item {
+                margin: 0 .6rem;
+                cursor: pointer;
+
+                .profile-image {
+                    border-radius: 50%;
+                    transition: all .2s;
+                }
+
+                &.min-item {
+                    .profile-image {
+                        width: 70px;
+                        height: 70px;
+                        filter: opacity(.5);
+                    }
+
+                    &:hover .profile-image {
+                        filter: opacity(.9);
+                        width: 85px;
+                        height: 85px;
+                    }
+                }
+
+                &.current-item {
+                    .profile-image {
+                        width: 100px;
+                        height: 100px;
+                    }
+                }
+            }
+        }
+
+        .profile-caption {
+            text-align: center;
+            font-size: .95em;
+            font-family: "Myriad Pro", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-top: 1.2rem;
+        }
+    }
 
     .footer-container {
         display: grid;
-        grid-column-gap: 15px;
-        grid-row-gap: 30px;
         padding: 50px 10px;
 
         .menu-footer {
-            // padding: 15px !important;
             width: 220px;
-            margin: 0 auto;
-            // display: flex;
-            // flex-flow: column wrap;
-            // justify-content: flex-start;
-            // align-items: stretch;
+            margin: 40px auto 0;
 
             &.logo-menu {
                 width: initial;
+                margin: 0 auto;
             }
 
             .logo-footer {
-                order: 1;
                 width: 200px;
-                // height: 220px;
             }
 
             .menu-title {
-                font-size: 1.2em;
+                font-size: .95em;
                 font-family: "Myriad Pro", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                color: rgb(255, 255, 255);
                 text-align: left;
                 margin-left: 2rem;
-                font-weight: 400;
+                margin-bottom: 1rem;
+                font-weight: 500;
+                text-transform: uppercase;
             }
 
             .menu-item {
                 // font-size: 1em;
                 font-family: "Myriad Pro", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                color: rgba(255, 255, 255, 0.6);
                 line-height: 2;
                 text-align: left;
                 text-decoration: none;
+                color: #ccc;
 
                 &:link,
                 &:visited {
@@ -87,23 +142,43 @@ $color-instagram: #ca2edf;
                 color: rgb(42, 189, 28);
             }
 
-            &.contact-menu div {
-                color: rgb(80, 109, 204);
+            &.contact-menu {
+                .contact-items {
+                    margin-left: 2rem;
 
-                &.li {
-                    color: $color-linkedin;
-                }
+                    .item {
+                        font-size: 1.5em;
+                        margin-right: 1rem;
+                        margin-bottom: .5rem;
+                        transition: opacity 0.1s ease-in 0s;
+                        color: #ccc;
 
-                &.fb {
-                    color: $color-facebook;
-                }
+                        &:link,
+                        &:visited {
+                            transition: all 0.1s ease-in 0s;
+                        }
 
-                &.ig {
-                    color: $color-instagram;
-                }
+                        &:hover {
+                            cursor: pointer;
+                            transition: all 0.1s ease-in 0s;
+                        }
 
-                &.wa {
-                    color: $color-whatsapp;
+                        &.li:hover {
+                            color: $color-linkedin;
+                        }
+
+                        &.fb:hover {
+                            color: $color-facebook;
+                        }
+
+                        &.ig:hover {
+                            color: $color-instagram;
+                        }
+
+                        &.wa:hover {
+                            color: $color-whatsapp;
+                        }
+                    }
                 }
             }
 
@@ -117,34 +192,15 @@ $color-instagram: #ca2edf;
         text-align: center;
         background: #0d0c13;
         max-width: none;
-        // display: flex;
-        // flex-flow: column wrap;
-        // justify-content: center;
-        // width: 100%;
-
-        .copyright {
-            color: #ffffff33;
-            // display: flex;
-            // justify-content: center;
-            // align-items: center;
-            // order: 1;
-            // padding-bottom: 0 !important;
-            // width: 100%;
-        }
+        color: #ffffff33;
 
         .developed-container {
-            // order: 2;
-            // width: 100%;
-            // display: flex;
-            // justify-content: center;
-            // align-items: center;
-            // padding-bottom: 20px;
-
             spam {
-                color: #ffffff20;
+                color: #ffffff22;
             }
 
             a {
+                color: #004b9c;
                 text-decoration: none;
             }
         }
@@ -152,7 +208,21 @@ $color-instagram: #ca2edf;
 }
 
 /* Medium screens*/
+@media all and (max-width: 599px) {
+
+    .phrase-container,
+    .profiles-container {
+        display: none;
+    }
+}
+
 @media all and (min-width: 600px) {
+
+    .phrase-container,
+    .profiles-container {
+        max-width: 500px;
+    }
+
     .footer-container {
         grid-template-columns: repeat(2, 1fr);
 
@@ -163,6 +233,12 @@ $color-instagram: #ca2edf;
 }
 
 @media all and (min-width: 860px) {
+
+    .phrase-container,
+    .profiles-container {
+        max-width: 600px;
+    }
+
     .footer-container {
         grid-template-columns: repeat(3, 1fr);
         max-width: 780px;
@@ -171,20 +247,22 @@ $color-instagram: #ca2edf;
             grid-column: 2;
             grid-row: 1/3;
         }
-
-
     }
 }
 
 @media all and (min-width: 1200px) {
+
+    .phrase-container,
+    .profiles-container {
+        max-width: 800px;
+    }
+
     .footer-container {
-        grid-template-columns: repeat(5, 1fr);
-        max-width: 1150px;
+        grid-template-columns: 19% 19% 24% 19% 19%;
+        max-width: 1160px;
 
         .logo-menu {
             grid-column: 3;
         }
-
-
     }
 }
