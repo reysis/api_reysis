@@ -15,12 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Empresa
 {
     /**
-     * @ORM\Id
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="empresa", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $user;
-
+    private $id;
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -40,6 +39,11 @@ class Empresa
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $no_registro_comercial;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="empresa", cascade={"persist", "remove"})
+     */
+    private $user;
 
 
     public function __construct()

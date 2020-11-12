@@ -32,7 +32,7 @@ const ServiceCard = ({ layout, title, text, img }) => {
     return (
         <Card data-aos="fade-up" className={`service-card ${layout ? "service-white-card" : "service-grey-card"}`}>
             <figure ref={card}>
-                <div><img src={serviceImage} alt={"Servicio " + { title }} /></div>
+                <div><img src={serviceImage} alt={"OrdenServicio " + { title }} /></div>
                 <figcaption>
                     <h3>{title}</h3>
                     <p>{text}</p>

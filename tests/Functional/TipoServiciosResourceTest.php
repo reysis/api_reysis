@@ -20,13 +20,13 @@ class TipoServiciosResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/tipos_servicios',[
             'headers'=> ['ContentType'=>'application/json+ld'],
             'json' => [
-                'nombre' => 'Servicio 1',
+                'nombre' => 'OrdenServicio 1',
                 'descripcion' => 'Esto es una pequena descripcion',
             ]
         ]);
         $this->assertResponseStatusCodeSame(401);
 
-        //Creando el Tipo de Servicio como Admin
+        //Creando el Tipo de OrdenServicio como Admin
         $em = $this->getEntityManager();
         $user = $em->getRepository(User::class)->find($user->getId());
         $user->setRoles(['ROLE_ADMIN']);
@@ -36,7 +36,7 @@ class TipoServiciosResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/tipos_servicios',[
             'headers'=> ['ContentType'=>'application/json+ld'],
             'json' => [
-                'nombre' => 'Servicio 1',
+                'nombre' => 'OrdenServicio 1',
                 'descripcion' => 'Esto es una pequena descripcion',
             ]
         ]);

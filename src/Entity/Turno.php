@@ -62,7 +62,7 @@ class Turno
      * Una breve descripción del defecto
      * 
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"turno:read", "turno:write", "user:read"})
+     * @Groups({"turno:read", "turno:write"})
      * @Assert\NotBlank()
      */
     private $defecto;
@@ -71,9 +71,8 @@ class Turno
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="turnos")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"turno:read", "turno:write"})
-     * @Assert\NotBlank()
      */
-    private $personaCitada;
+    private $user;
 
     public function getId(): ?int
     {
@@ -104,14 +103,14 @@ class Turno
         return $this;
     }
 
-    public function getPersonaCitada(): ?User
+    public function getUser(): ?User
     {
-        return $this->personaCitada;
+        return $this->user;
     }
 
-    public function setPersonaCitada(?User $personaCitada): self
+    public function setUser(?User $user): self
     {
-        $this->personaCitada = $personaCitada;
+        $this->user = $user;
 
         return $this;
     }

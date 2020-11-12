@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AddressRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -14,44 +17,61 @@ class Address
 {
     /**
      * @ORM\Id
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="address", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $user;
+    private $id;
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $street;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $number;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $street_e1;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $street_e2;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $rpto;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="address", orphanRemoval=true)
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +170,37 @@ class Address
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setAddress($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getAddress() === $this) {
+                $user->setAddress(null);
+            }
+        }
 
         return $this;
     }

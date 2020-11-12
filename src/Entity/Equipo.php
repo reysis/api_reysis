@@ -36,7 +36,7 @@ class Equipo
     private $tipoEquipo;
 
     /**
-     * @ORM\OneToMany(targetEntity=Servicio::class, mappedBy="equipo")
+     * @ORM\OneToMany(targetEntity=OrdenServicio::class, mappedBy="equipo")
      */
     private $servicios;
 
@@ -51,10 +51,16 @@ class Equipo
      */
     private $marca;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Garantia::class, mappedBy="equipo", orphanRemoval=true)
+     */
+    private $garantias;
+
     public function __construct()
     {
         $this->servicios = new ArrayCollection();
         $this->accesorios = new ArrayCollection();
+        $this->garantias = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,14 +105,14 @@ class Equipo
     }
 
     /**
-     * @return Collection|Servicio[]
+     * @return Collection|OrdenServicio[]
      */
     public function getServicios(): Collection
     {
         return $this->servicios;
     }
 
-    public function addServicio(Servicio $servicio): self
+    public function addServicio(OrdenServicio $servicio): self
     {
         if (!$this->servicios->contains($servicio)) {
             $this->servicios[] = $servicio;
@@ -116,7 +122,7 @@ class Equipo
         return $this;
     }
 
-    public function removeServicio(Servicio $servicio): self
+    public function removeServicio(OrdenServicio $servicio): self
     {
         if ($this->servicios->contains($servicio)) {
             $this->servicios->removeElement($servicio);
@@ -168,6 +174,37 @@ class Equipo
     public function setMarca(?Marca $marca): self
     {
         $this->marca = $marca;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Garantia[]
+     */
+    public function getGarantias(): Collection
+    {
+        return $this->garantias;
+    }
+
+    public function addGarantia(Garantia $garantia): self
+    {
+        if (!$this->garantias->contains($garantia)) {
+            $this->garantias[] = $garantia;
+            $garantia->setEquipo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGarantia(Garantia $garantia): self
+    {
+        if ($this->garantias->contains($garantia)) {
+            $this->garantias->removeElement($garantia);
+            // set the owning side to null (unless already changed)
+            if ($garantia->getEquipo() === $this) {
+                $garantia->setEquipo(null);
+            }
+        }
 
         return $this;
     }

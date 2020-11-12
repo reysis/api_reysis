@@ -34,12 +34,6 @@ class PhoneNumber
      */
     private $number;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="phoneNumbers")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
     public function getId(): ?int
     {
         return $this->id;

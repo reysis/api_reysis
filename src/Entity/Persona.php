@@ -36,15 +36,11 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 class Persona
 {
     /**
-     * Usuario linkeado a esta persona (iri)
-     *
-     * @ORM\Id
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups({"persona:read", "persona:write"})
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $user;
-
+    private $id;
     /**
      * @ORM\Column(type="string", length=11)
      * @Groups({"user:read","persona:read", "persona:write"})
@@ -59,6 +55,18 @@ class Persona
      */
     private $nombre;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
+     */
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
     public function getNombre(): ?string
     {
         return $this->nombre;
@@ -91,6 +99,19 @@ class Persona
     public function setUsername(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newPersona = null === $user ? null : $this;
+        if ($user->getPersona() !== $newPersona) {
+            $user->setPersona($newPersona);
+        }
 
         return $this;
     }
