@@ -8,9 +8,17 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "post" = {
+ *              "accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
+ *          }
+ *      },
+ * )
  * @ORM\Entity(repositoryClass=AddressRepository::class)
  */
 class Address
@@ -22,42 +30,56 @@ class Address
      */
     private $id;
     /**
+     * Calle donde esta ubicada
+     *
      * @ORM\Column(type="string", length=100)
      * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $street;
 
     /**
+     * Número de la casa o la empresa en la dirección
+     *
      * @ORM\Column(type="string", length=10)
      * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $number;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     * @Groups({"turno:write", "admin:read", "admin:write"})
+     * Entre calle de la dirección
+     *
+     * @ORM\Column(type="string", length=50)
+     * @Groups({"admin:read", "admin:write", "turno:write"})
      */
-    private $street_e1;
+    private $streetE1;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     * @Groups({"turno:write", "admin:read", "admin:write"})
+     * Entre calle de la dirección
+     *
+     * @ORM\Column(type="string", length=50)
+     * @Groups({"admin:read", "admin:write", "turno:write"})
      */
-    private $street_e2;
+    private $streetE2;
 
     /**
+     * Reparto donde está ubicada
+     *
      * @ORM\Column(type="string", length=100)
      * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $rpto;
 
     /**
+     * Ciudad donde esta Ubicada
+     *
      * @ORM\Column(type="string", length=100)
      * @Groups({"turno:write", "admin:read", "admin:write"})
      */
     private $city;
 
     /**
+     * País al que pertenece
+     *
      * @ORM\Column(type="string", length=100)
      * @Groups({"turno:write", "admin:read", "admin:write"})
      */
@@ -104,24 +126,24 @@ class Address
 
     public function getStreetE1(): ?string
     {
-        return $this->street_e1;
+        return $this->streetE1;
     }
 
-    public function setStreetE1(?string $street_e1): self
+    public function setStreetE1(?string $streetE1): self
     {
-        $this->street_e1 = $street_e1;
+        $this->streetE1 = $streetE1;
 
         return $this;
     }
 
     public function getStreetE2(): ?string
     {
-        return $this->street_e2;
+        return $this->streetE2;
     }
 
-    public function setStreetE2(?string $street_e2): self
+    public function setStreetE2(?string $streetE2): self
     {
-        $this->street_e2 = $street_e2;
+        $this->streetE2 = $streetE2;
 
         return $this;
     }

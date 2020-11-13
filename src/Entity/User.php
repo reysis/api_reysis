@@ -127,7 +127,7 @@ class User implements UserInterface
     private $lastLoggued;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="users", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"user:write", "owner:read","turno:write"})
      */

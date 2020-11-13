@@ -2,33 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entity/Contrato.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/OrdenServicio.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/AlmacenProductoRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/AlmacenRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ContratoRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ProductoRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/SolicitudProductoRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/SolicitudRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataPersister/TurnoDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/ServiceCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/ServiceCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Empresa.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Empresa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Equipo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Equipo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Persona.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Provider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Servicio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TipoUsuario.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Turno.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Turno.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ServicioRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ServicioRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TipoUsuarioRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TiposServiciosRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/Voter/TiposServiciosVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/ServiciosVoter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/Voter/TurnoVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/TurnoVoter.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,10 +241,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1602552384043" />
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1604729150282">
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1605232316559">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1604729150282" />
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1605232316559" />
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605193998512">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -271,18 +253,18 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860@0.0.1600.860" timestamp="1602867674534" />
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602085872703">
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605232168254">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1602085872703" />
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1605232168254" />
     <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600700043484">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1604631351212">
+    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1605232031974">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1604631351212" />
+    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1605232031974" />
     <state x="634" y="353" key="NewPhpFileDialog" timestamp="1602167511276">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

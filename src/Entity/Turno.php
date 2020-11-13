@@ -17,8 +17,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                  "security"="is_granted('ROLE_ADMIN')",
  *                  "security_message"="Solo un administrador puede acceder a este recurso.",
  *          },
- *          "post" = {"security_post_denormalize"="is_granted('POST', object)", 
- *                  "security_post_denormalize_message"="Solo el propio usuario o un Administrador puede crear turnos para este usuario"
+ *          "post" = {
+ *                  "accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
  *          }
  *      },
  *      itemOperations={
@@ -53,7 +53,7 @@ class Turno
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"turno:read", "turno:write", "user:read"})
+     * @Groups({"turno:read", "turno:write", "user:read", "admin:read", "admin:write"})
      * @Assert\NotBlank()
      */
     private $fecha;
@@ -62,15 +62,15 @@ class Turno
      * Una breve descripción del defecto
      * 
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"turno:read", "turno:write"})
+     * @Groups({"turno:read", "turno:write", "admin:read", "admin:write"})
      * @Assert\NotBlank()
      */
     private $defecto;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="turnos")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="turnos", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"turno:read", "turno:write"})
+     * @Groups({"turno:read", "turno:write", "admin:read", "admin:write"})
      */
     private $user;
 
