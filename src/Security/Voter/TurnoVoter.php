@@ -38,11 +38,8 @@ class TurnoVoter extends Voter
          */
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case 'GET_SPECIFC':
-                if($subject->getPersonaCitada() === $user || in_array('ROLE_ADMIN', $user->getRoles()))
-                    return true;
-                return false;
             case 'EDIT':
+            case 'GET_SPECIFC':
                 if($subject->getPersonaCitada() === $user || in_array('ROLE_ADMIN', $user->getRoles()))
                     return true;
                 return false;
