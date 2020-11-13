@@ -43,20 +43,21 @@ class Persona
     private $id;
     /**
      * @ORM\Column(type="string", length=11)
-     * @Groups({"user:read","persona:read", "persona:write"})
+     * @Groups({"user:read","persona:read","turno:write","persona:write"})
      * @Assert\NotBlank()
      */
     private $ci;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read","persona:read", "persona:write"})
+     * @Groups({"user:read","persona:read", "persona:write", "turno:write"})
      * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
+     * @Assert\NotBlank()
      */
     private $user;
 

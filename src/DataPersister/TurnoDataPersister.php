@@ -34,6 +34,9 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
+        if($data->getUser()->getPersona()){
+            $data->getUser()->getPersona()->setUser($data->getUser());
+        }
         if($data->getUser()->getPlainPassword()){
             $data->getUser()->setPassword(
                 $this->userPasswordEncoder->encodePassword($data->getUser(), $data->getUser()->getPlainPassword())

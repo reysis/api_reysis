@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
- * Una persona natural o una empresa
+ * Un usuario del sistema, puede ser Persona Natular, Empresa, Proveedor o un Trabajador de la empresa
  * 
  * @see http://schema.org/Person Documentation on Schema.org
  * 
@@ -64,7 +64,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @ORM\OneToOne(targetEntity=Persona::class, cascade={"persist", "remove"})
-     * @Groups({"user:read", "user:write", "turno:write"})
+     * @Groups({"user:read", "user:write", "turno:write", "admin:write", "admin:read"})
      * @Assert\NotBlank(groups={"create"})
      */
     private $username;
@@ -85,7 +85,7 @@ class User implements UserInterface
      * Una variable temporal para almacenar la password y poder encriptarla en el proceso de normalización
      *
      * @var string The plain password
-     * @Groups({"user:write", "turno:write"})
+     * @Groups({"user:write", "turno:write", "admin:write", "admin:read"})
      * @Assert\NotBlank(groups={"create"})
      * @SerializedName("password")
      */
@@ -95,7 +95,7 @@ class User implements UserInterface
      * @ApiProperty(iri="http://schema.org/email")
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Email()
-     * @Groups({"user:read", "user:write", "turno:write"})
+     * @Groups({"user:read", "user:write", "admin:write", "admin:read"})
      */
     private $email;
 
@@ -108,72 +108,85 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=CuentaBancaria::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"user:write","owner:read","admin:read", "admin:write"})
      */
     protected $cuentaBancaria;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"admin:read", "admin:write"})
      */
     private $dateRegistered;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"admin:read", "admin:write"})
      */
     private $lastEdited;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"admin:read", "admin:write"})
      */
     private $lastLoggued;
 
     /**
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="users", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"user:write", "owner:read","turno:write"})
+     * @Groups({"user:write", "owner:read","turno:write", "admin:write", "admin:read"})
      */
     private $address;
 
     /**
-     * @ORM\ManyToMany(targetEntity=PhoneNumber::class)
+     * @ORM\ManyToMany(targetEntity=PhoneNumber::class, cascade={"persist"})
      * @JoinTable(name="users_phonenumbers",
      *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="phonenumber_id", referencedColumnName="id", unique=true)}
      *      )
+     * @Groups({"user:write","owner:read","turno:write", "admin:read", "admin:write"})
+     * @Assert\NotBlank(groups={"create"})
      */
     private $phoneNumbers;
 
     /**
      * @ORM\OneToOne(targetEntity=Empresa::class, mappedBy="user", cascade={"persist", "remove"})
+     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
      */
     private $empresa;
 
     /**
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
+     * @Groups({"user:write","owner:read","turno:write", "admin:read", "admin:write"})
      */
     private $persona;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
      */
     private $nationality;
 
     /**
      * @ORM\OneToOne(targetEntity=Contrato::class, inversedBy="user", cascade={"persist", "remove"})
+     * @Groups({"admin:read", "admin:write"})
      */
     private $contrato;
 
     /**
      * @ORM\OneToMany(targetEntity=OrdenServicio::class, mappedBy="user")
+     * @Groups({"admin:read", "admin:write"})
      */
     private $serviceOrder;
 
     /**
      * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
      */
     private $turnos;
 
     /**
      * @ORM\OneToMany(targetEntity=Reviews::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"user:write","owner:read","admin:read", "admin:write"})
      */
     private $reviews;
 
