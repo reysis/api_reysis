@@ -1,4 +1,5 @@
 import { TIPO_USUARIO_REQUEST, TIPO_USUARIO_SUCCESS, TIPO_USUARIO_ERROR } from './tipoUsuarioTypes'
+import { fetch } from '../../utils/dataAccess'
 
 export const tipoUsuarioRequest = () => {
 	return {

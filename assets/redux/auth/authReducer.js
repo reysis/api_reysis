@@ -7,7 +7,7 @@ import {
 
 const initialState = {
 	loading: false,
-	authenticated: false,
+	authenticated: window.user != null,
 	user: window.user,
 	error: ''
 }
@@ -52,6 +52,7 @@ const authReducer = (state = initialState, { type, payload }) => {
 			}
 		case AUTH_CLEAR_ERROR:
 			return {
+				...state,
 				error: ''
 			}
 		default:

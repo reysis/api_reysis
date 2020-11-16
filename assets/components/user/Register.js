@@ -23,7 +23,7 @@ const Register = () => {
     
     const [arePasswordMatch, setArePasswordMatch] = useState(false)
     const [validEmail, setValidEmail] = useState(false)
-    const [disableForm, setDisableForm] = useState(true)
+    const [disabledForm, setDisabledForm] = useState(true)
 
     const tipoUsuarioSelect = useRef(null);
     
@@ -49,6 +49,7 @@ const Register = () => {
 
         if(username.length == 0 
             || password.length == 0 
+            || !arePasswordMatch
             || !validEmail 
             || tipoUsuarioList.find((t) => (t == tipoUsuario)) 
             || telephone.length == 0) return;
@@ -68,7 +69,7 @@ const Register = () => {
         timeout = setTimeout(() => {
             let t = /[a-z](\.?[a-z0-9-_]+)*@[a-z0-9-_](\.?[a-z0-9-_]+)*\.[a-z]+/.exec(email);
             setValidEmail(() => {
-                return t && email.length == t[0].length && t.index == 0 && email.length > 0
+                return t && email.length == t[0].length && t.index == 0
             })
         }, 1000);
     }, [email])
@@ -81,20 +82,21 @@ const Register = () => {
 
     useEffect(() => {
 
-        setDisableForm(() => {
-            return username.length > 0 
-            && arePasswordMatch
-            && validEmail
-            && !authLoading
-            && !tipoUsuarioLoading
-            && tipoUsuarioList.find((t) => (t == tipoUsuario)) 
-            && telephone.length > 0
+        setDisabledForm(() => {
+            return username.length == 0 
+            || !arePasswordMatch
+            || !validEmail
+            || email.length == 0
+            || authLoading
+            || tipoUsuarioLoading
+            || !tipoUsuarioList.find((t) => (t == tipoUsuario)) 
+            || telephone.length == 0
         })
 
-    }, [arePasswordMatch, validEmail, username, tipoUsuario, telephone, tipoUsuarioLoading, authLoading])
+    }, [arePasswordMatch, email, validEmail, username, tipoUsuario, telephone, tipoUsuarioLoading, authLoading])
 
     if(authAuthenticated)
-        return <Redirect to={"/"} />
+        return <Redirect to='/' />
     return (
         <Col className="content-wrap container" lg={6} >
             <Alert role={"status"} variant={"info"} show={authLoading || tipoUsuarioLoading}>Loading...</Alert>
@@ -130,7 +132,7 @@ const Register = () => {
                                 <FontAwesomeIcon icon={faAt} />
                             </label>
                         </InputGroup.Prepend>
-                        <Form.Control type="email" placeholder="Correo Electrónico" isInvalid={!validEmail} isValid={validEmail} value={email} onChange={(e) => setEmail(e.target.value)} ></Form.Control>
+                        <Form.Control type="email" placeholder="Correo Electrónico" isInvalid={email.length > 0 && !validEmail} isValid={email.length > 0 && validEmail} value={email} onChange={(e) => setEmail(e.target.value)} ></Form.Control>
                     </InputGroup>
                 </Form.Group>
 
@@ -200,7 +202,7 @@ const Register = () => {
 
                 <Form.Group>
                     <small id="fileHelp" className="form-text text-muted mb-2">Al registrarse estás aceptando nuestros <a href="#">Términos y Condiciones</a></small>
-                    <Button variant="primary" block disabled={disableForm} type="submit">Registrarse</Button>
+                    <Button variant="primary" block disabled={disabledForm} type="submit">Registrarse</Button>
                 </Form.Group>
 
                 <Form.Group className="form-in-center">

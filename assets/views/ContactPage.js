@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class ContactPage extends Component {
-    render() {
-        return (
-            <main className="content-wrap contact-page page">
-                <div className="header">
-                    <h1><span>Contáctenos!</span></h1>
-                </div>
-            </main>
-        )
-    }
+const ContactPage = () => {
+    return (
+        <main className="content-wrap contact-page page">
+            <div className="contact-header">
+                <h1 className="mx-4">¡Contáctenos!</h1>
+            </div>
+        </main>
+    )
 }
-export default ContactPage;
+
+export default ContactPage

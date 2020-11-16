@@ -1,5 +1,5 @@
-import { fetch } from '../../utils/dataAccess'
 import { OPINIONS_LIST_REQUEST, OPINIONS_LIST_SUCCESS, OPINIONS_LIST_ERROR } from './opinionTypes'
+import { fetch } from '../../utils/dataAccess'
 
 export const opinionRequest = () => {
     return {

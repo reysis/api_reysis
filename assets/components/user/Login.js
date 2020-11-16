@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -14,25 +14,36 @@ const Login = () => {
 
     const loading = useSelector(state => state.auth.loading)
     const authenticated = useSelector(state => state.auth.authenticated)
-    // const user = useSelector(state => state.auth.user)
     const error = useSelector(state => state.auth.error)
 
     const dispatch = useDispatch()
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
+    const [disabledForm, setDisabledForm] = useState(true)
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(username.length == 0 || password.length == 0) return;
         dispatch(clearError())
         dispatch(loginFetch({ username, password }))
     }
+
+    useEffect(() => {
+        console.log(loading)
+        setDisabledForm(() => {
+            return username.length == 0 
+            || password.length == 0
+            || loading
+        })
+    }, [username, password, loading])
 
     if(authenticated)
         return <Redirect to='/' />
     return (
         <Col className="content-wrap container" lg={6} >
-            <Alert role={"status"} variant={"info"} show={loading}>Loading...</Alert>
+            <Alert role={"status"} variant={"info"} show={loading} >Loading...</Alert>
             <Alert role={"alert"} variant={"danger"} show={error} >
                 <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
                 {error}
@@ -66,7 +77,7 @@ const Login = () => {
                 </Form.Group>
 
                 <Form.Group>
-                    <Button variant="primary" block type="submit" >Entrar</Button>
+                    <Button variant="primary" block type="submit" disabled={disabledForm} >Entrar</Button>
                 </Form.Group>
 
                 <Form.Group className="form-in-center">

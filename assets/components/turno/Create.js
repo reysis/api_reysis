@@ -6,7 +6,6 @@ import Form from './Form';
 import { create, reset } from '../../actions/turno/create';
 import { load } from "../../actions/tipo_equipo/load";
 
-
 class Create extends Component {
 
   static propTypes = {
@@ -54,7 +53,7 @@ class Create extends Component {
 
 const mapStateToProps = state => {
   const { created, error, loading } = state.turno.create;
-  const loggedUser = state.user.auth.logged
+  const loggedUser = state.auth.user
   return { created, error, loading, loggedUser };
 };
 

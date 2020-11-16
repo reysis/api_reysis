@@ -1,5 +1,5 @@
 import { FAQ_LIST_REQUEST, FAQ_LIST_SUCCESS, FAQ_LIST_ERROR } from './faqTypes'
-import { fetch } from '../../utils/dataAccess';
+import { fetch } from '../../utils/dataAccess'
 
 export const faqRequest = () => {
     return {

@@ -4,6 +4,7 @@ import {
     AUTH_LOGOUT_REQUEST, AUTH_LOGOUT_SUCCESS, AUTH_LOGOUT_ERROR,
     AUTH_CLEAR_ERROR
 } from './authTypes'
+import { fetch } from '../../utils/dataAccess'
 
 export const loginRequest = () => {
     return {

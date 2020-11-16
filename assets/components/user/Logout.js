@@ -10,7 +10,6 @@ const Logout = () => {
     
     const loading = useSelector(state => state.auth.loading)
     const authenticated = useSelector(state => state.auth.authenticated)
-    const user = useSelector(state => state.auth.user)
     const error = useSelector(state => state.auth.error)
 
     const dispatch = useDispatch()
@@ -23,17 +22,17 @@ const Logout = () => {
         return <Redirect to='/' />
     return (
         <Row className="content-wrap login-page page">
-            <Col className="content-wrap container" lg={6} >
-                <Alert role={"status"} variant={"info"} show={authenticated}>
+            <Col className="content-wrap container" md={8} >
+                <Alert role={"status"} variant={"info"} show={loading || authenticated}>
                     Cerrando sesión...
                 </Alert>
                 <Alert role={"status"} variant={"info"} show={!error && !authenticated}>
-                    <p className="mb-0">
+                    <div className="mb-0">
                         Sesión cerrada satisfactoriamente...
-                    </p>
-                    <p>
-                        <Link to="">Haga <Alert.Link>click aqui</Alert.Link></Link> si no redirecciona automaicamente.
-                    </p>
+                    </div>
+                    <div>
+                        Haga <Link to="/"><Alert.Link href="/">click aqui</Alert.Link></Link> si no redirecciona automaticamente.
+                    </div>
                 </Alert>
             </Col>
         </Row>
