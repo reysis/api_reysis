@@ -33,6 +33,10 @@
             }
         }
 
+        .question-expand {
+            transition: .2s ease-out
+        }
+
         .question-icon {
             color: $color1;
             margin: auto 1rem auto 0;
