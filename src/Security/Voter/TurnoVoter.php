@@ -31,8 +31,7 @@ class TurnoVoter extends Voter
 /*        if (!$user instanceof UserInterface) {
             return false;
         }*/
-  
-        dump( $user->getRoles() );
+
         /**
          * @var Turno $subject
          */

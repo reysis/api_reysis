@@ -33,7 +33,7 @@ class Address
      * Calle donde esta ubicada
      *
      * @ORM\Column(type="string", length=100)
-     * @Groups({"turno:write", "admin:read", "admin:write"})
+     * @Groups({"user:write", "user:read", "turno:write", "admin:read", "admin:write"})
      */
     private $street;
 
@@ -41,7 +41,7 @@ class Address
      * Número de la casa o la empresa en la dirección
      *
      * @ORM\Column(type="string", length=10)
-     * @Groups({"turno:write", "admin:read", "admin:write"})
+     * @Groups({"user:write", "user:read", "turno:write", "admin:read", "admin:write"})
      */
     private $number;
 
@@ -49,7 +49,7 @@ class Address
      * Entre calle de la dirección
      *
      * @ORM\Column(type="string", length=50)
-     * @Groups({"admin:read", "admin:write", "turno:write"})
+     * @Groups({"user:write", "user:read", "admin:read", "admin:write", "turno:write"})
      */
     private $streetE1;
 
@@ -57,7 +57,7 @@ class Address
      * Entre calle de la dirección
      *
      * @ORM\Column(type="string", length=50)
-     * @Groups({"admin:read", "admin:write", "turno:write"})
+     * @Groups({"user:write", "user:read", "admin:read", "admin:write", "turno:write"})
      */
     private $streetE2;
 
@@ -65,7 +65,7 @@ class Address
      * Reparto donde está ubicada
      *
      * @ORM\Column(type="string", length=100)
-     * @Groups({"turno:write", "admin:read", "admin:write"})
+     * @Groups({"user:write", "user:read", "turno:write", "admin:read", "admin:write"})
      */
     private $rpto;
 
@@ -73,7 +73,7 @@ class Address
      * Ciudad donde esta Ubicada
      *
      * @ORM\Column(type="string", length=100)
-     * @Groups({"turno:write", "admin:read", "admin:write"})
+     * @Groups({"user:write", "user:read", "turno:write", "admin:read", "admin:write"})
      */
     private $city;
 
@@ -81,7 +81,7 @@ class Address
      * País al que pertenece
      *
      * @ORM\Column(type="string", length=100)
-     * @Groups({"turno:write", "admin:read", "admin:write"})
+     * @Groups({"user:write", "user:read", "turno:write", "admin:read", "admin:write"})
      */
     private $country;
 

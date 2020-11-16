@@ -30,16 +30,16 @@ use Doctrine\ORM\Mapping\JoinColumn;
  * @ApiResource(
  *      iri="http://schema.org/Person",
  *      collectionOperations={
- *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "post" = {
  *              "accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
  *              "validation_groups"={"Default", "create"}
  *          }
  *      },
  *      itemOperations={
- *          "get" = {"accessControl" = "is_granted('ROLE_USER') and object == user"},
- *          "put" = {"accessControl" = "is_granted('ROLE_USER') and object == user"},
- *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "put" = {"security" = "is_granted('PUT', object)"},
+ *          "delete" ={"security" = "is_granted('ROLE_ADMIN')"}
  *      },
  * )
  * @ApiFilter(PropertyFilter::class)
@@ -108,7 +108,8 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=CuentaBancaria::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:write","owner:read","admin:read", "admin:write"})
+     * @Groups({"user:write","user:read","admin:item:read", "admin:write"})
+     * @Assert\Valid()
      */
     protected $cuentaBancaria;
 
@@ -133,7 +134,8 @@ class User implements UserInterface
     /**
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="users", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"user:write", "owner:read","turno:write", "admin:write", "admin:read"})
+     * @Groups({"user:write", "user:read","turno:write", "admin:write", "admin:item:read"})
+     * @Assert\Valid()
      */
     private $address;
 
@@ -143,25 +145,28 @@ class User implements UserInterface
      *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="phonenumber_id", referencedColumnName="id", unique=true)}
      *      )
-     * @Groups({"user:write","owner:read","turno:write", "admin:read", "admin:write"})
+     * @Groups({"user:item:write", "user:read", "turno:write", "admin:item:read", "admin:write"})
      * @Assert\NotBlank(groups={"create"})
+     * @Assert\Valid()
      */
     private $phoneNumbers;
 
     /**
      * @ORM\OneToOne(targetEntity=Empresa::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
+     * @Groups({"user:write","user:read", "admin:item:read", "admin:write"})
+     * @Assert\Valid()
      */
     private $empresa;
 
     /**
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:write","owner:read","turno:write", "admin:read", "admin:write"})
+     * @Groups({"user:write","user:read","turno:write", "admin:item:read", "admin:write"})
+     * @Assert\Valid()
      */
     private $persona;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
      */
     private $nationality;
@@ -169,6 +174,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToOne(targetEntity=Contrato::class, inversedBy="user", cascade={"persist", "remove"})
      * @Groups({"admin:read", "admin:write"})
+     * @Assert\Valid()
      */
     private $contrato;
 

@@ -7,6 +7,7 @@ use App\Repository\EmpresaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -22,21 +23,25 @@ class Empresa
     private $id;
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"admin:write","admin:item:read", "user:read", "admin:read"})
      */
     private $nit;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"admin:write","admin:item:read", "user:read", "admin:read"})
      */
     private $legalName;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"admin:write","admin:item:read" ,"user:read", "admin:read"})
      */
     private $cod_reeup;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Groups({"admin:write", "admin:item:read", "user:read", "admin:read"})
      */
     private $no_registro_comercial;
 
