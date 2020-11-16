@@ -1,65 +1,66 @@
 import {
-	AUTH_LOGIN_REQUEST, AUTH_LOGIN_FAIL, AUTH_LOGIN_SUCCESS, AUTH_LOGIN_ERROR,
- 	AUTH_REGISTER_REQUEST, AUTH_REGISTER_FAIL, AUTH_REGISTER_SUCCESS, AUTH_REGISTER_ERROR,
- 	AUTH_LOGOUT_REQUEST, AUTH_LOGOUT_FAIL, AUTH_LOGOUT_SUCCESS, AUTH_LOGOUT_ERROR,
- 	AUTH_CLEAR_ERROR 
- } from './authTypes'
+    AUTH_LOGIN_REQUEST, AUTH_LOGIN_SUCCESS, AUTH_LOGIN_ERROR,
+    AUTH_REGISTER_REQUEST, AUTH_REGISTER_SUCCESS, AUTH_REGISTER_ERROR,
+    AUTH_LOGOUT_REQUEST, AUTH_LOGOUT_SUCCESS, AUTH_LOGOUT_ERROR,
+    AUTH_CLEAR_ERROR
+} from './authTypes'
 
 export const loginRequest = () => {
-    return { 
-        type: AUTH_LOGIN_REQUEST
-    }
-}
-
-export const loginSuccess = (user) => {
-    return { 
-        type: AUTH_LOGIN_SUCCESS, 
-        payload: user 
-    }
-}
-
-export const loginError = (error) => {
-    return { 
-        type: AUTH_LOGIN_ERROR, 
-        payload: error 
-    }
-}
-
-export const logoutRequest = () => {
     return {
         type: AUTH_LOGIN_REQUEST
     }
 }
 
-export const logoutSuccess = () => {
-    return { 
-        type: AUTH_LOGOUT_SUCCESS
+export const loginSuccess = (user) => {
+    return {
+        type: AUTH_LOGIN_SUCCESS,
+        payload: user
     }
 }
 
-export const logoutError = (error) => {
+export const loginError = (error) => {
     return {
         type: AUTH_LOGIN_ERROR,
         payload: error
     }
 }
 
-export const registerRequest = (user) => {
-    return { 
+export const registerRequest = () => {
+    return {
         type: AUTH_REGISTER_REQUEST
     }
 }
 
 export const registerSuccess = (user) => {
-    return { 
-        type: AUTH_REGISTER_SUCCESS, 
-        payload: user 
+    return {
+        type: AUTH_REGISTER_SUCCESS,
+        payload: user
     }
 }
 
 export const registerError = (error) => {
     return {
         type: AUTH_REGISTER_ERROR,
+        payload: error
+    }
+}
+
+
+export const logoutRequest = () => {
+    return {
+        type: AUTH_LOGOUT_REQUEST
+    }
+}
+
+export const logoutSuccess = () => {
+    return {
+        type: AUTH_LOGOUT_SUCCESS
+    }
+}
+
+export const logoutError = (error) => {
+    return {
+        type: AUTH_LOGOUT_ERROR,
         payload: error
     }
 }
@@ -71,23 +72,20 @@ export const clearError = () => {
 }
 
 export const loginFetch = (values) => dispatch => {
-    console.log(values)
     dispatch(loginRequest());
 
-    return fetch('/api/login', { 
-            method: 'POST', 
-            body: JSON.stringify(values) 
-        })
+    return fetch('/api/login', {
+        method: 'POST',
+        body: JSON.stringify(values)
+    })
         .then(res => {
-            console.log(res.headers.get('location'))
             fetch(res.headers.get('location'))
                 .then(res => res.json())
                 .then(res => {
                     const response = {
-                        id: res['@id'],
-                        ...res
+                        ...res,
+                        id: res['@id']
                     }
-                    console.log(res, response)
                     dispatch(loginSuccess(response))
                 })
                 .catch(error => {
@@ -100,23 +98,23 @@ export const loginFetch = (values) => dispatch => {
 }
 
 export const registerFetch = (values) => dispatch => {
-    dispatch(registerRequest(true));
+    dispatch(registerRequest());
 
     return fetch('/api/users', {
         method: 'POST',
         body: JSON.stringify(values)
     })
-    .then(res => res.json())
-    .then(res => {
-        const response = {
-            id: res['@id'],
-            ...res
-        }
-        dispatch(registerSuccess(response))
-    })
-    .catch(error => {
-        dispatch(registerError(error.message));
-    });
+        .then(res => res.json())
+        .then(res => {
+            const response = {
+                ...res,
+                id: res['@id']
+            }
+            dispatch(registerSuccess(response))
+        })
+        .catch(error => {
+            dispatch(registerError(error.message));
+        })
 }
 
 export const logoutFetch = () => dispatch => {
