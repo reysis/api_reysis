@@ -20,7 +20,6 @@ class Home extends Component {
                 <ServicesHome />
                 <Estadisticas />
                 <Opinions />
-                <Footer />
             </main>
         )
     }

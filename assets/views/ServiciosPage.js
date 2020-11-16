@@ -8,7 +8,6 @@ class ServiciosPage extends Component {
                 <div className="header">
                     <h1><span>Servicios</span></h1>
                 </div>
-                <Footer />
             </main>
         )
     }

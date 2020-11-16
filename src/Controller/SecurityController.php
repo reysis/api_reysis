@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use ApiPlatform\Core\Api\IriConverterInterface;
+use App\Entity\User;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +16,13 @@ use ApiPlatform\Core\Annotation\ApiProperty;
 
 class SecurityController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @Route("/api/login", name="app_login", methods={"POST"})
      */
@@ -23,6 +33,14 @@ class SecurityController extends AbstractController
                 'error' => 'Invalid authentication request: check that the Content-Type header is application/json'
             ], 400);
         }
+
+        /**
+         * @var User $user
+         */
+        $user = $this->entityManager->getRepository(User::class)->find($this->getUser());
+        $user->setLastLoggued(new \DateTime('now'));
+        $this->entityManager->flush();
+
         return new Response(null, 204,[
             'Access-Control-Expose-Headers' => 'Location',
             'Location' => $iriConverter->getIriFromItem( $this->getUser()),

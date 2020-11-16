@@ -1,6 +1,6 @@
-.form-group{
+.form-group {
   margin: 0.5em auto;
-  padding: 0.5em 1em;
+  // padding: 0.5em 1em;
   @include flexbox();
   justify-content: center;
   flex-flow: column wrap;
@@ -8,65 +8,125 @@
   flex: 1 100%;
 }
 
-.password-group-1, .password-group-2{
-  width: 49% !important;
-  flex: 1 auto !important;
-}
+// .password-group-1,
+// .password-group-2 {
+//   width: 49% !important;
+//   flex: 1 auto !important;
+// }
 
-.form-group .btn{
+.form-group .btn {
   align-self: center;
 }
-  .form-label{
-    font-size: $sizeH3-small-screen;
-    margin: 0.5em auto;
-    width: 100%;
-    font-weight: 800;
-    line-height: 1;
+
+.form-label {
+  // font-size: $sizeH3-small-screen;
+  margin: 0.5em auto;
+  width: 100%;
+  // font-weight: 800;
+  line-height: 1;
+}
+
+// .password-group-1,
+// .password-group-2 {
+//   flex: 1 auto;
+// }
+
+.form-in-center {
+  text-align: center;
+}
+
+.form-login,
+.form-register,
+.form-turno {
+  //border: 1px solid $color2 ;
+  margin: 1em auto 1em auto;
+  @include flexbox;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-self: center;
+  padding: 0 29px 0 29px;
+  //margin: 60px 0 0 0;
+  background-color: rgba(123, 156, 157, 0.1);
+  border: 1px solid rgba(108, 145, 146, 0.1);
+  -webkit-box-shadow: 2px 2px 4px #999999;
+  -moz-box-shadow: 2px 2px 4px #999999;
+  box-shadow: 2px 2px 4px #999999;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #000000;
+  flex: 1 100%;
+}
+
+.form-header {
+  margin: 1em auto;
+}
+
+.form-control {
+  margin: 0 auto;
+
+}
+
+.login-separator,
+.register-separator {
+  text-align: center;
+
+  .hr {
+    font-size: 13px;
+    opacity: .4;
   }
 
-  .password-group-1, .password-group-2{
-    flex: 1 auto;
+  .hr::before,
+  .hr::after {
+    content: "";
+    background-color: #8C969D;
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
   }
 
-  .form-login, .form-register, .form-turno{
-    //border: 1px solid $color2 ;
-    margin: 0 auto 2em auto;
-    @include flexbox;
-    flex-flow: row wrap;
-    justify-content: flex-end;
-    align-content: flex-end;
-    align-self: center;
-    padding: 0 29px 0 29px;
-    //margin: 60px 0 0 0;
-    background-color: rgba(123, 156, 157, 0.1);
-    border: 1px solid rgba(108, 145, 146, 0.1);
-    -webkit-box-shadow: 2px 2px 4px #999999;
-    -moz-box-shadow: 2px 2px 4px #999999;
-    box-shadow: 2px 2px 4px #999999;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    color: #000000;
-    flex: 1 100%;
-  }
-  .form-control{
-    margin: 0 auto;
-
+  .hr::before {
+    right: 0.5em;
+    margin-left: -50%;
   }
 
-  /* Large screens */
-  @media all and (min-width: 1000px) {
-    .form-group-turno{
-      width: 80%;
-    }
-    .form-login{
-      width: 50%;
-    }
-    .form-label{
-      font-size: $sizeH3-big-screen;
-    }
-    .form-control-small{
-      width: 50%;
-      flex: 1 auto;
-    }
+  .hr::after {
+    left: 0.5em;
+    margin-right: -50%;
   }
+}
+
+.form-group-password {
+  // flex-flow: row;
+  // flex-wrap: 1 1;
+  // justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+}
+
+
+.password-group-1,
+.password-group-2 {
+  display: contents;
+}
+
+/* Large screens */
+@media all and (min-width: 1000px) {
+  .form-group-turno {
+    width: 80%;
+  }
+
+  .form-label {
+    font-size: $sizeH3-big-screen;
+  }
+}
+
+@media (max-width: 425px) {
+  .form-group-password {
+    display: inherit;
+  }
+}

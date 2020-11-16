@@ -11,7 +11,6 @@ class TurnosListPage extends Component {
                     <h1><span>Listado de Turnos</span></h1>
                 </div>
                 <List/>
-                <Footer/>
             </div>
         );
     }

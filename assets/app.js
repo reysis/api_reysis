@@ -1,14 +1,48 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
+import React, { Component, useEffect, Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { Route, Switch } from 'react-router-dom';
 
-// any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+import Home from './views/Home';
+import Header from './components/layouts/Header';
+import Footer from './components/Footer';
+import NotFoundPage from './components/Errors/NotFoundPage';
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
+//Import your Routes here
+import turnoRoutes from './routes/turno';
+import navbarRoutes from './routes/navbar';
+import authenticationsRoutes from './routes/authentication';
 
-console.log('Hello Webpack Encore! Edit me in assets/app.js');
+import { ConnectedRouter } from 'connected-react-router';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import './App.scss';
+
+import history from './history';
+
+class App extends Component {
+    componentDidMount() {
+        AOS.init({
+            duration: 1500,
+            once: true
+        })
+    }
+    render() {
+        return (
+            <ConnectedRouter history={history}>
+                <Header userLogged={window.user} />
+                <Switch>
+                    <Route path="/" component={Home} strict={true} exact={true} />
+                    {navbarRoutes}
+                    {turnoRoutes}
+                    {authenticationsRoutes}
+                    <Route component={NotFoundPage} />
+                </Switch>
+                <Footer />
+            </ConnectedRouter>
+        )
+    }
+};
+
+export default App;

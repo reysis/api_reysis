@@ -14,9 +14,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "post" = {"security_post_denormalize"="is_granted('ROLE_USER')"},
  *     },
  *     itemOperations={
- *          "get" = {"accessControl" = "is_granted('GET_SPECIFIC')"},
- *          "put" = {"accessControl" = "is_granted('EDIT_SPECIFIC')"},
- *          "delete" ={"accessControl" = "is_granted('DELETE_SPECIFIC')"}
+ *          "get" = {
+ *                  "security" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
+ *          },
+ *          "put" = {
+ *                  "security" = "is_granted('PUT', object)",
+ *                  "security_message" = "Solo el propio usuario que la redacto puede modificar las reviews."
+ *          },
+ *          "delete" ={
+ *                  "security" = "is_granted('DELETE', object)",
+ *                  "security_message" = "Solo el propio usuario que la redacto puede eliminar una review"
+ *          }
  *      },
  * )
  * @ORM\Entity(repositoryClass=ReviewsRepository::class)
@@ -32,15 +40,22 @@ class Reviews
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"reviews:read", "reviews:write"})
+     * @Groups({"reviews:read", "user:write", "user:read", "admin:read", "admin:write"})
      */
     private $reviewText;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"reviews:read", "reviews:write"})
+     * @Groups({"reviews:read", "user:write", "user:read", "admin:read", "admin:write"})
      */
     private $datePublished;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"reviews:read", "user:write", "user:read", "admin:read", "admin:write"})
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -67,6 +82,18 @@ class Reviews
     public function setDatePublished(\DateTimeInterface $datePublished): self
     {
         $this->datePublished = $datePublished;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

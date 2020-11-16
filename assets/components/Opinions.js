@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { Carousel, CarouselItem, Image } from 'react-bootstrap';
+import { Carousel, CarouselItem, Image, Alert } from 'react-bootstrap';
 import { load, reset } from '../actions/opinions/list';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+
+// hasta q se haga el system file
+import user_opinion from '../assets/opinion-img-1.jpg';
 
 class Opinions extends Component {
     static propTypes = {
@@ -12,7 +15,7 @@ class Opinions extends Component {
         reset: PropTypes.func.isRequired
     };
 
-    state={
+    state = {
         loading: true,
         error: null,
         loaded: {}
@@ -22,8 +25,8 @@ class Opinions extends Component {
         this.props.loadData()
     }
 
-    componentWillReceiveProps(nextProps) {
-        if(this.props.loaded !== nextProps.loaded){
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (this.props.loaded !== nextProps.loaded) {
             this.setState({
                 loaded: nextProps.loaded,
                 loading: nextProps.loading,
@@ -37,29 +40,33 @@ class Opinions extends Component {
     }
 
     render() {
-        if(this.state.loading){
+        const prevIcon = <span aria-hidden="true" className="carousel-prev-icon-mod"></span>
+        const nextIcon = <span aria-hidden="true" className="carousel-next-icon-mod"></span>
+
+        if (this.state.loading) {
             return (
-                <div className="alert alert-info" role="status">
-                    Loading...
-                </div>
+                <Alert role={"status"} variant={"info"} show={this.state.loading}>Loading...</Alert>
             );
-        }else{
-            const carouselInfo = this.props.loaded['hydra:member'].map(item => {
+        } else {
+            const carouselInfo = this.state.loaded['hydra:member'].map(item => {
+                item['autor'] = "Pedrito Calvo";
+                item['img'] = user_opinion;
                 return (
                     <CarouselItem key={item['@id']}>
                         <Carousel.Caption>
                             <div className="image-shadow-container">
-                                <Image src={item['img']} alt="Author de la frase" className="image-carousel"/>
+                                <Image src={item['img']} alt="Author de la frase" className="image-carousel" />
                             </div>
-                            <p>{item['reviewText']}<br/>{item['autor']}</p>
+                            <p className="mt-3 mb-2">{item['reviewText']}</p>
+                            <p className="my-2 text-muted">{item['autor']}</p>
                         </Carousel.Caption>
                     </CarouselItem>
                 );
             })
             return (
-                <section data-aos="fade-up" id="opinions" className="opinions-component container">
-                    <h1 className="opinions-header">Sus opiniones cuentan!</h1>
-                    <Carousel>
+                <section data-aos="fade-up" id="opinions" className="container opinions-component">
+                    <h2 className="opinions-header">Sus opiniones cuentan!</h2>
+                    <Carousel className="opinions-container" prevIcon={prevIcon} nextIcon={nextIcon}>
                         {carouselInfo}
                     </Carousel>
                 </section>
@@ -68,17 +75,17 @@ class Opinions extends Component {
     }
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
     const {
         error,
         loading,
         loaded
     } = state.opinions.load
 
-    return {error, loading, loaded};
+    return { error, loading, loaded };
 }
 
-const mapDispatchToProps = (dispatch) =>({
+const mapDispatchToProps = (dispatch) => ({
     loadData: data => dispatch(load(data)),
     reset: () => dispatch(reset())
 })

@@ -11,7 +11,6 @@ class TurnosCreatePage extends Component {
                     <h1><span>Busquemos el momento adecuado!</span></h1>
                 </div>
                 <Create />
-                <Footer />
             </main>
         );
     }

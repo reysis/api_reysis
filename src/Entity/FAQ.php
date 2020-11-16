@@ -11,12 +11,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *      collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
- *          "post" = {"security_post_denormalize"="is_granted('ROLE_USER')"},
+ *          "post" = {"security_post_denormalize"="is_granted('ROLE_ADMIN')"},
  *     },
  *     itemOperations={
- *          "get" = {"accessControl" = "is_granted('GET_SPECIFIC')"},
- *          "put" = {"accessControl" = "is_granted('EDIT_SPECIFIC')"},
- *          "delete" ={"accessControl" = "is_granted('DELETE_SPECIFIC')"}
+ *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
  * )
  * @ORM\Entity(repositoryClass=FAQRepository::class)
@@ -32,13 +31,13 @@ class FAQ
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"faq:read"})
+     * @Groups({"faq:read", "admin:read","admin:write"})
      */
     private $question;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"faq:read"})
+     * @Groups({"faq:read", "admin:read","admin:write"})
      */
     private $answer;
 

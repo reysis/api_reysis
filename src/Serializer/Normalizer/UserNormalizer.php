@@ -2,7 +2,7 @@
 
 namespace App\Serializer\Normalizer;
 
-use Proxies\__CG__\App\Entity\User;
+use App\Entity\User;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;

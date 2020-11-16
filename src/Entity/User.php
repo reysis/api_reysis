@@ -18,9 +18,11 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
- * Una persona natural o una empresa
+ * Un usuario del sistema, puede ser Persona Natular, Empresa, Proveedor o un Trabajador de la empresa
  * 
  * @see http://schema.org/Person Documentation on Schema.org
  * 
@@ -28,16 +30,16 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * @ApiResource(
  *      iri="http://schema.org/Person",
  *      collectionOperations={
- *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
  *          "post" = {
  *              "accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
  *              "validation_groups"={"Default", "create"}
  *          }
  *      },
  *      itemOperations={
- *          "get" = {"accessControl" = "is_granted('ROLE_USER') and object == user"},
- *          "put" = {"accessControl" = "is_granted('ROLE_USER') and object == user"},
- *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "put" = {"security" = "is_granted('PUT', object)"},
+ *          "delete" ={"security" = "is_granted('ROLE_ADMIN')"}
  *      },
  *     attributes={
  *          "pagination_items_per_page" = 30
@@ -65,7 +67,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @ORM\OneToOne(targetEntity=Persona::class, cascade={"persist", "remove"})
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"user:read", "user:write", "turno:write", "admin:write", "admin:read"})
      * @Assert\NotBlank(groups={"create"})
      */
     private $username;
@@ -86,64 +88,19 @@ class User implements UserInterface
      * Una variable temporal para almacenar la password y poder encriptarla en el proceso de normalización
      *
      * @var string The plain password
-     * @Groups({"admin:read", "user:write"})
+     * @Groups({"user:write", "turno:write", "admin:write", "admin:read"})
      * @Assert\NotBlank(groups={"create"})
      * @SerializedName("password")
      */
     private $plainPassword;
 
     /**
-     * Los Turnos que tenga el usuario reservados
-     * 
-     * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="personaCitada", cascade={"persist"}, orphanRemoval=true)
-     * @Groups({"user:read"})
-     * @Assert\Valid()
-     */
-    private $turnos;
-
-    /**
-     * Empresa a la que pertenece este usuario en caso de que sea una cuenta empresarial
-     * 
-     * @ORM\OneToOne(targetEntity=Empresa::class, mappedBy="username", cascade={"persist", "remove"})
-     */
-    private $empresa;
-
-    /**
-     * Descripción mas detallada de la persona a la que pertenece esta cuenta en caso de que sea una Persona Natural
-     * 
-     * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="username", cascade={"persist", "remove"})
-     * @Groups({"user:read", "user:write"})
-     */
-    private $persona;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=TipoUsuario::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
-     * @Groups({"user:write", "user:read"})
-     * @Assert\NotBlank(groups={"create"})
-     */
-    private $tipoUsuario;
-    /**
-     * @ORM\Column(type="string", length=25)
-     * @ApiProperty(iri="http://schema.org/telephone")
-     * @Groups({"admin:read", "user:write"})
-     * @Assert\NotBlank(groups={"create"})
-     */
-    private $telephone;
-
-    /**
      * @ApiProperty(iri="http://schema.org/email")
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Email()
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"user:read", "user:write", "admin:write", "admin:read"})
      */
     private $email;
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @ApiProperty(iri="http://schema.org/address")
-     * @Groups({"user:read","user:write"})
-     */
-    private $address;
 
     /**
      * Retorna verdadero si este es el usuario autenticado actualmente
@@ -152,9 +109,103 @@ class User implements UserInterface
     */
     private $isMe = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=CuentaBancaria::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"user:write","user:read","admin:item:read", "admin:write"})
+     * @Assert\Valid()
+     */
+    protected $cuentaBancaria;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"admin:read", "admin:write"})
+     */
+    private $dateRegistered;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"admin:read", "admin:write"})
+     */
+    private $lastEdited;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"admin:read", "admin:write"})
+     */
+    private $lastLoggued;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="users", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"user:write", "user:read","turno:write", "admin:write", "admin:item:read"})
+     * @Assert\Valid()
+     */
+    private $address;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=PhoneNumber::class, cascade={"persist"})
+     * @JoinTable(name="users_phonenumbers",
+     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="phonenumber_id", referencedColumnName="id", unique=true)}
+     *      )
+     * @Groups({"user:item:write", "user:read", "turno:write", "admin:item:read", "admin:write"})
+     * @Assert\NotBlank(groups={"create"})
+     * @Assert\Valid()
+     */
+    private $phoneNumbers;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Empresa::class, mappedBy="user", cascade={"persist", "remove"})
+     * @Groups({"user:write","user:read", "admin:item:read", "admin:write"})
+     * @Assert\Valid()
+     */
+    private $empresa;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
+     * @Groups({"user:write","user:read","turno:write", "admin:item:read", "admin:write"})
+     * @Assert\Valid()
+     */
+    private $persona;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
+     */
+    private $nationality;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Contrato::class, inversedBy="user", cascade={"persist", "remove"})
+     * @Groups({"admin:read", "admin:write"})
+     * @Assert\Valid()
+     */
+    private $contrato;
+
+    /**
+     * @ORM\OneToMany(targetEntity=OrdenServicio::class, mappedBy="user")
+     * @Groups({"admin:read", "admin:write"})
+     */
+    private $serviceOrder;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
+     */
+    private $turnos;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reviews::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"user:write","owner:read","admin:read", "admin:write"})
+     */
+    private $reviews;
+
     public function __construct()
     {
+        $this->cuentaBancaria = new ArrayCollection();
+        $this->phoneNumbers = new ArrayCollection();
+        $this->serviceOrder = new ArrayCollection();
         $this->turnos = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -231,82 +282,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Turno[]
-     */
-    public function getTurnos(): Collection
-    {
-        return $this->turnos;
-    }
-
-    public function addTurno(Turno $turno): self
-    {
-        if (!$this->turnos->contains($turno)) {
-            $this->turnos[] = $turno;
-            $turno->setPersonaCitada($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTurno(Turno $turno): self
-    {
-        if ($this->turnos->contains($turno)) {
-            $this->turnos->removeElement($turno);
-            // set the owning side to null (unless already changed)
-            if ($turno->getPersonaCitada() === $this) {
-                $turno->setPersonaCitada(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getEmpresa(): ?Empresa
-    {
-        return $this->empresa;
-    }
-
-    public function setEmpresa(Empresa $empresa): self
-    {
-        $this->empresa = $empresa;
-
-        // set the owning side of the relation if necessary
-        if ($empresa->getUsername() !== $this) {
-            $empresa->setUsername($this);
-        }
-
-        return $this;
-    }
-
-    public function getPersona(): ?Persona
-    {
-        return $this->persona;
-    }
-
-    public function setPersona(Persona $persona): self
-    {
-        $this->persona = $persona;
-
-        // set the owning side of the relation if necessary
-        if ($persona->getUsername() !== $this) {
-            $persona->setUsername($this);
-        }
-
-        return $this;
-    }
-
-    public function getTipoUsuario(): ?TipoUsuario
-    {
-        return $this->tipoUsuario;
-    }
-
-    public function setTipoUsuario(?TipoUsuario $tipoUsuario): self
-    {
-        $this->tipoUsuario = $tipoUsuario;
-        return $this;
-    }
-
-    /**
      * Get the plain password
      *
      * @return  string
@@ -331,26 +306,6 @@ class User implements UserInterface
     }
 
     /**
-     * Get the value of telephone
-     */ 
-    public function getTelephone()
-    {
-        return $this->telephone;
-    }
-
-    /**
-     * Set the value of telephone
-     *
-     * @return  self
-     */ 
-    public function setTelephone($telephone)
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    /**
      * Get the value of email
      */ 
     public function getEmail()
@@ -370,26 +325,6 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * Get the value of address
-     */ 
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * Set the value of address
-     *
-     * @return  self
-     */ 
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     public function getIsMe(): bool
     {
         return $this->isMe;
@@ -400,4 +335,249 @@ class User implements UserInterface
         $this->isMe = $isMe;
     }
 
+    /**
+     * @return Collection|CuentaBancaria[]
+     */
+    public function getCuentaBancaria(): Collection
+    {
+        return $this->cuentaBancaria;
+    }
+
+    public function addCuentaBancarium(CuentaBancaria $cuentaBancarium): self
+    {
+        if (!$this->cuentaBancaria->contains($cuentaBancarium)) {
+            $this->cuentaBancaria[] = $cuentaBancarium;
+            $cuentaBancarium->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCuentaBancarium(CuentaBancaria $cuentaBancarium): self
+    {
+        if ($this->cuentaBancaria->contains($cuentaBancarium)) {
+            $this->cuentaBancaria->removeElement($cuentaBancarium);
+            // set the owning side to null (unless already changed)
+            if ($cuentaBancarium->getUser() === $this) {
+                $cuentaBancarium->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDateRegistered(): ?\DateTimeInterface
+    {
+        return $this->dateRegistered;
+    }
+
+    public function setDateRegistered(\DateTimeInterface $dateRegistered): self
+    {
+        $this->dateRegistered = $dateRegistered;
+
+        return $this;
+    }
+
+    public function getLastEdited(): ?\DateTimeInterface
+    {
+        return $this->lastEdited;
+    }
+
+    public function setLastEdited(\DateTimeInterface $lastEdited): self
+    {
+        $this->lastEdited = $lastEdited;
+
+        return $this;
+    }
+
+    public function getLastLoggued(): ?\DateTimeInterface
+    {
+        return $this->lastLoggued;
+    }
+
+    public function setLastLoggued(\DateTimeInterface $lastLoggued): self
+    {
+        $this->lastLoggued = $lastLoggued;
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PhoneNumber[]
+     */
+    public function getPhoneNumbers(): Collection
+    {
+        return $this->phoneNumbers;
+    }
+
+    public function addPhoneNumber(PhoneNumber $phoneNumber): self
+    {
+        if (!$this->phoneNumbers->contains($phoneNumber)) {
+            $this->phoneNumbers[] = $phoneNumber;
+        }
+
+        return $this;
+    }
+
+    public function removePhoneNumber(PhoneNumber $phoneNumber): self
+    {
+        if ($this->phoneNumbers->contains($phoneNumber)) {
+            $this->phoneNumbers->removeElement($phoneNumber);
+        }
+
+        return $this;
+    }
+
+    public function getEmpresa(): ?Empresa
+    {
+        return $this->empresa;
+    }
+
+    public function setEmpresa(?Empresa $empresa): self
+    {
+        $this->empresa = $empresa;
+
+        return $this;
+    }
+
+    public function getPersona(): ?Persona
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(?Persona $persona): self
+    {
+        $this->persona = $persona;
+
+        return $this;
+    }
+
+    public function getNationality(): ?string
+    {
+        return $this->nationality;
+    }
+
+    public function setNationality(string $nationality): self
+    {
+        $this->nationality = $nationality;
+
+        return $this;
+    }
+
+    public function getContrato(): ?Contrato
+    {
+        return $this->contrato;
+    }
+
+    public function setContrato(?Contrato $contrato): self
+    {
+        $this->contrato = $contrato;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OrdenServicio[]
+     */
+    public function getServiceOrder(): Collection
+    {
+        return $this->serviceOrder;
+    }
+
+    public function addServiceOrder(OrdenServicio $serviceOrder): self
+    {
+        if (!$this->serviceOrder->contains($serviceOrder)) {
+            $this->serviceOrder[] = $serviceOrder;
+            $serviceOrder->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeServiceOrder(OrdenServicio $serviceOrder): self
+    {
+        if ($this->serviceOrder->contains($serviceOrder)) {
+            $this->serviceOrder->removeElement($serviceOrder);
+            // set the owning side to null (unless already changed)
+            if ($serviceOrder->getUser() === $this) {
+                $serviceOrder->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Turno[]
+     */
+    public function getTurnos(): Collection
+    {
+        return $this->turnos;
+    }
+
+    public function addTurno(Turno $turno): self
+    {
+        if (!$this->turnos->contains($turno)) {
+            $this->turnos[] = $turno;
+            $turno->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTurno(Turno $turno): self
+    {
+        if ($this->turnos->contains($turno)) {
+            $this->turnos->removeElement($turno);
+            // set the owning side to null (unless already changed)
+            if ($turno->getUser() === $this) {
+                $turno->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reviews[]
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Reviews $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Reviews $review): self
+    {
+        if ($this->reviews->contains($review)) {
+            $this->reviews->removeElement($review);
+            // set the owning side to null (unless already changed)
+            if ($review->getUser() === $this) {
+                $review->setUser(null);
+            }
+        }
+
+        return $this;
+    }
 }

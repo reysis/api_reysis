@@ -16,7 +16,6 @@ class AboutPage extends Component {
                     <HistorySection/>
                     <Mision />
                 </div>
-                <Footer />
             </main>
         )
     }

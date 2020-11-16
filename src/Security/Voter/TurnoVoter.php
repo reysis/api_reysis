@@ -20,7 +20,7 @@ class TurnoVoter extends Voter
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['ERASE', 'EDIT', 'POST', 'GET_SPECIFIC'])
+        return in_array($attribute, ['ERASE', 'EDIT', 'GET_SPECIFIC'])
             && $subject instanceof Turno;
     }
 
@@ -28,27 +28,17 @@ class TurnoVoter extends Voter
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access
-        if (!$user instanceof UserInterface) {
+/*        if (!$user instanceof UserInterface) {
             return false;
-        }
-  
-        //dump( $user->getRoles() );
+        }*/
+
         /**
          * @var Turno $subject
          */
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case 'POST':{
-                if($subject->getPersonaCitada() === $user){
-                    return true;
-                }
-                return false;
-            }
-            case 'GET_SPECIFC':
-                if($subject->getPersonaCitada() === $user || in_array('ROLE_ADMIN', $user->getRoles()))
-                    return true;
-                return false;
             case 'EDIT':
+            case 'GET_SPECIFC':
                 if($subject->getPersonaCitada() === $user || in_array('ROLE_ADMIN', $user->getRoles()))
                     return true;
                 return false;
