@@ -15,10 +15,10 @@ class Home extends Component {
     render() {
         return (
             <main className="content-wrap">
-                <Landing />
-                <ServicesHome />
+                <Landing /> 
+                <ServicesHome /> 
                 <Estadisticas />
-                <Opinions />
+                <Opinions /> 
             </main>
         )
     }

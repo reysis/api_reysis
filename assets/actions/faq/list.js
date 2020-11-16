@@ -23,10 +23,7 @@ export function load(page = "/api/f_a_qs") {
         dispatch(error(''));
 
         fetch(page)
-            .then(response =>
-                response
-                    .json()
-            )
+            .then(response => response.json())
             .then(retrieved => {
                 dispatch(loading(false));
                 dispatch(success(retrieved));

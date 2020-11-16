@@ -1,35 +1,79 @@
-import React from 'react';
-import {NavLink, Link} from "react-router-dom";
+import React, { useState } from 'react'
+import { NavLink } from "react-router-dom"
 
-const NavigationBar = (props) => {
+import LogoFoter from '../../assets/logo-footer.png'
+
+const NavigationBar = ({authenticated, username, pathname}) => {
+
+    const [showMenu, setShowMenu] = useState(false)
 
     return (
-        <React.Fragment>
-            <div className={props.scrolled ? "fixed-top menu-wrap": "menu-wrap"}>
-                <nav expand="md" className="menu">
-                    <div className="icon-list">
-                        { props.loggedUser && props.loggedUser.username && 
-                            <a className="menu-user"><span>BIENVENIDO {props.loggedUser.username.toUpperCase()}</span></a>
-                        }
-                        <NavLink to="/"><span>HOME</span></NavLink>
-                        <NavLink to="/contact"><span>CONTÁCTENOS</span></NavLink>
-                        <NavLink to="/about"><span>ACERCA DE</span></NavLink>
-                        <NavLink to="/faq"><span>FAQ</span></NavLink>
-                        { !props.loggedUser && <NavLink to="/login" className="authentication-link"><span>ENTRAR</span></NavLink>}
-                        { !props.loggedUser && <NavLink to="/register" className="authentication-link"><span>REGISTRARSE</span></NavLink> }
-                        { props.loggedUser && <NavLink to="/logout" className="authentication-link"><span>SALIR</span></NavLink> }
-                    </div>
-                </nav>
-                <button className="close-button" id="close-button"></button>
-                <div className="morph-shape" id="morph-shape" data-morph-open="M-7.312,0H15c0,0,66,113.339,66,399.5C81,664.006,15,800,15,800H-7.312V0z;M-7.312,0H100c0,0,0,113.839,0,400c0,264.506,0,400,0,400H-7.312V0z">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 800"
-                         preserveAspectRatio="none">
-                        <path d="M-7.312,0H0c0,0,0,113.839,0,400c0,264.506,0,400,0,400h-7.312V0z"/>
-                    </svg>
-                </div>
+        <>
+            <div onClick={() => setShowMenu(!showMenu)} className={showMenu ? "menu-btn menu-close": "menu-btn"}>
+                <div className="btn-line" />
+                <div className="btn-line" />
+                <div className="btn-line" />
             </div>
-            <button className="menu-button" id="open-button"></button>
-        </React.Fragment>
+            <nav className={showMenu ? "menu menu-show": "menu"}>
+                <div className={showMenu ? "menu-branding menu-show" : "menu-branding"}>
+                    <div className="portrait" style={{ backgroundImage: `url(${LogoFoter})` }} />
+                </div>
+                <ul className={showMenu ? "menu-nav menu-show" : "menu-nav"}>
+                    {/* 
+                        authenticated && username && 
+                        <li className={showMenu ? "nav-item menu-show" : "nav-item"}>
+                            <a className="menu-user">
+                                <span>Bienvenido {username}</span>
+                            </a>
+                        </li>
+                    */}
+                    <li className={`nav-item ${pathname == "/" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
+                        <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/">
+                            <span>Home</span>
+                        </NavLink>
+                    </li>
+                    <li className={`nav-item ${pathname == "/contact" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
+                        <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/contact">
+                            <span>Contáctenos</span>
+                        </NavLink>
+                    </li>
+                    <li className={`nav-item ${pathname == "/about" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
+                        <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/about">
+                            <span>Acerca de</span>
+                        </NavLink>
+                    </li>
+                    <li className={`nav-item ${pathname == "/faq" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
+                        <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/faq">
+                            <span>FAQ</span>
+                        </NavLink>
+                    </li>
+                    { 
+                        !authenticated && 
+                        <li className={`nav-item auth-nav-item ${pathname == "/login" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
+                        <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/login">
+                                <span>Entrar</span>
+                            </NavLink>
+                        </li>
+                    }
+                    { 
+                        !authenticated && 
+                        <li className={`nav-item auth-nav-item ${pathname == "/register" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
+                            <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/register">
+                                <span>Registrarse</span>
+                            </NavLink> 
+                        </li>
+                    }
+                    { 
+                        authenticated && 
+                        <li className={`nav-item auth-nav-item ${showMenu ? "menu-show" : ""}`}>
+                            <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/logout">
+                                <span>Salir</span>
+                            </NavLink> 
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </>
     )
 }
 

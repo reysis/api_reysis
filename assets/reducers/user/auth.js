@@ -8,7 +8,7 @@ export function error(state = null, action){
         default:
             return state;
     }
-}
+} 
 
 export function loading(state = false, action) {
     switch (action.type) {

@@ -12,14 +12,12 @@ class Landing extends Component {
             <section id="landing" className="landing-page container-fluid page" style={{ backgroundImage: `url(${BG})` }}>
                 <div data-aos="zoom-in" className="landing-content container">
                     <div className="landing-text">
-                        <h1 className="slogan-text">Servicios Técnicos</h1>
-                        <p className="landing-parrafo">Consequat consectetur reprehenderit aliqua fugiat. Irure culpa minim cupidatat nostrud enim sunt Et est et consequat ad sit aute. Mollit ipsum irure nisi ex eiusmod amet elit dolore ea elit laboris. Qui exercitation officia aliqua reprehenderit. Aliquip commodo et aliqua deserunt ipsum labore fugiat.</p>
-                        <div className="landing-button-container">
+                        <div>
+                            <h1 className="slogan-text">Servicios Técnicos</h1>
+                            <p className="landing-parrafo">Consequat consectetur reprehenderit aliqua fugiat. Irure culpa minim cupidatat nostrud enim sunt Et est et consequat ad sit aute. Mollit ipsum irure nisi ex eiusmod amet elit dolore ea elit laboris. Qui exercitation officia aliqua reprehenderit. Aliquip commodo et aliqua deserunt ipsum labore fugiat.</p>
                             <Link className="landing-button-text" to="/turnos/create">
-                                <Button className="landing-button">
-                                    Hacer cita
-                                </Button>
-                            </Link>
+                                <button className="landing-button">Hacer cita</button>
+                        </Link>
                         </div>
                     </div>
                 </div>

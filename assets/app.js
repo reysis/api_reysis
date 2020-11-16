@@ -31,7 +31,7 @@ class App extends Component {
     render() {
         return (
             <ConnectedRouter history={history}>
-                <Header userLogged={window.user} />
+                <Header />
                 <Switch>
                     <Route path="/" component={Home} strict={true} exact={true} />
                     {navbarRoutes}

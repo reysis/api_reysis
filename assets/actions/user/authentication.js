@@ -15,17 +15,17 @@ export function loading(loading) {
 }
 
 export function successLogin(logged) {
-    console.log(logged);
+    // console.log(logged);
     return { type: 'USER_LOGIN_SUCCESS', logged };
 }
 
 export function successLogout(logged) {
-    console.log(logged);
+    // console.log(logged);
     return { type: 'USER_LOGOUT_SUCCESS', logged };
 }
 
 export function successRegister(logged) {
-    console.log(logged);
+    // console.log(logged);
     return { type: 'USER_REGISTER_SUCCESS', logged };
 }
 
@@ -33,19 +33,21 @@ export function login(values) {
     return dispatch => {
         dispatch(loading(true));
 
-        return fetch('/api/login', {
-            method: 'POST',
-            body: JSON.stringify(values),
+        return fetch('/api/login', { 
+                method: 'POST', 
+                body: JSON.stringify(values) 
             })
             .then(response => {
-                console.log(response);
-                fetch(response.headers.get('location'))
+                console.log("response", response.headers.get('location'));
+                fetch(response.headers.get('location')) 
                     .then(response2 => {
                         dispatch(loading(false));
-
                         return response2.json();
                     })
-                    .then(retrieved => dispatch(successLogin(retrieved)))
+                    .then(retrieved => {
+                        console.log("response2", retrieved);
+                        dispatch(successLogin(retrieved))
+                    })
                     .catch(e => {
                         dispatch(loading(false));
                         dispatch(error(e));
@@ -53,7 +55,6 @@ export function login(values) {
             })
             .catch(e => {
                 dispatch(loading(false));
-
                 if (e instanceof SubmissionError) {
                     dispatch(error(e.errors._error));
                     throw e;
@@ -69,17 +70,15 @@ export function register(values) {
 
         return fetch('/api/users', {
             method: 'POST',
-            body: JSON.stringify(values),
+            body: JSON.stringify(values)
         })
         .then(response => {
             dispatch(loading(false));
-
             return response.json();
         })
         .then(retrieved => dispatch(successRegister(retrieved)))
         .catch(e => {
             dispatch(loading(false));
-
             if (e instanceof SubmissionError) {
                 dispatch(error(e.errors._error));
                 throw e;
@@ -92,18 +91,15 @@ export function register(values) {
 export function logout() {
     return dispatch => {
         dispatch(loading(true));
-
         return fetch('/api/logout', {
-            method: 'POST',
+            method: 'POST'
         })
-            .then(retrieved => {
-                dispatch(loading(false));
-
+            .then(retrieved => { 
+                dispatch(loading(false)); 
             })
             .then(() => dispatch(successLogout(null)))
             .catch(e => {
                 dispatch(loading(false));
-
                 if (e instanceof SubmissionError) {
                     dispatch(error(e.errors._error));
                     throw e;

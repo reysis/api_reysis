@@ -252,7 +252,7 @@ $color-instagram: #ca2edf;
         color: #ffffff33;
 
         .developed-container {
-            spam {
+            span {
                 color: #ffffff22;
             }
 
@@ -286,6 +286,13 @@ $color-instagram: #ca2edf;
         .logo-menu {
             grid-column: 1/3;
         }
+    }
+}
+
+@media all and (max-width: 768px) {
+
+    .footer-component {
+        border-top-left-radius: 80px;
     }
 }
 

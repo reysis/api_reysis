@@ -1,0 +1,1 @@
+cd D:\DOCUMENTOS\FRANK\TRABAJOS\reysis\api_reysis & d: & npm run watch

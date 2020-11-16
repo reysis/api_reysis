@@ -1,39 +1,75 @@
-.question-list{
-    padding: 15px;
-}
-.question-list li{
-    list-style: none;
+.faq-page {
+    .question-header {
+        margin-top: 20px;
+        text-align: center;
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+
+            span {
+                color: $color1;
+            }
+        }
+    }
+
+    .question-container {
+        padding: .5rem;
+
+    }
+
+    .question-category {
+        font-weight: 500 !important;
+    }
 }
 
-.question-container{
-    padding: 20px;
-}
+.question-list {
 
-.question-header{
-    margin-top: 20px;
-}
+    .question-item {
 
-.question-answer{
-    margin-top: 20px;
-}
+        &.active {
+            .question-expand {
+                transform: rotateX(180deg);
+            }
+        }
 
-.question-r-box{
-    background-color: $color5;
-    border: 1px solid $color1;
-    color: $color1;
-}
+        .question-icon {
+            color: $color1;
+            margin: auto 1rem auto 0;
+        }
 
-.question-r-box, .question-p-box{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    width: 15px;
-    margin-right: 15px;
-}
+        .question-title {
+            cursor: pointer;
+            margin: auto;
+            width: 100%;
+            transform: 0.4s;
 
-.question-p-box{
-    background-color: $color1;
-    color: $color5;
-    border: 1px solid $color1;
+            &:hover .question-caption {
+                text-decoration: underline;
+            }
+        }
+
+        .question-caption {
+            width: 100%;
+
+            h6 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin: 0 !important;
+            }
+        }
+
+        .question-answer {
+            max-height: 0;
+            line-height: 2;
+            overflow: hidden;
+            margin-bottom: 0 !important;
+            transition: max-height 0.2s ease-out;
+
+            p {
+                margin-left: 3em;
+                font-size: 1em;
+            }
+        }
+    }
 }

@@ -4,19 +4,22 @@ import { reducer as form } from 'redux-form';
 import history from '../history';
 
 import turno from './turno';
-import user from './user';
 import tipoEquipo from './tipo_equipo';
-import services from './services';
-import opinions from './opinions';
-import faq from './faq';
+
+import tipoUsuario from '../redux/tipo_usuario/tipoUsuarioReducer';
+import auth from '../redux/auth/authReducer';
+import opinion from '../redux/opinion/opinionReducer';
+import service from '../redux/service/serviceReducer';
+import faq from '../redux/faq/faqReducer';
 
 export default combineReducers({
 	router: connectRouter(history),
 	form,
 	turno,
-	user,
+	auth,
 	tipoEquipo,
-	services,
-	opinions,
+	tipoUsuario,
+	service,
+	opinion,
 	faq
 });

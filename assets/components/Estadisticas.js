@@ -36,7 +36,7 @@ class Estadisticas extends Component {
             )
         })
         return (
-            <section data-aos="fade-up" id="statistic" className="statistic-component">
+            <section id="statistic" className="statistic-component">
                 <svg
                     className="stat-bg"
                     xmlns="http://www.w3.org/2000/svg"
@@ -53,10 +53,13 @@ class Estadisticas extends Component {
                 <div className="statistic-container container">
                     {Statistics}
                 </div>
-                <div className="whu-us">
-                    <h3>¿Por qué nosotros?</h3>
-                    <div className="why-us-container">
-                        {why_us.map(why => {
+                <div className="why-us">
+                    <div className="why-us-header">
+                        <h3>¿<span>Por qué</span> nosotros?</h3>
+                    </div>
+                    <div data-aos="fade-up" className="why-us-container">
+                    {
+                        why_us.map(why => {
                             return (
                                 <div key={why.id} className="d-flex flex-row item-why-us">
                                     <div className="p-2 icon-why-us">
@@ -68,7 +71,7 @@ class Estadisticas extends Component {
                                 </div>
                             )
                         })
-                        }
+                    }
                     </div>
                 </div>
             </section>

@@ -1,93 +1,73 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
 import { Carousel, CarouselItem, Image, Alert } from 'react-bootstrap';
-import { load, reset } from '../actions/opinions/list';
-import { connect } from "react-redux";
+import { opinionFetch } from '../redux/opinion/opinionActions';
 import PropTypes from "prop-types";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 // hasta q se haga el system file
 import user_opinion from '../assets/opinion-img-1.jpg';
 
-class Opinions extends Component {
-    static propTypes = {
-        error: PropTypes.string,
-        loading: PropTypes.bool.isRequired,
-        loaded: PropTypes.object,
-        reset: PropTypes.func.isRequired
-    };
+const Opinions = () => {
 
-    state = {
-        loading: true,
-        error: null,
-        loaded: {}
-    };
+    const loading = useSelector(state => state.opinion.loading)
+    const opinions = useSelector(state => state.opinion.opinions)
+    const error = useSelector(state => state.opinion.error)
 
-    componentDidMount() {
-        this.props.loadData()
-    }
+    const distpach = useDispatch()
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if (this.props.loaded !== nextProps.loaded) {
-            this.setState({
-                loaded: nextProps.loaded,
-                loading: nextProps.loading,
-                error: nextProps.error,
-            })
-        }
-    }
+    useEffect(() => {
+        distpach(opinionFetch())
+    }, [])
 
-    componentWillUnmount() {
-        this.props.reset()
-    }
+    const prevIcon = <span aria-hidden="true" className="carousel-prev-icon-mod"></span>
+    const nextIcon = <span aria-hidden="true" className="carousel-next-icon-mod"></span>
 
-    render() {
-        const prevIcon = <span aria-hidden="true" className="carousel-prev-icon-mod"></span>
-        const nextIcon = <span aria-hidden="true" className="carousel-next-icon-mod"></span>
-
-        if (this.state.loading) {
-            return (
-                <Alert className="my-3" role={"status"} variant={"info"} show={this.state.loading}>Loading...</Alert>
-            );
-        } else {
-            const carouselInfo = this.state.loaded['hydra:member'].map(item => {
-                item['autor'] = "Pedrito Calvo";
-                item['img'] = user_opinion;
-                return (
-                    <CarouselItem key={item['@id']}>
-                        <Carousel.Caption>
-                            <div className="image-shadow-container">
-                                <Image src={item['img']} alt="Author de la frase" className="image-carousel" />
-                            </div>
-                            <p className="mt-3 mb-2">{item['reviewText']}</p>
-                            <p className="my-2 text-muted">{item['autor']}</p>
-                        </Carousel.Caption>
-                    </CarouselItem>
-                );
-            })
-            return (
-                <section data-aos="fade-up" id="opinions" className="container opinions-component">
-                    <h2 className="opinions-header">Sus opiniones cuentan!</h2>
-                    <Carousel className="opinions-container" prevIcon={prevIcon} nextIcon={nextIcon}>
-                        {carouselInfo}
-                    </Carousel>
-                </section>
-            )
-        }
-    }
+    return (
+        <section data-aos="fade-up" id="opinions" className="opinions-component">
+            <div className="opinions-header">
+                <h2 className="mx-4">¡Sus <span>opiniones</span> cuentan!</h2>
+            </div>
+            <Alert role={"status"} variant={"info"} show={loading}>
+                Loading...
+            </Alert>
+            <Alert role={"alert"} variant={"danger"} show={error} >
+                <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
+                {error}
+            </Alert>
+            {
+                loading != undefined && !loading && error != undefined && !error &&
+                <Carousel className="opinions-container container" prevIcon={prevIcon} nextIcon={nextIcon}>
+                {
+                    opinions.map(opinion => {
+                        opinion.autor = "Pedrito Calvo"
+                        opinion.image = user_opinion
+                        return (
+                            <CarouselItem key={opinion.id}>
+                                <Carousel.Caption>
+                                    <div className="image-shadow-container">
+                                        <Image src={opinion.image} alt="Author de la frase" className="image-carousel" />
+                                    </div>
+                                    <p className="mt-3 mb-2">{opinion.reviewText}</p>
+                                    <p className="my-2 text-muted">{opinion.autor}</p>
+                                </Carousel.Caption>
+                            </CarouselItem>
+                        )
+                    })
+                }
+                </Carousel>
+            }
+        </section>
+    )
 }
 
-const mapStateToProps = (state) => {
-    const {
-        error,
-        loading,
-        loaded
-    } = state.opinions.load
-
-    return { error, loading, loaded };
+Opinions.propTypes = {
+    loading: PropTypes.bool,
+    opinions: PropTypes.array,
+    error: PropTypes.string
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    loadData: data => dispatch(load(data)),
-    reset: () => dispatch(reset())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Opinions);
+export default Opinions

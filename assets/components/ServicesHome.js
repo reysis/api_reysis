@@ -1,94 +1,62 @@
-import React, { Component } from 'react';
-import ServiceCard from '../components/ServiceCard';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+
 import PropTypes from "prop-types";
-import { list, reset } from "../actions/servicios/list";
-import { connect } from "react-redux";
+import { serviceFetch } from '../redux/service/serviceActions';
+
+import ServiceCard from '../components/ServiceCard';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+
 import { Alert } from 'react-bootstrap';
 
-// import serviceImg from '../assets/serviceImage.png';
+const ServicesHome = () => {
 
-class ServicesHome extends Component {
-    static propTypes = {
-        retrieved: PropTypes.object,
-        loading: PropTypes.bool.isRequired,
-        error: PropTypes.string,
-        eventSource: PropTypes.instanceOf(EventSource),
-        deletedItem: PropTypes.object,
-        // list: PropTypes.func.isRequired,
-        // reset: PropTypes.func.isRequired
-    };
+    const loading = useSelector(state => state.service.loading)
+    const services = useSelector(state => state.service.services)
+    const error = useSelector(state => state.service.error)
 
-    state = {
-        loading: true,
-        error: null,
-        retrieved: {}
-    };
+    const dispatch = useDispatch()
 
-    componentDidMount() {
-        this.props.listServices();
-    }
+    useEffect(() => {
+        dispatch(serviceFetch())
+    }, [])
 
-    componentWillUnmount() {
-        this.props.reset()
-    }
+    return (
+        <section id="services" className="services-home">
+            <div className="services-header">
+                <h2 className="mx-4">Nuestros <span>servicios</span></h2>
+            </div>
+            <div className="shape-background-1" />
+            <div className="shape-background-2" />
+            <Alert role={"status"} variant={"info"} show={loading}>
+                Loading...
+            </Alert>
+            <Alert role={"alert"} variant={"danger"} show={error} >
+                <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
+                {error}
+            </Alert>
+            {
+                loading != undefined && !loading && error != undefined && !error &&
+                <div className="container cards-container cards-style">
+                    {
+                        services.map(service => {
+                            return (
+                                <ServiceCard key={service.id} nombre={service.nombre} descripcion={service.descripcion} imaage={service.image} />
+                            )
+                        })
+                    }
+                </div>
+            }
+        </section>
+    )
+}
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if (this.props.retrieved !== nextProps.retrieved) {
-            this.setState({
-                retrieved: nextProps.retrieved,
-                loading: nextProps.loading,
-                error: nextProps.error
-            })
-        }
-    };
+ServicesHome.propTypes = {
+    loading: PropTypes.bool,
+    services: PropTypes.array,
+    error: PropTypes.string
+}
 
-    render() {
-        if (this.state.loading) {
-            return (
-                <Alert className="my-3" role={"status"} variant={"info"} show={this.state.loading}>Loading...</Alert>
-            )
-        } else {
-            const Cards = this.state.retrieved['hydra:member'].map((card, index) => {
-                return (
-                    <ServiceCard key={card['@id']} layout={index % 2 === 0 ? false : true} title={card['nombre']} text={card['descripcion']} img={card['image']} />
-                )
-            })
-            return (
-                <section id="services" className="services-home">
-                    <div className="shape-background"></div>
-                    <div className="shape-background-2"></div>
-                    <Alert role={"alert"} variant={"danger"} show={this.state.error} >
-                        <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
-                        {this.state.error}
-                    </Alert>
-                    <h2 className="services-title">Servicios</h2>
-                    <div className="container cards-container cards-style">
-                        {Cards}
-                    </div>
-                </section>
-            );
-        }
-    }
-};
-
-const mapStateToProps = (state) => {
-    const {
-        retrieved,
-        loading,
-        error,
-        eventSource,
-        deletedItem
-    } = state.services.list;
-
-    return { retrieved, loading, error, eventSource, deletedItem };
-};
-
-const mapDispatchToProps = dispatch => ({
-    listServices: page => dispatch(list(page)),
-    reset: eventSource => dispatch(reset(eventSource))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ServicesHome);
+export default ServicesHome
