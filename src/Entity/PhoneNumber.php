@@ -23,14 +23,14 @@ class PhoneNumber
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Groups({"admin:read", "admin:write","user:write", "user:read", "turno:write"})
+     * @Groups({"admin:item:get", "admin:write","user:write", "user:item:get", "turno:write"})
      */
     private $phoneType;
 
     /**
      * @ApiProperty(iri="http://schema.org/telephone")
      * @ORM\Column(type="string", length=25)
-     * @Groups({"admin:read", "admin:write","user:write", "user:read", "turno:write"})
+     * @Groups({"admin:item:get", "admin:write","user:write", "user:item:get", "turno:write"})
      */
     private $number;
 

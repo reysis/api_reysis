@@ -30,14 +30,14 @@ use Doctrine\ORM\Mapping\JoinColumn;
  * @ApiResource(
  *      iri="http://schema.org/Person",
  *      collectionOperations={
- *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "get" = {"security" = "is_granted('GET', object)"},
  *          "post" = {
  *              "accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
  *              "validation_groups"={"Default", "create"}
  *          }
  *      },
  *      itemOperations={
- *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "get" = {"security" = "is_granted('GET_SINGLE', object)"},
  *          "put" = {"security" = "is_granted('PUT', object)"},
  *          "delete" ={"security" = "is_granted('ROLE_ADMIN')"}
  *      },
@@ -64,7 +64,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @ORM\OneToOne(targetEntity=Persona::class, cascade={"persist", "remove"})
-     * @Groups({"user:read", "user:write", "turno:write", "admin:write", "admin:read"})
+     * @Groups({"user:read", "user:write", "turno:read","turno:write", "admin:write", "admin:read"})
      * @Assert\NotBlank(groups={"create"})
      */
     private $username;
@@ -107,92 +107,116 @@ class User implements UserInterface
     private $isMe = false;
 
     /**
+     * Cuentas bancarias del usuario
+     *
      * @ORM\OneToMany(targetEntity=CuentaBancaria::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:write","user:read","admin:item:read", "admin:write"})
+     * @Groups({"owner:read","admin:item:read", "admin:write"})
      * @Assert\Valid()
      */
     protected $cuentaBancaria;
 
     /**
+     * Fecha en la que se registró el usuario, solamente se llena cuando al usuario se le va a prestar un servicio
+     *
      * @ORM\Column(type="datetime", nullable=true)
      * @Groups({"admin:read", "admin:write"})
      */
     private $dateRegistered;
 
     /**
+     * Ultima fecha en la que se edito la información de este usuario
+     *
      * @ORM\Column(type="datetime", nullable=true)
      * @Groups({"admin:read", "admin:write"})
      */
     private $lastEdited;
 
     /**
+     * Ultima fecha en la que se logueo el usuario
+     *
      * @ORM\Column(type="datetime", nullable=true)
      * @Groups({"admin:read", "admin:write"})
      */
     private $lastLoggued;
 
     /**
+     * Dirección postal del Usuario
+     *
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="users", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"user:write", "user:read","turno:write", "admin:write", "admin:item:read"})
+     * @Groups({"user:write", "owner:read", "turno:write", "admin:write", "admin:item:read"})
      * @Assert\Valid()
      */
     private $address;
 
     /**
+     * Números de contacto del usuario
+     *
      * @ORM\ManyToMany(targetEntity=PhoneNumber::class, cascade={"persist"})
      * @JoinTable(name="users_phonenumbers",
      *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="phonenumber_id", referencedColumnName="id", unique=true)}
      *      )
-     * @Groups({"user:item:write", "user:read", "turno:write", "admin:item:read", "admin:write"})
+     * @Groups({"user:item:write", "owner:read", "turno:write"})
      * @Assert\NotBlank(groups={"create"})
      * @Assert\Valid()
      */
     private $phoneNumbers;
 
     /**
+     * Datos del usuario si es de tipo empresa
+     *
      * @ORM\OneToOne(targetEntity=Empresa::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:write","user:read", "admin:item:read", "admin:write"})
+     * @Groups({"owner:read","admin:read", "admin:write"})
      * @Assert\Valid()
      */
     private $empresa;
 
     /**
+     * Datos del usuario si es una persona
+     *
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:write","user:read","turno:write", "admin:item:read", "admin:write"})
+     * @Groups({"user:write","owner:read","turno:write"})
      * @Assert\Valid()
      */
     private $persona;
 
     /**
+     * Nacionalidad del usuario, ya sea una empresa o una Persona
+     *
      * @ORM\Column(type="string", length=255)
      * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
      */
     private $nationality;
 
     /**
+     * Contrato del usuario, este campo solo estará lleno si el usuario es un trabajador
+     *
      * @ORM\OneToOne(targetEntity=Contrato::class, inversedBy="user", cascade={"persist", "remove"})
-     * @Groups({"admin:read", "admin:write"})
      * @Assert\Valid()
      */
     private $contrato;
 
     /**
+     * Ordenes de servicio emitidas para servicios prestados a este usuario
+     *
      * @ORM\OneToMany(targetEntity=OrdenServicio::class, mappedBy="user")
-     * @Groups({"admin:read", "admin:write"})
      */
     private $serviceOrder;
 
     /**
+     * Turnos pendientes de este usuario
+     *
      * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
+     * @Groups({"user:write","owner:read"})
      */
     private $turnos;
 
     /**
+     * Reviews que ha realizado este usuario
+     *
      * @ORM\OneToMany(targetEntity=Reviews::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:write","owner:read","admin:read", "admin:write"})
+     * @Groups({"user:write","owner:read"})
      */
     private $reviews;
 

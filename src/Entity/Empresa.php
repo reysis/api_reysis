@@ -23,25 +23,25 @@ class Empresa
     private $id;
     /**
      * @ORM\Column(type="string", length=100)
-     * @Groups({"admin:write","admin:item:read", "user:read", "admin:read"})
+     * @Groups({"owner:read", "admin:item:get", "admin:write"})
      */
     private $nit;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"admin:write","admin:item:read", "user:read", "admin:read"})
+     * @Groups({"owner:read", "admin:write", "admin:item:get", "admin:read"})
      */
     private $legalName;
 
     /**
      * @ORM\Column(type="string", length=100)
-     * @Groups({"admin:write","admin:item:read" ,"user:read", "admin:read"})
+     * @Groups({"admin:item:get", "owner:read", "admin:write"})
      */
     private $cod_reeup;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
-     * @Groups({"admin:write", "admin:item:read", "user:read", "admin:read"})
+     * @Groups({"admin:item:get", "owner:read", "admin:write"})
      */
     private $no_registro_comercial;
 
@@ -49,7 +49,6 @@ class Empresa
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="empresa", cascade={"persist", "remove"})
      */
     private $user;
-
 
     public function __construct()
     {

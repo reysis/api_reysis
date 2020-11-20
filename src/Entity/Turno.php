@@ -53,7 +53,7 @@ class Turno
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"turno:read", "turno:write", "user:read", "admin:read", "admin:write"})
+     * @Groups({"turno:read", "turno:write", "user:read"})
      * @Assert\NotBlank()
      */
     private $fecha;
@@ -62,7 +62,7 @@ class Turno
      * Una breve descripción del defecto
      * 
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"turno:read", "turno:write", "admin:read", "admin:write"})
+     * @Groups({"turno:read", "turno:write"})
      * @Assert\NotBlank()
      */
     private $defecto;
@@ -70,7 +70,7 @@ class Turno
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="turnos", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"turno:read", "turno:write", "admin:read", "admin:write"})
+     * @Groups({"turno:read", "turno:write"})
      */
     private $user;
 

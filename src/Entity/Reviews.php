@@ -40,20 +40,20 @@ class Reviews
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"reviews:read", "user:write", "user:read", "admin:read", "admin:write"})
+     * @Groups({"reviews:read", "user:item:get", "admin:read"})
      */
     private $reviewText;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"reviews:read", "user:write", "user:read", "admin:read", "admin:write"})
+     * @Groups({"reviews:read", "user:item:get", "admin:read"})
      */
     private $datePublished;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"reviews:read", "user:write", "user:read", "admin:read", "admin:write"})
+     * @Groups({"reviews:read", "user:item:get", "admin:read"})
      */
     private $user;
 

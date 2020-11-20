@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test\Functional;
+namespace App\Tests\Functional;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Entity\Turno;
@@ -11,15 +11,22 @@ class TurnoResourceTest extends CustomApiTestCase{
     use ReloadDatabaseTrait;
     public function testCreateTurno(){
         $client = self::createClient();
-        $tipo = $this->createTipoUsuario('Persona Natural');
-        $user = $this->createUser('testUser', 'foo', '123456789',$tipo);
+        $user = $this->createUser(
+            'testUser',
+            'foo',
+            'CASA',
+            '+5354178553');
 
-        //Testeando que no se pueda crear Turnos a no ser que este logueado
+        //Testeando que se pueda crear Turnos anonimamente
         $client->request('POST', '/api/turnos',[
             'headers'=> ['ContentType'=>'application/json+ld'],
-            'json' => [],
+            'json' => [
+                'fecha' => '2020-08-20T20:11:28.498Z',
+                'defecto'=>'foo',
+                'user'=>'/api/users/'.$user->getId(),
+            ],
         ]);
-        $this->assertResponseStatusCodeSame(401);
+        $this->assertResponseStatusCodeSame(201);
         
         //Testeando que se cree un turno normalmente
         $this->logIn($client, 'testUser', 'foo');
@@ -28,7 +35,7 @@ class TurnoResourceTest extends CustomApiTestCase{
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
                 'defecto'=>'foo',
-                'personaCitada'=>'/api/users/'.$user->getId(),
+                'user'=>'/api/users/'.$user->getId(),
             ],
         ]);
         $this->assertResponseStatusCodeSame(201);
@@ -37,10 +44,16 @@ class TurnoResourceTest extends CustomApiTestCase{
     public function testUpdateTurno()
     {
         $client = self::createClient();
-        $tipo1 = $this->createTipoUsuario('Persona Natural');
-        $tipo2 = $this->createTipoUsuario('Empresa');
-        $user1 = $this->createUser('testUser1', 'foo', '123456789',$tipo1);
-        $user2 = $this->createUser('testUser2', 'foo', '123456789',$tipo2);
+        $user1 = $this->createUser(
+            'testUser1',
+            'foo',
+            'CASA',
+            '+5354178553');
+        $user2 = $this->createUser(
+            'testUser2',
+            'foo',
+            'TRABAJO',
+            '+52196875');
 
         //creando turno de usuario 1
         $this->logIn($client, 'testUser1', 'foo');
@@ -49,7 +62,7 @@ class TurnoResourceTest extends CustomApiTestCase{
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
                 'defecto'=>'foo',
-                'personaCitada'=>'/api/users/'.$user1->getId(),
+                'user'=>'/api/users/'.$user1->getId(),
             ],
         ]);
         $this->assertResponseStatusCodeSame(201);
@@ -93,9 +106,16 @@ class TurnoResourceTest extends CustomApiTestCase{
     public function testDeleteTurno()
     {
         $client = self::createClient();
-        $tipo1 = $this->createTipoUsuario('Persona Natural');
-        $user1 = $this->createUser('testUser1', 'foo','123456789' ,$tipo1);
-        $user2 = $this->createUser('testUser2', 'foo', '123456789',$tipo1);
+        $user1 = $this->createUser(
+            'testUser1',
+            'foo',
+            '123456789',
+            '+5354178553');
+        $user2 = $this->createUser(
+            'testUser2',
+            'foo',
+            '123456789',
+            '+54178553');
 
         //creando turno de usuario 1
         $this->logIn($client, 'testUser1', 'foo');
@@ -104,7 +124,7 @@ class TurnoResourceTest extends CustomApiTestCase{
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
                 'defecto'=>'foo',
-                'personaCitada'=>'/api/users/'.$user1->getId(),
+                'user'=>'/api/users/'.$user1->getId(),
             ],
         ]);
         $this->assertResponseStatusCodeSame(201);
@@ -132,8 +152,11 @@ class TurnoResourceTest extends CustomApiTestCase{
     public function testGetTurnos()
     {
         $client = self::createClient();
-        $tipo1 = $this->createTipoUsuario('Persona Natural');
-        $user = $this->createUser('testUser1', 'foo','123456789', $tipo1);
+        $user = $this->createUser(
+            'testUser1',
+            'foo',
+            '123456789',
+            '+5354178553');
 
         //Testeando que haya que loguearse para acceder
         $client->request('GET', '/api/turnos',[

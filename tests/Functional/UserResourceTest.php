@@ -124,7 +124,12 @@ class UserResourceTest extends CustomApiTestCase
     public function testUpdateUser()
     {
         $client = self::createClient();
-        $user = $this->createUserAndLogin($client, 'testUser1', 'foo','CASA', '+5354178553');
+        $user = $this->createUserAndLogin(
+            $client,
+            'testUser1',
+            'foo',
+            'CASA',
+            '+5354178553');
 
         $client->request('PUT', '/api/users/'.$user->getId(), [
             'json' => [
@@ -141,6 +146,38 @@ class UserResourceTest extends CustomApiTestCase
         /** @var User $user */
         $user = $em->getRepository(User::class)->find($user->getId());
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
+    }
+    public function testDeleteUser(){
+        $client = self::createClient();
+        $user = $this->createUserAndLogin(
+            $client,
+            'testUser1',
+            'foo',
+            'CASA',
+            '+5354178553');
+        $user2 = $this->createUser(
+            'testUser2',
+            'foo',
+            'CASA',
+            '+5354178553');
+
+        $client->request('DELETE', '/api/users/'.$user2->getId());
+        $this->assertResponseStatusCodeSame(403);
+
+        //Dandole Permisos de administrador al Usuario 2
+        $em = $this->getEntityManager();
+        $user2 = $em->getRepository(User::class)->find($user2->getId());
+        $user2->setRoles(['ROLE_ADMIN']);
+        //dump($user2);
+        $em->flush();
+
+        $this->logIn($client, 'testUser2', 'foo');
+        $client->request('DELETE', '/api/users/'.$user->getId());
+        $this->assertResponseIsSuccessful();
+
+        //Comprobando que no existe el usuario en la BD y comprobando 404 not found error response
+        $client->request('DELETE', '/api/users/'.$user->getId());
+        $this->assertResponseStatusCodeSame(404);
     }
 }
 
