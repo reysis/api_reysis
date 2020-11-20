@@ -4,6 +4,7 @@
 namespace App\Swagger;
 
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 final class SwaggerDecorator implements NormalizerInterface
 {
@@ -14,58 +15,67 @@ final class SwaggerDecorator implements NormalizerInterface
         $this->decorated = $decorated;
     }
 
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, string $format = null, array $context = [])
     {
         $docs = $this->decorated->normalize($object, $format, $context);
 
-        $consumes = ["application/ld+json", "application/json"];
-        $responses[201] = [
-            'description' =>  'OK',
-            'schema'=>[
-                'type'=> 'object',
-                'required'=>[
-                    'username',
-                    'password'
+        $docs['components']['schemas']['Token'] = [
+            'type' => 'object',
+            'properties' => [
+                'token' => [
+                    'type' => 'string',
+                    'readOnly' => true,
                 ],
-                'properties'=>[
-                    'username'=>[
-                        'type'=> 'string'
-                    ],
-                    'password'=>[
-                        'type'=> 'string'
-                    ]
-                ]
-            ]
-        ];
-        dd($docs);
-
-        $customDefinition = [
-            [
-                'name' => 'username',
-                'description' => 'Nombre del Usuario',
-                'default' => 'id',
-                'required' => true,
-                'type' => 'string',
-                'in' => 'query',
             ],
-            [
-                'name' => 'password',
-                'description' => 'Contraseña del Usuario',
-                'required' => true,
-                'type' => 'string',
-                'in' => 'query',
-            ]
         ];
 
-        $docs['paths']['/api/login']['post']['parameters'] = $customDefinition;
-        $docs['paths']['/api/login']['post']['consumes'][] = $consumes;
-        $docs['paths']['/api/login']['post']['produces'][] = $consumes;
-        $docs['paths']['/api/login']['post']['responses'][] = $responses;
+        $docs['components']['schemas']['Credentials'] = [
+            'type' => 'object',
+            'properties' => [
+                'username' => [
+                    'type' => 'string',
+                ],
+                'password' => [
+                    'type' => 'string',
+                ],
+            ],
+        ];
 
-        // Override title
-        $docs['info']['title'] = 'Reysis Documentation';
+        $tokenDocumentation = [
+            'paths' => [
+                '/api/authentication' => [
+                    'post' => [
+                        'tags' => ['Token'],
+                        'operationId' => 'postCredentialsItem',
+                        'summary' => 'Get JWT token to login.',
+                        'requestBody' => [
+                            'description' => 'Create new JWT Token',
+                            'content' => [
+                                'application/json' => [
+                                    'schema' => [
+                                        '$ref' => '#/components/schemas/Credentials',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'responses' => [
+                            Response::HTTP_OK => [
+                                'description' => 'Get JWT token',
+                                'content' => [
+                                    'application/json' => [
+                                        'schema' => [
+                                            '$ref' => '#/components/schemas/Token',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
-        return $docs;
+        return array_merge_recursive($docs, $tokenDocumentation);
     }
 
     public function supportsNormalization($data, $format = null)
