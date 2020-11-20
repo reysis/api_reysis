@@ -43,14 +43,14 @@ class Persona
     private $id;
     /**
      * @ORM\Column(type="string", length=11)
-     * @Groups({"user:read","persona:read","turno:write","persona:write"})
+     * @Groups({"owner:read","turno:write","admin:write", "admin:item:read"})
      * @Assert\NotBlank()
      */
     private $ci;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read","persona:read", "persona:write", "turno:write"})
+     * @Groups({"owner:read", "turno:write", "admin:write", "admin:item:read"})
      * @Assert\NotBlank()
      */
     private $nombre;

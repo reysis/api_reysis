@@ -39,7 +39,7 @@ class TurnoVoter extends Voter
         switch ($attribute) {
             case 'EDIT':
             case 'GET_SPECIFC':
-                if($subject->getPersonaCitada() === $user || in_array('ROLE_ADMIN', $user->getRoles()))
+                if($subject->getUser() === $user || in_array('ROLE_ADMIN', $user->getRoles()))
                     return true;
                 return false;
             case 'ERASE':

@@ -4,6 +4,7 @@
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/DataFixtures/BaseFixture.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/DataFixtures/ReviewFixtures.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/DataFixtures/TipoServicioFixtures.php" afterDir="false" />
@@ -33,15 +34,19 @@
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
 =======
       <change afterPath="$PROJECT_DIR$/src/Security/Voter/UserVoter.php" afterDir="false" />
+=======
+>>>>>>> doctrine
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Empresa.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Empresa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Persona.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reviews.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reviews.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Turno.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Turno.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Security/Voter/TurnoVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/TurnoVoter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Serializer/Normalizer/UserNormalizer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Serializer/Normalizer/UserNormalizer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/TurnoResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TurnoResourceTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Functional/UserResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/UserResourceTest.php" afterDir="false" />
 >>>>>>> doctrine
 =======
@@ -278,6 +283,10 @@
 =======
       <workItem from="1603289194801" duration="6665000" />
       <workItem from="1604928584278" duration="28588000" />
+<<<<<<< HEAD
+>>>>>>> doctrine
+=======
+      <workItem from="1605892316608" duration="590000" />
 >>>>>>> doctrine
     </task>
     <servers />
@@ -355,6 +364,7 @@
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1602790991465" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <state x="456" y="195" key="run.anything.popup" timestamp="1603774117517">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -362,9 +372,12 @@
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1603773025256">
 =======
     <state x="456" y="195" key="run.anything.popup" timestamp="1605565773645">
+=======
+    <state x="456" y="195" key="run.anything.popup" timestamp="1605621583506">
+>>>>>>> doctrine
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1605565773645" />
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1605621583506" />
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1602952168779">
 >>>>>>> doctrine
       <screen x="0" y="0" width="1600" height="860" />
