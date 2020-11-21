@@ -179,7 +179,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('DELETE', '/api/users/'.$user2->getId(),[
             'headers'=> ['ContentType'=>'application/json+ld'],
         ]);
-        $this->assertResponseStatusCodeSame(403);
+        $this->assertResponseStatusCodeSame(401);
 
         //Dandole Permisos de administrador al Usuario 2
         $em = $this->getEntityManager();

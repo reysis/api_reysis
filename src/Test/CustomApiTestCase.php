@@ -101,14 +101,14 @@ class CustomApiTestCase extends ApiTestCase
      */
     protected function logIn(Client $client, string $username, string $password)
     {
-        $client->request('POST', '/api/login',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+        $client->request('POST', '/api/authentication',[
+            'headers'=> ['ContentType'=>'application/json'],
             'json' => [
                 'username' => $username,
                 'password' => $password, 
             ],
         ]);
-        $this->assertResponseStatusCodeSame(204);
+        $this->assertResponseStatusCodeSame(200);
     }
 
     protected function logOut(Client $client)
