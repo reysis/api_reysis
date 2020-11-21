@@ -21,7 +21,7 @@ export const serviceError = (error) => {
     }
 }
 
-export const serviceFetch = (page = "/api/tipos_servicios") => dispatch => {
+export const serviceFetch = (page = "/api/servicios") => dispatch => {
     dispatch(serviceRequest());
 
     fetch(page)

@@ -17,7 +17,7 @@ export function success(retrieved) {
     return { type: 'SERVICE_LIST_SUCCESS', retrieved };
 }
 
-export function list(page = "/api/tipos_servicios") {
+export function list(page = "/api/servicios") {
     return dispatch => {
         dispatch(loading(true));
         dispatch(error(''));

@@ -4,26 +4,21 @@
 namespace App\DataFixtures;
 
 
+use App\Entity\Address;
+use App\Entity\PhoneNumber;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use App\DataFixtures\TipoUserFixtures;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserFixtures extends BaseFixture implements DependentFixtureInterface
+class UserFixtures extends BaseFixture
 {
     private $passwordEncoder;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->passwordEncoder = $passwordEncoder;
-    }
-    public function getDependencies()
-    {
-        return [
-            TipoUserFixtures::class,
-        ];
     }
 
     protected function loadData(\Doctrine\Common\Persistence\ObjectManager $manager)
@@ -32,17 +27,30 @@ class UserFixtures extends BaseFixture implements DependentFixtureInterface
             $user = new User();
             $user->setEmail(sprintf('user%d@example.com', $i));
             $user->setUsername(sprintf('user%d', $i));
-            $user->setTipoUsuario($this->getRandomReference('normal_types'));
-            $user->setTelephone(sprintf("%i",$this->faker->randomNumber(8)) );
-            $user->setAddress(sprintf("%s", $this->faker->randomAscii()));
 
+            $phoneNumber = new PhoneNumber();
+            $phoneNumber->setNumber($this->faker->phoneNumber);
+            $phoneNumber->setPhoneType($this->faker->word);
+            $user->addPhoneNumber($phoneNumber);
+
+            $address = new Address();
+            $address->setNumber($this->faker->buildingNumber);
+            $address->setRpto($this->faker->word);
+            $address->setStreetE1($this->faker->streetName);
+            $address->setStreet($this->faker->streetName);
+            $address->setStreetE2($this->faker->streetName);
+            $address->setCity($this->faker->city);
+            $country = $this->faker->country;
+            $address->setCountry($country);
+
+            $user->setAddress($address);
+            $user->setNationality($country);
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
                 'engage'
             ));
 
             $manager->persist($user);
-
 
             return $user;
         });
@@ -51,11 +59,25 @@ class UserFixtures extends BaseFixture implements DependentFixtureInterface
             $user = new User();
             $user->setEmail(sprintf('admin%d@reysis.com', $i));
             $user->setUsername(sprintf('admin%d', $i));
-            $user->setTipoUsuario($this->getReference(TipoUserFixtures::ADMIN_TYPE_REFERENCE));
-            $user->setTelephone(sprintf("%i",$this->faker->randomNumber(8)) );
-            $user->setAddress(sprintf("%s", $this->faker->randomAscii()));
             $user->setRoles(['ROLE_ADMIN']);
 
+            $phoneNumber = new PhoneNumber();
+            $phoneNumber->setNumber($this->faker->phoneNumber);
+            $phoneNumber->setPhoneType($this->faker->word);
+            $user->addPhoneNumber($phoneNumber);
+
+            $address2 = new Address();
+            $address2->setNumber($this->faker->buildingNumber);
+            $address2->setRpto($this->faker->word);
+            $address2->setStreetE1($this->faker->streetName);
+            $address2->setStreet($this->faker->streetName);
+            $address2->setStreetE2($this->faker->streetName);
+            $address2->setCity($this->faker->city);
+            $country = $this->faker->country;
+            $address2->setCountry($country);
+
+            $user->setAddress($address2);
+            $user->setNationality($country);
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
                 'engage'

@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\TiposServiciosRepository;
+use App\Repository\ServicioRepository;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -26,7 +26,7 @@ use Doctrine\ORM\Mapping as ORM;
  *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
  * )
- * @ORM\Entity(repositoryClass=TiposServiciosRepository::class)
+ * @ORM\Entity(repositoryClass=ServicioRepository::class)
  */
 class Servicio
 {
@@ -150,7 +150,7 @@ class Servicio
 
 
     /**
-     * @Groups({"tiposservicios:read"})
+     * @Groups({"servicio:read"})
      */
     public function getShortDescription(): ?string
     {
