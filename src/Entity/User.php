@@ -67,7 +67,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @ORM\OneToOne(targetEntity=Persona::class, cascade={"persist", "remove"})
-     * @Groups({"user:read", "user:write", "turno:read","turno:write", "admin:write", "admin:read"})
+     * @Groups({"owner:read", "user:write", "turno:read","turno:write", "admin:write", "admin:read"})
      * @Assert\NotBlank(groups={"create"})
      */
     private $username;
@@ -98,14 +98,12 @@ class User implements UserInterface
      * @ApiProperty(iri="http://schema.org/email")
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Email()
-     * @Groups({"user:read", "user:write", "admin:write", "admin:read"})
+     * @Groups({"owner:read", "user:write", "admin:write", "admin:read"})
      */
     private $email;
 
     /**
      * Retorna verdadero si este es el usuario autenticado actualmente
-     *
-     * @Groups({"user:read"})
     */
     private $isMe = false;
 
