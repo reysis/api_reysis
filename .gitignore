@@ -27,9 +27,21 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-.gitconfig
-
-.vscode
+<<<<<<< HEAD
 ###> liip/imagine-bundle ###
 /public_html/media/cache/
 ###< liip/imagine-bundle ###
+
+/public_html/uploads
+=======
+.gitconfig
+
+.vscode
+<<<<<<< HEAD
+###> liip/imagine-bundle ###
+/public_html/media/cache/
+###< liip/imagine-bundle ###
+=======
+.idea
+>>>>>>> doctrine
+>>>>>>> frontend

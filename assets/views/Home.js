@@ -13,6 +13,7 @@ class Home extends Component {
     }
 
     render() {
+        console.log(window.user);
         return (
             <main className="content-wrap">
                 <Landing /> 

@@ -41,36 +41,33 @@ class Persona
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     * @ORM\Column(type="string", length=11)
+     * @Groups({"owner:read","turno:write","admin:write", "admin:item:read"})
+     * @Assert\NotBlank()
+     */
+    private $ci;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read","persona:read", "persona:write"})
+     * @Groups({"owner:read", "turno:write", "admin:write", "admin:item:read"})
      * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=11)
-     * @Groups({"user:read","persona:read", "persona:write"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
      * @Assert\NotBlank()
      */
-    private $ci;
-
+    private $user;
 
     /**
-     * Usuario linkeado a esta persona (iri)
-     * 
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups({"persona:read", "persona:write"})
+     * @return mixed
      */
-    private $username;
-
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
-
     public function getNombre(): ?string
     {
         return $this->nombre;
@@ -95,14 +92,27 @@ class Persona
         return $this;
     }
 
-    public function getUsername(): ?User
+    public function getUser(): ?User
     {
-        return $this->username;
+        return $this->user;
     }
 
-    public function setUsername(User $username): self
+    public function setUsername(User $user): self
     {
-        $this->username = $username;
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newPersona = null === $user ? null : $this;
+        if ($user->getPersona() !== $newPersona) {
+            $user->setPersona($newPersona);
+        }
 
         return $this;
     }

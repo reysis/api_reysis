@@ -2,10 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/BaseFixture.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/ReviewFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TipoServicioFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TipoUserFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/MediaObjectType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/UploaderHelper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Swagger/SwaggerDecorator.php" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/config/gesdinet_jwt_refresh_token.yaml" afterDir="false" />
+>>>>>>> 651c4c7644d3dc275596c26191b6c222d41a0710
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/assets/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/App.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/api_platform.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/lexik_jwt_authentication.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/lexik_jwt_authentication.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CreateMediaObjectAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CreateMediaObjectAction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MediaObjectFixtures.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/MediaObject.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MediaObject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/Security/Voter/UserVoter.php" afterDir="false" />
+=======
+>>>>>>> doctrine
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Empresa.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Empresa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Persona.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reviews.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reviews.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Turno.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Turno.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/Voter/TurnoVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/TurnoVoter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/TurnoResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TurnoResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/UserResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/UserResourceTest.php" afterDir="false" />
+>>>>>>> doctrine
+=======
+      <change beforePath="$PROJECT_DIR$/src/Swagger/SwaggerDecorator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swagger/SwaggerDecorator.php" afterDir="false" />
+>>>>>>> 651c4c7644d3dc275596c26191b6c222d41a0710
+>>>>>>> frontend
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +212,18 @@
       <path value="$PROJECT_DIR$/vendor/league/flysystem" />
       <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+<<<<<<< HEAD
       <path value="$PROJECT_DIR$/vendor/gesdinet/jwt-refresh-token-bundle" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <path value="$PROJECT_DIR$/vendor/gesdinet/jwt-refresh-token-bundle" />
+>>>>>>> doctrine
+=======
+      <path value="$PROJECT_DIR$/vendor/gesdinet/jwt-refresh-token-bundle" />
+>>>>>>> 651c4c7644d3dc275596c26191b6c222d41a0710
+>>>>>>> frontend
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -183,6 +246,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\trabajo pagiNA\my-api_reysis\src\DataFixtures\images" />
       <recent name="D:\trabajo pagiNA\my-api_reysis\assets\fonts" />
       <recent name="D:\trabajo pagiNA\my-api_reysis\assets" />
     </key>
@@ -220,7 +284,20 @@
       <workItem from="1602270267253" duration="16049000" />
       <workItem from="1602520224948" duration="27838000" />
       <workItem from="1602853804174" duration="45387000" />
+<<<<<<< HEAD
+      <workItem from="1603289194801" duration="10409000" />
+      <workItem from="1603320421866" duration="684000" />
+      <workItem from="1603327272248" duration="5565000" />
+      <workItem from="1603375879938" duration="1559000" />
+      <workItem from="1603456968417" duration="907000" />
+=======
       <workItem from="1603289194801" duration="6665000" />
+      <workItem from="1604928584278" duration="28588000" />
+<<<<<<< HEAD
+>>>>>>> doctrine
+=======
+      <workItem from="1605892316608" duration="590000" />
+>>>>>>> doctrine
     </task>
     <servers />
   </component>
@@ -235,45 +312,86 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1602552384043" />
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1602262156896">
+<<<<<<< HEAD
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1603819648472">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1602262156896" />
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1603819648472" />
+    <state x="595" y="161" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603735233794">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="595" y="161" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1603735233794" />
+=======
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1605560645329">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1605560645329" />
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605193998512">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1605193998512" />
+>>>>>>> doctrine
     <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602867674534">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860@0.0.1600.860" timestamp="1602867674534" />
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602085872703">
+<<<<<<< HEAD
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603724475494">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1602085872703" />
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1603724475494" />
+=======
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605560662180">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1605560662180" />
+>>>>>>> doctrine
     <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600700043484">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1602261885417">
+<<<<<<< HEAD
+    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1603821645178">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1602261885417" />
+    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1603821645178" />
+=======
+    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1605560621977">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1605560621977" />
+>>>>>>> doctrine
     <state x="634" y="353" key="NewPhpFileDialog" timestamp="1602167511276">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1602167511276" />
-    <state x="626" y="132" key="RollbackChangesDialog" timestamp="1600699993313">
+    <state x="626" y="132" key="RollbackChangesDialog" timestamp="1603899027390">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="626" y="132" key="RollbackChangesDialog/0.0.1600.860@0.0.1600.860" timestamp="1600699993313" />
+    <state x="626" y="132" key="RollbackChangesDialog/0.0.1600.860@0.0.1600.860" timestamp="1603899027390" />
     <state x="301" y="75" key="SettingsEditor" timestamp="1602790991465">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1602790991465" />
-    <state x="456" y="195" key="run.anything.popup" timestamp="1602899922734">
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <state x="456" y="195" key="run.anything.popup" timestamp="1603774117517">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1602899922734" />
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1603774117517" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1603773025256">
+=======
+    <state x="456" y="195" key="run.anything.popup" timestamp="1605565773645">
+=======
+    <state x="456" y="195" key="run.anything.popup" timestamp="1605621583506">
+>>>>>>> doctrine
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1605621583506" />
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1602952168779">
+>>>>>>> doctrine
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1602952168779" />
+    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1603773025256" />
   </component>
 </project>

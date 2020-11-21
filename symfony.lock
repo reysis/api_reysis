@@ -122,6 +122,9 @@
     "gesdinet/jwt-refresh-token-bundle": {
         "version": "v0.9.1"
     },
+    "gesdinet/jwt-refresh-token-bundle": {
+        "version": "v0.9.1"
+    },
     "hautelook/alice-bundle": {
         "version": "2.1",
         "recipe": {
@@ -137,7 +140,11 @@
         ]
     },
     "imagine/imagine": {
+<<<<<<< HEAD
         "version": "1.2.4"
+=======
+        "version": "1.2.3"
+>>>>>>> frontend
     },
     "jms/metadata": {
         "version": "2.3.0"
@@ -471,7 +478,11 @@
         "version": "v1.18.1"
     },
     "symfony/process": {
+<<<<<<< HEAD
         "version": "v5.1.8"
+=======
+        "version": "v5.1.7"
+>>>>>>> frontend
     },
     "symfony/property-access": {
         "version": "v5.1.7"
@@ -530,7 +541,11 @@
         "version": "v5.1.7"
     },
     "symfony/templating": {
+<<<<<<< HEAD
         "version": "v5.1.8"
+=======
+        "version": "v5.1.7"
+>>>>>>> frontend
     },
     "symfony/translation": {
         "version": "3.3",

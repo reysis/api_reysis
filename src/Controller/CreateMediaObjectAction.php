@@ -3,14 +3,35 @@
 
 namespace App\Controller;
 
+use ApiPlatform\Core\Bridge\Symfony\Validator\Exception\ValidationException;
 use App\Entity\MediaObject;
+use App\Form\MediaObjectType;
+use Doctrine\ORM\EntityManagerInterface;
+use League\Flysystem\FilesystemInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class CreateMediaObjectAction
 {
+
+    private $publicFilesystem;
+
+    private $privateFilesystem;
+
+    public function __construct(FilesystemInterface $publicUploadFilesystem, FilesystemInterface $privateUploadFilesystem)
+    {
+        $this->publicFilesystem = $publicUploadFilesystem;
+        $this->privateFilesystem = $privateUploadFilesystem;
+    }
+
     public function __invoke(Request $request): MediaObject
     {
+
         $uploadedFile = $request->files->get('file');
         if (!$uploadedFile) {
             throw new BadRequestHttpException('"file" is required');
