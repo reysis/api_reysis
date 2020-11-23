@@ -2,53 +2,103 @@
 
 	.text-wrapper {
 		height: 100%;
-	    display: table;
-	    padding-left: 140px;
+		display: table;
+		padding-left: 140px;
 
-	    &>div {
+		&>div {
 			vertical-align: middle;
-		    display: table-cell;
+			display: table-cell;
 		}
 	}
 
 	.feature-header {
 		color: $color-dark;
-        padding-bottom: 1.5em;
-        animation-delay: .3s;
 
-        h2 {
-            font-size: 2.2em;
-            font-weight: 700;
-            margin-bottom: 0 !important;
+		h2 {
+			font-size: 2.5em;
+			font-weight: 700;
+			margin-bottom: 0 !important;
 
-            span {
-                color: $color-primary;
-            }
-        }
+			span {
+				color: $color-primary;
+			}
+		}
+
+		p {
+			color: $color-muted;
+		}
 	}
 
 	.acercade-button {
-        font-family: 'IBMPlexSans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 14px;
-        padding: 10px 30px;
-        font-weight: 400;
-        color: $color-light;
-        background-color: $color-button-primary;
-        border-radius: 30px;
-        box-shadow: -4px 3px 18px 0px #0000007d;
-        border-color: transparent !important;
-        transition: 0.2s ease-out;
-        text-transform: uppercase;
-        margin: .6em 0;
+		font-family: 'IBMPlexSans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		font-size: 14px;
+		padding: 10px 30px;
+		font-weight: 400;
+		color: $color-light;
+		background-color: $color-button-primary;
+		border-radius: 30px;
+		box-shadow: -4px 3px 18px 0px #0000007d;
+		border-color: transparent !important;
+		transition: 0.2s ease-out;
+		text-transform: uppercase;
+		margin: .6em 0;
 
-        &:hover {
-            background-color: $color-dark;
-        }
+		&:hover {
+			background-color: $color-dark;
+		}
 
-        &:link,
-        &:active {
-            border: 2px solid $color-primary !important;
-        }
-    }
+		&:link,
+		&:active {
+			border: 2px solid $color-primary !important;
+		}
+	}
 
+	.feature-bg {
+		background: $color-primary;
+	}
+
+	.feature-thumb {
+		padding: 40px 0;
+
+		.feature-item {
+			padding: 20px 30px;
+
+			.icon {
+				float: left;
+				border: 1px solid $color-light;
+				width: 80px;
+				height: 80px;
+				text-align: center;
+				border-radius: 50%;
+				transition: all .6s ease;
+
+				svg {
+					font-size: 36px;
+					color: $color-light;
+					line-height: 80px;
+					margin: calc(50% - 36px / 2) auto;
+				}
+			}
+
+			.feature-content {
+				color: $color-light;
+				margin-left: 100px;
+
+				h3 {
+					color: $color-light;
+					text-transform: uppercase;
+					font-size: 18px;
+					font-weight: 700;
+				}
+			}
+
+			&:hover .icon {
+				background: $color-light;
+			}
+
+			&:hover .icon svg {
+				color: $color-primary;
+			}
+		}
+	}
 }

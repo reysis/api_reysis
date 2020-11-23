@@ -50,11 +50,11 @@
                 }
             }
 
-            @for $singleStatistic from 1 through 8 {
-                &:nth-child(#{$singleStatistic}) {
-                    transition-delay: $singleStatistic * 0.4s; 
-                }
-            }
+            // @for $singleStatistic from 1 through 8 {
+            //     &:nth-child(#{$singleStatistic}) {
+            //         transition-delay: $singleStatistic * 0.4s; 
+            //     }
+            // }
         }
 
         .single-statistic-count {

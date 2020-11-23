@@ -6,57 +6,69 @@ import { serviceFetch } from '../redux/service/serviceActions';
 
 import ServiceCard from '../components/ServiceCard';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-
-import { Alert } from 'react-bootstrap';
-
 const ServicesHome = () => {
 
-    const loading = useSelector(state => state.service.loading)
-    const services = useSelector(state => state.service.services)
-    const error = useSelector(state => state.service.error)
+	const loading = useSelector(state => state.service.loading)
+	const services = useSelector(state => state.service.services)
+	const error = useSelector(state => state.service.error)
 
-    const dispatch = useDispatch()
+	const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(serviceFetch())
-    }, [])
+	useEffect(() => {
+		dispatch(serviceFetch())
+	}, [])
 
-    return (
-        <section id="services" className="services-home section-padding">
-            <div className="services-header">
-                <h2 className="mx-4">Nuestros <span>servicios</span></h2>
-            </div>
-            {/* <div className="shape-background-1" />
-            <div className="shape-background-2" /> */}
-            <Alert role={"status"} variant={"info"} show={loading}>
-                Loading...
-            </Alert>
-            <Alert role={"alert"} variant={"danger"} show={error} >
-                <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
-                {error}
-            </Alert>
-            {
-                loading != undefined && !loading && error != undefined && !error &&
-                <div className="container cards-container cards-style">
-                    {
-                        services.map(service => {
-                            return (
-                                <ServiceCard key={service.id} nombre={service.nombre} descripcion={service.descripcion} imaage={service.image} />
-                            )
-                        })
-                    }
-                </div>
-            }
-        </section>
-    )
+	return (
+		<section id="services" className="services-component section-padding">
+			<div className="container">
+				<div className="services-header">
+					<h2 className="mx-4 pb-2">Nuestros <span>servicios</span></h2>
+					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste omnis <br />atque explicabo rerum enim ullam?</p>
+				</div>
+				{
+					loading != undefined && !loading && error != undefined && !error && services.length > 0
+						? (
+							<div className="row cards-container">
+								{
+									services.map((service, index) => {
+										return (
+											<ServiceCard key={service.id} nombre={service.nombre} descripcion={service.descripcion} image={service.image} aosDelay={300 * index} />
+										)
+									})
+								}
+							</div>
+						)
+						: (
+							<div className="row services-spinner">
+								{
+									[1, 2].map(value => {
+										return (
+											<div key={value} className="col-md-6 col-lg-4 col-xs-12">
+												<div data-aos="fade-up" data-aos-delay="300" className="card-spinner animated-background bg">
+													<div className="title-spinner fg" />
+													<div className="description-spinner" >
+														<div className="fg" />
+														<div className="fg" />
+														<div className="fg" />
+													</div>
+													<div className="button-spinner fg" />
+												</div>
+											</div>
+										)
+									})
+								}
+							</div>
+						)
+				}
+			</div>
+		</section >
+	)
 }
 
 ServicesHome.propTypes = {
-    loading: PropTypes.bool,
-    services: PropTypes.array,
-    error: PropTypes.string
+	loading: PropTypes.bool,
+	services: PropTypes.array,
+	error: PropTypes.string
 }
 
 export default ServicesHome

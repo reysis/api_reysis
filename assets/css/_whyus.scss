@@ -1,6 +1,6 @@
 .whyus-component {
     background: $color-gray;
-    
+
     .whyus-header {
         text-align: center;
         padding-bottom: 1.5em;
@@ -14,6 +14,10 @@
             span {
                 color: $color-primary;
             }
+        }
+
+        p {
+            color: $color-muted;
         }
     }
 

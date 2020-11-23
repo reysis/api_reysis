@@ -29,16 +29,20 @@
                 color: $color-primary
             }
         }
+
+        p {
+            color: $color-muted;
+        }
     }
 
     .opinions-container {
-        padding-right: 0; 
+        padding-right: 0;
         padding-left: 0;
         max-width: 700px;
 
         .carousel {
             width: 100%;
-            
+
             .carousel-inner {
                 min-height: 300px;
                 padding-top: 1em;
@@ -69,7 +73,7 @@
                     box-sizing: border-box !important;
                     opacity: 1 !important;
 
-                    &:hover, 
+                    &:hover,
                     &.active {
                         background: $color-primary !important;
                     }
@@ -77,9 +81,10 @@
             }
 
             .carousel-caption {
-                p { 
+                p {
                     color: $color-light;
                 }
+
                 .text-author {
                     font-size: 16px;
                     font-weight: 700;
@@ -94,7 +99,8 @@
                 padding: 7px;
             }
 
-            .carousel-control-prev, .carousel-control-next {
+            .carousel-control-prev,
+            .carousel-control-next {
                 width: 10%;
             }
         }
@@ -112,33 +118,36 @@
             background: rgba($color-gray, .5);
         }
 
-        .left, 
-        .right {
+        .left-spinner,
+        .right-spinner {
             width: 10%;
             height: 100%;
             opacity: .5;
         }
 
-        .content-data {
-            .image {
+        .content-data-spinner {
+            .image-spinner {
                 width: 70px;
                 height: 70px;
                 border-radius: 50%;
                 margin: 21px auto;
             }
-            .author {
+
+            .author-spinner {
                 width: 150px;
                 height: 1.5em;
                 margin: 25px auto 15px;
                 border-radius: 4px;
             }
-            .review {
+
+            .review-spinner {
                 width: 550px;
                 height: 3.5em;
                 margin: 15px auto 41px;
                 border-radius: 4px;
             }
-            .indicators {
+
+            .indicators-spinner {
                 margin: auto;
                 display: flex;
                 flex-direction: row;
@@ -152,17 +161,21 @@
                 }
             }
         }
+
         @keyframes opacityFrames {
             0% {
                 opacity: .4;
             }
+
             40% {
                 opacity: .7;
             }
+
             100% {
                 opacity: .4;
             }
         }
+
         &.animated-background {
             opacity: .4;
             animation-duration: 2s;
