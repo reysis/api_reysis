@@ -19,9 +19,9 @@ class Home extends Component {
         console.log(window.user);
         return (
             <main className="content-wrap">
-                <Landing /> 
+                <Landing />
+                <ServicesHome />
                 <About />
-                <ServicesHome /> 
                 <Estadisticas />
                 <Whyus />
                 <Opinions /> 
