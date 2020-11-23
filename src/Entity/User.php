@@ -158,7 +158,7 @@ class User implements UserInterface
      *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="phonenumber_id", referencedColumnName="id", unique=true)}
      *      )
-     * @Groups({"user:item:write", "owner:read", "turno:write"})
+     * @Groups({"user:write", "owner:read", "turno:write"})
      * @Assert\NotBlank(groups={"create"})
      * @Assert\Valid()
      */
@@ -177,7 +177,7 @@ class User implements UserInterface
      * Datos del usuario si es una persona
      *
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:write","owner:read","turno:write"})
+     * @Groups({"user:write", "owner:read", "turno:write"})
      * @Assert\Valid()
      */
     private $persona;

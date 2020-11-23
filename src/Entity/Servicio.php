@@ -81,7 +81,7 @@ class Servicio
      * 
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
-     * @Groups({"servicio:item:get","servicio:read","servicio:write"})
+     * @Groups({"servicio:item:get","servicio:write"})
      */
     private $descripcion;
 

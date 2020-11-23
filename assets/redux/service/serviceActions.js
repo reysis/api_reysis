@@ -31,7 +31,7 @@ export const serviceFetch = (page = "/api/servicios") => dispatch => {
                 return {
                     id: value['@id'],
                     nombre: value['nombre'],
-                    descripcion: value['descripcion'],
+                    descripcion: value['shortDescription'],
                     image: value['image']
                 }
             })
