@@ -1,0 +1,49 @@
+.whyus-component {
+    background: $color-gray;
+    
+    .whyus-header {
+        text-align: center;
+        padding-bottom: 1.5em;
+
+        h2 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 0 !important;
+            color: $color-dark;
+
+            span {
+                color: $color-primary;
+            }
+        }
+    }
+
+    .whyus-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 0 1.5em;
+        margin: 0 auto;
+        max-width: 700px;
+
+        .item-whyus {
+            margin: 0 10px;
+
+            .icon-whyus {
+                padding: 4px;
+                font-size: 1.5em;
+                color: $color-primary;
+            }
+        }
+
+        .reason-whyus {
+            text-align: left;
+            margin: auto 0;
+            padding: 5px !important;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .whyus-container {
+            grid-template-columns: 1fr;
+        }
+    }
+}

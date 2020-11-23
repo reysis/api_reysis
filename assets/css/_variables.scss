@@ -1,51 +1,26 @@
-$sizeH1: calc(40px + 15*(100vw - 480px)/760);
-$sizeH2: calc(35px + 10*(100vw - 480px)/760);
-$sizeH3-small-screen: calc(17px + 5*(100vw - 480px)/760);
-$sizeH3-big-screen: calc(10px + 5*(100vw - 480px)/760);
-$sizeNormalText: calc(14.875px + 3.125*(100vw - 480px)/760);
+// $sizeH1: calc(40px + 15*(100vw - 480px)/760);
+// $sizeH2: calc(35px + 10*(100vw - 480px)/760);
+// $sizeH3-small-screen: calc(17px + 5*(100vw - 480px)/760);
+// $sizeH3-big-screen: calc(10px + 5*(100vw - 480px)/760);
+// $sizeNormalText: calc(14.875px + 3.125*(100vw - 480px)/760);
 
+/* Font sizes */
 $size-small: .75em;
 $size-normal: 1em;
 $size-big: 1.25em;
 
-/* Paleta de color 1 */
-/*$color1: #2E279D;
-$color2: #4D80E4;
-$color3: #46B3E6;
-$color4: #ACE5FF;
-$color5: #FFFFFF;
-//$color6: #0c0818;*/
-$color6: #13111B;
-
-/* Paleta de Color 2 */
-/*$color1: #300065;
-$color2: #7A08FA; 
-$color3: #A82FFC;
-$color4: #D189FF;
-$color5: #FFFFFF;*/
-
-/* Paleta de Color 3 */
-/*$color1: #311D3F;
-$color2: #522546;
-$color3: #88304E;
-$color4: #E23E57;
-$color5: #FFFFFF;*/
-
-/* Paleta de Color 4 */
-/*$color1: #6730EC;
-$color2: #7984EE;
-$color3: #A9D2FF;
-$color4: #D2F6FC;
-$color5: #FFFFFF;*/
-
-/* Paleta de Color 5 */
-// $color1: #3e61b5;
+/* Paleta de Color */
 $color-black: #343a40;
+$color-dark: #222222;
+$color-gray: #f9f9f9;
 $color-white: #eeeeee;
-$color1: #416bd1;
+// $color-primary: #416bd1;
+$color-muted: #6c757d;
+$color-primary: #3d60f4;
 $color1-degradado: rgba(18, 40, 93, 0.3);
 $color2: #1E56A0;
-//$color3: #D6E4F0;
 $color3: linear-gradient(20deg, rgb(246, 248, 250) 0%, rgb(246, 248, 250) 33%, rgb(246, 248, 250) 100%);
 $color4: #F6F6F6;
-$color5: #FFFFFF;
+$color-light: #FFFFFF;
+$color6: #13111B;
+$color-button-primary: #3d60f4;

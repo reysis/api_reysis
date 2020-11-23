@@ -1,0 +1,110 @@
+.form-group {
+  margin: 0.5em auto;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  align-self: center;
+  flex: 1 100%;
+}
+
+.form-group .btn {
+  align-self: center;
+}
+
+.form-label {
+  margin: 0.5em auto;
+  width: 100%;
+  line-height: 1;
+}
+
+.form-in-center {
+  text-align: center;
+}
+
+.form-login,
+.form-register,
+.form-turno {
+  margin: 1em auto 1em auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-self: center;
+  padding: 0 29px 0 29px;
+  background-color: #7b9c9d1a;
+
+  box-shadow: #00000029 0px 4px 16px 0px;
+  border-radius: 5px;
+
+  color: #000000;
+  flex: 1 100%;
+}
+
+.form-header {
+  margin: 1em auto;
+}
+
+.form-control {
+  margin: 0 auto;
+
+}
+
+.login-separator,
+.register-separator {
+  text-align: center;
+
+  .hr {
+    font-size: 13px;
+    opacity: .4;
+  }
+
+  .hr::before,
+  .hr::after {
+    content: "";
+    background-color: #8C969D;
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+  }
+
+  .hr::before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+
+  .hr::after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
+}
+
+.form-group-password {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+}
+
+
+.password-group-1,
+.password-group-2 {
+  display: contents;
+}
+
+/* Large screens */
+@media all and (min-width: 1000px) {
+  .form-group-turno {
+    width: 80%;
+  }
+
+  .form-label {
+    // font-size: $sizeH3-big-screen;
+  }
+}
+
+@media (max-width: 425px) {
+  .form-group-password {
+    display: inherit; 
+  }
+}
