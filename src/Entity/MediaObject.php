@@ -17,14 +17,26 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ApiResource(
  *     iri="http://schema.org/MediaObject",
  *     normalizationContext={
- *         "groups"={"media_object_read"}
+ *         "groups"={"mediaobject:read"}
  *     },
  *     collectionOperations={
  *         "post"={
  *             "controller"=CreateMediaObjectAction::class,
  *             "deserialize"=false,
- *             "security"="is_granted('ROLE_USER')",
  *             "validation_groups"={"Default", "media_object_create"},
+ *             "swagger_context"={
+ *                 "consumes"={
+ *                     "multipart/form-data",
+ *                 },
+ *                 "parameters"={
+ *                     {
+ *                         "in"="formData",
+ *                         "name"="file",
+ *                         "type"="file",
+ *                         "description"="The file to upload",
+ *                     },
+ *                 },
+ *             },
  *             "openapi_context"={
  *                 "requestBody"={
  *                     "content"={
@@ -41,7 +53,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *                         }
  *                     }
  *                 }
- *             }
+ *             },
  *         },
  *         "get"
  *     },
@@ -66,14 +78,14 @@ class MediaObject
      * @var string|null
      *
      * @ApiProperty(iri="http://schema.org/contentUrl")
-     * @Groups({"media_object_read"})
+     * @Groups({"mediaobject:read", "tiposservicios:read"})
      */
     public $contentUrl;
 
     /**
      * @var File|null
      *
-     * @Assert\NotNull(groups={"media_object_create"})
+     * @Assert\NotNull(groups={"media_object:create"})
      * @Vich\UploadableField(mapping="media_object", fileNameProperty="filePath")
      */
     public $file;
@@ -85,8 +97,26 @@ class MediaObject
      */
     public $filePath;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"mediaobject:read", "admin:write"})
+     */
+    private $isPublic;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): self
+    {
+        $this->isPublic = $isPublic;
+
+        return $this;
     }
 }

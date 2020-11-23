@@ -4,9 +4,28 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ServicioRepository;
+use ApiPlatform\Core\Annotation\ApiProperty;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(
+ *     iri="http://schema.org/Service",
+ *     collectionOperations={
+ *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
+ *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios"
+ *          }
+ *     },
+ *     itemOperations={
+ *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *      },
+ * )
  * @ORM\Entity(repositoryClass=ServicioRepository::class)
  */
 class Servicio
@@ -19,175 +38,69 @@ class Servicio
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"servicio:read", "admin:read", "admin:write"})
      */
-    private $noServicio;
+    private $nombre;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $fechaInicio;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $totalHoraTrabajada;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $fechaTerminacion;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $fechaEntrega;
-
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $costo;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $estado;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $defecto;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $FT;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
+     * @var string|null una descripción completa del servicio
+     * 
+     * @ORM\Column(type="text")
+     * @ApiProperty(iri="http://schema.org/description")
+     * @Groups({"servicio:item:get","admin:read","admin:write"})
      */
     private $descripcion;
 
     /**
-     * @ORM\ManyToOne(targetEntity=TiposServicios::class, inversedBy="servicios")
-     * @ORM\JoinColumn(nullable=false)
+     * @var MediaObject|null
+     *
+     * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     * @ApiProperty(iri="http://schema.org/image")
+     * @Groups({"servicio:read", "admin:read", "admin:write"})
      */
-    private $tipoServicio;
+    public $image;
+    /**
+     * @ORM\OneToMany(targetEntity=OrdenServicio::class, mappedBy="servicio", orphanRemoval=true)
+     * @Groups({"admin:read", "admin:write"})
+     */
+    private $servicioPrestado;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Equipo::class, inversedBy="servicios")
+     * @return MediaObject|null
      */
-    private $equipo;
+    public function getImage(): ?MediaObject
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param MediaObject|null $image
+     */
+    public function setImage(?MediaObject $image): void
+    {
+        $this->image = $image;
+    }
+
+    public function __construct()
+    {
+        $this->servicios = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNoServicio(): ?string
+    public function getNombre(): ?string
     {
-        return $this->noServicio;
+        return $this->nombre;
     }
 
-    public function setNoServicio(string $noServicio): self
+    public function setNombre(string $nombre): self
     {
-        $this->noServicio = $noServicio;
-
-        return $this;
-    }
-
-    public function getFechaInicio(): ?\DateTimeInterface
-    {
-        return $this->fechaInicio;
-    }
-
-    public function setFechaInicio(\DateTimeInterface $fechaInicio): self
-    {
-        $this->fechaInicio = $fechaInicio;
-
-        return $this;
-    }
-
-    public function getTotalHoraTrabajada(): ?int
-    {
-        return $this->totalHoraTrabajada;
-    }
-
-    public function setTotalHoraTrabajada(int $totalHoraTrabajada): self
-    {
-        $this->totalHoraTrabajada = $totalHoraTrabajada;
-
-        return $this;
-    }
-
-    public function getFechaTerminacion(): ?\DateTimeInterface
-    {
-        return $this->fechaTerminacion;
-    }
-
-    public function setFechaTerminacion(?\DateTimeInterface $fechaTerminacion): self
-    {
-        $this->fechaTerminacion = $fechaTerminacion;
-
-        return $this;
-    }
-
-    public function getFechaEntrega(): ?\DateTimeInterface
-    {
-        return $this->fechaEntrega;
-    }
-
-    public function setFechaEntrega(?\DateTimeInterface $fechaEntrega): self
-    {
-        $this->fechaEntrega = $fechaEntrega;
-
-        return $this;
-    }
-
-    public function getCosto(): ?float
-    {
-        return $this->costo;
-    }
-
-    public function setCosto(?float $costo): self
-    {
-        $this->costo = $costo;
-
-        return $this;
-    }
-
-    public function getEstado(): ?string
-    {
-        return $this->estado;
-    }
-
-    public function setEstado(string $estado): self
-    {
-        $this->estado = $estado;
-
-        return $this;
-    }
-
-    public function getDefecto(): ?string
-    {
-        return $this->defecto;
-    }
-
-    public function setDefecto(?string $defecto): self
-    {
-        $this->defecto = $defecto;
-
-        return $this;
-    }
-
-    public function getFT(): ?bool
-    {
-        return $this->FT;
-    }
-
-    public function setFT(?bool $FT): self
-    {
-        $this->FT = $FT;
+        $this->nombre = $nombre;
 
         return $this;
     }
@@ -197,34 +110,53 @@ class Servicio
         return $this->descripcion;
     }
 
-    public function setDescripcion(?string $descripcion): self
+    public function setDescripcion(string $descripcion): self
     {
         $this->descripcion = $descripcion;
 
         return $this;
     }
 
-    public function getTipoServicio(): ?TiposServicios
+    /**
+     * @return Collection|OrdenServicio[]
+     */
+    public function getServicioPrestado(): Collection
     {
-        return $this->tipoServicio;
+        return $this->servicioPrestado;
     }
 
-    public function setTipoServicio(?TiposServicios $tipoServicio): self
+    public function addServicioPrestado(OrdenServicio $servicio): self
     {
-        $this->tipoServicio = $tipoServicio;
+        if (!$this->servicioPrestado->contains($servicio)) {
+            $this->servicioPrestado[] = $servicio;
+            $servicio->setTipoServicio($this);
+        }
 
         return $this;
     }
 
-    public function getEquipo(): ?Equipo
+    public function removeServicioPrestado(OrdenServicio $servicio): self
     {
-        return $this->equipo;
-    }
-
-    public function setEquipo(?Equipo $equipo): self
-    {
-        $this->equipo = $equipo;
+        if ($this->servicioPrestado->contains($servicio)) {
+            $this->servicioPrestado->removeElement($servicio);
+            // set the owning side to null (unless already changed)
+            if ($servicio->getTipoServicio() === $this) {
+                $servicio->setTipoServicio(null);
+            }
+        }
 
         return $this;
+    }
+
+
+    /**
+     * @Groups({"servicio:read"})
+     */
+    public function getShortDescription(): ?string
+    {
+        if(strlen($this->descripcion) < 70){
+            return $this->descripcion;
+        }
+        return substr($this->descripcion, 0, 70).'...';
     }
 }
