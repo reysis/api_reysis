@@ -1,16 +1,33 @@
-@import "./css/variables";
-@import "./css/main.scss";
-@import "./css/landing.scss";
-@import "./css/navbar.scss";
-@import "./css/cards.scss";
-@import "./css/statistic.scss";
-@import "./css/opinions.scss";
-@import "./css/footer.scss";
-@import "./css/faq.scss";
-@import "./css/about.scss";
-@import "./css/contact.scss";
-@import "./css/calendar.scss";
-@import "./css/formulario.scss";
-@import "./css/page.scss";
+/* NORMALIZE */
 @import "./css/normalize.scss";
-@import "./css/headers.scss";
+
+/* VARIABLES & MIXINS */
+@import "./css/variables";
+// @import "./css/mixins.scss";
+
+/* GENERAL */
+@import "./css/main.scss";
+@import "./css/page.scss";
+
+/* HOME */
+@import "./css/navbar.scss";
+@import "./css/about.scss";
+@import "./css/landing.scss";
+@import "./css/services.scss";
+@import "./css/statistic.scss";
+@import "./css/whyus.scss";
+@import "./css/opinions.scss";
+@import "./css/contact.scss";
+@import "./css/footer.scss";
+
+/* LOGIN & LOGUOT PAGE */
+@import "./css/formulario.scss";
+
+/* FAQ PAGE */
+@import "./css/faq.scss";
+
+/* ABOUT PAGE */
+@import "./css/about-page.scss";
+
+/* CALENDAR FOR APPOINTMENT */
+@import "./css/calendar.scss";

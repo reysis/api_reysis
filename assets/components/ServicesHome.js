@@ -24,12 +24,12 @@ const ServicesHome = () => {
     }, [])
 
     return (
-        <section id="services" className="services-home">
+        <section id="services" className="services-home section-padding">
             <div className="services-header">
                 <h2 className="mx-4">Nuestros <span>servicios</span></h2>
             </div>
-            <div className="shape-background-1" />
-            <div className="shape-background-2" />
+            {/* <div className="shape-background-1" />
+            <div className="shape-background-2" /> */}
             <Alert role={"status"} variant={"info"} show={loading}>
                 Loading...
             </Alert>

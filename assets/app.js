@@ -24,7 +24,8 @@ import history from './history';
 class App extends Component {
     componentDidMount() {
         AOS.init({
-            duration: 1500,
+            easing: 'ease-in-sine',
+            duration: 1000,
             once: true
         })
     }

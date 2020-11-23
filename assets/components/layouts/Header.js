@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import useMediaQuery from '@restart/hooks/useMediaQuery/'
+
 import { NavLink } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
@@ -20,21 +22,19 @@ const Header = () => {
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
-            let scroll = pathname == "/" ? 200 : 50
-            setScrolled(window.scrollY >= scroll)
+            setScrolled(window.scrollY >= 50)
         })
         return () => {
             window.removeEventListener('scroll', () => {
-                let scroll = pathname == "/" ? 200 : 50
-                setScrolled(window.scrollY >= scroll)
+                setScrolled(window.scrollY >= 50)
             })
         }
     }, [])
 
     useLayoutEffect(() => {
         setClassName(() => {
-            const response = ["header-container"]
-            if(scrolled) response.push("header-minimized")
+            const response = ["header-container", "header-minimized"]
+            if(scrolled) response.push("header-shadow")
             if(scrolled || pathname != "/") response.push("fixed-top")
             return response.join(' ')
         })
