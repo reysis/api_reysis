@@ -10,14 +10,46 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource(
  *     iri="http://schema.org/Service",
  *     collectionOperations={
  *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
- *          "post" = {"security_post_denormalize"="is_granted('POST', object)",
- *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios"
+ *          "post" = {
+ *                  "security_post_denormalize"="is_granted('POST', object)",
+ *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios",
+ *                  "swagger_context"={
+ *                      "consumes"={
+ *                          "multipart/form-data",
+ *                      },
+ *                      "parameters"={
+ *                      {
+ *                         "in"="formData",
+ *                         "name"="image",
+ *                         "type"="file",
+ *                         "description"="The file to upload",
+ *                     },
+ *                 },
+ *                 "openapi_context"={
+ *                      "requestBody"={
+ *                          "content"={
+ *                              "multipart/form-data"={
+ *                                  "schema"={
+ *                                      "type"="object",
+ *                                      "properties"={
+ *                                          "image"={
+ *                                              "type"="string",
+ *                                              "format"="binary"
+ *                                          }
+ *                                      }
+ *                                  }
+ *                              }
+ *                          }
+ *                      }
+ *                  },
+ *             },
  *          }
  *     },
  *     itemOperations={
@@ -27,6 +59,7 @@ use Doctrine\ORM\Mapping as ORM;
  *      },
  * )
  * @ORM\Entity(repositoryClass=ServicioRepository::class)
+ * @Vich\Uploadable
  */
 class Servicio
 {
@@ -39,7 +72,7 @@ class Servicio
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"servicio:read", "admin:read", "admin:write"})
+     * @Groups({"servicio:read", "servicio:read", "servicio:write"})
      */
     private $nombre;
 
@@ -48,7 +81,7 @@ class Servicio
      * 
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
-     * @Groups({"servicio:item:get","admin:read","admin:write"})
+     * @Groups({"servicio:item:get","servicio:read","servicio:write"})
      */
     private $descripcion;
 
@@ -58,7 +91,11 @@ class Servicio
      * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      * @ApiProperty(iri="http://schema.org/image")
-     * @Groups({"servicio:read", "admin:read", "admin:write"})
+     * @Groups({"servicio:read", "servicio:write"})
+     * @Vich\UploadableField (
+     *     mapping="typeService",
+     *     fileNameProperty="filePath"
+     * )
      */
     public $image;
     /**
@@ -66,6 +103,18 @@ class Servicio
      * @Groups({"admin:read", "admin:write"})
      */
     private $servicioPrestado;
+
+    /**
+     * Ultia fecha en la que se actualizó la imagen
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    public function __construct()
+    {
+        $this->servicios = new ArrayCollection();
+    }
 
     /**
      * @return MediaObject|null
@@ -81,11 +130,23 @@ class Servicio
     public function setImage(?MediaObject $image): void
     {
         $this->image = $image;
+        if (null !== $image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->setUpdatedAt(new \DateTime());
+        }
     }
 
-    public function __construct()
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        $this->servicios = new ArrayCollection();
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 
     public function getId(): ?int

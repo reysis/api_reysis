@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\DTO\MediaObjectOutput;
 
 /**
  * @ORM\Entity
@@ -47,7 +48,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *                                     "file"={
  *                                         "type"="string",
  *                                         "format"="binary"
- *                                     }
+ *                                     },
  *                                 }
  *                             }
  *                         }
@@ -78,7 +79,7 @@ class MediaObject
      * @var string|null
      *
      * @ApiProperty(iri="http://schema.org/contentUrl")
-     * @Groups({"mediaobject:read", "tiposservicios:read"})
+     * @Groups({"mediaobject:read", "servicio:read", "servicio:write"})
      */
     public $contentUrl;
 
@@ -97,26 +98,8 @@ class MediaObject
      */
     public $filePath;
 
-    /**
-     * @ORM\Column(type="boolean")
-     * @Groups({"mediaobject:read", "admin:write"})
-     */
-    private $isPublic;
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIsPublic(): ?bool
-    {
-        return $this->isPublic;
-    }
-
-    public function setIsPublic(bool $isPublic): self
-    {
-        $this->isPublic = $isPublic;
-
-        return $this;
     }
 }

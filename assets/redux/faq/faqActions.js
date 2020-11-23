@@ -21,7 +21,7 @@ export const faqError = (error) => {
     };
 }
 
-export const faqFetch = (page = "/api/f_a_qs") => dispatch => {
+export const faqFetch = (page = "/api/f-a-qs") => dispatch => {
     dispatch(faqRequest());
 
     fetch(page)

@@ -11,6 +11,8 @@ use League\Flysystem\FilesystemInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -18,21 +20,14 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class CreateMediaObjectAction
 {
-
-    private $publicFilesystem;
-
-    private $privateFilesystem;
-
-    public function __construct(FilesystemInterface $publicUploadFilesystem, FilesystemInterface $privateUploadFilesystem)
-    {
-        $this->publicFilesystem = $publicUploadFilesystem;
-        $this->privateFilesystem = $privateUploadFilesystem;
-    }
-
     public function __invoke(Request $request): MediaObject
     {
-
+        /**
+         * @var UploadedFile $uploadedFile
+         */
         $uploadedFile = $request->files->get('file');
+
+        dd($request);
         if (!$uploadedFile) {
             throw new BadRequestHttpException('"file" is required');
         }

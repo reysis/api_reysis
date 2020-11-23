@@ -15,6 +15,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
+ *          "get" = {
+ *                  "method" = "GET",
+ *                  "controller" = NotFoundAction::class,
+ *                  "read" = false,
+ *                  "output" = false
+ *          },
  *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
  * )
@@ -41,6 +47,11 @@ class FAQ
      */
     private $answer;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,6 +77,18 @@ class FAQ
     public function setAnswer(string $answer): self
     {
         $this->answer = $answer;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
