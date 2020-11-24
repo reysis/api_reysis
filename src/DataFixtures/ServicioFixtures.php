@@ -6,8 +6,7 @@ namespace App\DataFixtures;
 
 use App\Entity\MediaObject;
 use App\Entity\Servicio;
-use App\Entity\TiposServicios;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 class ServicioFixtures extends BaseFixture
 {

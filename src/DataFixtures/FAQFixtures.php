@@ -5,7 +5,7 @@ namespace App\DataFixtures;
 
 
 use App\Entity\FAQ;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 class FAQFixtures extends BaseFixture
 {

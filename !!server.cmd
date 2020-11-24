@@ -1,1 +1,0 @@
-cd D:\DOCUMENTOS\FRANK\TRABAJOS\reysis\api_reysis & d: & symfony serve
