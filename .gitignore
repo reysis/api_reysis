@@ -38,3 +38,9 @@ yarn-error.log
 
 .vscode
 .idea
+
+###locks
+composer.lock
+symfony.lock
+package-lock.json
+###
