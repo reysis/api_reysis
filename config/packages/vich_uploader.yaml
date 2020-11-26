@@ -4,11 +4,11 @@ vich_uploader:
 
     mappings:
         media_object:
-            uri_prefix: /media
+            uri_prefix: '%uploads_base_url%'
             upload_destination: public_uploads_filesystem
             # Will rename uploaded files using a uniqueid as a prefix.
             namer: Vich\UploaderBundle\Naming\OrignameNamer
         typeService:
-            uri_prefix: /media/servicios
+            uri_prefix: '%uploads_base_url%/service_image'
             upload_destination: public_uploads_filesystem
             namer: Vich\UploaderBundle\Naming\OrignameNamer

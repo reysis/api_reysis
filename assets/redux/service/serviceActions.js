@@ -32,7 +32,7 @@ export const serviceFetch = (page = "/api/servicios") => dispatch => {
                     id: value['@id'],
                     nombre: value['nombre'],
                     descripcion: value['shortDescription'],
-                    image: value['image']
+                    image: value['image'][0]['contentUrl']
                 }
             })
             dispatch(serviceSuccess(response));

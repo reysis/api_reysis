@@ -87,7 +87,7 @@ class MediaObject
      * @var File|null
      *
      * @Assert\NotNull(groups={"media_object:create"})
-     * @Vich\UploadableField(mapping="media_object", fileNameProperty="filePath")
+     * @Vich\UploadableField(mapping="typeService", fileNameProperty="filePath")
      */
     public $file;
 
@@ -98,8 +98,87 @@ class MediaObject
      */
     public $filePath;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Servicio::class, inversedBy="image")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $servicio;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    public function getServicio(): ?Servicio
+    {
+        return $this->servicio;
+    }
+
+    public function setServicio(?Servicio $servicio): self
+    {
+        $this->servicio = $servicio;
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param File|null $file
+     */
+    public function setFile(?File $file): void
+    {
+        $this->file = $file;
+        if($file){
+            $this->setUpdatedAt(new \DateTime());
+        }
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFilePath(): ?string
+    {
+        return $this->filePath;
+    }
+
+    /**
+     * @param string|null $filePath
+     */
+    public function setFilePath(?string $filePath): void
+    {
+        $this->filePath = $filePath;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @param string|null $contentUrl
+     */
+    public function setContentUrl(?string $contentUrl): void
+    {
+        $this->contentUrl = $contentUrl;
+    }
+
 }

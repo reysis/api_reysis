@@ -86,19 +86,6 @@ class Servicio
     private $descripcion;
 
     /**
-     * @var MediaObject|null
-     *
-     * @ORM\ManyToOne(targetEntity=MediaObject::class, cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
-     * @ApiProperty(iri="http://schema.org/image")
-     * @Groups({"servicio:read", "servicio:write"})
-     * @Vich\UploadableField (
-     *     mapping="typeService",
-     *     fileNameProperty="filePath"
-     * )
-     */
-    public $image;
-    /**
      * @ORM\OneToMany(targetEntity=OrdenServicio::class, mappedBy="servicio", orphanRemoval=true)
      * @Groups({"admin:read", "admin:write"})
      */
@@ -111,30 +98,16 @@ class Servicio
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio", orphanRemoval=true, cascade={"persist", "remove"})
+     * @Groups({"servicio:read", "admin:write"})
+     */
+    private $image;
+
     public function __construct()
     {
         $this->servicios = new ArrayCollection();
-    }
-
-    /**
-     * @return MediaObject|null
-     */
-    public function getImage(): ?MediaObject
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param MediaObject|null $image
-     */
-    public function setImage(?MediaObject $image): void
-    {
-        $this->image = $image;
-        if (null !== $image) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->setUpdatedAt(new \DateTime());
-        }
+        $this->image = new ArrayCollection();
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
@@ -219,5 +192,35 @@ class Servicio
             return $this->descripcion;
         }
         return substr($this->descripcion, 0, 70).'...';
+    }
+
+    /**
+     * @return Collection|MediaObject[]
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(MediaObject $image): self
+    {
+        if (!$this->image->contains($image)) {
+            $this->image[] = $image;
+            $image->setServicio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(MediaObject $image): self
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getServicio() === $this) {
+                $image->setServicio(null);
+            }
+        }
+
+        return $this;
     }
 }

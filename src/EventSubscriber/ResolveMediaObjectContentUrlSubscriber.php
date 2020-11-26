@@ -55,4 +55,5 @@ final class ResolveMediaObjectContentUrlSubscriber implements EventSubscriberInt
             $mediaObject->contentUrl = $this->storage->resolveUri($mediaObject, 'file');
         }
     }
+
 }
