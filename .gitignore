@@ -33,14 +33,15 @@ yarn-error.log
 ###< liip/imagine-bundle ###
 
 /public_html/uploads
-=======
 .gitconfig
 
+###> IDEs ###
 .vscode
 .idea
+###> IDEs ###
 
-###locks
+###>locks ###
 composer.lock
 symfony.lock
 package-lock.json
-###
+###>locks ###
