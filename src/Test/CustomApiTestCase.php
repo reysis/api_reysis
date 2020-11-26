@@ -6,6 +6,7 @@ use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use App\Entity\Address;
 use App\Entity\PhoneNumber;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\TipoEquipo;
 use App\Entity\TipoUsuario;
@@ -13,16 +14,24 @@ use App\Entity\User;
 
 class CustomApiTestCase extends ApiTestCase
 {
+
+    protected function login(Client $client,string $username = 'user', string $password): ?string
+    {
+        $response = $client->request('POST','/api/authentication', [
+            'headers' => ['ContentType'=>'application/json+ld'],
+            'json'=> [
+                'username' => $username,
+                'password' => $password
+            ]
+        ]);
+        $this->assertEquals(200, $response->getStatusCode());
+        $data = json_decode($response->getContent(), true);
+
+        return $data['token'];
+    }
     /**
      * Función para crear una dirección
-     *
-     * @param string $street
-     * @param string $city
-     * @param string $number
-     * @param string $streetE1
-     * @param string $streetE2
-     * @param string $rpto
-     * @param string $country
+
      * @return Address
      */
     protected function createAddress(string $street, string $city, string $number, string $streetE1, string $streetE2, string $rpto, string $country){
@@ -40,10 +49,7 @@ class CustomApiTestCase extends ApiTestCase
 
     /**
      * Función para crear un Número de Telefono
-     *
-     * @param string $username
-     * @param string $password
-     * @param string $telephone
+
      * @return PhoneNumber
      */
     protected function createPhoneNumber(string $type, string $number){
@@ -56,9 +62,7 @@ class CustomApiTestCase extends ApiTestCase
 
     /**
      * Función para crear un usuario normal
-     *
-     * @param string $username
-     * @param string $password
+
      * @param TipoUsuario $tipoUsuario
      * @return User
      */
@@ -91,39 +95,12 @@ class CustomApiTestCase extends ApiTestCase
         return $user;
     }
 
-    /**
-     * Función para loguearse
-     *
-     * @param Client $client
-     * @param string $username
-     * @param string $password
-     * @return void
-     */
-    protected function logIn(Client $client, string $username, string $password)
-    {
-        $client->request('POST', '/api/authentication',[
-            'headers'=> ['ContentType'=>'application/json'],
-            'json' => [
-                'username' => $username,
-                'password' => $password, 
-            ],
-        ]);
-        $this->assertResponseStatusCodeSame(200);
-    }
 
-    protected function logOut(Client $client)
+    protected function createUserAndLogin(Client $client,string $username, string $password, string $phoneType, string $telephone) :?string
     {
-        $client->request('POST', '/api/logout',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
-        ]);
-    }
+        $this->createUser($username, $password, $phoneType,$telephone);
 
-    protected function createUserAndLogin(Client $client,string $username, string $password, string $phoneType, string $telephone)
-    {
-        $user = $this->createUser($username, $password, $phoneType,$telephone);
-        $this->logIn($client, $username, $password);
-
-        return $user;
+        return $this->login($client, $username, $password);
     }
 
     protected function getEntityManager():EntityManagerInterface

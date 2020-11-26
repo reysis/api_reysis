@@ -27,22 +27,25 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-<<<<<<< HEAD
 ###> liip/imagine-bundle ###
 /public_html/media/cache/
 ###< liip/imagine-bundle ###
 
 /public_html/uploads
-=======
 .gitconfig
 
+###> IDEs ###
 .vscode
 .idea
+###> IDEs ###
 
-###locks
+###>locks ###
 composer.lock
 symfony.lock
 package-lock.json
+<<<<<<< HEAD
 ###
 
 .env
+=======
+###>locks ###

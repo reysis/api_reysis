@@ -62,33 +62,43 @@ class UserResourceTest extends CustomApiTestCase
         $this->assertResponseStatusCodeSame(401);
 
         //Comprobando que otro usuario no pueda ver el campo PhoneNumber de otro usuario
-        $user2 = $this->createUserAndLogin(
+        $token = $this->createUserAndLogin(
             $client,
             'testUser2',
             'foo',
             'CASA',
             '+5354178553'
         );
+
         $client->request('GET', '/api/users/'.$user->getId(),[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
         ]);
         $this->assertResponseStatusCodeSame(403);
 
         //Comprobando que pueda ver mis propios Números de Telefonos
-        $client->request('GET', '/api/users/'.$user2->getId(),[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+        $client->request('GET', '/api/users/2',[
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
         ]);
         $data = $client->getResponse()->toArray();
         $this->assertArrayHasKey('phoneNumbers',$data);
 
         //Comprobando que un admin pueda leer los numeros de telefonos
-        $user2 = $em->getRepository(User::class)->find($user2->getId());
+        $user2 = $em->getRepository(User::class)->find(2);
         $user2->setRoles(['ROLE_ADMIN']);
         $em->flush();
 
-        $this->logIn($client, 'testUser2', 'foo');
+        $token2 = $this->login($client,'testUser2', 'foo');
         $client->request('GET', '/api/users/'.$user->getId(),[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token2
+            ],
         ]);
         $this->assertArrayHasKey('phoneNumbers',$data);
     }
@@ -116,9 +126,12 @@ class UserResourceTest extends CustomApiTestCase
         $this->assertResponseStatusCodeSame(401);
 
         //Logueando al usuario 1 y comprobando que puede acceder al recurso
-        $this->logIn($client, 'testUser1', 'foo');
+        $token = $this->logIn($client, 'testUser1', 'foo');
         $client->request('GET', '/api/users/'.$user->getId(),[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
         ]);
         $this->assertResponseStatusCodeSame(200);
 
@@ -128,9 +141,12 @@ class UserResourceTest extends CustomApiTestCase
         $em->flush();
 
         //Logueando al Usuario 2 y comprobando que puede acceder a los datos de Usuario 1
-        $this->logIn($client, 'testUser2', 'foo');
+        $token2 = $this->logIn($client, 'testUser2', 'foo');
         $client->request('GET', '/api/users/'.$user2->getId(),[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token2
+            ],
         ]);
         $this->assertResponseIsSuccessful();
     }
@@ -138,15 +154,18 @@ class UserResourceTest extends CustomApiTestCase
     public function testUpdateUser()
     {
         $client = self::createClient();
-        $user = $this->createUserAndLogin(
-            $client,
+        $user = $this->createUser(
             'testUser1',
             'foo',
             'CASA',
             '+5354178553');
 
+        $token = $this->login($client, 'testUser1', 'foo');
         $client->request('PUT', '/api/users/'.$user->getId(), [
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
             'json' => [
                 'username' => 'newusername',
                 'roles' => ['ROLE_ADMIN'] // will be ignored
@@ -164,22 +183,27 @@ class UserResourceTest extends CustomApiTestCase
     }
     public function testDeleteUser(){
         $client = self::createClient();
-        $user = $this->createUserAndLogin(
-            $client,
+        $user = $this->createUser(
             'testUser1',
             'foo',
             'CASA',
             '+5354178553');
+        $token = $this->login($client, 'testUser1', 'foo');
+
         $user2 = $this->createUser(
             'testUser2',
             'foo',
             'CASA',
             '+5354178553');
 
+        //Comprobando que un usuario normal no pueda eliminar
         $client->request('DELETE', '/api/users/'.$user2->getId(),[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
         ]);
-        $this->assertResponseStatusCodeSame(401);
+        $this->assertResponseStatusCodeSame(403);
 
         //Dandole Permisos de administrador al Usuario 2
         $em = $this->getEntityManager();
@@ -188,15 +212,21 @@ class UserResourceTest extends CustomApiTestCase
         //dump($user2);
         $em->flush();
 
-        $this->logIn($client, 'testUser2', 'foo');
+        $token2 = $this->logIn($client, 'testUser2', 'foo');
         $client->request('DELETE', '/api/users/'.$user->getId(),[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token2
+            ],
         ]);
         $this->assertResponseIsSuccessful();
 
         //Comprobando que no existe el usuario en la BD y comprobando 404 not found error response
         $client->request('DELETE', '/api/users/'.$user->getId(),[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token2
+            ],
         ]);
         $this->assertResponseStatusCodeSame(404);
     }
