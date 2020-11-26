@@ -46,7 +46,17 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
 
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = [])
     {
-        // TODO: Implement getItem() method.
+        $service = $this->itemDataProvider->getItem($resourceClass, $id, $operationName);
+
+        if(!$service){
+            return null;
+        }
+
+        foreach ($service->getImage() as $image){
+            $image->setContentUrl($this->storage->resolveUri($image, 'file'));
+        }
+
+        return $service;
     }
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
