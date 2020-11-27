@@ -5,11 +5,15 @@ namespace App\Test\Functional;
 use App\Entity\User;
 use App\Test\CustomApiTestCase;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
+use Faker\Factory;
 
 class UserResourceTest extends CustomApiTestCase
 {
     use ReloadDatabaseTrait;
     public function testCreateUser(){
+
+        $faker = Factory::create();
+
         $client = self::createClient();
 
         //Testeando peticion incorrecta
@@ -26,20 +30,19 @@ class UserResourceTest extends CustomApiTestCase
                 'username' => 'testUser',
                 'password' => 'foo',
                 'phoneNumbers' => [
-                    ['phoneType' => 'CASA','number'=> '+54178553'],
-                    ['phoneType' => 'TRABAJO','number'=> '+55178596']
+                    ['phoneType' => $faker->word,'number'=> $faker->phoneNumber],
+                    ['phoneType' => $faker->word,'number'=> $faker->phoneNumber]
                 ],
                 'address' => [
-                    'city' => 'Las Tunas',
-                    'street' => 'General Moncada',
-                    'number' => '46',
-                    'streetE1' => 'Policlinico Aquiles Espinosa',
-                    'streetE2' => 'Joaquin Espinosa',
-                    'rpto' => 'Aguilera',
-                    'country' => 'Cuba'
+                    'postAddress' => $faker->sentence(9, true),
+                    'indications' => $faker->paragraph(5, true)
                 ],
-                'nationality' => 'Cuban'
-            ],
+                'persona' => [
+                    'nombre' => $faker->name,
+                    'ci' => $faker->numberBetween(100000000000,99999999999).$this->toString()
+                ],
+                'nationality' => $faker->country
+            ]
         ]);
         $this->assertResponseStatusCodeSame(201);
     }
@@ -229,6 +232,51 @@ class UserResourceTest extends CustomApiTestCase
             ],
         ]);
         $this->assertResponseStatusCodeSame(404);
+    }
+    public function testGetAll(){
+        $client = self::createClient();
+        $user = $this->createUser(
+            'testUser1',
+            'foo',
+            'CASA',
+            '+5354178553'
+        );
+        $em = $this->getEntityManager();
+        //Comprobando que anonimamente no se pueda acceder al recurso
+        $client->request('GET', '/api/users/',[
+            'headers'=> ['ContentType'=>'application/json+ld'],
+        ]);
+        $this->assertResponseStatusCodeSame(401);
+
+        //Comprobando que no se pueda acceder como un usuario normal
+        $token = $this->logIn($client, 'testUser1', 'foo');
+        $client->request('GET', '/api/users',[
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
+        ]);
+        $this->assertResponseStatusCodeSame(403);
+
+        $user2 = $this->createUser(
+            'testUser2',
+            'foo',
+            'CASA',
+            '+5354178553'
+        );
+        //Dandole Permisos de administrador al Usuario 2
+        $user2 = $em->getRepository(User::class)->find($user2->getId());
+        $user2->setRoles(['ROLE_ADMIN']);
+        $em->flush();
+
+        $token2 = $this->logIn($client, 'testUser2', 'foo');
+        $client->request('GET', '/api/users',[
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token2
+            ],
+        ]);
+        $this->assertResponseIsSuccessful();
     }
 }
 

@@ -12,29 +12,28 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UserVoter extends Voter
 {
 
-    protected function supports(string $attribute, $subject)
+    protected function supports($attribute, $subject)
     {
-        return in_array($attribute, ['GET','GET_SINGLE', 'PUT'])
+        //dump($attribute, $subject);
+        return in_array($attribute, ['GET_SINGLE', 'PUT'])
             && $subject instanceof User;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
+        //dump($user->getRoles());
 
         if(!$user instanceof UserInterface && $attribute === 'POST')
             return true;
         else if( !$user instanceof UserInterface && $attribute != 'POST')
             return false;
 
+
         /**
          * @var User $subject
          */
         switch ($attribute){
-            case 'GET':
-                if(in_array('ROLE_ADMIN', $user->getRoles()))
-                    return true;
-                return false;
             case 'PUT':
             case 'GET_SINGLE':
                 if(in_array('ROLE_ADMIN', $user->getRoles()) || $subject->getUsername() === $user->getUsername() )

@@ -23,23 +23,24 @@ use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * Un usuario del sistema, puede ser Persona Natular, Empresa, Proveedor o un Trabajador de la empresa
- * 
- * @see http://schema.org/Person Documentation on Schema.org
+ *
  * 
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource(
- *      iri="http://schema.org/Person",
+ *      security="is_granted('ROLE_ADMIN')",
+ *      normalizationContext={"groups"={"admin:read", "owner:read"}},
+ *      denormalizationContext={"groups"={"user:write", "owner:write"}},
  *      collectionOperations={
- *          "get" = {"security" = "is_granted('GET', object)"},
+ *          "get",
  *          "post" = {
- *              "accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
+ *              "security"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')",
  *              "validation_groups"={"Default", "create"}
  *          }
  *      },
  *      itemOperations={
  *          "get" = {"security" = "is_granted('GET_SINGLE', object)"},
  *          "put" = {"security" = "is_granted('PUT', object)"},
- *          "delete" ={"security" = "is_granted('ROLE_ADMIN')"}
+ *          "delete"
  *      },
  *     attributes={
  *          "pagination_items_per_page" = 30
@@ -54,6 +55,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
  *      }
  * )
  * @UniqueEntity("username")
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface
 {
@@ -176,6 +178,7 @@ class User implements UserInterface
     /**
      * Datos del usuario si es una persona
      *
+     * @var Persona|null
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
      * @Groups({"user:write", "owner:read", "turno:write"})
      * @Assert\Valid()

@@ -5,12 +5,13 @@ namespace App\Test;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use App\Entity\Address;
+use App\Entity\Persona;
 use App\Entity\PhoneNumber;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\TipoEquipo;
-use App\Entity\TipoUsuario;
 use App\Entity\User;
+use Faker\Factory;
 
 class CustomApiTestCase extends ApiTestCase
 {
@@ -34,15 +35,10 @@ class CustomApiTestCase extends ApiTestCase
 
      * @return Address
      */
-    protected function createAddress(string $street, string $city, string $number, string $streetE1, string $streetE2, string $rpto, string $country){
+    protected function createAddress(string $postAddress, string $indications){
         $address = new Address();
-        $address->setStreet($street);
-        $address->setCity($city);
-        $address->setStreetE1($streetE1);
-        $address->setStreetE2($streetE2);
-        $address->setCountry($country);
-        $address->setRpto($rpto);
-        $address->setNumber($number);
+        $address->setPostAddress($postAddress);
+        $address->setIndications($indications);
 
         return $address;
     }
@@ -59,7 +55,18 @@ class CustomApiTestCase extends ApiTestCase
 
         return $phoneNumber;
     }
+    /**
+     * Función para crear una Persona
 
+     * @return Persona
+     */
+    protected function createPersona(string $name, string $ci){
+        $person = new Persona();
+        $person->setNombre($name);
+        $person->setCi($ci);
+
+        return $person;
+    }
     /**
      * Función para crear un usuario normal
 
@@ -68,6 +75,7 @@ class CustomApiTestCase extends ApiTestCase
      */
     protected function createUser(string $username, string $password, string $phoneType, string $telephone):User
     {
+        $faker = Factory::create();
         $user = new User();
         $user->setUsername($username);
 
@@ -75,19 +83,19 @@ class CustomApiTestCase extends ApiTestCase
             ->encodePassword($user, $password);
         $user->setPassword($encoded);
         $user->setNationality("Cuban");
+        $user->setEmail($faker->email);
         $user->addPhoneNumber(
             $this->createPhoneNumber($phoneType, $telephone)
         );
+
         $user->setAddress(
             $this->createAddress(
-                "General Moncada",
-                "Las Tunas",
-                "46",
-                "Policlinico Aquiles Espinosa",
-                "Joaquin Espinosa",
-                "Aguilera",
-                "Cuba")
+                $faker->sentence(9, true),
+                $faker->paragraph(4, true))
         );
+        $person = $this->createPersona($faker->name, $faker->numberBetween(100000000000,99999999999));
+        $user->setPersona($person);
+
         $em = self::$container->get('doctrine')->getManager();
         $em->persist($user);
         $em->flush();
