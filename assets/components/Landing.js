@@ -15,7 +15,7 @@ const Landing = () => {
                 backgroundImage: `url(${landingBackground})`
             }}
         >
-            {/* <div className="overlay" /> */}
+            <div className="overlay" />
             <div className="landing-content container">
                 <div className="landing-text">
                     <div>
