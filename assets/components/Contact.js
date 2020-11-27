@@ -14,12 +14,12 @@ import {
 const Contact = () => {
 
 	return (
-		<section className="contact-component section-padding">
+		<section id="contact-home" className="contact-component section-padding">
 			<div className="container">
 				<div data-aos="fade-up" className="row contact-form-area">
 					<div className="col-md-6 col-lg-6 col-sm-12">
 						<div className="contact-block">
-							<div class="contact-title">
+							<div className="contact-title">
 								<h2>Send us <span>a message</span></h2>
 							</div>
 							<form id="contactForm">
@@ -63,7 +63,7 @@ const Contact = () => {
 					</div>
 					<div className="col-md-6 col-lg-6 col-sm-12">
 						<div data-aos="fade-up" className="contact-right-area">
-							<div class="contact-title">
+							<div className="contact-title">
 								<h2 className="pb-4">Get in <span>touch</span></h2>
 								<p>We’re very approachable and would love to speak to you. Feel free to call, send us an email, Tweet us or simply complete the enquiry form.</p>
 							</div>

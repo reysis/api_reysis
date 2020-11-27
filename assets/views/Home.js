@@ -10,25 +10,19 @@ import Footer from '../components/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
+const Home = () => {
 
-    render() {
-        console.log(window.user);
-        return (
-            <main className="content-wrap">
-                <Landing />
-                <ServicesHome />
-                <About />
-                <Estadisticas />
-                <Whyus />
-                <Opinions /> 
-                <Contact />
-            </main>
-        )
-    }
+    return (
+        <main className="content-wrap">
+            <Landing />
+            <ServicesHome />
+            <About />
+            <Estadisticas />
+            <Whyus />
+            <Opinions /> 
+            <Contact />
+        </main>
+    )
 }
 
-export default Home;
+export default Home

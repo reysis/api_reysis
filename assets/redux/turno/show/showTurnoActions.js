@@ -3,7 +3,7 @@ import {
   extractHubURL,
   normalize,
   mercureSubscribe as subscribe
-} from '../../utils/dataAccess';
+} from '../../../utils/dataAccess';
 
 export function error(error) {
   return { type: 'TURNO_SHOW_ERROR', error };

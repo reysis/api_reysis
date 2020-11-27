@@ -7,6 +7,11 @@ const NavigationBar = ({authenticated, username, pathname}) => {
 
     const [showMenu, setShowMenu] = useState(false)
 
+    const contactClick = () => {
+        setShowMenu(false)
+        document.getElementById('contact-home').scrollIntoView({ behavior: 'smooth' })
+    }
+
     return (
         <>
             <div onClick={() => setShowMenu(!showMenu)} className={showMenu ? "menu-btn menu-close": "menu-btn"}>
@@ -33,7 +38,7 @@ const NavigationBar = ({authenticated, username, pathname}) => {
                         </NavLink>
                     </li>
                     <li className={`nav-item ${pathname == "/contact" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
-                        <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/contact">
+                        <NavLink onClick={contactClick} className="nav-link" to="/#contact">
                             <span>Contáctenos</span>
                         </NavLink>
                     </li>

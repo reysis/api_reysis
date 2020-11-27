@@ -1,133 +1,148 @@
 import {
-    AUTH_LOGIN_REQUEST, AUTH_LOGIN_SUCCESS, AUTH_LOGIN_ERROR,
-    AUTH_REGISTER_REQUEST, AUTH_REGISTER_SUCCESS, AUTH_REGISTER_ERROR,
-    AUTH_LOGOUT_REQUEST, AUTH_LOGOUT_SUCCESS, AUTH_LOGOUT_ERROR,
-    AUTH_CLEAR_ERROR
-} from './authTypes'
-import { fetch } from '../../utils/dataAccess'
+	AUTH_LOGIN_REQUEST,
+	AUTH_LOGIN_SUCCESS,
+	AUTH_LOGIN_ERROR,
+	AUTH_REGISTER_REQUEST,
+	AUTH_REGISTER_SUCCESS,
+	AUTH_REGISTER_ERROR,
+	AUTH_LOGOUT_REQUEST,
+	AUTH_LOGOUT_SUCCESS,
+	AUTH_LOGOUT_ERROR,
+	AUTH_CLEAR_ERROR
+} from "./authTypes";
+import { fetch } from "../../utils/dataAccess";
 
 export const loginRequest = () => {
-    return {
-        type: AUTH_LOGIN_REQUEST
-    }
-}
+	return {
+		type: AUTH_LOGIN_REQUEST
+	};
+};
 
-export const loginSuccess = (user) => {
-    return {
-        type: AUTH_LOGIN_SUCCESS,
-        payload: user
-    }
-}
+export const loginSuccess = user => {
+	return {
+		type: AUTH_LOGIN_SUCCESS,
+		payload: user
+	};
+};
 
-export const loginError = (error) => {
-    return {
-        type: AUTH_LOGIN_ERROR,
-        payload: error
-    }
-}
+export const loginError = error => {
+	return {
+		type: AUTH_LOGIN_ERROR,
+		payload: error
+	};
+};
 
 export const registerRequest = () => {
-    return {
-        type: AUTH_REGISTER_REQUEST
-    }
-}
+	return {
+		type: AUTH_REGISTER_REQUEST
+	};
+};
 
-export const registerSuccess = (user) => {
-    return {
-        type: AUTH_REGISTER_SUCCESS,
-        payload: user
-    }
-}
+export const registerSuccess = user => {
+	return {
+		type: AUTH_REGISTER_SUCCESS,
+		payload: user
+	};
+};
 
-export const registerError = (error) => {
-    return {
-        type: AUTH_REGISTER_ERROR,
-        payload: error
-    }
-}
-
+export const registerError = error => {
+	return {
+		type: AUTH_REGISTER_ERROR,
+		payload: error
+	};
+};
 
 export const logoutRequest = () => {
-    return {
-        type: AUTH_LOGOUT_REQUEST
-    }
-}
+	return {
+		type: AUTH_LOGOUT_REQUEST
+	};
+};
 
 export const logoutSuccess = () => {
-    return {
-        type: AUTH_LOGOUT_SUCCESS
-    }
-}
+	return {
+		type: AUTH_LOGOUT_SUCCESS
+	};
+};
 
-export const logoutError = (error) => {
-    return {
-        type: AUTH_LOGOUT_ERROR,
-        payload: error
-    }
-}
+export const logoutError = error => {
+	return {
+		type: AUTH_LOGOUT_ERROR,
+		payload: error
+	};
+};
 
 export const clearError = () => {
-    return {
-        type: AUTH_CLEAR_ERROR
-    }
-}
+	return {
+		type: AUTH_CLEAR_ERROR
+	};
+};
 
-export const loginFetch = (values) => dispatch => {
-    dispatch(loginRequest());
+export const loginFetch = ({ username, password }) => dispatch => {
+	dispatch(loginRequest());
 
-    return fetch('/api/login', {
-        method: 'POST',
-        body: JSON.stringify(values)
-    })
-        .then(res => {
-            fetch(res.headers.get('location'))
-                .then(res => res.json())
-                .then(res => {
-                    const response = {
-                        ...res,
-                        id: res['@id']
-                    }
-                    dispatch(loginSuccess(response))
-                })
-                .catch(error => {
-                    dispatch(loginError(error.message));
-                })
-        })
-        .catch(error => {
-            dispatch(loginError(error.message));
-        })
-}
+	const page = "/api/authentication";
+	const body = JSON.stringify({ username, password });
 
-export const registerFetch = (values) => dispatch => {
-    dispatch(registerRequest());
+	fetch(page, {
+		method: "POST",
+		body,
+		"Content-Type": "application/json"
+	})
+		.then(res => {
+			console.log(res);
+			res.json().then(res1 => console.log(res1));
+			console.log(res.headers.get("location"));
+			fetch(res.headers.get("location"))
+				.then(res => res.json())
+				.then(res => {
+					const response = {
+						...res,
+						id: res["@id"]
+					};
+					console.log(response);
+					dispatch(loginSuccess(response));
+				})
+				.catch(error => {
+					dispatch(loginError(error.message));
+				});
+		})
+		.catch(error => {
+			console.log(error);
+			dispatch(loginError(error.message));
+		});
+};
 
-    return fetch('/api/users', {
-        method: 'POST',
-        body: JSON.stringify(values)
-    })
-        .then(res => res.json())
-        .then(res => {
-            const response = {
-                ...res,
-                id: res['@id']
-            }
-            dispatch(registerSuccess(response))
-        })
-        .catch(error => {
-            dispatch(registerError(error.message));
-        })
-}
+export const registerFetch = values => dispatch => {
+	dispatch(registerRequest());
+
+	fetch("/api/users", {
+		method: "POST",
+		body: JSON.stringify(values)
+	})
+		.then(res => res.json())
+		.then(res => {
+			const response = {
+				...res,
+				id: res["@id"]
+			};
+			console.log(response);
+			dispatch(registerSuccess(response));
+		})
+		.catch(error => {
+			dispatch(registerError(error.message));
+		});
+};
 
 export const logoutFetch = () => dispatch => {
-    dispatch(logoutRequest());
+	dispatch(logoutRequest());
 
-    return fetch('/api/logout', {
-        method: 'POST'
-    })
-        .then(() => {
-            dispatch(logoutSuccess())
-        })
-        .catch(error => {
-            dispatch(logoutError(error.message));
-        })
-}
+	fetch("/api/logout", {
+		method: "POST"
+	})
+		.then(() => {
+			dispatch(logoutSuccess());
+		})
+		.catch(error => {
+			dispatch(logoutError(error.message));
+		});
+};

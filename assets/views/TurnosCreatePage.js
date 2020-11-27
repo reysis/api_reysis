@@ -1,21 +1,15 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import Footer from "../components/Footer";
-import {Create} from "../components/turno";
+import React from 'react'
+import { Create } from "../components/turno"
 
-class TurnosCreatePage extends Component {
-    render() {
-        return (
-            <main className="content-wrap turnos-crete-page page">
-                <div className="header">
-                    <h1><span>Busquemos el momento adecuado!</span></h1>
-                </div>
-                <Create />
-            </main>
-        );
-    }
+const TurnosCreatePage = () => {
+    return (
+        <main className="content-wrap turnos-crete-page page" >
+            <div className="create-turno-header">
+                <h1 className="mx-4">Busquemos el <span>momento adecuado</span></h1>
+            </div>
+            <Create />
+        </main>
+    )
 }
 
-TurnosCreatePage.propTypes = {};
-
-export default TurnosCreatePage;
+export default TurnosCreatePage

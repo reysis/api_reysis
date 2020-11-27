@@ -5,11 +5,13 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "api-platform/core": "^2.1",
         "doctrine/annotations": "^1.10",
         "doctrine/doctrine-bundle": "^1.6 || ^2.0",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.4.5",
+        "gedmo/doctrine-extensions": "^3.0",
         "gesdinet/jwt-refresh-token-bundle": "^0.9.1",
         "lexik/jwt-authentication-bundle": "^2.9",
         "liip/imagine-bundle": "^2.3",
@@ -34,8 +36,7 @@
         "symfony/web-profiler-bundle": "5.1.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "5.1.*",
-        "vich/uploader-bundle": "^1.15",
-      "ext-json": "*"
+        "vich/uploader-bundle": "^1.15"
     },
     "require-dev": {
         "behat/behat": "^3.7",

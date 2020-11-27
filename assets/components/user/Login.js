@@ -31,7 +31,6 @@ const Login = () => {
     }
 
     useEffect(() => {
-        console.log(loading)
         setDisabledForm(() => {
             return username.length == 0 
             || password.length == 0
