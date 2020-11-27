@@ -34,14 +34,9 @@ class UserFixtures extends BaseFixture
             $user->addPhoneNumber($phoneNumber);
 
             $address = new Address();
-            $address->setNumber($this->faker->buildingNumber);
-            $address->setRpto($this->faker->word);
-            $address->setStreetE1($this->faker->streetName);
-            $address->setStreet($this->faker->streetName);
-            $address->setStreetE2($this->faker->streetName);
-            $address->setCity($this->faker->city);
             $country = $this->faker->country;
-            $address->setCountry($country);
+            $address->setPostAddress($this->faker->sentence(6,true).', '.$country);
+            $address->setIndications($this->faker->sentence(9,true));
 
             $user->setAddress($address);
             $user->setNationality($country);
@@ -66,17 +61,12 @@ class UserFixtures extends BaseFixture
             $phoneNumber->setPhoneType($this->faker->word);
             $user->addPhoneNumber($phoneNumber);
 
-            $address2 = new Address();
-            $address2->setNumber($this->faker->buildingNumber);
-            $address2->setRpto($this->faker->word);
-            $address2->setStreetE1($this->faker->streetName);
-            $address2->setStreet($this->faker->streetName);
-            $address2->setStreetE2($this->faker->streetName);
-            $address2->setCity($this->faker->city);
+            $address = new Address();
             $country = $this->faker->country;
-            $address2->setCountry($country);
+            $address->setPostAddress($this->faker->sentence(6,true).', '.$country);
+            $address->setIndications($this->faker->sentence(9,true));
 
-            $user->setAddress($address2);
+            $user->setAddress($address);
             $user->setNationality($country);
             $user->setPassword($this->passwordEncoder->encodePassword(
                 $user,
