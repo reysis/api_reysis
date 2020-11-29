@@ -6,6 +6,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ReviewsRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
@@ -26,6 +30,20 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *                  "security_message" = "Solo el propio usuario que la redacto puede eliminar una review"
  *          }
  *      },
+ * )
+ * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "reviewText":"partial",
+ *          "user":"exact"
+ *      }
+ * )
+ * @ApiFilter(
+ *     DateFilter::class,
+ *     properties={
+            "datePublished"
+ *     }
  * )
  * @ORM\Entity(repositoryClass=ReviewsRepository::class)
  */

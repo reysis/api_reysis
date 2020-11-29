@@ -7,9 +7,13 @@ use App\Entity\Turno;
 use App\Test\CustomApiTestCase;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use App\Entity\User;
+use Faker\Factory;
+
 class TurnoResourceTest extends CustomApiTestCase{
     use ReloadDatabaseTrait;
     public function testCreateTurno(){
+        $faker = Factory::create();
+
         $client = self::createClient();
         $user = $this->createUser(
             'testUser',
@@ -17,7 +21,17 @@ class TurnoResourceTest extends CustomApiTestCase{
             'CASA',
             '+5354178553');
 
-        //Testeando que se pueda crear Turnos anonimamente
+        //Testeando que no se pueda crear Turnos sin enviar datos del usuario
+        $client->request('POST', '/api/turnos',[
+            'headers'=> ['ContentType'=>'application/json+ld'],
+            'json' => [
+                'fecha' => '2020-08-20T20:11:28.498Z',
+                'defecto'=>$faker->paragraph(5, true),
+            ],
+        ]);
+        $this->assertResponseStatusCodeSame(400);
+        
+        //Testeando que se cree un turno normalmente estando ya registrado
         $client->request('POST', '/api/turnos',[
             'headers'=> ['ContentType'=>'application/json+ld'],
             'json' => [
@@ -27,15 +41,32 @@ class TurnoResourceTest extends CustomApiTestCase{
             ],
         ]);
         $this->assertResponseStatusCodeSame(201);
-        
-        //Testeando que se cree un turno normalmente
-        $this->logIn($client, 'testUser', 'foo');
+
+        //Comprobando que se pueda crear un turno siendo anonimo
         $client->request('POST', '/api/turnos',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld'
+            ],
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
                 'defecto'=>'foo',
-                'user'=>'/api/users/'.$user->getId(),
+                'user'=>[
+                    'username' => 'testUser2',
+                    'password' => 'foo',
+                    'phoneNumbers' => [
+                        ['phoneType' => $faker->word,'number'=> $faker->phoneNumber],
+                        ['phoneType' => $faker->word,'number'=> $faker->phoneNumber]
+                    ],
+                    'address' => [
+                        'postAddress' => $faker->sentence(9, true),
+                        'indications' => $faker->paragraph(5, true)
+                    ],
+                    'persona' => [
+                        'nombre' => $faker->name,
+                        'ci' => $faker->numberBetween(100000000000,99999999999).$this->toString()
+                    ],
+                    'nationality' => 'Cubana'
+                ],
             ],
         ]);
         $this->assertResponseStatusCodeSame(201);
@@ -56,9 +87,12 @@ class TurnoResourceTest extends CustomApiTestCase{
             '+52196875');
 
         //creando turno de usuario 1
-        $this->logIn($client, 'testUser1', 'foo');
+        $token = $this->logIn($client, 'testUser1', 'foo');
         $client->request('POST', '/api/turnos',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
                 'defecto'=>'foo',
@@ -68,9 +102,12 @@ class TurnoResourceTest extends CustomApiTestCase{
         $this->assertResponseStatusCodeSame(201);
         
         //Comprobando que se pueda modificar el turno creado por el mismo usuario
-        $this->logIn($client, 'testUser1', 'foo');
+        $token = $this->logIn($client, 'testUser1', 'foo');
         $client->request('PUT', '/api/turnos/1', [
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
             'json' => [
                 'defecto'=>'foo',
             ],
@@ -78,9 +115,12 @@ class TurnoResourceTest extends CustomApiTestCase{
         $this->assertResponseStatusCodeSame(200);
 
         //logueando al usuario 2 e intentando modificar el turno creado por el usuario 1
-        $this->logIn($client, 'testUser2', 'foo');
+        $tokenUser = $this->logIn($client, 'testUser2', 'foo');
         $client->request('PUT', '/api/turnos/1', [
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$tokenUser
+            ],
             'json' => [
                 'defecto'=>'foo',
             ],
@@ -93,9 +133,12 @@ class TurnoResourceTest extends CustomApiTestCase{
         $user2->setRoles(['ROLE_ADMIN']);
         $em->flush();
         
-        $this->logIn($client, 'testUser2', 'foo');
+        $tokenAdmin = $this->logIn($client, 'testUser2', 'foo');
         $client->request('PUT', '/api/turnos/1', [
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$tokenAdmin
+            ],
             'json' => [
                 'defecto'=>'foo',
             ],
@@ -118,9 +161,12 @@ class TurnoResourceTest extends CustomApiTestCase{
             '+54178553');
 
         //creando turno de usuario 1
-        $this->logIn($client, 'testUser1', 'foo');
+        $token = $this->logIn($client, 'testUser1', 'foo');
         $client->request('POST', '/api/turnos',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
                 'defecto'=>'foo',
@@ -130,9 +176,12 @@ class TurnoResourceTest extends CustomApiTestCase{
         $this->assertResponseStatusCodeSame(201);
         
         //Intentando eliminar el turno de otro usuario
-        $this->logIn($client, 'testUser2', 'foo');
+        $tokenUser = $this->logIn($client, 'testUser2', 'foo');
         $client->request('DELETE', '/api/turnos/1',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$tokenUser
+            ],
         ]);
         $this->assertResponseStatusCodeSame(403);
         
@@ -142,9 +191,12 @@ class TurnoResourceTest extends CustomApiTestCase{
         $user2->setRoles(['ROLE_ADMIN']);
         $em->flush();
 
-        $this->logIn($client, 'testUser2', 'foo');
+        $tokenAdmin = $this->logIn($client, 'testUser2', 'foo');
         $client->request('DELETE', '/api/turnos/1',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$tokenAdmin
+                ],
         ]);
         $this->assertResponseStatusCodeSame(204);
     }
@@ -165,9 +217,12 @@ class TurnoResourceTest extends CustomApiTestCase{
         $this->assertResponseStatusCodeSame(401);
 
         //Comprobando que un usuario normal no pueda acceder a todos los turnos
-        $this->logIn($client, 'testUser1', 'foo');
+        $token = $this->logIn($client, 'testUser1', 'foo');
         $client->request('GET', '/api/turnos',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
         ]);
         $this->assertResponseStatusCodeSame(403);
 
@@ -177,9 +232,12 @@ class TurnoResourceTest extends CustomApiTestCase{
         $user->setRoles(['ROLE_ADMIN']);
         $em->flush();
 
-        $this->logIn($client, 'testUser1', 'foo');
+        $token = $this->logIn($client, 'testUser1', 'foo');
         $client->request('GET', '/api/turnos',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
         ]);
         $this->assertResponseStatusCodeSame(200);
     }

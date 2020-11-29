@@ -24,12 +24,10 @@ use Doctrine\ORM\Mapping\JoinColumn;
 /**
  * Un usuario del sistema, puede ser Persona Natular, Empresa, Proveedor o un Trabajador de la empresa
  *
- * 
- * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource(
  *      security="is_granted('ROLE_ADMIN')",
  *      normalizationContext={"groups"={"admin:read", "owner:read"}},
- *      denormalizationContext={"groups"={"user:write", "owner:write"}},
+ *      denormalizationContext={"groups"={"user:write", "owner:write", "turno:write"}},
  *      collectionOperations={
  *          "get",
  *          "post" = {
@@ -43,7 +41,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
  *          "delete"
  *      },
  *     attributes={
- *          "pagination_items_per_page" = 30
+ *          "pagination_items_per_page" = 10
  *     },
  * )
  * @ApiFilter(PropertyFilter::class)
@@ -54,7 +52,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
  *          "tipoUsuario":"exact"
  *      }
  * )
- * @UniqueEntity("username")
+ * @UniqueEntity({"username", "email"})
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface
@@ -69,7 +67,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @ORM\OneToOne(targetEntity=Persona::class, cascade={"persist", "remove"})
-     * @Groups({"owner:read", "user:write", "turno:read","turno:write", "admin:write", "admin:read"})
+     * @Groups({"owner:read", "user:write","turno:write", "admin:write", "admin:read"})
      * @Assert\NotBlank(groups={"create"})
      */
     private $username;
@@ -113,7 +111,7 @@ class User implements UserInterface
      * Cuentas bancarias del usuario
      *
      * @ORM\OneToMany(targetEntity=CuentaBancaria::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"owner:read","admin:item:read", "admin:write"})
+     * @Groups({"owner:read","admin:item:get", "admin:write"})
      * @Assert\Valid()
      */
     protected $cuentaBancaria;
@@ -147,7 +145,7 @@ class User implements UserInterface
      *
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="users", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"user:write", "owner:read", "turno:write", "admin:write", "admin:item:read"})
+     * @Groups({"user:write", "owner:read", "turno:write", "admin:write", "admin:item:get"})
      * @Assert\Valid()
      */
     private $address;
@@ -160,7 +158,7 @@ class User implements UserInterface
      *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="phonenumber_id", referencedColumnName="id", unique=true)}
      *      )
-     * @Groups({"user:write", "owner:read", "turno:write"})
+     * @Groups({"user:write", "owner:read", "turno:write", "admin:item:get", "admin:write"})
      * @Assert\NotBlank(groups={"create"})
      * @Assert\Valid()
      */
@@ -178,9 +176,8 @@ class User implements UserInterface
     /**
      * Datos del usuario si es una persona
      *
-     * @var Persona|null
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:write", "owner:read", "turno:write"})
+     * @Groups({"user:write", "owner:read", "turno:write", "admin:write", "admin:item:get"})
      * @Assert\Valid()
      */
     private $persona;
@@ -189,7 +186,7 @@ class User implements UserInterface
      * Nacionalidad del usuario, ya sea una empresa o una Persona
      *
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
+     * @Groups({"user:write","owner:read","turno:write", "admin:read", "admin:write"})
      */
     private $nationality;
 
@@ -233,6 +230,9 @@ class User implements UserInterface
         $this->reviews = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
@@ -251,6 +251,7 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+        $this->setLastEdited(new \DateTime());
 
         return $this;
     }
@@ -270,6 +271,7 @@ class User implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+        $this->setLastEdited(new \DateTime());
 
         return $this;
     }
@@ -285,6 +287,7 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -326,6 +329,7 @@ class User implements UserInterface
     public function setPlainPassword(string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -346,6 +350,7 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -374,6 +379,7 @@ class User implements UserInterface
             $this->cuentaBancaria[] = $cuentaBancarium;
             $cuentaBancarium->setUser($this);
         }
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -387,6 +393,7 @@ class User implements UserInterface
                 $cuentaBancarium->setUser(null);
             }
         }
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -399,6 +406,7 @@ class User implements UserInterface
     public function setDateRegistered(\DateTimeInterface $dateRegistered): self
     {
         $this->dateRegistered = $dateRegistered;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -423,6 +431,7 @@ class User implements UserInterface
     public function setLastLoggued(\DateTimeInterface $lastLoggued): self
     {
         $this->lastLoggued = $lastLoggued;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -435,6 +444,7 @@ class User implements UserInterface
     public function setAddress(?Address $address): self
     {
         $this->address = $address;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -452,6 +462,7 @@ class User implements UserInterface
         if (!$this->phoneNumbers->contains($phoneNumber)) {
             $this->phoneNumbers[] = $phoneNumber;
         }
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -461,6 +472,7 @@ class User implements UserInterface
         if ($this->phoneNumbers->contains($phoneNumber)) {
             $this->phoneNumbers->removeElement($phoneNumber);
         }
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -473,6 +485,7 @@ class User implements UserInterface
     public function setEmpresa(?Empresa $empresa): self
     {
         $this->empresa = $empresa;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -485,6 +498,7 @@ class User implements UserInterface
     public function setPersona(?Persona $persona): self
     {
         $this->persona = $persona;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -497,6 +511,7 @@ class User implements UserInterface
     public function setNationality(string $nationality): self
     {
         $this->nationality = $nationality;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -509,6 +524,7 @@ class User implements UserInterface
     public function setContrato(?Contrato $contrato): self
     {
         $this->contrato = $contrato;
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -527,6 +543,7 @@ class User implements UserInterface
             $this->serviceOrder[] = $serviceOrder;
             $serviceOrder->setUser($this);
         }
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }
@@ -540,6 +557,7 @@ class User implements UserInterface
                 $serviceOrder->setUser(null);
             }
         }
+        $this->lastEdited = new \DateTime();
 
         return $this;
     }

@@ -72,6 +72,7 @@ class UserResourceTest extends CustomApiTestCase
             'CASA',
             '+5354178553'
         );
+        $this->assertJsonContains(['location'=>'/api/users/2']);
 
         $client->request('GET', '/api/users/'.$user->getId(),[
             'headers'=> [
