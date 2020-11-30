@@ -10,7 +10,9 @@ import {
 	AUTH_LOGOUT_ERROR,
 	AUTH_CLEAR_ERROR
 } from "./authTypes";
-import { fetch } from "../../utils/dataAccess";
+import {
+	fetch
+} from "../../utils/dataAccess";
 
 export const loginRequest = () => {
 	return {
@@ -81,43 +83,19 @@ export const loginFetch = ({ username, password }) => dispatch => {
 	dispatch(loginRequest());
 
 	const page = "/api/authentication";
-	const body = JSON.stringify({ username, password });
+	const method = "POST";
+	const headers = new Headers({
+		"Content-Type": "application/json"
+	});
+	const body = JSON.stringify({
+		username,
+		password
+	});
 
 	fetch(page, {
-		method: "POST",
-		body,
-		"Content-Type": "application/json"
-	})
-		.then(res => {
-			console.log(res);
-			res.json().then(res1 => console.log(res1));
-			console.log(res.headers.get("location"));
-			fetch(res.headers.get("location"))
-				.then(res => res.json())
-				.then(res => {
-					const response = {
-						...res,
-						id: res["@id"]
-					};
-					console.log(response);
-					dispatch(loginSuccess(response));
-				})
-				.catch(error => {
-					dispatch(loginError(error.message));
-				});
-		})
-		.catch(error => {
-			console.log(error);
-			dispatch(loginError(error.message));
-		});
-};
-
-export const registerFetch = values => dispatch => {
-	dispatch(registerRequest());
-
-	fetch("/api/users", {
-		method: "POST",
-		body: JSON.stringify(values)
+		method,
+		headers,
+		body
 	})
 		.then(res => res.json())
 		.then(res => {
@@ -126,19 +104,54 @@ export const registerFetch = values => dispatch => {
 				id: res["@id"]
 			};
 			console.log(response);
-			dispatch(registerSuccess(response));
+			dispatch(loginSuccess(response));
+		})
+		.catch(error => {
+			dispatch(loginError(error.message));
+		});
+};
+
+export const registerFetch = (value) => dispatch => {
+	dispatch(registerRequest());
+
+	const page = "/api/users";
+	const method = "POST";
+	const body = JSON.stringify(value);
+
+	fetch(page, { method, body })
+		.then(res => res.json())
+		.then(res => {
+			const auth = {
+				...res,
+				id: res["@id"]
+			};
+			const pageUser = auth.id;
+			const header = new Headers({ Authorization: `Bearer ${auth.token}` })
+			fetch(pageUser, { header })
+				.then(res => res.json())
+				.then(res => {
+					const response = {
+						...res,
+						auth
+					}
+					dispatch(registerSuccess(response));
+				})
+				.catch(error => {
+					dispatch(registerError(error.message));
+				})
 		})
 		.catch(error => {
 			dispatch(registerError(error.message));
-		});
+		})
 };
 
 export const logoutFetch = () => dispatch => {
 	dispatch(logoutRequest());
 
-	fetch("/api/logout", {
-		method: "POST"
-	})
+	const page = "/api/logout";
+	const method = "POST";
+
+	fetch(page, { method })
 		.then(() => {
 			dispatch(logoutSuccess());
 		})

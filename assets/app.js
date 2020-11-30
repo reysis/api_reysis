@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './views/Home';
 import Header from './components/layouts/Header';
 import Footer from './components/Footer';
+import LoaderSpinner from './components/Loader';
 import NotFoundPage from './components/Errors/NotFoundPage';
 
 //Import your Routes here
@@ -26,6 +27,8 @@ class App extends Component {
         AOS.init({
             easing: 'ease-in-sine',
             duration: 1000,
+            disable: 'mobile',
+            offset: 100,
             once: true
         })
     }
@@ -34,12 +37,13 @@ class App extends Component {
             <ConnectedRouter history={history}>
                 <Header />
                 <Switch>
-                    <Route path="/" component={Home} strict={true} exact={true} />
+                    <Route path="/" component={Home} strict={true} exact={true} key="home" />
                     {navbarRoutes}
                     {turnoRoutes}
                     {authenticationsRoutes}
-                    <Route component={NotFoundPage} />
+                    <Route component={NotFoundPage} key="notfound" />
                 </Switch>
+                <LoaderSpinner />
                 <Footer />
             </ConnectedRouter>
         )

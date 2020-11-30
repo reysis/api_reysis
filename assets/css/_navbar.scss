@@ -1,13 +1,8 @@
-// .wrapper {
-// 	background-color: $color-primary;
-// 	> * {
-// 		flex: 1 100%;
-// 	}
-// }
+$out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
 
 .header-container {
 	position: fixed;
-	z-index: 2000;
+	z-index: 1000;
 	width: 100%;
 	height: 90px;
 	top: 0;
@@ -20,33 +15,33 @@
 
 	.logo-letras {
 		height: 100%;
-		z-index: 1000;
 		padding: 1em 3em;
 	}
 
 	.menu-btn {
 		position: absolute;
-		z-index: 3;
-	    cursor: pointer;
+		z-index: 2001;
+		cursor: pointer;
 		top: calc(50% - 40px / 2);
 		right: 25.5px;
-	    height: 40px;
-	    width: 40px;
-	    transition: 0.5s ease-out;
+		height: 40px;
+		width: 40px;
+		transition: 0.5s ease-out;
 
 		.btn-line {
 			width: 100%;
-		    height: 2px;
-		    top: 50%;
-		    left: 0;
-		    position: absolute;
-		    margin-top: -1px;
-		    background: #fff;
-		    transition: 0.5s ease-out;
+			height: 2px;
+			top: 50%;
+			left: 0;
+			position: absolute;
+			margin-top: -1px;
+			background: #fff;
+			transition: 0.5s ease-out;
 
-		    &:nth-child(1) {
+			&:nth-child(1) {
 				transform: translateY(450%);
 			}
+
 			&:nth-child(3) {
 				transform: translateY(-450%);
 			}
@@ -59,9 +54,11 @@
 				&:nth-child(1) {
 					transform: translateY(0) rotate(45deg);
 				}
+
 				&:nth-child(2) {
 					opacity: 0;
 				}
+
 				&:nth-child(3) {
 					transform: translateY(0) rotate(-45deg);
 				}
@@ -71,12 +68,12 @@
 
 	&.header-minimized {
 		height: 60px;
-		
+
 		.menu-btn {
 			top: calc(50% - 30px / 2);
 			right: 17.4px;
-	    	height: 30px;
-	    	width: 30px;
+			height: 30px;
+			width: 30px;
 		}
 	}
 
@@ -86,12 +83,13 @@
 		width: 100%;
 		opacity: 0.9;
 		visibility: hidden;
+		z-index: 2000;
 
 		&.menu-show {
 			visibility: visible;
 		}
 
-		&-branding, 
+		&-branding,
 		&-nav {
 			display: flex;
 			flex-flow: column wrap;
@@ -127,9 +125,9 @@
 			.portrait {
 				width: 250px;
 				height: 250px;
-			    background-repeat: no-repeat;
-			    background-size: contain;
-			    background-position: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center;
 			}
 		}
 
@@ -141,14 +139,14 @@
 				transform: translate3d(0, 0, 0);
 			}
 
-			&.current > a {
+			&.current>a {
 				color: $color-primary;
 				// font-weight: 500;
 			}
 
 			@for $navItem from 1 through 8 {
 				&:nth-child(#{$navItem}) {
-					transition-delay: $navItem * 0.1s; 
+					transition-delay: $navItem * 0.1s;
 				}
 			}
 		}
@@ -170,11 +168,81 @@
 		}
 	}
 
-	@media screen and (max-width: 500px) {
+	.back-to-top {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		width: 40px;
+		height: 40px;
+		background: $color-primary;
+		border-radius: 40px;
+		transition: all 0.2s ease-in-out;
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+		cursor: pointer;
+		z-index: 1000;
 
+		a {
+			display: flex;
+			text-decoration: none;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+
+			svg {
+				display: block;
+				font-size: 20px;
+				color: #fff;
+			}
+
+			&:hover,
+			&:focus {
+				text-decoration: none;
+			}
+		}
 	}
 
+
+	.back-to-top__fade-out {
+		animation-name: fade-out;
+		animation-duration: 1s;
+		animation-fill-mode: forwards;
+		animation-timing-function: $out-cubic;
+	}
+
+	@keyframes fade-out {
+		0% {
+			opacity: 1;
+		}
+
+		100% {
+			display: none;
+			opacity: 0;
+		}
+	}
+
+	.back-to-top__fade-in {
+		animation-name: fade-in;
+		animation-duration: 1s;
+		animation-fill-mode: forwards;
+		animation-timing-function: $out-cubic;
+	}
+
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			display: block;
+			opacity: 1;
+		}
+	}
+
+	@media screen and (max-width: 500px) {}
+
 	@media screen and (max-width: 768px) {
+
 		ul.menu-nav,
 		div.menu-branding {
 			float: none;
@@ -203,11 +271,7 @@
 		}
 	}
 
-	@media screen and (max-width: 768px) and (max-width: 1170px) {
-		 		
-	}
+	@media screen and (max-width: 768px) and (max-width: 1170px) {}
 
-	@media screen and (min-width: 1171px) {
-		
-	}
+	@media screen and (min-width: 1171px) {}
 }

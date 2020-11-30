@@ -29,10 +29,10 @@ export const faqFetch = (page = "/api/f-a-qs") => dispatch => {
         .then(res => {
             const response = []
             res['hydra:member'].forEach(value => {
-                /* add this field */
-                value.category = "General"
-
-                const category = value['category']
+                console.log(value);
+                let category = value['category']
+                if (!category || category.length == 0)
+                    category = "General"
                 const values = {
                     id: value['@id'],
                     question: value['question'],
@@ -47,9 +47,6 @@ export const faqFetch = (page = "/api/f-a-qs") => dispatch => {
                 else
                     response[categoryIndex].faqCategory.push(values)
             })
-            // response.sort( (a,b) => { 
-            //     return a.category < b.category ? -1 : a.category > b.category ? 1 : 0 
-            // })
             dispatch(faqSuccess(response))
         })
         .catch(error => {

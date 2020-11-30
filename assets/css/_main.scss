@@ -52,7 +52,8 @@ body {
 	// }
 }
 
-ul, ol {
+ul,
+ol {
 	li {
 		list-style-type: none;
 	}
@@ -80,7 +81,7 @@ ul, ol {
 a {
 	text-decoration: none;
 	outline: none;
-	
+
 	&:hover,
 	&:focus {
 		text-decoration: none !important;

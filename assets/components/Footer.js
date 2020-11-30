@@ -43,14 +43,14 @@ const Footer = () => {
         setNumberView(isWide ? 3 : 5);
     }, [isWide])
 
-    // useEffect(() => {
-    //     setCurrentProfile(linkedinProfiles.length / 2);
-    // }, [linkedinProfiles])
+    const upClick = () => {
+        document.getElementById('root').scrollIntoView({ behavior: 'smooth' })
+    }
 
     return (
         <footer className="footer-component">
             {
-                pathName == "/" && 
+                pathName == "/" &&
                 <div className="phrase-container container">
                     <blockquote data-aos="fade-up" className="blockquote text-center">
                         {/* <div className="background"><FontAwesomeIcon icon={faQuoteRight} /></div> */}
@@ -74,29 +74,29 @@ const Footer = () => {
                                     transform: `translateX(${~~((-(100 / linkedinProfiles.length)) * currentProfile) + '%'})`
                                 }}
                             >
-                            {
-                                linkedinProfiles.map(profile => {
-                                    return (
-                                        <li
-                                            key={profile.id}
-                                            onClick={() => setCurrentProfile(profile.id - 1)}
-                                            style={{
-                                                width: `${100 / linkedinProfiles.length}%`
-                                            }}
-                                        >
-                                            <figure className={profile.id - 1 == currentProfile ? "active" : ""}>
-                                                <div>
-                                                    <Image src={userProfile} alt={profile.name} />
-                                                </div>
-                                                <figcaption>
-                                                    <h2>{profile.name}</h2>
-                                                    <p>{profile.profession}</p>
-                                                </figcaption>
-                                            </figure>
-                                        </li>
-                                    );
-                                })
-                            }
+                                {
+                                    linkedinProfiles.map(profile => {
+                                        return (
+                                            <li
+                                                key={profile.id}
+                                                onClick={() => setCurrentProfile(profile.id - 1)}
+                                                style={{
+                                                    width: `${100 / linkedinProfiles.length}%`
+                                                }}
+                                            >
+                                                <figure className={profile.id - 1 == currentProfile ? "active" : ""}>
+                                                    <div>
+                                                        <Image src={userProfile} alt={profile.name} />
+                                                    </div>
+                                                    <figcaption>
+                                                        <h2>{profile.name}</h2>
+                                                        <p>{profile.profession}</p>
+                                                    </figcaption>
+                                                </figure>
+                                            </li>
+                                        );
+                                    })
+                                }
                             </ul>
                         </div>
                     </div>
@@ -104,9 +104,9 @@ const Footer = () => {
             }
             <div className="footer-container container">
                 <div data-aos="zoom-in" className="logo-menu menu-footer mb-4">
-                    <a href="#landing">
+                    <Link to={{ pathname: '/', hash: '#landing' }}>
                         <Image className="logo-footer" src={LogoFoter} alt="Variante de Logo Reysis" />
-                    </a>
+                    </Link>
                 </div>
                 <div data-aos="fade-up" className="learn-more-menu menu-footer">
                     <h3 className="menu-title">Aprenda más</h3>
@@ -144,7 +144,7 @@ const Footer = () => {
                         <div className="pr-2"><FontAwesomeIcon icon={faSitemap} /></div>
                         Mapa del sitio
                     </Link>
-                    <a className="menu-item d-flex flex-row" href="#landing">
+                    <a className="menu-item d-flex flex-row" onClick={upClick}>
                         <div className="pr-2"><FontAwesomeIcon icon={faArrowCircleUp} /></div>
                         Regresar al inicio
                     </a>

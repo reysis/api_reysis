@@ -3,25 +3,22 @@ import { NavLink } from "react-router-dom"
 
 import LogoFoter from '../../assets/logo-footer.png'
 
-const NavigationBar = ({authenticated, username, pathname}) => {
+const NavigationBar = ({ authenticated, username, pathname }) => {
 
     const [showMenu, setShowMenu] = useState(false)
 
-    const contactClick = () => {
-        setShowMenu(false)
-        document.getElementById('contact-home').scrollIntoView({ behavior: 'smooth' })
-    }
-
     return (
         <>
-            <div onClick={() => setShowMenu(!showMenu)} className={showMenu ? "menu-btn menu-close": "menu-btn"}>
+            <div onClick={() => setShowMenu(!showMenu)} className={showMenu ? "menu-btn menu-close" : "menu-btn"}>
                 <div className="btn-line" />
                 <div className="btn-line" />
                 <div className="btn-line" />
             </div>
-            <nav className={showMenu ? "menu menu-show": "menu"}>
+            <nav className={showMenu ? "menu menu-show" : "menu"}>
                 <div className={showMenu ? "menu-branding menu-show" : "menu-branding"}>
-                    <div className="portrait" style={{ backgroundImage: `url(${LogoFoter})` }} />
+                    <NavLink to={{ pathname: '/', hash: '#landing' }}>
+                        <div className="portrait" style={{ backgroundImage: `url(${LogoFoter})` }} />
+                    </NavLink>
                 </div>
                 <ul className={showMenu ? "menu-nav menu-show" : "menu-nav"}>
                     {/* 
@@ -38,7 +35,7 @@ const NavigationBar = ({authenticated, username, pathname}) => {
                         </NavLink>
                     </li>
                     <li className={`nav-item ${pathname == "/contact" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
-                        <NavLink onClick={contactClick} className="nav-link" to="/#contact">
+                        <NavLink onClick={() => setShowMenu(false)} className="nav-link" to={{ pathname: '/', hash: '#contact-home' }}>
                             <span>Contáctenos</span>
                         </NavLink>
                     </li>
@@ -52,28 +49,28 @@ const NavigationBar = ({authenticated, username, pathname}) => {
                             <span>FAQ</span>
                         </NavLink>
                     </li>
-                    { 
-                        !authenticated && 
+                    {
+                        !authenticated &&
                         <li className={`nav-item auth-nav-item ${pathname == "/login" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
-                        <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/login">
+                            <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/login">
                                 <span>Entrar</span>
                             </NavLink>
                         </li>
                     }
-                    { 
-                        !authenticated && 
+                    {
+                        !authenticated &&
                         <li className={`nav-item auth-nav-item ${pathname == "/register" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
                             <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/register">
                                 <span>Registrarse</span>
-                            </NavLink> 
+                            </NavLink>
                         </li>
                     }
-                    { 
-                        authenticated && 
+                    {
+                        authenticated &&
                         <li className={`nav-item auth-nav-item ${showMenu ? "menu-show" : ""}`}>
                             <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/logout">
                                 <span>Salir</span>
-                            </NavLink> 
+                            </NavLink>
                         </li>
                     }
                 </ul>
