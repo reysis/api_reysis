@@ -86,9 +86,8 @@ const Create = ({ locations }) => {
 				</div>
 			}
 			<Form onSubmit={onSubmit} className="create-turno__form" >
-				<Form.Group>
-					<TurnoCalendar onChangeDate={onChangeDate} onChangeTime={onChangeTime} />
-				</Form.Group>
+
+				<TurnoCalendar onChangeDate={onChangeDate} onChangeTime={onChangeTime} />
 
 				<Form.Group>
 					<InputGroup>
@@ -104,15 +103,15 @@ const Create = ({ locations }) => {
 				{
 					!authenticated &&
 					<Form.Group className="create-turno__auth-bg">
-						<div className="create-turno__authenticated">
+						<div className="p-3 create-turno__authenticated">
 							<div className="create-turno__authenticated-header">
 								<h2>Debe estar autenticado para continuar</h2>
 							</div>
-							<div className="create-turno__authenticated-options">
+							<div className="col-md-8 col-lg-6 m-auto create-turno__authenticated-options">
 								<p className="mb-0"><Link to={toLogin}>Ya tengo cuenta</Link></p>
 								<div className="mb-3 mx-4 create-turno__separator">
 									<p className="mt-2 mb-2 hr">o</p>
-									<p>Entre los siguientes datos para continuar</p>
+									<p>Entre los siguientes datos</p>
 								</div>
 							</div>
 							<AuthCreateTurno />
@@ -125,9 +124,12 @@ const Create = ({ locations }) => {
 			</Form>
 			{
 				authenticated &&
-				<Link to="/turnos" className="create-turno__link">
-					<button className="create-turno__button">Mostrar mi lista</button>
-				</Link>
+				<div className="mx-3 mb-3 create-turno__separator">
+					<p className="mb-3 hr">o</p>
+					<Link to="/turnos" className="create-turno__link">
+						<button className="create-turno__button">Mostrar mi lista</button>
+					</Link>
+				</div>
 			}
 		</Container>
 	);

@@ -134,7 +134,7 @@ $color-weekend: #f14e4e;
 
       display: grid !important;
       grid-template-columns: repeat(7, 1fr);
-      grid-gap: 10px;
+      grid-gap: 10px 0;
       justify-items: center;
 
       &__day {

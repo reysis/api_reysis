@@ -6,15 +6,22 @@ import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationT
 
 const AuthCreateTurno = () => {
 
-	const [username, setUsername] = useState("")
+	const [name, setName] = useState("")
+	const [lastname, setLastname] = useState("")
 	const [password, setPassword] = useState("")
 	const [passwordCheck, setPasswordCheck] = useState("")
 	const [email, setEmail] = useState("")
+	const [telephoneType, setTelephoneType] = useState("")
 	const [telephone, setTelephone] = useState("")
 	const [address, setAddress] = useState("")
 
-	const [arePasswordMatch, setArePasswordMatch] = useState(false)
 	const [validEmail, setValidEmail] = useState(false)
+
+	const [telephoneTypes] = useState([
+		"Casa",
+		"Personal",
+		"Trabajo"
+	])
 
 	var timeout = null;
 
@@ -28,24 +35,30 @@ const AuthCreateTurno = () => {
 		}, 1000);
 	}, [email])
 
-	useEffect(() => {
-		setArePasswordMatch(() => {
-			return password.length > 0 && passwordCheck.length > 0 && password == passwordCheck
-		})
-	}, [password, passwordCheck])
-
 	return (
-		<Col className="create-turno__authenticated-auth px-0">
-			<Form.Group>
-				<InputGroup>
-					<InputGroup.Prepend>
-						<label className="input-group-text" htmlFor="username" >
-							<FontAwesomeIcon icon={faUser} />
-						</label>
-					</InputGroup.Prepend>
-					<Form.Control type="user" placeholder="Usuario" value={username} onChange={(e) => setUsername(e.target.value)} />
-				</InputGroup>
-			</Form.Group>
+		<Col className="col-md-8 col-lg-6 m-auto create-turno__authenticated-auth px-0">
+			<Form.Row>
+				<Form.Group as={Col} md={6}>
+					<InputGroup>
+						<InputGroup.Prepend>
+							<label className="input-group-text" htmlFor="name" >
+								<FontAwesomeIcon icon={faUser} />
+							</label>
+						</InputGroup.Prepend>
+						<Form.Control type="name" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
+					</InputGroup>
+				</Form.Group>
+				<Form.Group as={Col} md={6}>
+					<InputGroup>
+						<InputGroup.Prepend>
+							<label className="input-group-text" htmlFor="lastname" >
+								<FontAwesomeIcon icon={faUser} />
+							</label>
+						</InputGroup.Prepend>
+						<Form.Control type="lastname" placeholder="Apellidos" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+					</InputGroup>
+				</Form.Group>
+			</Form.Row>
 
 			<Form.Group>
 				<InputGroup>
@@ -58,7 +71,7 @@ const AuthCreateTurno = () => {
 				</InputGroup>
 			</Form.Group>
 
-			<Form.Row>
+			{/* <Form.Row>
 				<Form.Group as={Col} md={6}>
 					<InputGroup>
 						<InputGroup.Prepend>
@@ -80,7 +93,7 @@ const AuthCreateTurno = () => {
 						<Form.Control type="password" placeholder="Confirmar Contraseña" isValid={arePasswordMatch} value={passwordCheck} onChange={(e) => setPasswordCheck(e.target.value)} ></Form.Control>
 					</InputGroup>
 				</Form.Group>
-			</Form.Row>
+			</Form.Row> */}
 
 			{/* <Form.Group>
 				<InputGroup>
@@ -100,16 +113,38 @@ const AuthCreateTurno = () => {
 				</InputGroup>
 			</Form.Group> */}
 
-			<Form.Group>
-				<InputGroup>
-					<InputGroup.Prepend>
-						<label className="input-group-text" htmlFor="telephone">
-							<FontAwesomeIcon icon={faPhone} />
-						</label>
-					</InputGroup.Prepend>
-					<Form.Control type="text" placeholder="Teléfono" value={telephone} onChange={(e) => setTelephone(e.target.value)} ></Form.Control>
-				</InputGroup>
-			</Form.Group>
+			<Form.Row>
+
+				<Form.Group as={Col} md={6}>
+					<InputGroup>
+						<InputGroup.Prepend>
+							<label className="input-group-text" htmlFor="telephone-type">
+								<FontAwesomeIcon icon={faPhone} />
+							</label>
+						</InputGroup.Prepend>
+						{/* <Form.Control type="text" placeholder="Tipo" value={telephone} onChange={(e) => setTelephone(e.target.value)} ></Form.Control> */}
+						<Form.Control as="select" className="custom-select" as="select" defaultValue={telephoneType} onChange={(e) => setTelephoneType(e.target.value)} >
+							<option value="" >Tipo de Télefono ...</option>
+							{
+								telephoneTypes.map((value, index) => (
+									<option key={index} value={value}>{value}</option>
+								))
+							}
+						</Form.Control>
+					</InputGroup>
+				</Form.Group>
+				<Form.Group as={Col} md={6}>
+					<InputGroup>
+						<InputGroup.Prepend>
+							<label className="input-group-text" htmlFor="telephone">
+								<FontAwesomeIcon icon={faPhone} />
+							</label>
+						</InputGroup.Prepend>
+						<Form.Control type="phone" placeholder="Número de Teléfono" value={telephone} onChange={(e) => setTelephone(e.target.value)} ></Form.Control>
+					</InputGroup>
+				</Form.Group>
+
+			</Form.Row>
 
 			<Form.Group >
 				<InputGroup>
