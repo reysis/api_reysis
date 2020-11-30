@@ -44,7 +44,7 @@ const ServicesHome = () => {
 									[1, 2].map(value => {
 										return (
 											<div key={value} className="col-md-6 col-lg-4 col-xs-12">
-												<div data-aos="fade-up" data-aos-delay="300" className="card-spinner animated-background bg">
+												<div className="card-spinner animated-background bg">
 													<div className="title-spinner fg" />
 													<div className="description-spinner" >
 														<div className="fg" />

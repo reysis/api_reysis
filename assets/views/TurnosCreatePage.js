@@ -3,9 +3,9 @@ import { Create } from "../components/turno"
 
 const TurnosCreatePage = () => {
     return (
-        <main className="content-wrap turnos-crete-page page" >
+        <main className="content-wrap page create-turno-page" >
             <div className="create-turno-header">
-                <h1 className="mx-4">Busquemos el <span>momento adecuado</span></h1>
+                <h1 className="mt-4 mb-5">Busquemos el <span>momento adecuado</span></h1>
             </div>
             <Create />
         </main>

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { clearError, registerFetch } from "../../redux/auth/authActions";
-import { tipoUsuarioFetch } from "../../redux/tipo_usuario/tipoUsuarioActions"
 
 import { Redirect, Link } from "react-router-dom";
 
@@ -17,51 +16,55 @@ const Register = () => {
     const [password, setPassword] = useState("")
     const [passwordCheck, setPasswordCheck] = useState("")
     const [email, setEmail] = useState("")
-    const [tipoUsuario, setTipoUsuario] = useState("")
     const [telephone, setTelephone] = useState("")
     const [address, setAddress] = useState("")
-    
+
     const [arePasswordMatch, setArePasswordMatch] = useState(false)
     const [validEmail, setValidEmail] = useState(false)
     const [disabledForm, setDisabledForm] = useState(true)
 
-    const tipoUsuarioSelect = useRef(null);
-    
     var timeout = null;
-    
+
     const authLoading = useSelector(state => state.auth.loading)
     const authAuthenticated = useSelector(state => state.auth.authenticated)
     const authError = useSelector(state => state.auth.error)
 
-    const tipoUsuarioLoading = useSelector(state => state.tipoUsuario.loading)
-    const tipoUsuarioList = useSelector(state => state.tipoUsuario.tipoUsuarios)
-    const tipoUsuarioError = useSelector(state => state.tipoUsuario.error)
-    
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(clearError())
-        dispatch(tipoUsuarioFetch())
     }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if(username.length == 0 
-            || password.length == 0 
+        if (username.length == 0
+            || password.length == 0
             || !arePasswordMatch
-            || !validEmail 
-            || tipoUsuarioList.find((t) => (t == tipoUsuario)) 
+            || !validEmail
             || telephone.length == 0) return;
 
-        this.props.registerUser({
+        const phoneNumbers = [{
+            "phoneType": "movil",
+            "number": telephone
+        }]
+
+        dispatch(registerFetch({
             username,
             password,
             email,
-            tipoUsuario,
-            telephone,
-            address
-        })
+            address: {
+                street: address,
+                number: "",
+                streetE1: "",
+                streetE2: "",
+                rpto: "",
+                city: "",
+                country: ""
+            },
+            phoneNumbers,
+            nationality: "Cubano"
+        }))
     }
 
     useEffect(() => {
@@ -83,30 +86,24 @@ const Register = () => {
     useEffect(() => {
 
         setDisabledForm(() => {
-            return username.length == 0 
-            || !arePasswordMatch
-            || !validEmail
-            || email.length == 0
-            || authLoading
-            || tipoUsuarioLoading
-            || !tipoUsuarioList.find((t) => (t == tipoUsuario)) 
-            || telephone.length == 0
+            return username.length == 0
+                || !arePasswordMatch
+                || !validEmail
+                || email.length == 0
+                || authLoading
+                || telephone.length == 0
         })
 
-    }, [arePasswordMatch, email, validEmail, username, tipoUsuario, telephone, tipoUsuarioLoading, authLoading])
+    }, [arePasswordMatch, email, validEmail, username, telephone, authLoading])
 
-    if(authAuthenticated)
+    if (authAuthenticated)
         return <Redirect to='/' />
     return (
         <Col className="content-wrap container" lg={6} >
-            <Alert role={"status"} variant={"info"} show={authLoading || tipoUsuarioLoading}>Loading...</Alert>
+            <Alert role={"status"} variant={"info"} show={authLoading}>Loading...</Alert>
             <Alert role={"alert"} variant={"danger"} show={authError} >
                 <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
                 {authError}
-            </Alert>
-            <Alert role={"alert"} variant={"danger"} show={tipoUsuarioError} >
-                <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
-                {tipoUsuarioError}
             </Alert>
             <Form onSubmit={handleSubmit} className="form-register wrapper">
                 <Form.Group className="form-header form-in-center">
@@ -160,7 +157,7 @@ const Register = () => {
                     </Form.Group>
                 </Form.Group>
 
-                <Form.Group className="tipo-usuario-group" >
+                {/* <Form.Group className="tipo-usuario-group" >
                     <InputGroup>
                         <InputGroup.Prepend>
                             <label className="input-group-text" htmlFor="passwordCheck">
@@ -170,13 +167,13 @@ const Register = () => {
                         <Form.Control ref={tipoUsuarioSelect} className="custom-select" disabled={tipoUsuarioLoading || tipoUsuarioError} as="select" defaultValue={tipoUsuario} onChange={(e) => setTipoUsuario(e.target.value)} >
                             <option value="" >Tipo de Usuario ...</option>
                             {
-                                tipoUsuarioList.map(tu => ( 
-                                    <option key={tu.id} value={tu.id}>{tu.tipo}</option> 
+                                tipoUsuarioList.map(tu => (
+                                    <option key={tu.id} value={tu.id}>{tu.tipo}</option>
                                 ))
                             }
                         </Form.Control>
                     </InputGroup>
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group className="telephone-group">
                     <InputGroup>

@@ -24,7 +24,7 @@ const ServiceCard = ({ nombre, descripcion, image, aosDelay }) => {
 
 	return (
 		<div className="col-md-6 col-lg-4 col-xs-12 card-tile">
-			<Card data-aos="fade-up" data-aos-delay={aosDelay} className="cards-style service-card" >
+			<Card data-aos="fade-left" data-aos-delay={aosDelay} className="cards-style service-card" >
 				<figure ref={card}>
 					<div><img src={image} alt={"Servicio " + { nombre }} /></div>
 					<figcaption>

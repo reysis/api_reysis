@@ -1,101 +1,108 @@
-import { fetch, extractHubURL, normalize } from "../../../utils/dataAccess";
+import {
+	RETRIEVE_TURNO_ERROR,
+	RETRIEVE_TURNO_REQUEST,
+	RETRIEVE_TURNO_SUCCESS
+} from './updateTurnoTypes'
+
+import { fetch } from "../../../utils/dataAccess";
 
 import { createTurnoRequest } from "../create/createTurnoActions";
 import { loading, error } from "./delete";
 
-export function retrieveError(retrieveError) {
-	return { type: "TURNO_UPDATE_RETRIEVE_ERROR", retrieveError };
-}
-
-export function retrieveLoading(retrieveLoading) {
-	return { type: "TURNO_UPDATE_RETRIEVE_LOADING", retrieveLoading };
-}
-
-export function retrieveSuccess(retrieved) {
-	return { type: "TURNO_UPDATE_RETRIEVE_SUCCESS", retrieved };
-}
-
-export function retrieve(id) {
-	return dispatch => {
-		dispatch(retrieveLoading(true));
-
-		return fetch(id)
-			.then(response =>
-				response
-					.json()
-					.then(retrieved => ({
-						retrieved,
-						hubURL: extractHubURL(response)
-					}))
-			)
-			.then(({ retrieved, hubURL }) => {
-				retrieved = normalize(retrieved);
-
-				dispatch(retrieveLoading(false));
-				dispatch(retrieveSuccess(retrieved));
-
-				if (hubURL)
-					dispatch(mercureSubscribe(hubURL, retrieved["@id"]));
-			})
-			.catch(e => {
-				dispatch(retrieveLoading(false));
-				dispatch(retrieveError(e.message));
-			});
+export const retrieveTurnoRequest = () => {
+	return {
+		type: RETRIEVE_TURNO_REQUEST
 	};
 }
 
-export function updateError(updateError) {
-	return { type: "TURNO_UPDATE_UPDATE_ERROR", updateError };
+export const retrieveTurnoSuccess = (retrieved) => {
+	return {
+		type: "RETRIEVE_TURNO_SUCCESS",
+		payload: retrieved
+	};
 }
 
-export function updateLoading(updateLoading) {
-	return { type: "TURNO_UPDATE_UPDATE_LOADING", updateLoading };
+export const retrieveTurnoError = (error) => {
+	return {
+		type: RETRIEVE_TURNO_ERROR,
+		payload: error
+	};
 }
 
-export function updateSuccess(updated) {
-	return { type: "TURNO_UPDATE_UPDATE_SUCCESS", updated };
-}
+export const retrieveTurnoFetch = (id) => dispatch => {
+	dispatch(retrieveTurnoRequest());
 
-export function update(item, values) {
-	return dispatch => {
-		dispatch(updateError(null));
-		dispatch(createSuccess(null));
-		dispatch(updateLoading(true));
-
-		return fetch(item["@id"], {
-			method: "PUT",
-			headers: new Headers({ "Content-Type": "application/ld+json" }),
-			body: JSON.stringify(values)
+	return fetch(id)
+		.then(res => res.json())
+		.then(res => {
+			const response = {
+				...res,
+				id: res['@id']
+			}
+			dispatch(retrieveTurnoSuccess(response))
 		})
-			.then(response =>
-				response
-					.json()
-					.then(retrieved => ({
-						retrieved,
-						hubURL: extractHubURL(response)
-					}))
-			)
-			.then(({ retrieved, hubURL }) => {
-				retrieved = normalize(retrieved);
+		.catch(error => {
+			dispatch(retrieveTurnoError(error.message))
+		})
+}
 
-				dispatch(updateLoading(false));
-				dispatch(updateSuccess(retrieved));
-
-				if (hubURL)
-					dispatch(mercureSubscribe(hubURL, retrieved["@id"]));
-			})
-			.catch(e => {
-				dispatch(updateLoading(false));
-
-				if (e instanceof SubmissionError) {
-					dispatch(updateError(e.errors._error));
-					throw e;
-				}
-
-				dispatch(updateError(e.message));
-			});
+export const updateTurnoRequest = () => {
+	return {
+		type: UPDATE_TURNO_REQUEST,
 	};
 }
+
+export const updateTurnoSuccess = (updated) => {
+	return {
+		type: "UPDATE_TURNO_SUCCESS",
+		payload: updated
+	};
+}
+
+export const updateTurnoError = (error) => {
+	return {
+		type: UPDATE_TURNO_ERROR,
+		payload: error
+	};
+}
+
+export const updateTurnoFetch = (item, values) => dispatch => {
+	dispatch(updateError(null));
+	dispatch(createSuccess(null));
+	dispatch(updateLoading(true));
+
+	return fetch(item["@id"], {
+		method: "PUT",
+		body: JSON.stringify(values)
+	})
+		.then(response =>
+			response
+				.json()
+				.then(retrieved => ({
+					retrieved,
+					hubURL: extractHubURL(response)
+				}))
+		)
+		.then(({ retrieved, hubURL }) => {
+			retrieved = normalize(retrieved);
+
+			dispatch(updateLoading(false));
+			dispatch(updateSuccess(retrieved));
+
+			if (hubURL)
+				dispatch(mercureSubscribe(hubURL, retrieved["@id"]));
+		})
+		.catch(e => {
+			dispatch(updateLoading(false));
+
+			if (e instanceof SubmissionError) {
+				dispatch(updateError(e.errors._error));
+				throw e;
+			}
+
+			dispatch(updateError(e.message));
+		});
+};
 
 export function reset(eventSource) {
 	return dispatch => {

@@ -1,0 +1,73 @@
+.create-turno-page {
+    .create-turno-header {
+        margin-top: 20px;
+        text-align: center;
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+
+            span {
+                color: $color-primary;
+            }
+        }
+    }
+
+    .create-turno {
+
+        .create-turno__auth-bg {
+            padding: 1em 2em;
+            background-color: #7b9c9d1a;
+            box-shadow: #00000029 0px 4px 16px 0px;
+            border-radius: 5px;
+        }
+
+        .create-turno__authenticated {
+
+            &-header h2 {
+                font-weight: 400;
+                font-size: 2em;
+                text-align: center;
+            }
+
+            &-options {
+                p {
+                    text-align: center;
+                }
+
+                .create-turno__separator {
+                    // text-align: center;
+
+                    .hr {
+                        font-size: 13px;
+                        opacity: .4;
+                    }
+
+                    .hr::before,
+                    .hr::after {
+                        content: "";
+                        background-color: #8C969D;
+                        display: inline-block;
+                        height: 1px;
+                        position: relative;
+                        vertical-align: middle;
+                        width: 50%;
+                    }
+
+                    .hr::before {
+                        right: 0.5em;
+                        margin-left: -50%;
+                    }
+
+                    .hr::after {
+                        left: 0.5em;
+                        margin-right: -50%;
+                    }
+                }
+            }
+
+
+            &-auth {}
+        }
+    }
+}

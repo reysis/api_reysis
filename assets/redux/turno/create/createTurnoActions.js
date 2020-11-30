@@ -30,11 +30,10 @@ export const createTurnoFetch = values => dispatch => {
 	dispatch(createTurnoRequest());
 
 	const page = "/api/turnos";
+	const method = "POST"
+	const body = JSON.stringify(values)
 
-	fetch(page, {
-		method: "POST",
-		body: JSON.stringify(values)
-	})
+	fetch(page, { method, body })
 		.then(res => res.json())
 		.then(res => {
 			const response = {

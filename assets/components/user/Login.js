@@ -9,6 +9,7 @@ import { Redirect, Link } from "react-router-dom";
 import { Button, Form, InputGroup, Col, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { useLocation } from 'react-router-dom';
 
 const Login = () => {
 
@@ -22,24 +23,30 @@ const Login = () => {
     const [password, setPassword] = useState('')
 
     const [disabledForm, setDisabledForm] = useState(true)
-    
+
+    const location = useLocation()
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(username.length == 0 || password.length == 0) return;
+        if (username.length == 0 || password.length == 0) return;
         dispatch(clearError())
         dispatch(loginFetch({ username, password }))
     }
 
     useEffect(() => {
         setDisabledForm(() => {
-            return username.length == 0 
-            || password.length == 0
-            || loading
+            return username.length == 0
+                || password.length == 0
+                || loading
         })
     }, [username, password, loading])
 
-    if(authenticated)
+    if (authenticated) {
+        console.log(location)
+        if (location && location.search == '?redirect' && location.state && location.state.redirect)
+            return <Redirect to={location => ({ state: { ...location.state }, pathname: location.state.redirect })} />
         return <Redirect to='/' />
+    }
     return (
         <Col className="content-wrap container" lg={6} >
             <Alert role={"status"} variant={"info"} show={loading} >Loading...</Alert>

@@ -9,14 +9,14 @@ const Question = ({ question, answer }) => {
     const faqRef = useRef(null)
 
     const hideAnswer = () => {
-        if(answerRef && faqRef) {
+        if (answerRef && faqRef) {
             faqRef.current.classList.toggle('active')
             // answerRef.current.classList.toggle('d-none')
             if (answerRef.current.style.maxHeight) {
-              answerRef.current.style.maxHeight = null;
+                answerRef.current.style.maxHeight = null;
             } else {
-              answerRef.current.style.maxHeight = answerRef.current.scrollHeight + "px";
-            } 
+                answerRef.current.style.maxHeight = answerRef.current.scrollHeight + "px";
+            }
         }
     }
 
@@ -28,7 +28,7 @@ const Question = ({ question, answer }) => {
                 </div>
                 <div onClick={hideAnswer} className="d-flex question-title">
                     <div className="text-dark question-caption">
-                        <h6>{ question }</h6>
+                        <h6>{question}</h6>
                     </div>
                     <div className="text-dark question-expand">
                         <FontAwesomeIcon icon={faChevronUp} />
@@ -37,7 +37,7 @@ const Question = ({ question, answer }) => {
             </div>
             <div ref={answerRef} className="bg-light px-4 question-answer">
                 <p className="text-secondary mb-4" >
-                    { answer }
+                    {answer}
                 </p>
             </div>
         </div>
@@ -45,22 +45,3 @@ const Question = ({ question, answer }) => {
 }
 
 export default Question;
-
-/*import React from 'react'
-
-const Question = ({ question, answer }) => {
-    return (
-        <li data-aos="fade-up" className="question-item">
-            <div className="flexbox-centered">
-                <span className="question-p-box">P</span>
-                <h3 className="question-title">{question}?</h3>
-            </div>
-            <div className="flexbox-centered">
-                <span className="question-r-box">R</span>
-                <p className="question-answer">{answer}</p>
-            </div>
-        </li> 
-    )
-}
-
-export default Question;*/

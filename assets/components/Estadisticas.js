@@ -33,7 +33,7 @@ const Estadisticas = () => {
                                 title={statistic.title}
                                 value={statistic.value}
                                 img={statistic.img}
-                                aosDelay={400 * index}
+                                aosDelay={300 * index}
                             />
                         )
                     })

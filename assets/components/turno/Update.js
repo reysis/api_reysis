@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Form from './Form';
+// import Form from './Form';
 import { retrieve, update, reset } from '../../actions/turno/update';
 import { del } from '../../actions/turno/delete';
 
@@ -83,10 +83,10 @@ class Update extends Component {
         )}
 
         {item && (
-          <Form
+          {/* <Form
             onSubmit={values => this.props.update(item, values)}
             initialValues={item}
-          />
+          /> */}
         )}
         <Link to=".." className="btn btn-primary">
           Back to list

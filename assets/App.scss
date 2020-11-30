@@ -19,6 +19,7 @@
 @import "./css/opinions.scss";
 @import "./css/contact.scss";
 @import "./css/footer.scss";
+@import "./css/loader.scss";
 
 /* LOGIN & LOGUOT PAGE */
 @import "./css/formulario.scss";
@@ -29,5 +30,9 @@
 /* ABOUT PAGE */
 @import "./css/about-page.scss";
 
+/* CREATE TURNO PAGE */
+@import "./css/create-turno";
+
 /* CALENDAR FOR APPOINTMENT */
 @import "./css/calendar.scss";
+@import "./css/turno-calendar"
