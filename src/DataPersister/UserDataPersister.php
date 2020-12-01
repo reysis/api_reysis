@@ -50,6 +50,10 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
             $this->logger->info(sprintf('Usuario $s se acaba de registrar', $data->getId()));
         }
 
+        if($data->getPersona()){
+            $data->getPersona()->setUser( $data );
+        }
+
         if($data->getPlainPassword()){
             $data->setPassword(
                 $this->userPasswordEncoder->encodePassword($data,$data->getPlainPassword())

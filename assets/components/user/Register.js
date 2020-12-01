@@ -98,7 +98,7 @@ const Register = () => {
         if (timeout) clearTimeout(timeout)
         timeout = setTimeout(() => {
             // let reg = new RegExp("^[a-z0-9][a-z0-9-_\.]+@([a-z]|[a-z0-9]?[a-z0-9-]+[a-z0-9])\.[a-z0-9]{2,4}$");
-            let reg = /^[a-z0-9](\.?[a-z0-9-_]+)*@[a-z0-9-_](\.?[a-z0-9-_]+)*\.[a-z]{2,4}+$/
+            //let reg = /^[a-z0-9](\.?[a-z0-9-_]+)*@[a-z0-9-_](\.?[a-z0-9-_]+)*\.[a-z]{2,4}+$/
             setValidEmail(() => reg.test(email))
         }, 1000);
     }, [email])
@@ -212,7 +212,7 @@ const Register = () => {
                                         <FontAwesomeIcon icon={faBars} />
                                     </label>
                                 </InputGroup.Prepend>
-                                <Form.Control as="select" id="register-phone-type" className="custom-select" as="select" defaultValue={phoneType} onChange={(e) => setPhoneType(e.target.value)} >
+                                <Form.Control id="register-phone-type" className="custom-select" as="select" defaultValue={phoneType} onChange={(e) => setPhoneType(e.target.value)} >
                                     <option value="" >Tipo de Télefono ...</option>
                                     {
                                         phoneTypes.map((value, index) => (
