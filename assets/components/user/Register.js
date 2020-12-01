@@ -6,24 +6,45 @@ import { clearError, registerFetch } from "../../redux/auth/authActions";
 
 import { Redirect, Link } from "react-router-dom";
 
-import { Button, Form, InputGroup, Col, Alert } from "react-bootstrap";
+import { Button, Form, InputGroup, Col, Alert, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationTriangle, faUserTag, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationTriangle, faUserTag, faTag, faIdCard, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Register = () => {
 
+    const [name, setName] = useState("")
+    const [lastname, setLastname] = useState("")
+    const [cid, setCid] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [passwordCheck, setPasswordCheck] = useState("")
     const [email, setEmail] = useState("")
-    const [telephone, setTelephone] = useState("")
+
+    const [phoneType, setPhoneType] = useState("")
+    const [phone, setPhone] = useState("")
+
+    const [phoneTypes] = useState([
+        "Casa",
+        "Personal",
+        "Trabajo"
+    ])
+
     const [address, setAddress] = useState("")
 
     const [arePasswordMatch, setArePasswordMatch] = useState(false)
-    const [validEmail, setValidEmail] = useState(false)
     const [disabledForm, setDisabledForm] = useState(true)
 
-    var timeout = null;
+    const [validEmail, setValidEmail] = useState(false)
+    const [validPassword, setValidPassword] = useState(false)
+    const [validCid, setValidCid] = useState(false)
+    const [validUsername, setValidUsername] = useState(false)
+    // const [validPhone, setValidPhone] = useState(false)
+
+    var timeout = null,
+        timeout2 = null,
+        timeout3 = null,
+        timeout4 = null,
+        timeout5 = null
 
     const authLoading = useSelector(state => state.auth.loading)
     const authAuthenticated = useSelector(state => state.auth.authenticated)
@@ -38,16 +59,21 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (username.length == 0
-            || password.length == 0
+        if (!username.length
+            || !password.length
             || !arePasswordMatch
             || !validEmail
-            || telephone.length == 0) return;
+            || !phone.length) return;
 
         const phoneNumbers = [{
-            "phoneType": "movil",
-            "number": telephone
+            phoneType,
+            number: phone
         }]
+
+        const persona = {
+            nombre: [name, lastname].join(' '),
+            ci: cid
+        }
 
         dispatch(registerFetch({
             username,
@@ -62,6 +88,7 @@ const Register = () => {
                 city: "",
                 country: ""
             },
+            persona,
             phoneNumbers,
             nationality: "Cubano"
         }))
@@ -70,12 +97,44 @@ const Register = () => {
     useEffect(() => {
         if (timeout) clearTimeout(timeout)
         timeout = setTimeout(() => {
-            let t = /[a-z](\.?[a-z0-9-_]+)*@[a-z0-9-_](\.?[a-z0-9-_]+)*\.[a-z]+/.exec(email);
-            setValidEmail(() => {
-                return t && email.length == t[0].length && t.index == 0
-            })
+            // let reg = new RegExp("^[a-z0-9][a-z0-9-_\.]+@([a-z]|[a-z0-9]?[a-z0-9-]+[a-z0-9])\.[a-z0-9]{2,4}$");
+            let reg = /^[a-z0-9](\.?[a-z0-9-_]+)*@[a-z0-9-_](\.?[a-z0-9-_]+)*\.[a-z]{2,4}+$/
+            setValidEmail(() => reg.test(email))
         }, 1000);
     }, [email])
+
+    useEffect(() => {
+        if (timeout2) clearTimeout(timeout2)
+        timeout2 = setTimeout(() => {
+            let reg = /^[0-9]{11,11}$/
+            setValidCid(() => reg.test(cid))
+        }, 1000);
+    }, [cid])
+
+    useEffect(() => {
+        if (timeout3) clearTimeout(timeout3)
+        timeout3 = setTimeout(() => {
+            let reg = /^(\w{3,})$/
+            setValidUsername(() => reg.test(username))
+        }, 1000);
+    }, [username])
+
+    useEffect(() => {
+        if (timeout4) clearTimeout(timeout4)
+        timeout4 = setTimeout(() => {
+            let reg = new RegExp("^[0-9 \+\(\)]+$");
+            setValidPhone(() => reg.test(phone))
+        }, 1000);
+    }, [phone])
+
+    useEffect(() => {
+        if (timeout5) clearTimeout(timeout5)
+        timeout5 = setTimeout(() => {
+            let reg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/
+            setValidPassword(() => reg.test(password))
+        }, 1000);
+    }, [password])
+
 
     useEffect(() => {
         setArePasswordMatch(() => {
@@ -91,126 +150,167 @@ const Register = () => {
                 || !validEmail
                 || email.length == 0
                 || authLoading
-                || telephone.length == 0
+                || phone.length == 0
         })
 
-    }, [arePasswordMatch, email, validEmail, username, telephone, authLoading])
+    }, [arePasswordMatch, email, validEmail, username, phone, authLoading])
 
     if (authAuthenticated)
         return <Redirect to='/' />
     return (
-        <Col className="content-wrap container" lg={6} >
+        <Container>
             <Alert role={"status"} variant={"info"} show={authLoading}>Loading...</Alert>
             <Alert role={"alert"} variant={"danger"} show={authError} >
                 <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
                 {authError}
             </Alert>
-            <Form onSubmit={handleSubmit} className="form-register wrapper">
-                <Form.Group className="form-header form-in-center">
-                    <h2>Súmese a nosotros!</h2>
-                    <span>Entre todos los datos para completar el registro</span>
-                </Form.Group>
+            <Col lg={6} className="mx-auto my-3">
+                <Form onSubmit={handleSubmit} className="form-register p-3">
+                    <Form.Group className="form-header text-center mb-4">
+                        <h2 className="mb-0"><span>Súmese</span> a nosotros!</h2>
+                        <span>Entre todos los datos para completar el registro</span>
+                    </Form.Group>
 
-                <Form.Group>
-                    <InputGroup>
-                        <InputGroup.Prepend>
-                            <label className="input-group-text" htmlFor="username" >
-                                <FontAwesomeIcon icon={faUser} />
-                            </label>
-                        </InputGroup.Prepend>
-                        <Form.Control type="user" placeholder="Usuario" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    </InputGroup>
-                </Form.Group>
+                    <Form.Row>
+                        <Form.Group as={Col} md={6}>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <label className="input-group-text" htmlFor="register-name" >
+                                        <FontAwesomeIcon icon={faUser} />
+                                    </label>
+                                </InputGroup.Prepend>
+                                <Form.Control type="name" id="register-name" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
+                            </InputGroup>
+                        </Form.Group>
+                        <Form.Group as={Col} md={6}>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <label className="input-group-text" htmlFor="register-lastname" >
+                                        <FontAwesomeIcon icon={faUser} />
+                                    </label>
+                                </InputGroup.Prepend>
+                                <Form.Control type="lastname" id="register-lastname" placeholder="Apellidos" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+                            </InputGroup>
+                        </Form.Group>
+                    </Form.Row>
 
-                <Form.Group className="email-group">
-                    <InputGroup>
-                        <InputGroup.Prepend>
-                            <label className="input-group-text" htmlFor="email">
-                                <FontAwesomeIcon icon={faAt} />
-                            </label>
-                        </InputGroup.Prepend>
-                        <Form.Control type="email" placeholder="Correo Electrónico" isInvalid={email.length > 0 && !validEmail} isValid={email.length > 0 && validEmail} value={email} onChange={(e) => setEmail(e.target.value)} ></Form.Control>
-                    </InputGroup>
-                </Form.Group>
+                    <Form.Row>
+                        <Form.Group as={Col} md={6}>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <label className="input-group-text" htmlFor="register-phone">
+                                        <FontAwesomeIcon icon={faPhone} />
+                                    </label>
+                                </InputGroup.Prepend>
+                                <Form.Control type="phone" id="register-phone" placeholder="Número de Teléfono" value={phone} onChange={(e) => setPhone(e.target.value)} ></Form.Control>
+                            </InputGroup>
+                        </Form.Group>
+                        <Form.Group as={Col} md={6}>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <label className="input-group-text" htmlFor="register-phone-type">
+                                        <FontAwesomeIcon icon={faBars} />
+                                    </label>
+                                </InputGroup.Prepend>
+                                <Form.Control as="select" id="register-phone-type" className="custom-select" as="select" defaultValue={phoneType} onChange={(e) => setPhoneType(e.target.value)} >
+                                    <option value="" >Tipo de Télefono ...</option>
+                                    {
+                                        phoneTypes.map((value, index) => (
+                                            <option key={index} value={value}>{value}</option>
+                                        ))
+                                    }
+                                </Form.Control>
+                            </InputGroup>
+                        </Form.Group>
+                    </Form.Row>
 
-                <Form.Group className="form-group-password">
-                    <Form.Group className="password-group-1">
+                    <Form.Group >
                         <InputGroup>
                             <InputGroup.Prepend>
-                                <label className="input-group-text" htmlFor="password">
-                                    <FontAwesomeIcon icon={faLock} />
+                                <label className="input-group-text" htmlFor="cid" >
+                                    <FontAwesomeIcon icon={faIdCard} />
                                 </label>
                             </InputGroup.Prepend>
-                            <Form.Control type="password" placeholder="Contraseña" isValid={arePasswordMatch} value={password} onChange={(e) => setPassword(e.target.value)} ></Form.Control>
+                            <Form.Control type="id" id="register-cid" placeholder="Carner Identidad" title="11 números" value={cid} isValid={cid.length && validCid} isInvalid={cid.length && !validCid} onChange={(e) => setCid(e.target.value)} />
                         </InputGroup>
                     </Form.Group>
 
-                    <Form.Group className="password-group-2">
+                    <Form.Group className="mb-0">
                         <InputGroup>
                             <InputGroup.Prepend>
-                                <label className="input-group-text" htmlFor="passwordCheck">
-                                    <FontAwesomeIcon icon={faRedoAlt} />
+                                <label className="input-group-text" htmlFor="address">
+                                    <FontAwesomeIcon icon={faAddressBook} />
                                 </label>
                             </InputGroup.Prepend>
-                            <Form.Control type="password" placeholder="Confirmar Contraseña" isValid={arePasswordMatch} value={passwordCheck} onChange={(e) => setPasswordCheck(e.target.value)} ></Form.Control>
+                            <Form.Control type="text" id="register-address" placeholder="Dirección Particular" value={address} onChange={(e) => setAddress(e.target.value)} ></Form.Control>
                         </InputGroup>
                     </Form.Group>
-                </Form.Group>
 
-                {/* <Form.Group className="tipo-usuario-group" >
-                    <InputGroup>
-                        <InputGroup.Prepend>
-                            <label className="input-group-text" htmlFor="passwordCheck">
-                                <FontAwesomeIcon icon={faTag} />
-                            </label>
-                        </InputGroup.Prepend>
-                        <Form.Control ref={tipoUsuarioSelect} className="custom-select" disabled={tipoUsuarioLoading || tipoUsuarioError} as="select" defaultValue={tipoUsuario} onChange={(e) => setTipoUsuario(e.target.value)} >
-                            <option value="" >Tipo de Usuario ...</option>
-                            {
-                                tipoUsuarioList.map(tu => (
-                                    <option key={tu.id} value={tu.id}>{tu.tipo}</option>
-                                ))
-                            }
-                        </Form.Control>
-                    </InputGroup>
-                </Form.Group> */}
-
-                <Form.Group className="telephone-group">
-                    <InputGroup>
-                        <InputGroup.Prepend>
-                            <label className="input-group-text" htmlFor="telephone">
-                                <FontAwesomeIcon icon={faPhone} />
-                            </label>
-                        </InputGroup.Prepend>
-                        <Form.Control type="text" placeholder="Teléfono" value={telephone} onChange={(e) => setTelephone(e.target.value)} ></Form.Control>
-                    </InputGroup>
-                </Form.Group>
-
-                <Form.Group className="address-group">
-                    <InputGroup>
-                        <InputGroup.Prepend>
-                            <label className="input-group-text" htmlFor="address">
-                                <FontAwesomeIcon icon={faAddressBook} />
-                            </label>
-                        </InputGroup.Prepend>
-                        <Form.Control type="text" placeholder="Dirección Particular" value={address} onChange={(e) => setAddress(e.target.value)} ></Form.Control>
-                    </InputGroup>
-                </Form.Group>
-
-                <Form.Group>
-                    <small id="fileHelp" className="form-text text-muted mb-2">Al registrarse estás aceptando nuestros <a href="#">Términos y Condiciones</a></small>
-                    <Button variant="primary" block disabled={disabledForm} type="submit">Registrarse</Button>
-                </Form.Group>
-
-                <Form.Group className="form-in-center">
-                    <div className="mb-3 mx-4 register-separator">
-                        <p className="mt-2 mb-3 hr">o</p>
-                        <Link to="/login" className="form-link">Iniciar Sesión</Link>
+                    <div className="mx-4 my-2 register-separator">
+                        <p className="mb-0 hr">o</p>
                     </div>
-                </Form.Group>
 
-            </Form>
-        </Col>
+                    <Form.Group>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <label className="input-group-text" htmlFor="username" >
+                                    <FontAwesomeIcon icon={faUser} />
+                                </label>
+                            </InputGroup.Prepend>
+                            <Form.Control type="user" id="register-username" placeholder="Usuario" title="Solo letras, números and guión bajo" isValid={username.length && validUsername} isInvalid={username.length >= 3 && !validUsername} value={username} onChange={(e) => setUsername(e.target.value)} />
+                        </InputGroup>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <label className="input-group-text" htmlFor="register-email">
+                                    <FontAwesomeIcon icon={faAt} />
+                                </label>
+                            </InputGroup.Prepend>
+                            <Form.Control type="email" id="register-email" placeholder="Correo Electrónico" isInvalid={email.length && !validEmail} isValid={email.length && validEmail} value={email} onChange={(e) => setEmail(e.target.value)} ></Form.Control>
+                        </InputGroup>
+                    </Form.Group>
+
+                    <Form.Row>
+                        <Form.Group as={Col} md={6}>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <label className="input-group-text" htmlFor="register-password">
+                                        <FontAwesomeIcon icon={faLock} />
+                                    </label>
+                                </InputGroup.Prepend>
+                                <Form.Control type="password" id="register-password" title="Mínimo 6 caracteres, al menos 1 mayúscula, minúscula y número" placeholder="Contraseña" isValid={password.length && arePasswordMatch && validPassword} isInvalid={password.length >= 6 && !validPassword} value={password} onChange={(e) => setPassword(e.target.value)} ></Form.Control>
+                            </InputGroup>
+                        </Form.Group>
+                        <Form.Group as={Col} md={6}>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <label className="input-group-text" htmlFor="register-passwordCheck">
+                                        <FontAwesomeIcon icon={faRedoAlt} />
+                                    </label>
+                                </InputGroup.Prepend>
+                                <Form.Control type="password" id="register-passwordCheck" placeholder="Confirmar Contraseña" isValid={arePasswordMatch && validPassword} value={passwordCheck} onChange={(e) => setPasswordCheck(e.target.value)} ></Form.Control>
+                            </InputGroup>
+                        </Form.Group>
+                    </Form.Row>
+
+                    <Form.Group>
+                        <small id="fileHelp" className="form-text text-muted mb-2">Al registrarse estás aceptando nuestros <a href="#">Términos y Condiciones</a></small>
+                        <Button variant="primary" block disabled={disabledForm} type="submit">Registrarse</Button>
+                    </Form.Group>
+
+                    <Form.Group className="mb-0">
+                        <div className="mx-4 register-separator">
+                            <p className="mt-2 mb-3 hr">o</p>
+                            <Link to="/login" className="form-link">Iniciar Sesión</Link>
+                        </div>
+                    </Form.Group>
+
+                </Form>
+            </Col>
+
+        </Container>
     )
 }
 

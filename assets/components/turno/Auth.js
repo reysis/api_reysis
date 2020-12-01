@@ -8,16 +8,14 @@ const AuthCreateTurno = () => {
 
 	const [name, setName] = useState("")
 	const [lastname, setLastname] = useState("")
-	const [password, setPassword] = useState("")
-	const [passwordCheck, setPasswordCheck] = useState("")
 	const [email, setEmail] = useState("")
-	const [telephoneType, setTelephoneType] = useState("")
-	const [telephone, setTelephone] = useState("")
+	const [phoneType, setPhoneType] = useState("")
+	const [phone, setPhone] = useState("")
 	const [address, setAddress] = useState("")
 
 	const [validEmail, setValidEmail] = useState(false)
 
-	const [telephoneTypes] = useState([
+	const [phoneTypes] = useState([
 		"Casa",
 		"Personal",
 		"Trabajo"
@@ -41,21 +39,21 @@ const AuthCreateTurno = () => {
 				<Form.Group as={Col} md={6}>
 					<InputGroup>
 						<InputGroup.Prepend>
-							<label className="input-group-text" htmlFor="name" >
+							<label className="input-group-text" htmlFor="create-turno-name" >
 								<FontAwesomeIcon icon={faUser} />
 							</label>
 						</InputGroup.Prepend>
-						<Form.Control type="name" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
+						<Form.Control type="name" id="create-turno-name" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} />
 					</InputGroup>
 				</Form.Group>
 				<Form.Group as={Col} md={6}>
 					<InputGroup>
 						<InputGroup.Prepend>
-							<label className="input-group-text" htmlFor="lastname" >
+							<label className="input-group-text" htmlFor="create-turno-lastname" >
 								<FontAwesomeIcon icon={faUser} />
 							</label>
 						</InputGroup.Prepend>
-						<Form.Control type="lastname" placeholder="Apellidos" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+						<Form.Control type="lastname" id="create-turno-lastname" placeholder="Apellidos" value={lastname} onChange={(e) => setLastname(e.target.value)} />
 					</InputGroup>
 				</Form.Group>
 			</Form.Row>
@@ -63,70 +61,27 @@ const AuthCreateTurno = () => {
 			<Form.Group>
 				<InputGroup>
 					<InputGroup.Prepend>
-						<label className="input-group-text" htmlFor="email">
+						<label className="input-group-text" htmlFor="create-turno-email">
 							<FontAwesomeIcon icon={faAt} />
 						</label>
 					</InputGroup.Prepend>
-					<Form.Control type="email" placeholder="Correo Electrónico" isInvalid={email.length > 0 && !validEmail} isValid={email.length > 0 && validEmail} value={email} onChange={(e) => setEmail(e.target.value)} ></Form.Control>
+					<Form.Control type="email" id="create-turno-email" placeholder="Correo Electrónico" isInvalid={email.length && !validEmail} isValid={email.length && validEmail} value={email} onChange={(e) => setEmail(e.target.value)} ></Form.Control>
 				</InputGroup>
 			</Form.Group>
-
-			{/* <Form.Row>
-				<Form.Group as={Col} md={6}>
-					<InputGroup>
-						<InputGroup.Prepend>
-							<label className="input-group-text" htmlFor="password">
-								<FontAwesomeIcon icon={faLock} />
-							</label>
-						</InputGroup.Prepend>
-						<Form.Control type="password" placeholder="Contraseña" isValid={arePasswordMatch} value={password} onChange={(e) => setPassword(e.target.value)} ></Form.Control>
-					</InputGroup>
-				</Form.Group>
-
-				<Form.Group as={Col} md={6}>
-					<InputGroup>
-						<InputGroup.Prepend>
-							<label className="input-group-text" htmlFor="passwordCheck">
-								<FontAwesomeIcon icon={faRedoAlt} />
-							</label>
-						</InputGroup.Prepend>
-						<Form.Control type="password" placeholder="Confirmar Contraseña" isValid={arePasswordMatch} value={passwordCheck} onChange={(e) => setPasswordCheck(e.target.value)} ></Form.Control>
-					</InputGroup>
-				</Form.Group>
-			</Form.Row> */}
-
-			{/* <Form.Group>
-				<InputGroup>
-					<InputGroup.Prepend>
-						<label className="input-group-text" htmlFor="passwordCheck">
-							<FontAwesomeIcon icon={faTag} />
-						</label>
-					</InputGroup.Prepend>
-					<Form.Control ref={tipoUsuarioSelect} className="custom-select" disabled={tipoUsuarioLoading || tipoUsuarioError} as="select" defaultValue={tipoUsuario} onChange={(e) => setTipoUsuario(e.target.value)} >
-						<option value="" >Tipo de Usuario ...</option>
-						{
-							tipoUsuarioList.map(tu => (
-								<option key={tu.id} value={tu.id}>{tu.tipo}</option>
-							))
-						}
-					</Form.Control>
-				</InputGroup>
-			</Form.Group> */}
 
 			<Form.Row>
 
 				<Form.Group as={Col} md={6}>
 					<InputGroup>
 						<InputGroup.Prepend>
-							<label className="input-group-text" htmlFor="telephone-type">
+							<label className="input-group-text" htmlFor="create-turno-phone-type">
 								<FontAwesomeIcon icon={faPhone} />
 							</label>
 						</InputGroup.Prepend>
-						{/* <Form.Control type="text" placeholder="Tipo" value={telephone} onChange={(e) => setTelephone(e.target.value)} ></Form.Control> */}
-						<Form.Control as="select" className="custom-select" as="select" defaultValue={telephoneType} onChange={(e) => setTelephoneType(e.target.value)} >
+						<Form.Control as="select" id="create-turno-phone-type" className="custom-select" as="select" defaultValue={phoneType} onChange={(e) => setPhoneType(e.target.value)} >
 							<option value="" >Tipo de Télefono ...</option>
 							{
-								telephoneTypes.map((value, index) => (
+								phoneTypes.map((value, index) => (
 									<option key={index} value={value}>{value}</option>
 								))
 							}
@@ -136,11 +91,11 @@ const AuthCreateTurno = () => {
 				<Form.Group as={Col} md={6}>
 					<InputGroup>
 						<InputGroup.Prepend>
-							<label className="input-group-text" htmlFor="telephone">
+							<label className="input-group-text" htmlFor="create-turno-phone">
 								<FontAwesomeIcon icon={faPhone} />
 							</label>
 						</InputGroup.Prepend>
-						<Form.Control type="phone" placeholder="Número de Teléfono" value={telephone} onChange={(e) => setTelephone(e.target.value)} ></Form.Control>
+						<Form.Control type="phone" id="create-turno-phone" placeholder="Número de Teléfono" value={phone} onChange={(e) => setPhone(e.target.value)} ></Form.Control>
 					</InputGroup>
 				</Form.Group>
 
@@ -149,11 +104,11 @@ const AuthCreateTurno = () => {
 			<Form.Group >
 				<InputGroup>
 					<InputGroup.Prepend>
-						<label className="input-group-text" htmlFor="address">
+						<label className="input-group-text" htmlFor="create-turno-address">
 							<FontAwesomeIcon icon={faAddressBook} />
 						</label>
 					</InputGroup.Prepend>
-					<Form.Control type="text" placeholder="Dirección Particular" value={address} onChange={(e) => setAddress(e.target.value)} ></Form.Control>
+					<Form.Control type="text" id="create-turno-address" placeholder="Dirección Particular" value={address} onChange={(e) => setAddress(e.target.value)} ></Form.Control>
 				</InputGroup>
 			</Form.Group>
 

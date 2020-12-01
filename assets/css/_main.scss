@@ -152,3 +152,15 @@ button:focus {
 .section-padding {
 	padding: 3em 0;
 }
+
+.input-group-prepend {
+	width: 2.5em;
+
+	.input-group-text {
+		width: 100%;
+
+		svg {
+			margin: auto;
+		}
+	}
+}

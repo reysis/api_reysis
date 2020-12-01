@@ -26,19 +26,8 @@ const Create = ({ locations }) => {
 
 	const now = new Date()
 
-	const [date, setDate] = useState(() => {
-		return {
-			day: 1,
-			month: 1,
-			year: 2020
-		}
-	})
-	const [time, setTime] = useState(() => {
-		return {
-			hour: 0,
-			minute: 0
-		}
-	})
+	const [date, setDate] = useState(null)
+	const [time, setTime] = useState(null)
 
 	const toLogin = () => ({
 		pathname: '/login',
@@ -55,15 +44,8 @@ const Create = ({ locations }) => {
 
 	}, [])
 
-	const onSubmit = () => {
-
-	}
-
-	const onChangeDate = (date) => {
-
-	}
-
-	const onChangeTime = (time) => {
+	const handleSubmit = (e) => {
+		e.preventDefault();
 
 	}
 
@@ -85,9 +67,9 @@ const Create = ({ locations }) => {
 					{error}
 				</div>
 			}
-			<Form onSubmit={onSubmit} className="create-turno__form" >
+			<Form onSubmit={handleSubmit} className="create-turno__form" >
 
-				<TurnoCalendar onChangeDate={onChangeDate} onChangeTime={onChangeTime} />
+				<TurnoCalendar onChangeDate={setDate} onChangeTime={setTime} />
 
 				<Form.Group>
 					<InputGroup>
