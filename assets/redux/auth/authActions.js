@@ -5,9 +5,7 @@ import {
 	AUTH_REGISTER_REQUEST,
 	AUTH_REGISTER_SUCCESS,
 	AUTH_REGISTER_ERROR,
-	AUTH_LOGOUT_REQUEST,
 	AUTH_LOGOUT_SUCCESS,
-	AUTH_LOGOUT_ERROR,
 	AUTH_CLEAR_ERROR
 } from "./authTypes";
 import {
@@ -54,22 +52,9 @@ export const registerError = error => {
 	};
 };
 
-export const logoutRequest = () => {
-	return {
-		type: AUTH_LOGOUT_REQUEST
-	};
-};
-
 export const logoutSuccess = () => {
 	return {
 		type: AUTH_LOGOUT_SUCCESS
-	};
-};
-
-export const logoutError = error => {
-	return {
-		type: AUTH_LOGOUT_ERROR,
-		payload: error
 	};
 };
 
@@ -78,6 +63,34 @@ export const clearError = () => {
 		type: AUTH_CLEAR_ERROR
 	};
 };
+
+export const loadUser = () => (dispatch, getState) => {
+
+	const page = getState().auth.tokenUser;
+	const token = getState().auth.token;
+
+	console.log(getState())
+
+	if (page && token) {
+		dispatch(loginRequest());
+		fetch(page, getUser(token))
+			.then(res => res.json())
+			.then(res => {
+				const response = {
+					token,
+					userToken: page,
+					user: {
+						...res,
+						id: res['@id']
+					}
+				}
+				dispatch(loginSuccess(response));
+			})
+			.catch(error => {
+				dispatch(loginError(error.message));
+			});
+	}
+}
 
 export const loginFetch = ({ username, password }) => dispatch => {
 	dispatch(loginRequest());
@@ -99,17 +112,39 @@ export const loginFetch = ({ username, password }) => dispatch => {
 	})
 		.then(res => res.json())
 		.then(res => {
-			const response = {
-				...res,
-				id: res["@id"]
-			};
-			console.log(response);
-			dispatch(loginSuccess(response));
+			const token = res.token
+			const location = res.location
+			fetch(location, getUser(token))
+				.then(res => res.json())
+				.then(res => {
+					const response = {
+						token,
+						tokenUser: location,
+						user: {
+							...res,
+							id: res['@id']
+						}
+					}
+					dispatch(loginSuccess(response));
+				})
+				.catch(error => {
+					dispatch(loginError(error.message));
+				});
 		})
 		.catch(error => {
 			dispatch(loginError(error.message));
 		});
 };
+
+const getUser = (token) => {
+	return {
+		method: 'GET',
+		headers: new Headers({
+			'Content-Type': 'application/ld+json',
+			Authorization: `Bearer ${token}`
+		})
+	}
+}
 
 export const registerFetch = (value) => dispatch => {
 	dispatch(registerRequest());
@@ -143,19 +178,4 @@ export const registerFetch = (value) => dispatch => {
 		.catch(error => {
 			dispatch(registerError(error.message));
 		})
-};
-
-export const logoutFetch = () => dispatch => {
-	dispatch(logoutRequest());
-
-	const page = "/api/logout";
-	const method = "POST";
-
-	fetch(page, { method })
-		.then(() => {
-			dispatch(logoutSuccess());
-		})
-		.catch(error => {
-			dispatch(logoutError(error.message));
-		});
 };

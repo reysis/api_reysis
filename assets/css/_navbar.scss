@@ -170,12 +170,12 @@ $out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
 
 	.back-to-top {
 		position: fixed;
-		bottom: 20px;
-		right: 20px;
-		width: 40px;
-		height: 40px;
+		bottom: 1.8em;
+		right: 1.8em;
+		width: 3em;
+		height: 3em;
 		background: $color-primary;
-		border-radius: 40px;
+		border-radius: 50%;
 		transition: all 0.2s ease-in-out;
 		box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 		cursor: pointer;
@@ -191,7 +191,7 @@ $out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
 
 			svg {
 				display: block;
-				font-size: 20px;
+				font-size: 1.8em;
 				color: #fff;
 			}
 

@@ -169,7 +169,7 @@ const Register = () => {
             <Col lg={6} className="mx-auto my-3">
                 <Form onSubmit={handleSubmit} className="form-register p-3">
                     <Form.Group className="form-header text-center mb-4">
-                        <h2 className="mb-0"><span>Súmese</span> a nosotros!</h2>
+                        <h2 className="mb-0"><span>Súmese</span> a nosotros</h2>
                         <span>Entre todos los datos para completar el registro</span>
                     </Form.Group>
 
