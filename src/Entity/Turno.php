@@ -61,7 +61,7 @@ class Turno
     /**
      * Una breve descripción del defecto
      * 
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      * @Groups({"turno:read", "turno:write"})
      * @Assert\NotBlank()
      */
@@ -71,6 +71,7 @@ class Turno
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="turnos", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"turno:read", "turno:write"})
+     * @Assert\NotBlank
      */
     private $user;
 

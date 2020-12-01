@@ -6,6 +6,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\FAQRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(
@@ -14,15 +18,25 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "post" = {"security_post_denormalize"="is_granted('ROLE_ADMIN')"},
  *     },
  *     itemOperations={
- *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
- *          "get" = {
- *                  "method" = "GET",
- *                  "controller" = NotFoundAction::class,
- *                  "read" = false,
- *                  "output" = false
+ *          "put" = {
+ *              "security" = "is_granted('ROLE_ADMIN')"
  *          },
- *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *          "get" = {
+ *              "security" = "is_granted('ROLE_ADMIN')"
+ *          },
+ *          "delete" ={"security" = "is_granted('ROLE_ADMIN')"}
  *      },
+ *     attributes={
+ *          "pagination_items_per_page" = 10
+ *     },
+ * )
+ * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "question":"partial",
+ *          "category":"exact"
+ *      }
  * )
  * @ORM\Entity(repositoryClass=FAQRepository::class)
  */
@@ -37,18 +51,22 @@ class FAQ
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"faq:read", "admin:read","admin:write"})
+     * @Groups({"faq:read","admin:read","admin:write"})
+     * @Assert\NotBlank
      */
     private $question;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"faq:read", "admin:read","admin:write"})
+     * @Assert\NotBlank
      */
     private $answer;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"faq:read", "admin:read","admin:write"})
+     * @Assert\NotBlank
      */
     private $category;
 
