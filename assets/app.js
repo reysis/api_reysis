@@ -1,4 +1,4 @@
-import React, { Component, useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Route, Switch } from 'react-router-dom';
 
@@ -22,8 +22,13 @@ import './App.scss';
 
 import history from './history';
 
-class App extends Component {
-    componentDidMount() {
+import { loadUser } from './redux/auth/authActions';
+
+const App = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
         AOS.init({
             easing: 'ease-in-sine',
             duration: 1000,
@@ -31,23 +36,23 @@ class App extends Component {
             offset: 100,
             once: true
         })
-    }
-    render() {
-        return (
-            <ConnectedRouter history={history}>
-                <Header />
-                <Switch>
-                    <Route path="/" component={Home} strict={true} exact={true} key="home" />
-                    {navbarRoutes}
-                    {turnoRoutes}
-                    {authenticationsRoutes}
-                    <Route component={NotFoundPage} key="notfound" />
-                </Switch>
-                <LoaderSpinner />
-                <Footer />
-            </ConnectedRouter>
-        )
-    }
+        dispatch(loadUser());
+    }, [])
+
+    return (
+        <ConnectedRouter history={history}>
+            <Header />
+            <Switch>
+                <Route path="/" component={Home} strict={true} exact={true} key="home" />
+                {navbarRoutes}
+                {turnoRoutes}
+                {authenticationsRoutes}
+                <Route component={NotFoundPage} key="notfound" />
+            </Switch>
+            <LoaderSpinner />
+            <Footer />
+        </ConnectedRouter>
+    )
 };
 
 export default App;
