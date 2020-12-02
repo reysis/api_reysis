@@ -8,6 +8,8 @@ import { faHammer } from '@fortawesome/free-solid-svg-icons';
 
 import TurnoCalendar from "./TurnoCalendar";
 import AuthCreateTurno from './Auth';
+import { createTurnoFetch } from '../../redux/turno/create/createTurnoActions';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Create = ({ locations }) => {
 
@@ -18,7 +20,7 @@ const Create = ({ locations }) => {
 	const authenticated = useSelector(state => state.auth.authenticated)
 	const user = useSelector(state => state.auth.user)
 
-	const [disabledForm, setDisabledForm] = useState(true)
+	const [disabledForm, setDisabledForm] = useState(false)
 
 	const [defecto, setDefecto] = useState("");
 
@@ -28,6 +30,8 @@ const Create = ({ locations }) => {
 
 	const [date, setDate] = useState(null)
 	const [time, setTime] = useState(null)
+
+	const [userAuth, setUserAuth] = useState({})
 
 	const toLogin = () => ({
 		pathname: '/login',
@@ -40,18 +44,42 @@ const Create = ({ locations }) => {
 		}
 	})
 
-	useEffect(() => {
+	const location = useLocation()
 
-	}, [])
+	useEffect(() => {
+		if (location && location.state) {
+			setDate(location.state.date)
+			setTime(location.state.time)
+			setDefecto(location.state.defecto)
+		}
+	}, [location])
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
+		console.log(date, time)
+
+		const fecha = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.hour, time.minute)
+		let userTurno = null
+		if (authenticated)
+			userTurno = user.id
+		else userTurno = userAuth
+
+		dispatch(createTurnoFetch({
+			fecha,
+			defecto,
+			user: userTurno
+		}))
 	}
+
+	// useEffect(() => {
+	// 	// disable form
+	// }, [])
 
 	if (turno)
 		return (
-			<Redirect to={`edit/${encodeURIComponent(turno['@id'])}`} />
+			//<Redirect to={`edit/${encodeURIComponent(turno['@id'])}`} />
+			<Redirect to='/' />
 		);
 	return (
 		<Container className="create-turno">
@@ -69,7 +97,7 @@ const Create = ({ locations }) => {
 			}
 			<Form onSubmit={handleSubmit} className="create-turno__form" >
 
-				<TurnoCalendar onChangeDate={setDate} onChangeTime={setTime} />
+				<TurnoCalendar handleDate={date} onChangeDate={setDate} handleTime={time} onChangeTime={setTime} />
 
 				<Form.Group>
 					<InputGroup>
@@ -96,7 +124,7 @@ const Create = ({ locations }) => {
 									<p>Entre los siguientes datos</p>
 								</div>
 							</div>
-							<AuthCreateTurno />
+							<AuthCreateTurno setUserAuth={setUserAuth} />
 						</div>
 					</Form.Group>
 				}

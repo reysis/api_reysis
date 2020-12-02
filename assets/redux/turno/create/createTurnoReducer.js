@@ -1,8 +1,8 @@
 import {
-    TURNO_CREATE_REQUEST,
-    TURNO_CREATE_SUCCESS,
-    TURNO_CREATE_ERROR,
-    TURNO_CREATE_CLEAR_ERROR
+    CREATE_TURNO_REQUEST,
+    CREATE_TURNO_SUCCESS,
+    CREATE_TURNO_ERROR,
+    CREATE_TURNO_CLEAR_ERROR
 } from './createTurnoTypes'
 
 const initialState = {
@@ -13,24 +13,24 @@ const initialState = {
 
 const createTurnoReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case TURNO_CREATE_REQUEST:
+        case CREATE_TURNO_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case TURNO_CREATE_SUCCESS:
+        case CREATE_TURNO_SUCCESS:
             return {
                 loading: false,
                 turno: payload,
                 error: null
             }
-        case TURNO_CREATE_ERROR:
+        case CREATE_TURNO_ERROR:
             return {
                 loading: false,
                 turno: null,
                 error: payload
             }
-        case TURNO_CREATE_CLEAR_ERROR: 
+        case CREATE_TURNO_CLEAR_ERROR:
             return {
                 ...state,
                 error: null

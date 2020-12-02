@@ -7,7 +7,7 @@ import TurnoCalendarListTime from './TurnoCalendarListTime';
 import LoaderLocalSpinner from '../LoaderLocal';
 import { Form } from 'react-bootstrap';
 
-const TurnoCalendar = ({ onChangeDate, onChangeTime }) => {
+const TurnoCalendar = ({ handleDate, handleTime, onChangeDate, onChangeTime }) => {
 
     const [now] = useState(new Date())
     const [planningDays] = useState(15)
@@ -45,7 +45,7 @@ const TurnoCalendar = ({ onChangeDate, onChangeTime }) => {
 
     const [valueDate, setValueDate] = useState(null);
 
-    const [valueTime, setValueTime] = useState(null);
+    const [valueTime, setValueTime] = useState(handleTime);
 
     useEffect(() => {
         onChangeDate(valueDate)
@@ -174,6 +174,8 @@ const TurnoCalendar = ({ onChangeDate, onChangeTime }) => {
                             prev2Label={null}
                             nextLabel={<FontAwesomeIcon icon={faAngleRight} />}
                             prevLabel={<FontAwesomeIcon icon={faAngleLeft} />}
+
+                            activeStartDate={handleDate}
 
                             tileDisabled={tileDisable}
                             minDate={minDate}

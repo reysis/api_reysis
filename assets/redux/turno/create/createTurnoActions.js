@@ -4,7 +4,8 @@ import {
 	CREATE_TURNO_ERROR,
 	CREATE_TURNO_CLEAR_ERROR
 } from "./createTurnoTypes";
-import { fetch } from "../../utils/dataAccess";
+
+import { fetch } from "../../../utils/dataAccess";
 
 export const createTurnoRequest = () => {
 	return {
@@ -26,18 +27,34 @@ export const createTurnoError = error => {
 	};
 };
 
-export const createTurnoFetch = values => dispatch => {
+const getHeaders = (state) => {
+	const headers = {
+		'Content-Type': 'application/ld+json',
+	}
+	if (state().auth.authenticated)
+		headers.Authorization = `Bearer ${state().auth.token}`
+	return new Headers(headers)
+}
+
+export const createTurnoFetch = (value) => (dispatch, getState) => {
+
 	dispatch(createTurnoRequest());
 
 	const page = "/api/turnos";
 	const method = "POST"
-	const body = JSON.stringify(values)
+	const body = JSON.stringify({
+		fecha: value.fecha,
+		defecto: value.defecto,
+		user: value.user
+	})
+	const headers = getHeaders(getState);
 
-	fetch(page, { method, body })
+	fetch(page, { method, body, headers })
 		.then(res => res.json())
 		.then(res => {
 			const response = {
-				...res
+				...res,
+				id: res['@id']
 			};
 			dispatch(createTurnoSuccess(response));
 		})

@@ -78,7 +78,7 @@ export const loadUser = () => (dispatch, getState) => {
 			.then(res => {
 				const response = {
 					token,
-					userToken: page,
+					tokenUser: page,
 					user: {
 						...res,
 						id: res['@id']
@@ -151,29 +151,27 @@ export const registerFetch = (value) => dispatch => {
 
 	const page = "/api/users";
 	const method = "POST";
-	const body = JSON.stringify(value);
+	const body = JSON.stringify({
+		persona: { ...value.persona },
+		phoneNumbers: { ...value.phoneNumbers },
+		address: { ...value.address },
+		username: value.username,
+		email: value.email,
+		password: value.password,
+		nationality: value.nationality
+	});
+
+	const username = value.username;
+	const password = value.password;
 
 	fetch(page, { method, body })
 		.then(res => res.json())
 		.then(res => {
-			const auth = {
-				...res,
-				id: res["@id"]
-			};
-			const pageUser = auth.id;
-			const header = new Headers({ Authorization: `Bearer ${auth.token}` })
-			fetch(pageUser, { header })
-				.then(res => res.json())
-				.then(res => {
-					const response = {
-						...res,
-						auth
-					}
-					dispatch(registerSuccess(response));
-				})
-				.catch(error => {
-					dispatch(registerError(error.message));
-				})
+			const request = {
+				username,
+				password
+			}
+			dispatch(loginFetch(request))
 		})
 		.catch(error => {
 			dispatch(registerError(error.message));

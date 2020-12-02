@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 import { Button, Form, InputGroup, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationTriangle, faUserTag, faTag } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationTriangle, faUserTag, faTag, faIdCard } from '@fortawesome/free-solid-svg-icons';
 
-const AuthCreateTurno = () => {
+const AuthCreateTurno = ({ setUserAuth }) => {
 
 	const [name, setName] = useState("")
 	const [lastname, setLastname] = useState("")
+	const [cid, setCid] = useState("")
 	const [email, setEmail] = useState("")
 	const [phoneType, setPhoneType] = useState("")
 	const [phone, setPhone] = useState("")
@@ -32,6 +33,37 @@ const AuthCreateTurno = () => {
 			})
 		}, 1000);
 	}, [email])
+
+	useEffect(() => {
+
+		const phoneNumbers = [{
+			phoneType,
+			number: phone
+		}]
+
+		const persona = {
+			nombre: [name, lastname].join(' '),
+			ci: cid
+		}
+
+		const nationality = "Cubano"
+
+		const username = `user__rand-auth__${Math.round(Math.random() * 1000000) + 1000000}`
+		const password = "engage" // change this
+
+		setUserAuth({
+			persona,
+			phoneNumbers,
+			address: {
+				postAddress: address,
+				indications: address
+			},
+			username,
+			email,
+			password,
+			nationality
+		})
+	}, [name, lastname, email, phoneType, phone, address])
 
 	return (
 		<Col className="col-md-8 col-lg-6 m-auto create-turno__authenticated-auth px-0">
@@ -58,6 +90,17 @@ const AuthCreateTurno = () => {
 				</Form.Group>
 			</Form.Row>
 
+			<Form.Group >
+				<InputGroup>
+					<InputGroup.Prepend>
+						<label className="input-group-text" htmlFor="create-turno-cid" >
+							<FontAwesomeIcon icon={faIdCard} />
+						</label>
+					</InputGroup.Prepend>
+					<Form.Control type="id" id="create-turno-cid" placeholder="Carner Identidad" title="11 números" value={cid} onChange={(e) => setCid(e.target.value)} />
+				</InputGroup>
+			</Form.Group>
+
 			<Form.Group>
 				<InputGroup>
 					<InputGroup.Prepend>
@@ -70,7 +113,16 @@ const AuthCreateTurno = () => {
 			</Form.Group>
 
 			<Form.Row>
-
+				<Form.Group as={Col} md={6}>
+					<InputGroup>
+						<InputGroup.Prepend>
+							<label className="input-group-text" htmlFor="create-turno-phone">
+								<FontAwesomeIcon icon={faPhone} />
+							</label>
+						</InputGroup.Prepend>
+						<Form.Control type="phone" id="create-turno-phone" placeholder="Número de Teléfono" value={phone} onChange={(e) => setPhone(e.target.value)} ></Form.Control>
+					</InputGroup>
+				</Form.Group>
 				<Form.Group as={Col} md={6}>
 					<InputGroup>
 						<InputGroup.Prepend>
@@ -88,17 +140,6 @@ const AuthCreateTurno = () => {
 						</Form.Control>
 					</InputGroup>
 				</Form.Group>
-				<Form.Group as={Col} md={6}>
-					<InputGroup>
-						<InputGroup.Prepend>
-							<label className="input-group-text" htmlFor="create-turno-phone">
-								<FontAwesomeIcon icon={faPhone} />
-							</label>
-						</InputGroup.Prepend>
-						<Form.Control type="phone" id="create-turno-phone" placeholder="Número de Teléfono" value={phone} onChange={(e) => setPhone(e.target.value)} ></Form.Control>
-					</InputGroup>
-				</Form.Group>
-
 			</Form.Row>
 
 			<Form.Group >
