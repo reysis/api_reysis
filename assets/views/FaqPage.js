@@ -35,8 +35,8 @@ const FaqPage = () => {
                 {
                     faqs.map(({ category, faqCategory }, index) => {
                         return (
-                            <Row key={index} className="my-5">
-                                <Col md={3}>
+                            <Row key={index} className="my-4">
+                                <Col data-aos="fade-up" md={3}>
                                     <h3 className="question-category">{category}</h3>
                                 </Col>
                                 <Col className="question-list" md={9}>

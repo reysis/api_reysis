@@ -29,7 +29,6 @@ const Statistic = ({ title, value, img, aosDelay }) => {
 		let wH = $(window).height()
 		let wS = $(window).scrollTop()
 		if (wS > (hT + hH - wH) && hT > wS) {
-			console.log("hello")
 			setCounterReveal(true)
 		}
 	}
@@ -37,7 +36,7 @@ const Statistic = ({ title, value, img, aosDelay }) => {
 	useEffect(() => {
 		$(window).on('scroll', onScroll)
 		return () => {
-			$(window).off('scroll')
+			!counterReveal && $(window).off('scroll')
 		}
 	}, [])
 

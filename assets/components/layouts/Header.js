@@ -7,17 +7,21 @@ import { Image } from "react-bootstrap";
 import NavigationBar from "./NavigationBar";
 
 import LogoLetras from "../../assets/logo-letras.png";
-import { useLocation, withRouter } from "react-router-dom";
+// import { useLocation, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import NavUser from "../NavUser";
 
 const Header = () => {
 	const loading = useSelector(state => state.auth.loading);
 	const authenticated = useSelector(state => state.auth.authenticated);
 	const user = useSelector(state => state.auth.user);
-	//const pathname = useSelector(state => state.router.location.pathname);
 
-	const { pathname, hash } = useLocation()
+	const location = useSelector(state => state.router.location);
+	const pathname = useSelector(state => state.router.location.pathname);
+	const hash = useSelector(state => state.router.location.hash);
+
+	// const location = useLocation()
 
 	const [scrolled, setScrolled] = useState(false);
 	const [className, setClassName] = useState("header-container");
@@ -75,7 +79,7 @@ const Header = () => {
 	useEffect(() => {
 		const id = hash.substr(1)
 		id && document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
-	}, [hash])
+	}, [location])
 
 	const upClick = () => {
 		document.getElementById('root').scrollIntoView({ behavior: 'smooth' })
@@ -86,6 +90,7 @@ const Header = () => {
 			<NavLink to={{ pathname: '/', hash: '#landing' }}>
 				<Image src={LogoLetras} className="logo-letras" />
 			</NavLink>
+			<NavUser />
 			<NavigationBar
 				pathname={pathname}
 				username={user}
@@ -102,4 +107,4 @@ const Header = () => {
 	);
 };
 
-export default withRouter(Header);
+export default Header;

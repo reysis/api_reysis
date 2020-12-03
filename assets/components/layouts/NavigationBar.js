@@ -34,7 +34,7 @@ const NavigationBar = ({ authenticated, username, pathname }) => {
                             <span>Home</span>
                         </NavLink>
                     </li>
-                    <li className={`nav-item ${pathname == "/contact" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
+                    <li className={`nav-item ${pathname == "/#contact-home" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
                         <NavLink onClick={() => setShowMenu(false)} className="nav-link" to={{ pathname: '/', hash: '#contact-home' }}>
                             <span>Contáctenos</span>
                         </NavLink>
