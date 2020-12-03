@@ -209,7 +209,7 @@ class User implements UserInterface
      * Turnos pendientes de este usuario
      *
      * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:write","owner:read"})
+     * @Groups({"user:write","owner:read", "admin:item:get", "admin:write"})
      */
     private $turnos;
 
@@ -217,9 +217,15 @@ class User implements UserInterface
      * Reviews que ha realizado este usuario
      *
      * @ORM\OneToMany(targetEntity=Reviews::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:write","owner:read"})
+     * @Groups({"user:write","owner:read", "admin:item:get", "admin:write"})
      */
     private $reviews;
+
+    /**
+     * @ORM\OneToMany(targetEntity=SocialMedia::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"user:read", "admin:write", "admin:item:get"})
+     */
+    private $socialMedias;
 
     public function __construct()
     {
@@ -228,6 +234,7 @@ class User implements UserInterface
         $this->serviceOrder = new ArrayCollection();
         $this->turnos = new ArrayCollection();
         $this->reviews = new ArrayCollection();
+        $this->socialMedias = new ArrayCollection();
     }
 
     /**
@@ -618,6 +625,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($review->getUser() === $this) {
                 $review->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SocialMedia[]
+     */
+    public function getSocialMedias(): Collection
+    {
+        return $this->socialMedias;
+    }
+
+    public function addSocialMedia(SocialMedia $socialMedia): self
+    {
+        if (!$this->socialMedias->contains($socialMedia)) {
+            $this->socialMedias[] = $socialMedia;
+            $socialMedia->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSocialMedia(SocialMedia $socialMedia): self
+    {
+        if ($this->socialMedias->removeElement($socialMedia)) {
+            // set the owning side to null (unless already changed)
+            if ($socialMedia->getUser() === $this) {
+                $socialMedia->setUser(null);
             }
         }
 

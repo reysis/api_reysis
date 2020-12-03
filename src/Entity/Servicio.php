@@ -57,6 +57,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
  *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
+ *     attributes={
+ *          "pagination_items_per_page" = 12
+ *     },
  * )
  * @ORM\Entity(repositoryClass=ServicioRepository::class)
  * @Vich\Uploadable

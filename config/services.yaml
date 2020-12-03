@@ -58,6 +58,9 @@ services:
     App\DataPersister\TurnoDataPersister:
         bind:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
+    App\DataPersister\ContactMessageDataPersister:
+        bind:
+            $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
 
     App\DataProvider\UserDataProvider:
         bind:
