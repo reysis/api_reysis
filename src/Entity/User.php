@@ -29,14 +29,16 @@ use Doctrine\ORM\Mapping\JoinColumn;
  *      normalizationContext={"groups"={"admin:read", "owner:read"}},
  *      denormalizationContext={"groups"={"user:write", "owner:write", "turno:write"}},
  *      collectionOperations={
- *          "get",
+ *          "get" = {
+ *              "security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"
+ *          },
  *          "post" = {
  *              "security"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')",
  *              "validation_groups"={"Default", "create"}
  *          }
  *      },
  *      itemOperations={
- *          "get" = {"security" = "is_granted('GET_SINGLE', object)"},
+ *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
  *          "put" = {"security" = "is_granted('PUT', object)"},
  *          "delete"
  *      },
@@ -49,7 +51,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
  *      SearchFilter::class,
  *      properties={
  *          "username":"partial",
- *          "tipoUsuario":"exact"
+ *          "email":"exact",
  *      }
  * )
  * @UniqueEntity({"username", "email"})
@@ -177,7 +179,7 @@ class User implements UserInterface
      * Datos del usuario si es una persona
      *
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:write", "owner:read", "turno:write", "admin:write", "admin:item:get"})
+     * @Groups({"user:read", "user:item:get", "turno:write","admin:write", "admin:item:get"})
      * @Assert\Valid()
      */
     private $persona;
@@ -223,9 +225,20 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=SocialMedia::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:read", "admin:write", "admin:item:get"})
+     * @Groups({"user:read", "user:item:get", "admin:write", "admin:item:get"})
      */
     private $socialMedias;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Notification::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"owner:read", "admin:write", "admin:item:get"})
+     */
+    private $notifications;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublic = false;
 
     public function __construct()
     {
@@ -235,6 +248,7 @@ class User implements UserInterface
         $this->turnos = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->socialMedias = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
     /**
@@ -657,6 +671,48 @@ class User implements UserInterface
                 $socialMedia->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Notification[]
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotification(Notification $notification): self
+    {
+        if ($this->notifications->removeElement($notification)) {
+            // set the owning side to null (unless already changed)
+            if ($notification->getUser() === $this) {
+                $notification->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): self
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

@@ -20,7 +20,7 @@ class SocialMediaFixtures extends BaseFixture implements DependentFixtureInterfa
             $socialMedia->setTelegram($this->faker->url);
             $socialMedia->setTwitter($this->faker->url);
             $socialMedia->setYoutube($this->faker->url);
-            $socialMedia->setUser($this->getRandomReference('admin_users'));
+            $socialMedia->setUser($this->getReference('admin_users_'.$i.'_REFERENCE'));
 
             return $socialMedia;
         });

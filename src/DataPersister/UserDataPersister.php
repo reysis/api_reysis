@@ -50,7 +50,7 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
             $this->logger->info(sprintf('Usuario $s se acaba de registrar', $data->getId()));
         }
 
-        if($data->getPersona()){
+        if(!$data->getPersona()){
             $data->getPersona()->setUser( $data );
         }
 

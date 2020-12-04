@@ -26,7 +26,7 @@ class UserNormalizer implements ContextAwareNormalizerInterface, CacheableSuppor
     /**
      * Funcion para normalizar un Usuario y agregar grupos de seguridad para mostrar campos propios de cada usuario
      *
-     * @param [type] $object
+     * @param User $object
      * @param [type] $format
      * @param array $context
      * @return array
@@ -34,6 +34,9 @@ class UserNormalizer implements ContextAwareNormalizerInterface, CacheableSuppor
     public function normalize($object, $format = null, array $context = array()): array
     {
         $isOwner = $this->userIsOwner($object);
+        if(in_array('ROLE_WORKER', $object->getRoles())){
+            $context['groups'][] = 'media:read';
+        }
         if($isOwner){
             $context['groups'][] = 'owner:read';
         }

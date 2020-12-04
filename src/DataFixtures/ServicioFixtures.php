@@ -20,7 +20,8 @@ class ServicioFixtures extends BaseFixture
         "image-2.png",
         "image-3.png",
         "image-4.png",
-        "image-5.png"
+        "image-5.png",
+        "image-6.png"
     ];
 
     private $uploaderHelper;
@@ -43,7 +44,7 @@ class ServicioFixtures extends BaseFixture
             $servicio->setDescripcion($this->faker->paragraph);
             $servicio->setNombre($this->faker->sentence(2,true));
 
-            $randomImage = $this->faker->randomElement(self::$serviceImages);
+            $randomImage = self::$serviceImages[$i];
             $targetPath = __DIR__."/images/".$randomImage;
 
             $file = new File($targetPath);

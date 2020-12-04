@@ -17,8 +17,6 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ORM\Entity(repositoryClass=PersonaRepository::class)
  * @ApiResource(
  *      iri="http://schema.org/Person",
- *      normalizationContext={"groups"={"persona:read"}},
- *      denormalizationContext={"groups"={"persona:write"}},
  * )
  * @ApiFilter(PropertyFilter::class)
  * @ApiFilter(
@@ -26,9 +24,6 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *      properties={
  *          "nombre":"partial",
  *          "ci":"partial",
- *          "address":"partial",
- *          "email":"partial",
- *          "telephone":"partial",
  *          "username":"exact"
  *      }
  * )
@@ -43,21 +38,21 @@ class Persona
     private $id;
     /**
      * @ORM\Column(type="string", length=11)
-     * @Groups({"owner:read","turno:write","user:write","admin:write", "admin:item:read"})
+     * @Groups({"user:read", "user:item:get", "turno:write","socialmedia:read", "admin:write", "admin:read"})
      * @Assert\NotBlank()
      */
     private $ci;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"owner:read", "turno:write", "user:write","admin:write", "admin:item:read"})
+     * @Groups({"user:read", "user:item:get", "turno:write","socialmedia:read", "admin:write", "admin:read"})
      * @Assert\NotBlank()
      */
     private $nombre;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
-     * @Groups({"owner:read", "user:write","admin:write", "admin:item:read"})
+     * @Groups({"owner:read", "user:write","admin:write", "admin:item:get"})
      */
     private $user;
 

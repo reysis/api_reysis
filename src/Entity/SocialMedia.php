@@ -22,37 +22,38 @@ class SocialMedia
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user:read","socialmedia:read", "admin:write", "admin:read"})
+     * @Groups({"user:read", "user:item:get", "socialmedia:read", "admin:write", "admin:read"})
      */
     private $facebook;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user:read","socialmedia:read", "admin:write", "admin:read"})
+     * @Groups({"user:read", "user:item:get", "socialmedia:read", "admin:write", "admin:read"})
      */
     private $linkedin;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user:read","socialmedia:read", "admin:write", "admin:read"})
+     * @Groups({"user:read", "user:item:get", "socialmedia:read", "admin:write", "admin:read"})
      */
     private $twitter;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user:read","socialmedia:read", "admin:write", "admin:read"})
+     * @Groups({"user:read", "user:item:get", "socialmedia:read", "admin:write", "admin:read"})
      */
     private $youtube;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"user:read","socialmedia:read", "admin:write", "admin:read"})
+     * @Groups({"user:read", "user:item:get", "socialmedia:read", "admin:write", "admin:read"})
      */
     private $telegram;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="socialMedias")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"socialmedia:read", "admin:write", "admin:read"})
      */
     private $user;
 
