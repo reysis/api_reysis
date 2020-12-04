@@ -71,31 +71,31 @@ const Contact = () => {
 								<h2>Contáctenos</h2>
 							</div> */}
 							<div className="row contact-right">
-								<div className="col-md-12 single-contact">
+								<div className="col-lg-12 single-contact">
 									<div className="contact-icon">
 										<FontAwesomeIcon icon={faMapMarkerAlt} />
 									</div>
 									<p><span>Calle 23 y M, La Habana, Cuba</span></p>
 								</div>
-								<div className="col-md-6 single-contact">
+								<div className="col-lg-6 single-contact">
 									<div className="contact-icon">
 										<FontAwesomeIcon icon={faEnvelope} />
 									</div>
 									<p><span><a href="mailto:contact@reysis.su" target="_blank">contact@reysis.su</a></span></p>
 								</div>
-								<div className="col-md-6 single-contact">
+								<div className="col-lg-6 single-contact">
 									<div className="contact-icon">
 										<FontAwesomeIcon icon={faPhone} />
 									</div>
 									<p><span><a href="tel:5355555555" target="_blank">(+53) 555 555 55</a></span></p>
 								</div>
-								<div className="col-md-6 single-contact">
+								<div className="col-lg-6 single-contact">
 									<div className="contact-icon">
 										<FontAwesomeIcon icon={faTwitter} />
 									</div>
 									<p><span><a href="https://www.twitter.com/reysis" target="_blank">@reysis</a></span></p>
 								</div>
-								<div className="col-md-6 single-contact">
+								<div className="col-lg-6 single-contact">
 									<div className="contact-icon">
 										<FontAwesomeIcon icon={faFacebookF} />
 									</div>

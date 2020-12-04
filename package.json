@@ -23,6 +23,8 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@fortawesome/angular-fontawesome": "^0.8.0",
+        "@fortawesome/free-regular-svg-icons": "^5.15.1",
         "@svgr/webpack": "^5.4.0",
         "aos": "^2.3.4",
         "bootstrap": "^4.5.2",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from "react-router-dom"
 
 import LogoFoter from '../../assets/logo-footer.png'
@@ -6,6 +6,12 @@ import LogoFoter from '../../assets/logo-footer.png'
 const NavigationBar = ({ authenticated, username, pathname }) => {
 
     const [showMenu, setShowMenu] = useState(false)
+
+    useEffect(() => {
+        showMenu
+            ? document.body.classList.add("open-menu-modal")
+            : document.body.classList.add("open-menu-modal")
+    }, [showMenu])
 
     return (
         <>
@@ -34,7 +40,7 @@ const NavigationBar = ({ authenticated, username, pathname }) => {
                             <span>Home</span>
                         </NavLink>
                     </li>
-                    <li className={`nav-item ${pathname == "/contact" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
+                    <li className={`nav-item ${pathname == "/#contact-home" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
                         <NavLink onClick={() => setShowMenu(false)} className="nav-link" to={{ pathname: '/', hash: '#contact-home' }}>
                             <span>Contáctenos</span>
                         </NavLink>
@@ -49,7 +55,7 @@ const NavigationBar = ({ authenticated, username, pathname }) => {
                             <span>FAQ</span>
                         </NavLink>
                     </li>
-                    {
+                    {/* {
                         !authenticated &&
                         <li className={`nav-item auth-nav-item ${pathname == "/login" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
                             <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/login">
@@ -72,7 +78,7 @@ const NavigationBar = ({ authenticated, username, pathname }) => {
                                 <span>Salir</span>
                             </NavLink>
                         </li>
-                    }
+                    } */}
                 </ul>
             </nav>
         </>

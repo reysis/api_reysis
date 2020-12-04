@@ -21,7 +21,7 @@ const Question = ({ question, answer }) => {
     }
 
     return (
-        <div ref={faqRef} data-aos="fade-up" className="question-item mb-3" >
+        <div ref={faqRef} data-aos="fade-up" className="question-item mb-1" >
             <div className="d-flex align-items-start bg-light px-4 py-3">
                 <div className="question-icon" >
                     <FontAwesomeIcon icon={faQuestionCircle} size="2x" />

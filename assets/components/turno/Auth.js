@@ -15,6 +15,7 @@ const AuthCreateTurno = ({ setUserAuth }) => {
 	const [address, setAddress] = useState("")
 
 	const [validEmail, setValidEmail] = useState(false)
+	const [validCid, setValidCid] = useState(false)
 
 	const [phoneTypes] = useState([
 		"Casa",
@@ -22,35 +23,48 @@ const AuthCreateTurno = ({ setUserAuth }) => {
 		"Trabajo"
 	])
 
-	var timeout = null;
+	var timeout = null,
+		timeout2 = null
 
 	useEffect(() => {
 		if (timeout) clearTimeout(timeout)
 		timeout = setTimeout(() => {
-			let t = /[a-z](\.?[a-z0-9-_]+)*@[a-z0-9-_](\.?[a-z0-9-_]+)*\.[a-z]+/.exec(email);
-			setValidEmail(() => {
-				return t && email.length == t[0].length && t.index == 0
-			})
+			// RFC
+			let reg = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/
+			setValidEmail(() => reg.test(email))
 		}, 1000);
 	}, [email])
 
 	useEffect(() => {
+		if (timeout2) clearTimeout(timeout2)
+		timeout2 = setTimeout(() => {
+			let reg = /^[0-9]{11,11}$/
+			setValidCid(() => reg.test(cid))
+		}, 1000);
+	}, [cid])
+
+	useEffect(() => {
+
+		if (!phone.length
+			|| (!name.length && !lastname.length)
+			|| !address.length
+			|| !email.length
+			|| !validEmail) {
+			setUserAuth(null)
+			return;
+		}
 
 		const phoneNumbers = [{
 			phoneType,
 			number: phone
 		}]
-
 		const persona = {
 			nombre: [name, lastname].join(' '),
 			ci: cid
 		}
-
 		const nationality = "Cubano"
-
 		const username = `user__rand-auth__${Math.round(Math.random() * 1000000) + 1000000}`
 		const password = "engage" // change this
-
 		setUserAuth({
 			persona,
 			phoneNumbers,
@@ -63,7 +77,7 @@ const AuthCreateTurno = ({ setUserAuth }) => {
 			password,
 			nationality
 		})
-	}, [name, lastname, email, phoneType, phone, address])
+	}, [name, lastname, cid, email, phoneType, phone, address])
 
 	return (
 		<Col className="col-md-8 col-lg-6 m-auto create-turno__authenticated-auth px-0">
@@ -97,7 +111,7 @@ const AuthCreateTurno = ({ setUserAuth }) => {
 							<FontAwesomeIcon icon={faIdCard} />
 						</label>
 					</InputGroup.Prepend>
-					<Form.Control type="id" id="create-turno-cid" placeholder="Carner Identidad" title="11 números" value={cid} onChange={(e) => setCid(e.target.value)} />
+					<Form.Control type="id" id="create-turno-cid" placeholder="Carner Identidad" title="El carnet de identidad tiene 11 números" value={cid} isValid={cid.length && validCid} isInvalid={cid.length && !validCid} onChange={(e) => setCid(e.target.value)} />
 				</InputGroup>
 			</Form.Group>
 

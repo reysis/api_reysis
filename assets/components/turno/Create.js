@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Button, InputGroup } from 'react-bootstrap';
+import { Container, Form, Button, InputGroup, Alert } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHammer } from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle, faHammer } from '@fortawesome/free-solid-svg-icons';
 
 import TurnoCalendar from "./TurnoCalendar";
 import AuthCreateTurno from './Auth';
@@ -13,25 +13,25 @@ import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Create = ({ locations }) => {
 
-	const loading = useSelector(state => state.turno.createTurno.request)
+	const loading = useSelector(state => state.turno.createTurno.loading)
 	const turno = useSelector(state => state.turno.createTurno.turno)
 	const error = useSelector(state => state.turno.createTurno.error)
 
 	const authenticated = useSelector(state => state.auth.authenticated)
 	const user = useSelector(state => state.auth.user)
 
-	const [disabledForm, setDisabledForm] = useState(false)
+	const [disabledForm, setDisabledForm] = useState(true)
 
 	const [defecto, setDefecto] = useState("");
 
 	const dispatch = useDispatch();
 
-	const now = new Date()
+	// const now = new Date()
 
 	const [date, setDate] = useState(null)
 	const [time, setTime] = useState(null)
 
-	const [userAuth, setUserAuth] = useState({})
+	const [userAuth, setUserAuth] = useState(null)
 
 	const toLogin = () => ({
 		pathname: '/login',
@@ -48,9 +48,9 @@ const Create = ({ locations }) => {
 
 	useEffect(() => {
 		if (location && location.state) {
-			setDate(location.state.date)
-			setTime(location.state.time)
-			setDefecto(location.state.defecto)
+			//setDate(location.state.date)
+			//setTime(location.state.time)
+			location.state.defecto && setDefecto(location.state.defecto)
 		}
 	}, [location])
 
@@ -72,9 +72,16 @@ const Create = ({ locations }) => {
 		}))
 	}
 
-	// useEffect(() => {
-	// 	// disable form
-	// }, [])
+	useEffect(() => {
+		console.log(date, time, defecto, authenticated, userAuth, loading)
+		setDisabledForm(() => {
+			return !date
+				|| !time
+				|| !defecto
+				|| loading
+				|| (!authenticated && !userAuth)
+		})
+	}, [date, time, defecto, userAuth, loading])
 
 	if (turno)
 		return (
@@ -83,18 +90,11 @@ const Create = ({ locations }) => {
 		);
 	return (
 		<Container className="create-turno">
-			{
-				loading &&
-				<div className="alert alert-info" role="status">
-					Loading...
-          		</div>
-			}
-			{
-				error &&
-				<div className="alert alert-danger" role="alert">
-					{error}
-				</div>
-			}
+			<Alert role={"status"} variant={"info"} show={loading}>Loading...</Alert>
+			<Alert role={"alert"} variant={"danger"} show={error} >
+				<FontAwesomeIcon icon={faExclamationTriangle} />{' '}
+				{error}
+			</Alert>
 			<Form onSubmit={handleSubmit} className="create-turno__form" >
 
 				<TurnoCalendar handleDate={date} onChangeDate={setDate} handleTime={time} onChangeTime={setTime} />

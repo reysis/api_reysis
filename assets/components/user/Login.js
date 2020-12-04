@@ -43,8 +43,6 @@ const Login = () => {
     }, [username, password, loading])
 
     if (authenticated) {
-        console.log(location)
-        //console.log(location.state.redirect)
         if (location && location.search == '?redirect' && location.state && location.state.redirect) {
             return <Redirect to={{
                 pathname: location.state.redirect,

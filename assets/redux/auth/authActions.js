@@ -69,8 +69,6 @@ export const loadUser = () => (dispatch, getState) => {
 	const page = getState().auth.tokenUser;
 	const token = getState().auth.token;
 
-	console.log(getState())
-
 	if (page && token) {
 		dispatch(loginRequest());
 		fetch(page, getUser(token))
