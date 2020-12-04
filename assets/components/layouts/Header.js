@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import NavUser from "../NavUser";
 
+
 const Header = () => {
 	const loading = useSelector(state => state.auth.loading);
 	const authenticated = useSelector(state => state.auth.authenticated);
@@ -24,6 +25,7 @@ const Header = () => {
 	// const location = useLocation()
 
 	const [scrolled, setScrolled] = useState(false);
+	const [backToTop, setBackToTop] = useState(false);
 	const [className, setClassName] = useState("header-container");
 
 	const backTopRef = useRef(null)
@@ -33,17 +35,19 @@ const Header = () => {
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
 			setScrolled(window.scrollY >= 50);
+			setBackToTop(window.scrollY >= 200);
 		});
 		return () => {
 			window.removeEventListener("scroll", () => {
 				setScrolled(window.scrollY >= 50);
+				setBackToTop(window.scrollY >= 200);
 			});
 		};
 	}, []);
 
 	useEffect(() => {
 		if (backTopRef) {
-			if (scrolled) {
+			if (backToTop) {
 				timeoutId && clearTimeout(timeoutId)
 				setTimeoutId(() => setTimeout(() => {
 					backTopRef.current.classList.remove('back-to-top__fade-in', 'd-none')
@@ -61,7 +65,7 @@ const Header = () => {
 		return () => {
 			timeoutId && clearTimeout(timeoutId)
 		}
-	}, [scrolled, backTopRef])
+	}, [backToTop, backTopRef])
 
 	useLayoutEffect(() => {
 		setClassName(() => {
@@ -87,8 +91,8 @@ const Header = () => {
 
 	return (
 		<div className={className}>
-			<NavLink to={{ pathname: '/', hash: '#landing' }}>
-				<Image src={LogoLetras} className="logo-letras" />
+			<NavLink className="logo-letras" to={{ pathname: '/', hash: '#landing' }}>
+				<Image src={LogoLetras} />
 			</NavLink>
 			<NavUser />
 			<NavigationBar
@@ -98,7 +102,7 @@ const Header = () => {
 			/>
 			<div
 				ref={backTopRef}
-				className={`back-to-top ${scrolled ? 'back-to-top__fade-in' : 'back-to-top__fade-out'}`}
+				className={`back-to-top ${backToTop ? 'back-to-top__fade-in' : 'back-to-top__fade-out'}`}
 				onClick={upClick}
 			>
 				<a><FontAwesomeIcon icon={faArrowUp} /></a>

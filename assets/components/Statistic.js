@@ -34,15 +34,15 @@ const Statistic = ({ title, value, img, aosDelay }) => {
 	}
 
 	useEffect(() => {
-		$(window).on('scroll', onScroll)
+		window.addEventListener("scroll", onScroll)
 		return () => {
-			!counterReveal && $(window).off('scroll')
+			window.removeEventListener("scroll", onScroll)
 		}
 	}, [])
 
 	useEffect(() => {
 		if (counterReveal) {
-			$(window).off('scroll')
+			window.removeEventListener("scroll", onScroll)
 			start()
 		}
 	}, [counterReveal])

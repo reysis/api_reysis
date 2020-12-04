@@ -15,8 +15,11 @@ $out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
 	}
 
 	.logo-letras {
-		height: 60px;
-		padding: 1em 3em;
+		margin: auto 1em auto 3em;
+
+		img {
+			height: 40px;
+		}
 	}
 
 	.menu-btn {

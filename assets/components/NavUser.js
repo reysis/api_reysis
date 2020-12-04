@@ -1,76 +1,195 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Image } from 'react-bootstrap'
-import { faBell, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Button, Image, Modal } from 'react-bootstrap'
+import {
+    faBell,
+    faCalendarAlt,
+    faCaretDown,
+    faCommentAlt,
+    faSignInAlt,
+    faSignOutAlt,
+    faTimes,
+    faUser,
+    faUserPlus
+} from '@fortawesome/free-solid-svg-icons';
 
 import userProfile from '../assets/opinion-img-1.jpg';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useLocation, useHistory } from 'react-router-dom';
+import ModalOpinion from './ModalOpinion';
 
 const NavUser = () => {
 
-    const authenticated = true
-    const name = "Frank Siret"
+    const authenticated = useSelector(state => state.auth.authenticated)
+    const user = useSelector(state => state.auth.user);
 
+    const history = useHistory()
+
+    const { pathname } = useLocation()
+
+    const [name, setName] = useState("")
     const [profileShow, setProfileShow] = useState(false)
 
-    const closeClick = () => {
+    const [showComentarioModal, setShowComentarioModal] = useState(false)
+
+    const closeNavUser = () => {
         setProfileShow(false)
     }
 
-    const openClick = () => {
-        setProfileShow(true)
+    const navUserClick = () => {
+        setProfileShow(!profileShow)
+    }
+
+    useEffect(() => {
+        closeNavUser()
+    }, [pathname])
+
+    useEffect(() => {
+        if (authenticated && user.persona && user.persona.nombre) {
+            setName(user.persona.nombre)
+        }
+        else {
+            setName("")
+        }
+    }, [authenticated])
+
+    const perfilClick = () => {
+        history.push('/cuenta')
+    }
+
+    const comentariosClick = () => {
+        closeNavUser()
+        setShowComentarioModal(true)
+    }
+
+    const handleCloseComentarioModal = () => {
+        setShowComentarioModal(false)
+    }
+
+    const turnosClick = () => {
+        closeNavUser()
+        history.push('/turnos')
+    }
+
+    const loginClick = () => {
+        closeNavUser()
+        history.push('/login')
+    }
+
+    const signupClick = () => {
+        closeNavUser()
+        history.push('/register')
+    }
+
+    const logoutClick = () => {
+        closeNavUser()
+        history.push('/logout')
     }
 
     return (
         <>
-            <div className={`nav-user ${profileShow ? "show" : ""}`}>
-                <div className={`nav-user__perfil ${profileShow ? "show" : ""}`}>
-                    <Image onClick={openClick} className={`nav-user__perfil-photo ${profileShow ? "show" : ""}`} src={userProfile} />
-                    <div className={`nav-user__perfil-header ${profileShow ? "show" : ""}`}>
+            <div className="nav-user">
+                <div onClick={navUserClick} className={`nav-user__perfil ${profileShow ? "show" : ""}`}>
+                    <div className={`nav-user__perfil--nav-photo ${profileShow ? "show" : ""}`}>
                         {
                             authenticated
-                                ? <span>{name}</span>
-                                : <span>Inicie Sesión o Regístrese</span>
+                                ? <Image src={userProfile} />
+                                : <FontAwesomeIcon icon={faCaretDown} />
                         }
                     </div>
-                    <div onClick={closeClick} className={`nav-user__perfil-close ${profileShow ? "show" : ""}`}>
+                    {
+                        authenticated &&
+                        <div className="nav-user__perfil-header">
+                            <span>{name.split(' ')[0]}</span>
+                        </div>
+                    }
+                </div>
+                <div className={`nav-user__menu-container ${profileShow ? "show" : ""}`}>
+                    <div onClick={closeNavUser} className={`nav-user__menu-container--close ${profileShow ? "show" : ""}`}>
                         <FontAwesomeIcon icon={faTimes} />
                     </div>
-                </div>
-                <div className={`nav-user__menu ${profileShow ? "show" : ""}`}>
-                    <ul className={`nav-user__menu-items ${profileShow ? "show" : ""}`}>
-                        {
-                            authenticated &&
-                            <li className={`nav-user__menu-items__item ${profileShow ? "show" : ""}`}>
-                                <Link to='/'>Perfil</Link>
-                            </li>
-                        }
-                        {
-                            authenticated &&
-                            <li className={`nav-user__menu-items__item ${profileShow ? "show" : ""}`}>
-                                <Link to='/'>Mis Turnos</Link>
-                            </li>
-                        }
-                        {
-                            !authenticated &&
-                            <li className={`nav-user__menu-items__item ${profileShow ? "show" : ""}`}>
-                                <Link to='/login'>Iniciar Sesión</Link>
-                            </li>
-                        }
-                        {
-                            !authenticated &&
-                            <li className={`nav-user__menu-items__item ${profileShow ? "show" : ""}`}>
-                                <Link to='/register'>Registrarse</Link>
-                            </li>
-                        }
-                        {
-                            authenticated &&
-                            <li className={`nav-user__menu-items__item ${profileShow ? "show" : ""}`}>
-                                <Link to='/logout'>Salir</Link>
-                            </li>
-                        }
-                    </ul>
+                    <div className={`nav-user__menu ${profileShow ? "show" : ""}`}>
+                        <ul className="nav-user__menu-items">
+                            {
+                                authenticated
+                                    ? <li onClick={perfilClick} className="nav-user__menu-items__item nav-user__item-perfil">
+                                        <div className="nav-user__item--photo">
+                                            <Image src={userProfile} />
+                                        </div>
+                                        <div className="nav-user__item--right">
+                                            <span className="title">{name}</span>
+                                            <span className="subtitle">Ver tu perfil</span>
+                                        </div>
+                                    </li>
+                                    : <li className="nav-user__menu-items__item nav-user__item-no-perfil">
+                                        <div className="nav-user__item--icon">
+                                            <FontAwesomeIcon icon={faUser} />
+                                        </div>
+                                        <div className="nav-user__item--right">
+                                            <span className="title">Inicie sesión o regístrerse</span>
+                                            {/* <span className="subtitle"></span> */}
+                                        </div>
+                                    </li>
+                            }
+                            {
+                                authenticated &&
+                                <li onClick={comentariosClick} className="nav-user__menu-items__item nav-user__item-opinion">
+                                    <div className="nav-user__item--icon">
+                                        <FontAwesomeIcon icon={faCommentAlt} />
+                                    </div>
+                                    <div className="nav-user__item--right">
+                                        <span className="title">Enviar comentarios</span>
+                                        <span className="subtitle">Ayúdanos a mejorar</span>
+                                    </div>
+                                </li>
+                            }
+                            {
+                                authenticated &&
+                                <li onClick={turnosClick} className="nav-user__menu-items__item nav-user__turnos">
+                                    <div className="nav-user__item--icon">
+                                        <FontAwesomeIcon icon={faCalendarAlt} />
+                                    </div>
+                                    <div className="nav-user__item--right">
+                                        <span className="title">Mis Turnos</span>
+                                    </div>
+                                </li>
+                            }
+                            {
+                                !authenticated &&
+                                <li onClick={loginClick} className="nav-user__menu-items__item nav-user__login">
+                                    <div className="nav-user__item--icon">
+                                        <FontAwesomeIcon icon={faSignInAlt} />
+                                    </div>
+                                    <div className="nav-user__item--right">
+                                        <span className="title">Iniciar sesión</span>
+                                    </div>
+                                </li>
+                            }
+                            {
+                                !authenticated &&
+                                <li onClick={signupClick} className="nav-user__menu-items__item nav-user__signup">
+                                    <div className="nav-user__item--icon">
+                                        <FontAwesomeIcon icon={faUserPlus} />
+                                    </div>
+                                    <div className="nav-user__item--right">
+                                        <span className="title">Registrarse</span>
+                                    </div>
+                                </li>
+                            }
+                            {
+                                authenticated &&
+                                <li onClick={logoutClick} className="nav-user__menu-items__item nav-user__logout">
+                                    <div className="nav-user__item--icon">
+                                        <FontAwesomeIcon icon={faSignOutAlt} />
+                                    </div>
+                                    <div className="nav-user__item--right">
+                                        <span className="title">Salir</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
             {
@@ -80,6 +199,10 @@ const NavUser = () => {
                     <span>15</span>
                 </div>
             }
+            <ModalOpinion
+                show={showComentarioModal}
+                onHide={handleCloseComentarioModal}
+            />
         </>
     )
 }

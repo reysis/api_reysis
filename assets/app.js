@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './views/Home';
@@ -17,7 +17,7 @@ import { ConnectedRouter } from 'connected-react-router';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
+import 'bootstrap/dist/css/bootstrap.css';
 import './App.scss';
 
 import history from './history';
@@ -32,7 +32,6 @@ const App = () => {
         AOS.init({
             easing: 'ease-in-sine',
             duration: 1000,
-            disable: 'mobile',
             offset: 100,
             once: true
         })
