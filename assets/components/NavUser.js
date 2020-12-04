@@ -199,10 +199,10 @@ const NavUser = () => {
                     <span>15</span>
                 </div>
             }
-            <ModalOpinion
+            {/* <ModalOpinion
                 show={showComentarioModal}
                 onHide={handleCloseComentarioModal}
-            />
+            /> */}
         </>
     )
 }
