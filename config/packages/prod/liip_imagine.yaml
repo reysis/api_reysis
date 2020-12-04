@@ -12,9 +12,6 @@ liip_imagine:
     data_loader: flysystem_loader
 
     resolvers:
-        default:
-            web_path:
-                web_root: '%kernel.project_dir%/public_html'
         flysystem_resolver:
             flysystem:
                 filesystem_service: oneup_flysystem.public_uploads_filesystem_filesystem

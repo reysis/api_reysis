@@ -16,9 +16,11 @@ use Vich\UploaderBundle\Storage\StorageInterface;
 class ServicioFixtures extends BaseFixture
 {
     private static $serviceImages = [
-        "opinion-img-1.jpg",
-        "opinion-img-2.jpg",
-        "opinion-img-3.jpg"
+        "image-1.png",
+        "image-2.png",
+        "image-3.png",
+        "image-4.png",
+        "image-5.png"
     ];
 
     private $uploaderHelper;
@@ -36,13 +38,13 @@ class ServicioFixtures extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(30, 'SERVICIO', function ($i) use ($manager){
+        $this->createMany(6, 'SERVICIO', function ($i) use ($manager){
             $servicio = new Servicio();
             $servicio->setDescripcion($this->faker->paragraph);
             $servicio->setNombre($this->faker->sentence(2,true));
 
             $randomImage = $this->faker->randomElement(self::$serviceImages);
-            $targetPath = sys_get_temp_dir().'/'.$randomImage;
+            $targetPath = __DIR__."/images/".$randomImage;
 
             $file = new File($targetPath);
 
