@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 
 
 use App\Entity\Address;
+use App\Entity\Persona;
 use App\Entity\PhoneNumber;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -33,6 +34,11 @@ class UserFixtures extends BaseFixture
             $phoneNumber->setPhoneType($this->faker->word);
             $user->addPhoneNumber($phoneNumber);
 
+            $personData = new Persona();
+            $personData->setNombre($this->faker->name);
+            $personData->setCi($this->faker->numberBetween(10000000000,99999999999));
+            $personData->setUser($user);
+
             $address = new Address();
             $country = $this->faker->country;
             $address->setPostAddress($this->faker->sentence(6,true).', '.$country);
@@ -44,6 +50,7 @@ class UserFixtures extends BaseFixture
                 $user,
                 'engage'
             ));
+            $user->setPersona($personData);
 
             $manager->persist($user);
 
@@ -54,18 +61,25 @@ class UserFixtures extends BaseFixture
             $user = new User();
             $user->setEmail(sprintf('admin%d@reysis.com', $i));
             $user->setUsername(sprintf('admin%d', $i));
-            $user->setRoles(['ROLE_ADMIN']);
+            $user->setRoles(['ROLE_ADMIN', 'ROLE_WORKER']);
+            $user->setIsPublic(true);
 
             $phoneNumber = new PhoneNumber();
             $phoneNumber->setNumber($this->faker->phoneNumber);
             $phoneNumber->setPhoneType($this->faker->word);
             $user->addPhoneNumber($phoneNumber);
 
+            $personData = new Persona();
+            $personData->setNombre($this->faker->name);
+            $personData->setCi($this->faker->numberBetween(10000000000,99999999999));
+            $personData->setUser($user);
+
             $address = new Address();
             $country = $this->faker->country;
             $address->setPostAddress($this->faker->sentence(6,true).', '.$country);
             $address->setIndications($this->faker->sentence(9,true));
 
+            $user->setPersona($personData);
             $user->setAddress($address);
             $user->setNationality($country);
             $user->setPassword($this->passwordEncoder->encodePassword(

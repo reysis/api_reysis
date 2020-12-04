@@ -8,7 +8,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     security="is_granted('ROLE_USER')",
+ *     collectionOperations={
+ *          "get",
+ *     },
+ *     itemOperations={
+ *          "get",
+ *          "delete"
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=NotificationRepository::class)
  */
 class Notification
@@ -22,13 +31,13 @@ class Notification
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"user:item:get", "admin:write", "admin:read"})
+     * @Groups({"owner:read", "admin:write", "admin:read"})
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:item:get", "admin:write", "admin:read"})
+     * @Groups({"owner:read", "admin:write", "admin:read"})
      */
     private $description;
 

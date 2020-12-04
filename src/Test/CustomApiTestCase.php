@@ -5,6 +5,7 @@ namespace App\Test;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\Client;
 use App\Entity\Address;
+use App\Entity\Notification;
 use App\Entity\Persona;
 use App\Entity\PhoneNumber;
 use App\Repository\UserRepository;
@@ -67,6 +68,20 @@ class CustomApiTestCase extends ApiTestCase
 
         return $person;
     }
+
+    protected function createNotification(User $user){
+        $faker = Factory::create();
+        $notification = new Notification();
+        $notification->setDate($faker->dateTime);
+        $notification->setDescription($faker->sentence);
+        $notification->setUser($user);
+
+        $em = $this->getEntityManager();
+        $em->persist($notification);
+        $user->addNotification($notification);
+        $em->flush();
+    }
+
     /**
      * Función para crear un usuario normal
 

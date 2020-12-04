@@ -15,7 +15,7 @@ class UserVoter extends Voter
     protected function supports($attribute, $subject)
     {
         //dump($attribute, $subject);
-        return in_array($attribute, ['GET_SINGLE', 'PUT'])
+        return in_array($attribute, ['PUT'])
             && $subject instanceof User;
     }
 
@@ -35,7 +35,6 @@ class UserVoter extends Voter
          */
         switch ($attribute){
             case 'PUT':
-            case 'GET_SINGLE':
                 if(in_array('ROLE_ADMIN', $user->getRoles()) || $subject->getUsername() === $user->getUsername() )
                     return true;
                 return false;
