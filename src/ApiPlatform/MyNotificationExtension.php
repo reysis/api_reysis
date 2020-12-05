@@ -50,6 +50,8 @@ class MyNotificationExtension implements QueryCollectionExtensionInterface, Quer
         //dd($queryBuilder);
         $rootAlias = $queryBuilder->getRootAliases()[0];
         $queryBuilder->andWhere(sprintf('%s.user = :user', $rootAlias))
+            ->addOrderBy(sprintf('%s.readed', $rootAlias), 'ASC')
+            ->addOrderBy(sprintf('%s.date', $rootAlias), 'DESC')
             ->setParameter('user', $this->security->getUser());
     }
 }

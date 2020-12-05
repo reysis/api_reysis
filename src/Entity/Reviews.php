@@ -75,6 +75,18 @@ class Reviews
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"reviews:read", "user:item:get", "admin:read"})
+     */
+    private $likes = 0;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"reviews:read", "user:item:get", "admin:read"})
+     */
+    private $stars = 0;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -112,6 +124,30 @@ class Reviews
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(?int $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function getStars(): ?int
+    {
+        return $this->stars;
+    }
+
+    public function setStars(int $stars): self
+    {
+        $this->stars = $stars;
 
         return $this;
     }

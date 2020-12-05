@@ -16,7 +16,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     itemOperations={
  *          "get",
  *          "delete"
- *     }
+ *     },
+ *     attributes={
+ *          "pagination_items_per_page" = 10
+ *     },
  * )
  * @ORM\Entity(repositoryClass=NotificationRepository::class)
  */
@@ -31,13 +34,13 @@ class Notification
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"owner:read", "admin:write", "admin:read"})
+     * @Groups({"notification:read", "admin:write", "admin:read"})
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"owner:read", "admin:write", "admin:read"})
+     * @Groups({"notification:read", "admin:write", "admin:read"})
      */
     private $description;
 
@@ -47,6 +50,12 @@ class Notification
      * @Groups({"admin:write", "admin:item:get"})
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"notification:read", "admin:write", "admin:read"})
+     */
+    private $readed = false;
 
     public function getId(): ?int
     {
@@ -85,6 +94,18 @@ class Notification
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getReaded(): ?bool
+    {
+        return $this->readed;
+    }
+
+    public function setReaded(bool $readed): self
+    {
+        $this->readed = $readed;
 
         return $this;
     }
