@@ -19,7 +19,7 @@ class NotificationsFixtures extends BaseFixture implements DependentFixtureInter
            $notification->setDate($this->faker->dateTime);
            $amoungOfNotifications = $this->faker->numberBetween(5,10);
            $notification->setUser($this->getRandomReference('normal_users'));
-
+           $notification->setReaded($this->faker->boolean);
            $manager->persist($notification);
            return $notification;
         });
