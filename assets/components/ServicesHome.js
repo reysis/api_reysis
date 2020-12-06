@@ -6,6 +6,8 @@ import { serviceFetch } from '../redux/service/serviceActions';
 
 import ServiceCard from '../components/ServiceCard';
 
+import { Row, Pagination } from 'react-bootstrap';
+
 const ServicesHome = () => {
 
 	const loading = useSelector(state => state.service.loading)
@@ -28,14 +30,35 @@ const ServicesHome = () => {
 				{
 					loading != undefined && !loading && error != undefined && !error && services.length > 0
 						? (
-							<div className="row cards-container">
-								{
-									services.map((service, index) => {
-										return (
-											<ServiceCard key={service.id} nombre={service.nombre} descripcion={service.descripcion} image={service.image} aosDelay={300 * index} />
-										)
-									})
-								}
+							<div className="cards-container">
+								<Row>
+									{
+										services.map((service, index) => {
+											return (
+												<ServiceCard key={service.id} nombre={service.nombre} descripcion={service.descripcion} image={service.image} aosDelay={300 * index} />
+											)
+										})
+									}
+								</Row>
+								<Row>
+									<Pagination className="mx-auto my-3">
+										<Pagination.First />
+										<Pagination.Prev />
+										<Pagination.Item>{1}</Pagination.Item>
+										<Pagination.Ellipsis disabled />
+
+										<Pagination.Item>{10}</Pagination.Item>
+										<Pagination.Item>{11}</Pagination.Item>
+										<Pagination.Item active>{12}</Pagination.Item>
+										<Pagination.Item>{13}</Pagination.Item>
+										<Pagination.Item>{14}</Pagination.Item>
+
+										<Pagination.Ellipsis disabled />
+										<Pagination.Item>{20}</Pagination.Item>
+										<Pagination.Next />
+										<Pagination.Last />
+									</Pagination>
+								</Row>
 							</div>
 						)
 						: (

@@ -21,26 +21,48 @@ export const opinionError = (error) => {
     }
 }
 
-export const opinionFetch = (page = "/api/reviews") => dispatch => {
+export const opinionFetch = (pag = 0) => async dispatch => {
     dispatch(opinionRequest());
 
-    fetch(page)
-        .then(res => res.json())
-        .then(res => {
-            const resource = res['hydra:member'].map(value => {
-                /* add those values */
-                value['autor'] = ''
-                value['image'] = ''
-                return {
-                    id: value['@id'],
-                    reviewText: value['reviewText'],
-                    autor: value['autor'],
-                    image: value['image']
-                }
-            })
-            dispatch(opinionSuccess(resource));
+    let page = "/api/reviews"
+    if (pag > 0)
+        page += "?page=" + pag
+
+    try {
+        const review_resp = await fetch(page);
+        const reviews = await review_resp.json();
+
+        const responce = reviews['hydra:member'].map(value => {
+
+            value.image = ''
+            value.autor = ''
+            value.stars = 0
+            value.likes = 0
+
+            return {
+                ...value,
+                id: value['@id']
+            }
         })
-        .catch(error => {
-            dispatch(opinionError(error.message));
-        })
+
+        /*for (let i = 0; i < responce.length; i++) {
+            try {
+                const userLocation = responce[i].user
+                const user_resp = await fetch(userLocation);
+                const user = await user_resp.json();
+
+                if (user.persona.nombre)
+                    responce[i].autor = user.persona.nombre
+            }
+            catch (error) {
+                console.error(error.message)
+            }
+        }*/
+
+        dispatch(opinionSuccess(responce));
+    }
+    catch (error) {
+        console.error(error.message)
+        dispatch(opinionError(error.message));
+    }
 }

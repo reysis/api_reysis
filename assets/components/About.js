@@ -11,7 +11,7 @@ const About = () => {
 	return (
 		<div id="feature" className="feature-component">
 			<div className="container-fluid">
-				<div className="row">
+				<div className="row m-0">
 					<div className="col-lg-6 col-md-12 col-sm-12">
 						<div className="text-wrapper">
 							<div>

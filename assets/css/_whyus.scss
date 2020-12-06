@@ -1,5 +1,7 @@
 .whyus-component {
     background: $color-gray;
+    display: flex;
+    flex-direction: column;
 
     .whyus-header {
         text-align: center;
@@ -23,10 +25,9 @@
 
     .whyus-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 300px 300px;
         grid-gap: 0 1.5em;
         margin: 0 auto;
-        max-width: 700px;
 
         .item-whyus {
             margin: 0 10px;
@@ -47,7 +48,7 @@
 
     @media screen and (max-width: 600px) {
         .whyus-container {
-            grid-template-columns: 1fr;
+            grid-template-columns: 300px;
         }
     }
 }

@@ -44,7 +44,7 @@
             width: 100%;
 
             .carousel-inner {
-                min-height: 300px;
+                min-height: 350px;
                 padding-top: 1em;
                 padding-bottom: 1em;
             }
@@ -53,13 +53,13 @@
                 position: initial;
                 margin: auto 10%;
                 padding-top: 0;
-                padding-bottom: 1em;
+                padding-bottom: 0;
             }
 
             .carousel-indicators {
-                margin-bottom: 2em;
                 margin-right: 10%;
                 margin-left: 10%;
+                margin-bottom: 1em;
 
                 li {
                     width: 12px !important;
@@ -91,12 +91,62 @@
                     line-height: 30px;
                     text-transform: uppercase;
                 }
+
+                .carousel-detail {
+                    display: flex;
+                    flex-wrap: wrap;
+                    background: #ffffff20;
+                    padding: 3px 1em;
+                    border-radius: 6px;
+
+                    .carousel-published {
+                        color: #ffffff80;
+                        margin: 3px 1.5em 3px 0;
+                    }
+
+                    .carousel-stars,
+                    .carousel-likes {
+                        display: flex;
+                        margin: 3px 1.5em 3px 0;
+                    }
+
+                    .carousel-stars {
+                        svg {
+                            margin: auto .2em auto 0;
+                            font-size: 18px;
+                            color: gold
+                        }
+                    }
+
+                    .carousel-likes {
+                        padding: 3px 6px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background: #ffffff20;
+                            border-radius: 3px;
+                        }
+
+                        span {
+                            margin: auto 0;
+                            user-select: none;
+                        }
+
+                        svg {
+                            margin: auto .5em auto 0;
+                            font-size: 20px;
+                            color: #7892ff;
+                        }
+                    }
+                }
             }
 
-            .carousel-caption img {
+            .carousel-caption .image-shadow-container {
+                width: 80px;
                 height: 80px;
-                border-radius: 50%;
-                padding: 7px;
+                border-radius: 40px;
+                overflow: hidden;
+                margin: auto;
             }
 
             .carousel-control-prev,
@@ -107,7 +157,7 @@
     }
 
     .carousel-spinner {
-        width: 750px;
+        max-width: 750px;
         height: 300px;
         margin: auto;
         display: flex;
@@ -126,6 +176,9 @@
         }
 
         .content-data-spinner {
+            width: 75%;
+            margin: 0 auto;
+
             .image-spinner {
                 width: 70px;
                 height: 70px;
@@ -134,14 +187,13 @@
             }
 
             .author-spinner {
-                width: 150px;
+                max-width: 150px;
                 height: 1.5em;
                 margin: 25px auto 15px;
                 border-radius: 4px;
             }
 
             .review-spinner {
-                width: 550px;
                 height: 3.5em;
                 margin: 15px auto 41px;
                 border-radius: 4px;

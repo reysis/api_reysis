@@ -13,6 +13,8 @@ import user_opinion from '../assets/opinion-user-1.png';
 
 import testimonialBackground from '../assets/testimonial.jpg';
 
+import OpinionsItem from './OpinionsItem'
+
 const Opinions = () => {
 
 	const loading = useSelector(state => state.opinion.loading)
@@ -20,6 +22,10 @@ const Opinions = () => {
 	const error = useSelector(state => state.opinion.error)
 
 	const distpach = useDispatch()
+
+	const [toMaxHeigth, setToMaxHeigth] = useState(-1)
+	const [maxHeight, setMaxHeight] = useState(0)
+	const [reviewCount, setReviewCount] = useState(0)
 
 	useEffect(() => {
 		distpach(opinionFetch())
@@ -44,19 +50,21 @@ const Opinions = () => {
 						? (
 							<Carousel>
 								{
-									opinions.map(opinion => {
-										opinion.autor = "Pedrito Calvo"
-										opinion.image = user_opinion
+									opinions.map(({ id, autor, reviewText, datePublished }) => {
+										const image = user_opinion
+										const stars = 4
+										const likes = 16
 										return (
-											<CarouselItem key={opinion.id}>
-												<Carousel.Caption>
-													<div className="image-shadow-container">
-														<Image src={opinion.image} alt="Author de la frase" className="image-carousel" />
-													</div>
-													<h2 className="my-3 text-author">{opinion.autor}</h2>
-													<p className="my-3">{opinion.reviewText}</p>
-												</Carousel.Caption>
-											</CarouselItem>
+											<Carousel.Item key={id}>
+												<OpinionsItem
+													autor={autor}
+													image={image}
+													reviewText={reviewText}
+													stars={stars}
+													likes={likes}
+													datePublished={datePublished}
+												/>
+											</Carousel.Item>
 										)
 									})
 								}
