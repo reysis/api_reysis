@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ServicioItem from "../components/user/ServicioItem";
+import ServicioItem from "../components/ServicioItem";
 import { Row } from 'react-bootstrap';
 
 const ServicioItemPage = () => {
