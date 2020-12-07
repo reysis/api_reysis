@@ -237,4 +237,10 @@
             animation-timing-function: linear;
         }
     }
+
+    @media screen and (max-width: 600px) {
+        .carousel .carousel-indicators {
+            display: none;
+        }
+    }
 }

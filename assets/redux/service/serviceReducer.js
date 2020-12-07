@@ -3,6 +3,9 @@ import { SERVICE_LIST_REQUEST, SERVICE_LIST_SUCCESS, SERVICE_LIST_ERROR } from '
 const initialState = {
     loading: false,
     services: [],
+    totalItems: 0,
+    currentPage: 1,
+    lastPage: 1,
     error: ''
 }
 
@@ -16,13 +19,19 @@ const serviceReducer = (state = initialState, { type, payload }) => {
         case SERVICE_LIST_SUCCESS:
             return {
                 loading: false,
-                services: payload,
+                services: payload.services,
+                totalItems: payload.totalItems,
+                currentPage: payload.currentPage,
+                lastPage: payload.lastPage,
                 error: ''
             }
         case SERVICE_LIST_ERROR:
             return {
                 loading: false,
                 services: [],
+                totalItems: 0,
+                currentPage: 1,
+                lastPage: 1,
                 error: payload
             }
         default:

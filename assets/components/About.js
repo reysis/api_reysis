@@ -12,8 +12,8 @@ const About = () => {
 		<div id="feature" className="feature-component">
 			<div className="container-fluid">
 				<div className="row m-0">
-					<div className="col-lg-6 col-md-12 col-sm-12">
-						<div className="text-wrapper">
+					<div className="offset-lg-1 col-lg-5 offset-md-2 col-md-10 offset-sm-2 col-sm-10">
+						<div className="text-wrapper px-4">
 							<div>
 								<div className="feature-header">
 									<h2 data-aos="fade-left" data-aos-delay="300" className="pb-2">Acerca de <span>nosotros</span></h2>

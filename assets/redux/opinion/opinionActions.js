@@ -35,9 +35,7 @@ export const opinionFetch = (pag = 0) => async dispatch => {
         const responce = reviews['hydra:member'].map(value => {
 
             value.image = ''
-            value.autor = ''
-            value.stars = 0
-            value.likes = 0
+            value.autor = '[Author]'
 
             return {
                 ...value,

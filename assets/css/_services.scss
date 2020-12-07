@@ -26,8 +26,6 @@
 
         .card-tile {
             text-align-last: center;
-            max-width: 380px;
-            margin: auto;
         }
 
         .service-card {
@@ -39,6 +37,7 @@
             width: 100%;
             overflow: hidden;
             box-shadow: 2px 6px 9px 0px #00000030;
+            max-width: 380px;
         }
 
         figure {
@@ -86,9 +85,10 @@
 
         .cards-style {
 
-            .service-card {
+            &.service-card {
                 perspective: 1700px;
                 perspective-origin: 0 50%;
+                height: 300px;
             }
 
             figure {
@@ -145,9 +145,11 @@
 
         .card-spinner {
             display: inline-block;
-            margin: 15px 0;
+            margin: 10px 0;
             width: 100%;
-            max-width: 350px;
+            max-width: 380px;
+            height: 300px;
+            border-radius: 6px;
 
             .title-spinner {
                 width: calc(50% - 2em);
@@ -176,8 +178,10 @@
             .button-spinner {
                 width: 100px;
                 height: 40px;
-                margin: 3em 1em 1em auto;
                 border-radius: 4px;
+                position: absolute;
+                right: 1em;
+                bottom: 1em;
             }
 
             @keyframes opacityFrames {

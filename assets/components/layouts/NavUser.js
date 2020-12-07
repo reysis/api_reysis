@@ -15,7 +15,7 @@ import {
     faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 
-import userProfile from '../assets/opinion-img-1.jpg';
+import userProfile from '../../assets/opinion-img-1.jpg';
 import { useLocation, useHistory } from 'react-router-dom';
 import ModalOpinion from './ModalOpinion';
 
@@ -127,7 +127,7 @@ const NavUser = () => {
                                             <FontAwesomeIcon icon={faUser} />
                                         </div>
                                         <div className="nav-user__item--right">
-                                            <span className="title">Inicie sesión o regístrerse</span>
+                                            <span className="title">Inicie sesión o regístrese</span>
                                             {/* <span className="subtitle"></span> */}
                                         </div>
                                     </li>

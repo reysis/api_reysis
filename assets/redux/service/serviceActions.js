@@ -21,21 +21,32 @@ export const serviceError = (error) => {
     }
 }
 
-export const serviceFetch = (page = "/api/servicios") => dispatch => {
+export const serviceFetch = (pag = 1) => dispatch => {
     dispatch(serviceRequest());
+
+    const page = `/api/servicios?page=${pag}`
 
     fetch(page)
         .then(res => res.json())
         .then(res => {
-            const response = res['hydra:member'].map(value => {
+            const services = res['hydra:member'].map(value => {
+                let image = null
+                if (value['image'].length)
+                    image = value['image'][0]['contentUrl']
                 return {
                     id: value['@id'],
                     nombre: value['nombre'],
                     descripcion: value['shortDescription'],
-                    image: value['image'][0]['contentUrl']
+                    image
                 }
             })
-            dispatch(serviceSuccess(response));
+            const totalItems = res["hydra:totalItems"]
+            const currentPage = pag
+            let lastPage = 1
+            if (res["hydra:view"])
+                // /api/servicios?page=3
+                lastPage = Number.parseInt(res["hydra:view"]["hydra:last"].split('=')[1])
+            dispatch(serviceSuccess({ services, totalItems, lastPage, currentPage }));
         })
         .catch(error => {
             dispatch(serviceError(error.message));

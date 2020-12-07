@@ -10,7 +10,7 @@ import LogoLetras from "../../assets/logo-letras.png";
 // import { useLocation, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import NavUser from "../NavUser";
+import NavUser from "./NavUser";
 
 
 const Header = () => {
