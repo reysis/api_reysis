@@ -3,7 +3,9 @@ import { Card } from 'reactstrap';
 
 import LoaderLocal from './LoaderLocal';
 
-const ServiceCard = ({ nombre, descripcion, image, loading }) => {
+import { Link } from 'react-router-dom'
+
+const ServiceCard = ({ id, nombre, descripcion, image, loading }) => {
 
 	/* using react hooks */
 	const card_button = useRef(null);
@@ -31,11 +33,11 @@ const ServiceCard = ({ nombre, descripcion, image, loading }) => {
 					loading
 						? <LoaderLocal />
 						: <figure ref={card}>
-							<div><img src={image} alt={"Servicio " + { nombre }} /></div>
+							<div><img src={image} alt={"Servicio " + nombre} /></div>
 							<figcaption>
 								<h3>{nombre}</h3>
 								<p>{descripcion}</p>
-								<a ref={card_button} href="#">Leer más</a>
+								<Link to={`/services/${encodeURIComponent(id)}`} ref={card_button}>Leer más</Link>
 							</figcaption>
 						</figure>
 				}

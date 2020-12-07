@@ -9,7 +9,7 @@
         border-radius: 20px;
         z-index: 1;
         background: #ffffff40;
-        transition: .5s ease-in-out;
+        transition: .3s ease-in-out;
         cursor: pointer;
 
         &--nav-photo {
@@ -62,7 +62,7 @@
         width: 320px;
         display: flex;
         flex-direction: column;
-        transition: .5s ease-in-out;
+        transition: .3s ease-in-out;
         border-radius: 21px 21px 16px 16px;
         overflow: hidden;
         background: #ffffff50;
@@ -83,7 +83,7 @@
             border-radius: 50%;
             align-self: flex-end;
             padding: 13px;
-            transition: .5s;
+            transition: .3s;
             cursor: pointer;
 
             svg {
@@ -115,7 +115,7 @@
 
             &__item {
                 overflow: hidden;
-                transition: .5s ease-in-out;
+                transition: .3s ease-in-out;
                 display: flex;
                 padding: 8px 5px;
                 cursor: pointer;
@@ -215,5 +215,50 @@
         font-weight: 400;
     }
 
-    .modal-opinion__body {}
+    .modal-opinion__body {
+        &-stars {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: .5em;
+
+            span {
+                margin: auto 1em auto 0;
+            }
+
+            &-list {
+                margin: auto 1em auto 0;
+                display: flex;
+                background: #0000001a;
+                border-radius: 4px;
+                padding: 3px 5px;
+
+                svg {
+                    margin: auto .2em auto 0;
+                    color: goldenrod;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &-review {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+
+            &__header {
+                margin-bottom: .5em;
+            }
+
+            &__rest {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+
+            &__textarea {
+                min-height: 100px;
+                padding: 5px 14px;
+            }
+        }
+    }
 }

@@ -1,4 +1,7 @@
-import { SERVICE_LIST_REQUEST, SERVICE_LIST_SUCCESS, SERVICE_LIST_ERROR } from './serviceTypes'
+import {
+    SERVICE_LIST_REQUEST, SERVICE_LIST_SUCCESS, SERVICE_LIST_ERROR,
+    SERVICE_ITEM_REQUEST, SERVICE_ITEM_SUCCESS, SERVICE_ITEM_ERROR
+} from './serviceTypes'
 
 const initialState = {
     loading: false,
@@ -6,7 +9,10 @@ const initialState = {
     totalItems: 0,
     currentPage: 1,
     lastPage: 1,
-    error: ''
+    error: null,
+    itemLoading: false,
+    itemService: {},
+    itemError: null
 }
 
 const serviceReducer = (state = initialState, { type, payload }) => {
@@ -23,7 +29,7 @@ const serviceReducer = (state = initialState, { type, payload }) => {
                 totalItems: payload.totalItems,
                 currentPage: payload.currentPage,
                 lastPage: payload.lastPage,
-                error: ''
+                error: null
             }
         case SERVICE_LIST_ERROR:
             return {
@@ -33,6 +39,23 @@ const serviceReducer = (state = initialState, { type, payload }) => {
                 currentPage: 1,
                 lastPage: 1,
                 error: payload
+            }
+        case SERVICE_ITEM_REQUEST:
+            return {
+                ...state,
+                itemLoading: true
+            }
+        case SERVICE_ITEM_SUCCESS:
+            return {
+                itemLoading: false,
+                itemService: payload,
+                itemError: null
+            }
+        case SERVICE_ITEM_ERROR:
+            return {
+                itemLoading: false,
+                itemService: {},
+                itemError: payload
             }
         default:
             return state

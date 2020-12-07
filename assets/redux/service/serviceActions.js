@@ -1,9 +1,18 @@
-import { SERVICE_LIST_REQUEST, SERVICE_LIST_SUCCESS, SERVICE_LIST_ERROR } from './serviceTypes'
+import {
+    SERVICE_LIST_REQUEST, SERVICE_LIST_SUCCESS, SERVICE_LIST_ERROR,
+    SERVICE_ITEM_REQUEST, SERVICE_ITEM_SUCCESS, SERVICE_ITEM_ERROR
+} from './serviceTypes'
 import { fetch } from '../../utils/dataAccess'
 
 export const serviceRequest = () => {
     return {
         type: SERVICE_LIST_REQUEST
+    }
+}
+
+export const serviceItemRequest = () => {
+    return {
+        type: SERVICE_ITEM_REQUEST
     }
 }
 
@@ -14,9 +23,23 @@ export const serviceSuccess = (services) => {
     }
 }
 
+export const serviceItemSuccess = (service) => {
+    return {
+        type: SERVICE_ITEM_SUCCESS,
+        payload: service
+    }
+}
+
 export const serviceError = (error) => {
     return {
         type: SERVICE_LIST_ERROR,
+        payload: error
+    }
+}
+
+export const serviceItemError = (error) => {
+    return {
+        type: SERVICE_ITEM_ERROR,
         payload: error
     }
 }
@@ -50,5 +73,33 @@ export const serviceFetch = (pag = 1) => dispatch => {
         })
         .catch(error => {
             dispatch(serviceError(error.message));
+        })
+}
+
+export const serviceItemFetch = (id) => dispatch => {
+    dispatch(serviceItemRequest());
+
+    const page = id
+
+    fetch(page)
+        .then(res => res.json())
+        .then(res => {
+            const images = res['image'].map(value => {
+                return {
+                    id: value['@id'],
+                    url: value['contentUrl']
+                }
+            })
+            const servicio = {
+                id: res['@id'],
+                nombre: res['nombre'],
+                descripcion: res['descripcion'],
+                shortDescription: res['shortDescription'],
+                images
+            }
+            dispatch(serviceItemSuccess(servicio));
+        })
+        .catch(error => {
+            dispatch(serviceItemError(error.message));
         })
 }

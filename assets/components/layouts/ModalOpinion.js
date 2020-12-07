@@ -7,38 +7,89 @@ import { faStar as faStarFull } from '@fortawesome/free-solid-svg-icons'
 
 const ModalOpinion = ({ show, onHide }) => {
 
-    const [stars, setStarts] = useState([
-        { id: "start-1", marked: false },
-        { id: "start-2", marked: false },
-        { id: "start-3", marked: false },
-        { id: "start-4", marked: false },
-        { id: "start-5", marked: false }
+    const [countStar, setCountStar] = useState(-1)
+
+    const [stars, setStars] = useState([
+        { id: 1, marked: false },
+        { id: 2, marked: false },
+        { id: 3, marked: false },
+        { id: 4, marked: false },
+        { id: 5, marked: false }
     ])
 
+    const setStar = (t = 0) => {
+        setStars(() => {
+            return [1, 2, 3, 4, 5].map(v => {
+                return {
+                    id: v,
+                    marked: (v <= t ? true : false)
+                }
+            })
+        })
+    }
+
+    const clickStar = (s) => {
+        if (s == 1) {
+            if (stars[0].marked && !stars[1].marked) {
+                setStar(0)
+                setCountStar(0)
+            }
+            else {
+                setStar(1)
+                setCountStar(1)
+            }
+        }
+        else {
+            setStar(s)
+            setCountStar(s)
+        }
+    }
+
+    const [reviewLength, setReviewLength] = useState(0)
+
+    const [reviewText, setReviewText] = useState('')
+
+    useState(() => {
+        setReviewLength(reviewText.length)
+        console.log(reviewText, reviewLength)
+    }, [reviewText])
+
     return (
-        <div />
-        // <Modal
-        //     show={show}
-        //     onHide={onHide}
-        //     className="modal-opinion"
-        // >
-        //     <Modal.Header className="modal-opinion__header" closeButton>
-        //         <Modal.Title className="modal-opinion__header-title">Coméntenos como te ha ido!</Modal.Title>
-        //     </Modal.Header>
-        //     <Modal.Body className="modal-opinion__body">
-        //         {/* <div className="modal-opinion__body-starts">
-        //             {
-        //                 stars.map(({ id, marked }) => {
-        //                     return <FontAwesomeIcon key={id} icon={marked ? faStarFull : faStarEmpty} />
-        //                 })
-        //             }
-        //         </div> */}
-        //     </Modal.Body>
-        //     <Modal.Footer className="modal-opinion__footer">
-        //         {/* <Button variant="secondary" onClick={onHide}>Cancelar</Button>
-        //         <Button variant="primary" onClick={onHide}>Comentar</Button> */}
-        //     </Modal.Footer>
-        // </Modal>
+        <Modal
+            show={show}
+            onHide={onHide}
+            className="modal-opinion"
+        >
+            <Modal.Header className="modal-opinion__header" closeButton>
+                <Modal.Title className="modal-opinion__header-title">Enviar comentarios a reysis</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="modal-opinion__body">
+                <div className="modal-opinion__body-stars">
+                    <span>Puntuación</span>
+                    <div className="modal-opinion__body-stars-list">
+                        {
+                            stars.map(({ id, marked }) => {
+                                return <FontAwesomeIcon
+                                    key={id}
+                                    icon={marked ? faStarFull : faStarEmpty}
+                                    onClick={() => clickStar(id)}
+                                    className="modal-opinion__body-stars-list__item"
+                                />
+                            })
+                        }
+                    </div>
+                </div>
+                <div className="modal-opinion__body-review">
+                    <span className="modal-opinion__body-review__header">Comentario</span>
+                    <span className="modal-opinion__body-review__rest">{reviewLength}/250</span>
+                    <textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} className="modal-opinion__body-review__textarea" />
+                </div>
+            </Modal.Body>
+            <Modal.Footer className="modal-opinion__footer">
+                <Button variant="secondary" onClick={onHide}>Cancelar</Button>
+                <Button variant="primary" onClick={onHide}>Publicar</Button>
+            </Modal.Footer>
+        </Modal>
     )
 }
 

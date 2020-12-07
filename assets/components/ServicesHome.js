@@ -70,7 +70,7 @@ const ServicesHome = () => {
 			</Pagination.Item>
 		)
 
-		if (services.length) {
+		if (services && services.length) {
 			if (currentPage >= 5)
 				items.push(
 					<Pagination.Ellipsis
@@ -152,6 +152,7 @@ const ServicesHome = () => {
 									return (
 										<ServiceCard
 											key={service.id}
+											id={service.id}
 											nombre={service.nombre}
 											descripcion={service.descripcion}
 											image={service.image}
