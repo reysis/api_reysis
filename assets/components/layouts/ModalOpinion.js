@@ -17,6 +17,10 @@ const ModalOpinion = ({ show, onHide }) => {
         { id: 5, marked: false }
     ])
 
+    const maxlength = 250
+
+    const placeholder = '¿Quiere comentar algo? Nos encantaría leerlo.'
+
     const setStar = (t = 0) => {
         setStars(() => {
             return [1, 2, 3, 4, 5].map(v => {
@@ -49,10 +53,16 @@ const ModalOpinion = ({ show, onHide }) => {
 
     const [reviewText, setReviewText] = useState('')
 
-    useState(() => {
+    useEffect(() => {
         setReviewLength(reviewText.length)
-        console.log(reviewText, reviewLength)
     }, [reviewText])
+
+    useEffect(() => {
+        if (!show) {
+            setStar(0)
+            setReviewText('')
+        }
+    }, [show])
 
     return (
         <Modal
@@ -61,7 +71,7 @@ const ModalOpinion = ({ show, onHide }) => {
             className="modal-opinion"
         >
             <Modal.Header className="modal-opinion__header" closeButton>
-                <Modal.Title className="modal-opinion__header-title">Enviar comentarios a reysis</Modal.Title>
+                <Modal.Title className="modal-opinion__header-title">Enviar comentarios a Reysis</Modal.Title>
             </Modal.Header>
             <Modal.Body className="modal-opinion__body">
                 <div className="modal-opinion__body-stars">
@@ -81,8 +91,8 @@ const ModalOpinion = ({ show, onHide }) => {
                 </div>
                 <div className="modal-opinion__body-review">
                     <span className="modal-opinion__body-review__header">Comentario</span>
-                    <span className="modal-opinion__body-review__rest">{reviewLength}/250</span>
-                    <textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} className="modal-opinion__body-review__textarea" />
+                    <span className="modal-opinion__body-review__rest">{reviewLength}/{maxlength}</span>
+                    <textarea value={reviewText} placeholder={placeholder} onChange={(e) => { console.log(e.target.value); setReviewText(e.target.value) }} className="form-control modal-opinion__body-review__textarea" rows={5} maxlength={maxlength} />
                 </div>
             </Modal.Body>
             <Modal.Footer className="modal-opinion__footer">

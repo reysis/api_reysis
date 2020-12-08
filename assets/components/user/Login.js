@@ -6,7 +6,7 @@ import { clearError, loginFetch } from "../../redux/auth/authActions";
 
 import { Redirect, Link } from "react-router-dom";
 
-import { Button, Form, InputGroup, Col, Alert, Container } from "react-bootstrap";
+import { Button, Form, InputGroup, Col, Row, Alert, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faExclamationTriangle, faUserCircle, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
@@ -52,69 +52,79 @@ const Login = () => {
         return <Redirect to='/' />
     }
     return (
-        <Container >
+        <Container>
             <Alert role={"status"} variant={"info"} show={loading} >Loading...</Alert>
             <Alert role={"alert"} variant={"danger"} show={error} >
                 <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
                 {error}
             </Alert>
-            <Col lg={6} className="mx-auto my-3">
-                <Form onSubmit={handleSubmit} className="form-login p-3" >
-                    <Form.Group className="form-header text-center mb-4">
-                        <h2 className="mb-0"><span>Iniciar</span> Sesión</h2>
-                        <span>Entre sus datos para iniciar sessión</span>
-                    </Form.Group>
+            <Row>
+                <Form onSubmit={handleSubmit} className="mx-auto my-3 pb-3 col-xl-8 col-lg-9 col-md-12 form-login" >
+                    <Row>
+                        <Col className="login-content" md={8}>
+                            <div className="form-header text-center my-4">
+                                <h2 className="mb-2"><span>¡Hola!</span></h2>
+                                <span>Puedes iniciar sesión en tu cuenta de Reysis aquí.</span>
+                            </div>
 
-                    <Form.Group>
-                        <InputGroup>
-                            <InputGroup.Prepend>
-                                <label className="input-group-text" htmlFor="login-username" >
-                                    <FontAwesomeIcon icon={faUserCircle} />
-                                </label>
-                            </InputGroup.Prepend>
-                            <Form.Control type="user" id="login-username" placeholder="Usuario" value={username} onChange={(e) => setUsername(e.target.value)} />
-                        </InputGroup>
-                    </Form.Group>
+                            <Form.Group>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <label className="input-group-text" htmlFor="login-username" >
+                                            <FontAwesomeIcon icon={faUserCircle} />
+                                        </label>
+                                    </InputGroup.Prepend>
+                                    <Form.Control type="user" id="login-username" placeholder="Usuario" value={username} onChange={(e) => setUsername(e.target.value)} required={true} />
+                                </InputGroup>
+                            </Form.Group>
 
-                    <Form.Group className="mb-0">
-                        <InputGroup>
-                            <InputGroup.Prepend>
-                                <label className="input-group-text" htmlFor="login-password">
-                                    <FontAwesomeIcon icon={faLock} />
-                                </label>
-                            </InputGroup.Prepend>
-                            <Form.Control type="password" id="login-password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
-                        </InputGroup>
-                    </Form.Group>
+                            <Form.Group className="mb-0">
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <label className="input-group-text" htmlFor="login-password">
+                                            <FontAwesomeIcon icon={faLock} />
+                                        </label>
+                                    </InputGroup.Prepend>
+                                    <Form.Control type="password" id="login-password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} required={true} />
+                                </InputGroup>
+                            </Form.Group>
 
-                    <div className="mx-4 my-2 login-separator">
-                        <p className="mb-0 hr">o</p>
-                    </div>
+                            <div className="mx-4 my-2 login-separator s-2x">
+                                <p>o</p>
+                            </div>
 
-                    <Form.Group>
-                        <InputGroup>
-                            <InputGroup.Prepend>
-                                <label className="input-group-text" htmlFor="login-pin" >
-                                    <FontAwesomeIcon icon={faUserShield} />
-                                </label>
-                            </InputGroup.Prepend>
-                            <Form.Control type="user" id="login-pin" placeholder="PIN de Seguridad" value={securePIN} onChange={(e) => setSecurePIN(e.target.value)} />
-                        </InputGroup>
-                    </Form.Group>
+                            <Form.Group>
+                                <InputGroup>
+                                    <InputGroup.Prepend>
+                                        <label className="input-group-text" htmlFor="login-pin" >
+                                            <FontAwesomeIcon icon={faUserShield} />
+                                        </label>
+                                    </InputGroup.Prepend>
+                                    <Form.Control type="user" id="login-pin" placeholder="PIN de Seguridad" value={securePIN} onChange={(e) => setSecurePIN(e.target.value)} />
+                                </InputGroup>
+                            </Form.Group>
 
-                    <Form.Group>
-                        <Button variant="primary" block type="submit" disabled={disabledForm} >Entrar</Button>
-                    </Form.Group>
+                            <Form.Group className="login-forgot-password">
+                                <span className="form-text text-muted text-center"><a href="#">¿Has olvidado tu contraseña?</a></span>
+                            </Form.Group>
 
-                    <Form.Group className="mb-0">
-                        <small className="form-text text-muted my-2 text-left">¿Olvidaste tu contraseña?, Haga <a href="#">click aquí</a></small>
-                        <div className="mx-4 login-separator">
-                            <p className="mt-2 mb-3 hr">o</p>
-                            <Link to="/register" className="form-link">Registrarse</Link>
-                        </div>
-                    </Form.Group>
+                            <Form.Group className="login-submit">
+                                <Button variant="primary" type="submit" block disabled={disabledForm} >Iniciar sesión</Button>
+                            </Form.Group>
+
+                            <Form.Group className="d-md-none login-sub-text">
+                                <span className="mr-3">¿Primera vez por aquí?</span>
+                                <Link to="/register" className="form-link">Registrarse</Link>
+                            </Form.Group>
+                        </Col>
+                        <Col md={4} className="d-none d-md-flex flex-column login-rigth-side">
+                            <h2 className="mt-auto">¿Primera vez por aquí?</h2>
+                            <p className="my-3">¡Vamos! Regístrate ahora y súmese a nuestra comunidad.</p>
+                            <Link to="/register" className="mb-auto mt-3 mx-auto"><Button variant="outline-light">Registrarse</Button></Link>
+                        </Col>
+                    </Row>
                 </Form>
-            </Col>
+            </Row>
         </Container>
     )
 }

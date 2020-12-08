@@ -50,10 +50,8 @@ const Opinions = () => {
 						? (
 							<Carousel>
 								{
-									opinions.map(({ id, autor, reviewText, datePublished }) => {
+									opinions.map(({ id, autor, reviewText, stars, likes, datePublished }) => {
 										const image = user_opinion
-										const stars = 4
-										const likes = 16
 										return (
 											<Carousel.Item key={id}>
 												<OpinionsItem

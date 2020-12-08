@@ -3,16 +3,18 @@
 
 	.form-login,
 	.form-register {
-		background-color: #7b9c9d1a;
+		// background-color: #7b9c9d1a;
 		box-shadow: #00000029 0px 4px 16px 0px;
-		border-radius: 5px;
+		border-radius: 4px;
 		color: #000000;
+		overflow: hidden;
 
 		.form-header {
 
 			h2 {
 				font-size: 2em;
 				font-weight: 500;
+				text-transform: uppercase;
 
 				span {
 					color: $color-primary
@@ -25,34 +27,143 @@
 		}
 	}
 
+	.login-forgot-password {
+		span {
+			a {
+				color: $color-black;
+				text-decoration: underline;
+				transition: color 0.2s ease 0s, border 0.2s ease 0s;
+				font-size: 14px;
+
+				&:focus,
+				&:hover {
+					text-decoration: none;
+					border-bottom: 1px solid $color-dark;
+				}
+			}
+		}
+	}
+
+	.login-sub-text,
+	.register-sub-text {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		span {
+			color: $color-black;
+			font-weight: 500;
+		}
+
+		a {
+			color: $color-black;
+			text-decoration: underline;
+
+			&:focus,
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+	.login-submit,
+	.register-submit {
+		button {
+			margin: auto;
+			max-width: 250px;
+			font-weight: 500;
+		}
+	}
+
+	.login-rigth-side,
+	.register-left-side {
+		background: $color-primary;
+		margin-bottom: -1em;
+		color: $color-white;
+		text-align: center;
+
+		h2 {
+			text-transform: uppercase;
+		}
+
+		button {
+			font-weight: 500;
+		}
+	}
+
+	.register-condition-term {
+		font-size: 14px;
+		color: $color-black;
+
+		a {
+			color: $color-black;
+			text-decoration: underline;
+
+			&:focus,
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
 	.login-separator,
 	.register-separator {
 		text-align: center;
 
-		.hr {
+		p {
 			font-size: 13px;
-			opacity: .4;
+			color: #5c5c5c;
+			font-weight: 400;
+			margin-bottom: 0;
+
+			&::before,
+			&::after {
+				content: "";
+				display: inline-block;
+				height: 1px;
+				position: relative;
+				vertical-align: middle;
+				width: 50%;
+				background-color: #f0f0f0;
+			}
+
+			&::before {
+				right: 0.5em;
+				margin-left: -50%;
+			}
+
+			&::after {
+				left: 0.5em;
+				margin-right: -50%;
+			}
 		}
 
-		.hr::before,
-		.hr::after {
-			content: "";
-			background-color: #8C969D;
-			display: inline-block;
-			height: 1px;
-			position: relative;
-			vertical-align: middle;
-			width: 50%;
-		}
+		&.s-2x {
+			p {
+				font-weight: 800;
 
-		.hr::before {
-			right: 0.5em;
-			margin-left: -50%;
+				&::before,
+				&::after {
+					height: 2px;
+				}
+			}
 		}
+	}
 
-		.hr::after {
-			left: 0.5em;
-			margin-right: -50%;
+	@media (max-width: 576px) {
+
+		.form-login,
+		.form-register {
+			box-shadow: none;
+		}
+	}
+
+	@media (min-width: 768px) {
+
+		.register-content,
+		.login-content {
+			padding-left: 30px;
+			padding-right: 30px;
 		}
 	}
 }
