@@ -67,7 +67,6 @@ export const serviceFetch = (pag = 1) => dispatch => {
             const currentPage = pag
             let lastPage = 1
             if (res["hydra:view"])
-                // /api/servicios?page=3
                 lastPage = Number.parseInt(res["hydra:view"]["hydra:last"].split('=')[1])
             dispatch(serviceSuccess({ services, totalItems, lastPage, currentPage }));
         })

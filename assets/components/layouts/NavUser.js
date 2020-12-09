@@ -6,7 +6,6 @@ import { Button, Image, Modal } from 'react-bootstrap'
 import {
     faBell,
     faCalendarAlt,
-    faCaretDown,
     faCommentAlt,
     faSignInAlt,
     faSignOutAlt,
@@ -18,6 +17,7 @@ import {
 import userProfile from '../../assets/opinion-img-1.jpg';
 import { useLocation, useHistory } from 'react-router-dom';
 import ModalOpinion from './ModalOpinion';
+import NavUserProfile from './NavUserProfile';
 
 const NavUser = () => {
 
@@ -33,13 +33,9 @@ const NavUser = () => {
 
     const [showComentarioModal, setShowComentarioModal] = useState(false)
 
-    const closeNavUser = () => {
-        setProfileShow(false)
-    }
+    const closeNavUser = () => setProfileShow(false)
 
-    const navUserClick = () => {
-        setProfileShow(!profileShow)
-    }
+    const navUserClick = () => setProfileShow(!profileShow)
 
     useEffect(() => {
         closeNavUser()
@@ -54,9 +50,7 @@ const NavUser = () => {
         }
     }, [authenticated])
 
-    const perfilClick = () => {
-        history.push('/cuenta')
-    }
+    const perfilClick = () => history.push('/cuenta')
 
     const comentariosClick = () => {
         closeNavUser()
@@ -91,19 +85,7 @@ const NavUser = () => {
         <>
             <div className="nav-user">
                 <div onClick={navUserClick} className={`nav-user__perfil ${profileShow ? "show" : ""}`}>
-                    <div className={`nav-user__perfil--nav-photo ${profileShow ? "show" : ""}`}>
-                        {
-                            authenticated
-                                ? <Image src={userProfile} />
-                                : <FontAwesomeIcon icon={faCaretDown} />
-                        }
-                    </div>
-                    {
-                        authenticated &&
-                        <div className="nav-user__perfil-header">
-                            <span>{name.split(' ')[0]}</span>
-                        </div>
-                    }
+                    <NavUserProfile name={name} profileShow={profileShow} />
                 </div>
                 <div className={`nav-user__menu-container ${profileShow ? "show" : ""}`}>
                     <div onClick={closeNavUser} className={`nav-user__menu-container--close ${profileShow ? "show" : ""}`}>

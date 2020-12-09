@@ -7,11 +7,11 @@ const NavigationBar = ({ authenticated, username, pathname }) => {
 
     const [showMenu, setShowMenu] = useState(false)
 
-    useEffect(() => {
-        showMenu
-            ? document.body.classList.add("open-menu-modal")
-            : document.body.classList.remove("open-menu-modal")
-    }, [showMenu])
+    // useEffect(() => {
+    //     showMenu
+    //         ? document.body.classList.add("open-menu-modal")
+    //         : document.body.classList.remove("open-menu-modal")
+    // }, [showMenu])
 
     return (
         <>

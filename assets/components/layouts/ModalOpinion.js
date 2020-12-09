@@ -71,33 +71,42 @@ const ModalOpinion = ({ show, onHide }) => {
             className="modal-opinion"
         >
             <Modal.Header className="modal-opinion__header" closeButton>
-                <Modal.Title className="modal-opinion__header-title">Enviar comentarios a Reysis</Modal.Title>
+                <h3 className="modal-opinion__header-title">Enviar comentarios a Reysis</h3>
             </Modal.Header>
             <Modal.Body className="modal-opinion__body">
-                <div className="modal-opinion__body-stars">
-                    <span>Puntuación</span>
-                    <div className="modal-opinion__body-stars-list">
+                <div className="modal-opinion__body-review">
+                    {/* <span className="modal-opinion__body-review__header">Comentario</span>
+                    <span className="modal-opinion__body-review__rest">{reviewLength}/{maxlength}</span> */}
+                    <textarea
+                        value={reviewText}
+                        placeholder={placeholder}
+                        onChange={(e) => setReviewText(e.target.value)}
+                        className="modal-opinion__body-review__textarea"
+                        rows={6}
+                        maxLength={maxlength}
+                    />
+                </div>
+            </Modal.Body>
+            <Modal.Footer className="modal-opinion__footer">
+                <div className="modal-opinion__footer-stars">
+                    {/* <span>Puntuación</span> */}
+                    <div className="modal-opinion__footer-stars-list">
                         {
                             stars.map(({ id, marked }) => {
                                 return <FontAwesomeIcon
                                     key={id}
                                     icon={marked ? faStarFull : faStarEmpty}
                                     onClick={() => clickStar(id)}
-                                    className="modal-opinion__body-stars-list__item"
+                                    className="modal-opinion__footer-stars-list__item"
                                 />
                             })
                         }
                     </div>
                 </div>
-                <div className="modal-opinion__body-review">
-                    <span className="modal-opinion__body-review__header">Comentario</span>
-                    <span className="modal-opinion__body-review__rest">{reviewLength}/{maxlength}</span>
-                    <textarea value={reviewText} placeholder={placeholder} onChange={(e) => { console.log(e.target.value); setReviewText(e.target.value) }} className="form-control modal-opinion__body-review__textarea" rows={5} maxlength={maxlength} />
+                <div className="modal-opinion__footer-review_length">
+                    <span>{reviewLength}/{maxlength}</span>
                 </div>
-            </Modal.Body>
-            <Modal.Footer className="modal-opinion__footer">
-                <Button variant="secondary" onClick={onHide}>Cancelar</Button>
-                <Button variant="primary" onClick={onHide}>Publicar</Button>
+                <Button className="modal-opinion__footer-button" variant="primary" onClick={onHide}>Publicar</Button>
             </Modal.Footer>
         </Modal>
     )
