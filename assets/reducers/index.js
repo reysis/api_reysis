@@ -11,6 +11,7 @@ import auth from '../redux/auth/authReducer';
 import opinion from '../redux/opinion/opinionReducer';
 import service from '../redux/service/serviceReducer';
 import faq from '../redux/faq/faqReducer';
+import notification from '../redux/notification/notificationReducer'
 
 export default combineReducers({
 	router: connectRouter(history),
@@ -21,5 +22,6 @@ export default combineReducers({
 	tipoUsuario,
 	service,
 	opinion,
-	faq
+	faq,
+	notification
 });

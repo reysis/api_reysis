@@ -17,9 +17,10 @@ const notificationReducer = (state = initialState, { type, payload }) => {
                 loading: true
             }
         case NOTIFICATION_LIST_SUCCESS:
+            const notifications = state.notifications.concat(payload.notifications)
             return {
                 loading: false,
-                notifications: payload.notifications,
+                notifications,
                 totalItems: payload.totalItems,
                 currentPage: payload.currentPage,
                 lastPage: payload.lastPage,

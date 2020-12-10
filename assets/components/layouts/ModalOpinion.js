@@ -69,6 +69,7 @@ const ModalOpinion = ({ show, onHide }) => {
             show={show}
             onHide={onHide}
             className="modal-opinion"
+            centered
         >
             <Modal.Header className="modal-opinion__header" closeButton>
                 <h3 className="modal-opinion__header-title">Enviar comentarios a Reysis</h3>

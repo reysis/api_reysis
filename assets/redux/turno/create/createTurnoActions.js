@@ -7,6 +7,8 @@ import {
 
 import { fetch } from "../../../utils/dataAccess";
 
+import { getHeaders } from '../../utiles'
+
 export const createTurnoRequest = () => {
 	return {
 		type: CREATE_TURNO_REQUEST
@@ -26,15 +28,6 @@ export const createTurnoError = error => {
 		payload: error
 	};
 };
-
-const getHeaders = (state) => {
-	const headers = {
-		'Content-Type': 'application/ld+json',
-	}
-	if (state().auth.authenticated)
-		headers.Authorization = `Bearer ${state().auth.token}`
-	return new Headers(headers)
-}
 
 export const createTurnoFetch = (value) => (dispatch, getState) => {
 

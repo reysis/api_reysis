@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button, Image, Modal } from 'react-bootstrap'
 import {
-    faBell,
     faCalendarAlt,
     faCommentAlt,
     faSignInAlt,
@@ -18,6 +17,7 @@ import userProfile from '../../assets/opinion-img-1.jpg';
 import { useLocation, useHistory } from 'react-router-dom';
 import ModalOpinion from './ModalOpinion';
 import NavUserProfile from './NavUserProfile';
+import NavUserNotification from './NavUserNotification';
 
 const NavUser = () => {
 
@@ -29,16 +29,28 @@ const NavUser = () => {
     const { pathname } = useLocation()
 
     const [name, setName] = useState("")
+
     const [profileShow, setProfileShow] = useState(false)
-
     const [showComentarioModal, setShowComentarioModal] = useState(false)
+    const [notificationShow, setNotificationShow] = useState(false)
 
-    const closeNavUser = () => setProfileShow(false)
+    const handleNotificationShow = value => {
+        setNotificationShow(value)
+        if (value) {
+            setProfileShow(false)
+        }
+    }
 
-    const navUserClick = () => setProfileShow(!profileShow)
+    const handleProfileShow = value => {
+        setProfileShow(value)
+        if (value) {
+            setNotificationShow(false)
+        }
+    }
 
     useEffect(() => {
-        closeNavUser()
+        handleProfileShow(false)
+        handleNotificationShow(false)
     }, [pathname])
 
     useEffect(() => {
@@ -53,7 +65,7 @@ const NavUser = () => {
     const perfilClick = () => history.push('/cuenta')
 
     const comentariosClick = () => {
-        closeNavUser()
+        handleProfileShow(false)
         setShowComentarioModal(true)
     }
 
@@ -62,40 +74,40 @@ const NavUser = () => {
     }
 
     const turnosClick = () => {
-        closeNavUser()
+        handleProfileShow(false)
         history.push('/turnos')
     }
 
     const loginClick = () => {
-        closeNavUser()
+        handleProfileShow(false)
         history.push('/login')
     }
 
     const signupClick = () => {
-        closeNavUser()
+        handleProfileShow(false)
         history.push('/register')
     }
 
     const logoutClick = () => {
-        closeNavUser()
+        handleProfileShow(false)
         history.push('/logout')
     }
 
     return (
         <>
             <div className="nav-user">
-                <div onClick={navUserClick} className={`nav-user__perfil ${profileShow ? "show" : ""}`}>
+                <div onClick={() => handleProfileShow(!profileShow)} className={`nav-user__perfil ${profileShow ? "show" : ""}`}>
                     <NavUserProfile name={name} profileShow={profileShow} />
                 </div>
                 <div className={`nav-user__menu-container ${profileShow ? "show" : ""}`}>
-                    <div onClick={closeNavUser} className={`nav-user__menu-container--close ${profileShow ? "show" : ""}`}>
+                    <div onClick={() => handleProfileShow(false)} className={`nav-user__menu-container--close ${profileShow ? "show" : ""}`}>
                         <FontAwesomeIcon icon={faTimes} />
                     </div>
                     <div className={`nav-user__menu ${profileShow ? "show" : ""}`}>
                         <ul className="nav-user__menu-items">
                             {
                                 authenticated
-                                    ? <li onClick={perfilClick} className="nav-user__menu-items__item nav-user__item-perfil">
+                                    ? <li onClick={perfilClick} className="nav-user__menu-items__item item-selectionable nav-user__item-perfil">
                                         <div className="nav-user__item--photo">
                                             <Image src={userProfile} />
                                         </div>
@@ -114,21 +126,25 @@ const NavUser = () => {
                                         </div>
                                     </li>
                             }
+                            <li className="nav-user__menu-items__item--separator" />
                             {
                                 authenticated &&
-                                <li onClick={comentariosClick} className="nav-user__menu-items__item nav-user__item-opinion">
-                                    <div className="nav-user__item--icon">
-                                        <FontAwesomeIcon icon={faCommentAlt} />
-                                    </div>
-                                    <div className="nav-user__item--right">
-                                        <span className="title">Enviar comentarios</span>
-                                        <span className="subtitle">Ayúdanos a mejorar</span>
-                                    </div>
-                                </li>
+                                <>
+                                    <li onClick={comentariosClick} className="nav-user__menu-items__item item-selectionable nav-user__item-opinion">
+                                        <div className="nav-user__item--icon">
+                                            <FontAwesomeIcon icon={faCommentAlt} />
+                                        </div>
+                                        <div className="nav-user__item--right">
+                                            <span className="title">Enviar comentarios</span>
+                                            <span className="subtitle">Ayúdanos a mejorar</span>
+                                        </div>
+                                    </li>
+                                    <li className="nav-user__menu-items__item--separator" />
+                                </>
                             }
                             {
                                 authenticated &&
-                                <li onClick={turnosClick} className="nav-user__menu-items__item nav-user__turnos">
+                                <li onClick={turnosClick} className="nav-user__menu-items__item item-selectionable nav-user__turnos">
                                     <div className="nav-user__item--icon">
                                         <FontAwesomeIcon icon={faCalendarAlt} />
                                     </div>
@@ -139,7 +155,7 @@ const NavUser = () => {
                             }
                             {
                                 !authenticated &&
-                                <li onClick={loginClick} className="nav-user__menu-items__item nav-user__login">
+                                <li onClick={loginClick} className="nav-user__menu-items__item item-selectionable nav-user__login">
                                     <div className="nav-user__item--icon">
                                         <FontAwesomeIcon icon={faSignInAlt} />
                                     </div>
@@ -150,7 +166,7 @@ const NavUser = () => {
                             }
                             {
                                 !authenticated &&
-                                <li onClick={signupClick} className="nav-user__menu-items__item nav-user__signup">
+                                <li onClick={signupClick} className="nav-user__menu-items__item item-selectionable nav-user__signup">
                                     <div className="nav-user__item--icon">
                                         <FontAwesomeIcon icon={faUserPlus} />
                                     </div>
@@ -161,7 +177,7 @@ const NavUser = () => {
                             }
                             {
                                 authenticated &&
-                                <li onClick={logoutClick} className="nav-user__menu-items__item nav-user__logout">
+                                <li onClick={logoutClick} className="nav-user__menu-items__item item-selectionable nav-user__logout">
                                     <div className="nav-user__item--icon">
                                         <FontAwesomeIcon icon={faSignOutAlt} />
                                     </div>
@@ -176,10 +192,7 @@ const NavUser = () => {
             </div>
             {
                 authenticated &&
-                <div className="nav-notification">
-                    <FontAwesomeIcon icon={faBell} />
-                    <span>15</span>
-                </div>
+                <NavUserNotification notificationShow={notificationShow} handleNotificationShow={handleNotificationShow} />
             }
             <ModalOpinion
                 show={showComentarioModal}

@@ -12,7 +12,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import NavUser from "./NavUser";
 
-
 const Header = () => {
 	const loading = useSelector(state => state.auth.loading);
 	const authenticated = useSelector(state => state.auth.authenticated);

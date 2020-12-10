@@ -1,6 +1,8 @@
 import { NOTIFICATION_LIST_REQUEST, NOTIFICATION_LIST_SUCCESS, NOTIFICATION_LIST_ERROR } from './notificationTypes'
 import { fetch } from '../../utils/dataAccess'
 
+import { getHeaders } from '../utiles'
+
 export const notificationRequest = () => {
     return {
         type: NOTIFICATION_LIST_REQUEST
@@ -21,12 +23,14 @@ export const notificationError = (error) => {
     };
 }
 
-export const notificationFetch = (pag = 1) => dispatch => {
+export const notificationFetch = (pag = 1) => (dispatch, getState) => {
     dispatch(notificationRequest());
 
     const page = `/api/notifications?page=${pag}`
 
-    fetch(page)
+    const headers = getHeaders(getState);
+
+    fetch(page, { headers })
         .then(res => res.json())
         .then(res => {
             const notifications = res['hydra:member'].map(value => {
@@ -40,7 +44,7 @@ export const notificationFetch = (pag = 1) => dispatch => {
             let lastPage = 1
             if (res['hydra:view'])
                 lastPage = Number.parseInt(res['hydra:view']['hydra:last'].split('=')[1])
-            dispatch(notificationSuccess({ notifications, totalItems, nextPage, currentPage }))
+            dispatch(notificationSuccess({ notifications, totalItems, lastPage, currentPage }))
         })
         .catch(error => {
             dispatch(notificationError(error.message))
