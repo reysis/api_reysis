@@ -1,4 +1,7 @@
-import { NOTIFICATION_LIST_REQUEST, NOTIFICATION_LIST_SUCCESS, NOTIFICATION_LIST_ERROR } from './notificationTypes'
+import {
+    NOTIFICATION_LIST_REQUEST, NOTIFICATION_LIST_SUCCESS, NOTIFICATION_LIST_ERROR,
+    NOTIFICATION_ITEM_READING, NOTIFICATION_ITEM_READED, NOTIFICATION_ITEM_READERROR
+} from './notificationTypes'
 
 const initialState = {
     loading: false,
@@ -17,10 +20,9 @@ const notificationReducer = (state = initialState, { type, payload }) => {
                 loading: true
             }
         case NOTIFICATION_LIST_SUCCESS:
-            const notifications = state.notifications.concat(payload.notifications)
             return {
                 loading: false,
-                notifications,
+                notifications: [...state.notifications, ...payload.notifications],
                 totalItems: payload.totalItems,
                 currentPage: payload.currentPage,
                 lastPage: payload.lastPage,
@@ -34,6 +36,11 @@ const notificationReducer = (state = initialState, { type, payload }) => {
                 currentPage: 1,
                 lastPage: 1,
                 error: payload
+            }
+        case NOTIFICATION_ITEM_READED:
+            return {
+                ...state,
+                notifications: state.notifications.map(v => (v.id == payload ? { ...v, readed: true } : v))
             }
         default:
             return state

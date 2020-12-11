@@ -9,7 +9,7 @@
         border-radius: 20px;
         z-index: 1;
         background: #ffffff40;
-        transition: .3s ease-in-out;
+        transition: .1s ease-in-out;
         cursor: pointer;
 
         &--nav-photo {
@@ -21,7 +21,6 @@
             display: flex;
             border: 2px solid #ffffffb0;
             position: relative;
-            // transition: border .5s ease-in-out;
 
             &.loading {
                 border: 0;
@@ -107,7 +106,7 @@
         width: 320px;
         display: flex;
         flex-direction: column;
-        transition: .3s ease-in-out;
+        transition: .1s ease-in-out;
         border-radius: 21px 21px 16px 16px;
         overflow: hidden;
         background: #ffffff50;
@@ -127,7 +126,7 @@
             border-radius: 50%;
             align-self: flex-end;
             padding: 13px;
-            transition: .3s;
+            transition: .1s;
             cursor: pointer;
 
             svg {
@@ -160,7 +159,7 @@
 
             &__item {
                 overflow: hidden;
-                transition: .3s ease-in-out;
+                transition: .1s ease-in-out;
                 display: flex;
                 padding: 8px 5px;
                 cursor: pointer;
@@ -278,7 +277,7 @@
         width: 320px;
         display: flex;
         flex-direction: column;
-        transition: .3s ease-in-out;
+        transition: .1s ease-in-out;
         border-radius: 21px 21px 16px 16px;
         overflow: hidden;
         background: #ffffff50;
@@ -298,7 +297,7 @@
             border-radius: 50%;
             align-self: flex-end;
             padding: 13px;
-            transition: .3s;
+            transition: .1s;
             cursor: pointer;
 
             svg {
@@ -337,7 +336,7 @@
 
             &__item {
                 overflow: hidden;
-                transition: .3s ease-in-out;
+                transition: .1s ease-in-out;
                 padding: 8px 5px;
                 cursor: pointer;
                 // display: flex;

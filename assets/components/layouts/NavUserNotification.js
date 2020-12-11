@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faCircle, faEllipsisH, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { notificationFetch } from '../../redux/notification/notificationActions'
+import { notificationGet, notificationReadPut } from '../../redux/notification/notificationActions'
 
 const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
 
@@ -20,7 +20,7 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
 
     const loadMoreClick = () => {
         (currentPage < lastPage) &&
-            dispatch(notificationFetch(currentPage + 1))
+            dispatch(notificationGet(currentPage + 1))
     }
 
     const notifications = useSelector(state => state.notification.notifications)
@@ -31,7 +31,7 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
     const lastPage = useSelector(state => state.notification.lastPage)
 
     useEffect(() => {
-        dispatch(notificationFetch())
+        dispatch(notificationGet())
     }, [])
 
     useEffect(() => {
@@ -41,13 +41,9 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
         else setNonreadNotification(n + '+')
     }, [notifications])
 
-    // useEffect(() => {
-    //     if (notificationListRef) {
-    //         notificationListRef.current.addEventListener("scroll", () => {
-
-    //         });
-    //     }
-    // }, [notificationListRef])
+    const readedClick = (id) => {
+        dispatch(notificationReadPut(id))
+    }
 
     return (
         <div className="nav-notification">

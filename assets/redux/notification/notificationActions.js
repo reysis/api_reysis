@@ -1,4 +1,7 @@
-import { NOTIFICATION_LIST_REQUEST, NOTIFICATION_LIST_SUCCESS, NOTIFICATION_LIST_ERROR } from './notificationTypes'
+import {
+    NOTIFICATION_LIST_REQUEST, NOTIFICATION_LIST_SUCCESS, NOTIFICATION_LIST_ERROR,
+    NOTIFICATION_ITEM_READING, NOTIFICATION_ITEM_READED, NOTIFICATION_ITEM_READERROR
+} from './notificationTypes'
 import { fetch } from '../../utils/dataAccess'
 
 import { getHeaders } from '../utiles'
@@ -23,7 +26,7 @@ export const notificationError = (error) => {
     };
 }
 
-export const notificationFetch = (pag = 1) => (dispatch, getState) => {
+export const notificationGet = (pag = 1) => (dispatch, getState) => {
     dispatch(notificationRequest());
 
     const page = `/api/notifications?page=${pag}`
@@ -48,5 +51,41 @@ export const notificationFetch = (pag = 1) => (dispatch, getState) => {
         })
         .catch(error => {
             dispatch(notificationError(error.message))
+        })
+}
+
+export const notificationReading = () => {
+    return {
+        type: NOTIFICATION_ITEM_READING
+    }
+}
+
+export const notificationReaded = id => {
+    return {
+        type: NOTIFICATION_ITEM_READED,
+        payload: id
+    }
+}
+
+export const notificationReadError = error => {
+    return {
+        type: NOTIFICATION_ITEM_READERROR,
+        payload: error
+    }
+}
+
+export const notificationReadPut = (id) => (dispatch, getState) => {
+    dispatch(notificationReading())
+    const options = {
+        method: 'PUT',
+        body: JSON.stringify({ readed: true }),
+        headers: getHeaders(getState)
+    }
+    fetch(id, options)
+        .then(() => {
+            dispatch(notificationReaded(id))
+        })
+        .catch(error => {
+            dispatch(notificationReadError(error.message))
         })
 }
