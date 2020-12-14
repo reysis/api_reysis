@@ -34,11 +34,7 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
         $services = $this->collectionDataProvider->getCollection($resourceClass, $operationName, $context);
 
         foreach ($services as $service){
-
-            foreach ( $service->getImage() as $image){
-                $image->setContentUrl($this->storage->resolveUri($image, 'file'));
-            }
-
+            $service->getServiceImage()->setContentUrl($this->storage->resolveUri($service->getServiceImage(), 'file'));
         }
 
         return $services;
@@ -46,15 +42,16 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
 
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = [])
     {
+        /**
+         * @var Servicio $service
+         */
         $service = $this->itemDataProvider->getItem($resourceClass, $id, $operationName);
 
         if(!$service){
             return null;
         }
 
-        foreach ($service->getImage() as $image){
-            $image->setContentUrl($this->storage->resolveUri($image, 'file'));
-        }
+        $service->getServiceImage()->setContentUrl($this->storage->resolveUri($service->getServiceImage(), 'file'));
 
         return $service;
     }
