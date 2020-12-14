@@ -127,7 +127,8 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('GET', '/api/users/'.$user->getId(),[
             'headers'=> ['ContentType'=>'application/json+ld'],
         ]);
-        $this->assertResponseStatusCodeSame(401);
+        $this->assertResponseStatusCodeSame(404);
+        $this->a
 
         //Logueando al usuario 1 y comprobando que puede acceder al recurso
         $token = $this->logIn($client, 'testUser1', 'foo');
@@ -200,14 +201,13 @@ class UserResourceTest extends CustomApiTestCase
             'CASA',
             '+5354178553');
 
-        //Comprobando que un usuario normal no pueda eliminar
+        //Comprobando que anonimamente no se pueda eliminar
         $client->request('DELETE', '/api/users/'.$user2->getId(),[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
             ],
         ]);
-        $this->assertResponseStatusCodeSame(403);
+        $this->assertResponseStatusCodeSame(401);
 
         //Dandole Permisos de administrador al Usuario 2
         $em = $this->getEntityManager();
@@ -243,13 +243,14 @@ class UserResourceTest extends CustomApiTestCase
             '+5354178553'
         );
         $em = $this->getEntityManager();
-        //Comprobando que anonimamente no se pueda acceder al recurso
-        $client->request('GET', '/api/users/',[
+        //Comprobando que anonimamente se acceda al recurso
+        $client->request('GET', '/api/users',[
             'headers'=> ['ContentType'=>'application/json+ld'],
         ]);
-        $this->assertResponseStatusCodeSame(401);
+        $this->assertResponseStatusCodeSame(200);
+        $this->assertJsonContains(['hydra:totalItems' => 0]);
 
-        //Comprobando que no se pueda acceder como un usuario normal
+        //Comprobando que se pueda acceder como un usuario normal
         $token = $this->logIn($client, 'testUser1', 'foo');
         $client->request('GET', '/api/users',[
             'headers'=> [
@@ -257,7 +258,8 @@ class UserResourceTest extends CustomApiTestCase
                 'Authorization' => 'Bearer '.$token
             ],
         ]);
-        $this->assertResponseStatusCodeSame(403);
+        $this->assertResponseStatusCodeSame(200);
+        $this->assertJsonContains(['hydra:totalItems' => 0]);
 
         $user2 = $this->createUser(
             'testUser2',
@@ -278,6 +280,7 @@ class UserResourceTest extends CustomApiTestCase
             ],
         ]);
         $this->assertResponseIsSuccessful();
+        $this->assertJsonContains(['hydra:totalItems' => 2]);
     }
 }
 

@@ -7,12 +7,15 @@ namespace App\ApiPlatform;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryItemExtensionInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
-use App\Entity\User;
+use App\Entity\Reviews;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Security\Core\Security;
 
-class UserPublicExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
+class ReviewPublicExtension implements QueryCollectionExtensionInterface, QueryItemExtensionInterface
 {
+    /**
+     * @var Security
+     */
     private Security $security;
 
     public function __construct(Security $security)
@@ -27,20 +30,7 @@ class UserPublicExtension implements QueryCollectionExtensionInterface, QueryIte
 
     public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, string $operationName = null, array $context = [])
     {
-        if($this->security->isGranted('ROLE_ADMIN'))
-            return;
-
-        if(!$this->security->getUser() ){
-            return;
-        }else{
-            if($queryBuilder->getParameters()->getValues()[0]->getValue() === $this->security->getUser()->getId()) {
-                return;
-            }else{
-                $rootAlias = $queryBuilder->getRootAliases()[0];
-                $queryBuilder->andWhere(sprintf('%s.isPublic = :isPublic', $rootAlias))
-                    ->setParameter('isPublic', true);
-            }
-        }
+        $this->addWhere($resourceClass, $queryBuilder);
     }
 
     /**
@@ -49,20 +39,12 @@ class UserPublicExtension implements QueryCollectionExtensionInterface, QueryIte
      */
     public function addWhere(string $resourceClass, QueryBuilder $queryBuilder): void
     {
-        if ($resourceClass !== User::class) {
+        if ($resourceClass !== Reviews::class)
             return;
-        }
 
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return;
         }
-
-
-        /*if($queryBuilder->getParameters()->count() === 1
-            && $queryBuilder->getParameters()->getValues()[0]->getValue() === $this->security->getUser()->getId()){
-            return;
-        }*/
-        //dd($queryBuilder);
         $rootAlias = $queryBuilder->getRootAliases()[0];
         $queryBuilder->andWhere(sprintf('%s.isPublic = :isPublic', $rootAlias))
             ->setParameter('isPublic', true);

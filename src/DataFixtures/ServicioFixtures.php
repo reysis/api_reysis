@@ -28,13 +28,10 @@ class ServicioFixtures extends BaseFixture
 
     private $publicFileSystem;
 
-    private $storage;
-
-    public function __construct(FilesystemInterface $publicUploadFilesystem, CustomUploaderHelper $uploaderHelper, StorageInterface $storage)
+    public function __construct(FilesystemInterface $publicUploadFilesystem, CustomUploaderHelper $uploaderHelper)
     {
         $this->uploaderHelper = $uploaderHelper;
         $this->publicFileSystem = $publicUploadFilesystem;
-        $this->storage = $storage;
     }
 
     protected function loadData(ObjectManager $manager)
@@ -52,12 +49,12 @@ class ServicioFixtures extends BaseFixture
             $mediaObject = new MediaObject();
             $mediaObject->setFile($file);
             $mediaObject->setFilePath(
-                $this->uploaderHelper->uploadServiceImage($file, null)
+                $this->uploaderHelper->uploadImage($file, null, 'services_images')
             );
 
             $manager->persist($mediaObject);
 
-            $servicio->addImage($mediaObject);
+            $servicio->setServiceImage($mediaObject);
             $servicio->setUpdatedAt(new \DateTime());
 
 
