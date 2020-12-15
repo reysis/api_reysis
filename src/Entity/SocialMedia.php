@@ -53,7 +53,7 @@ class SocialMedia
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="socialMedias")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"socialmedia:read", "admin:write", "admin:read"})
+     * @Groups({"socialmedia:read", "admin:write", "admin:item:read"})
      */
     private $user;
 

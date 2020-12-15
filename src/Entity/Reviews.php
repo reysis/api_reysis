@@ -87,6 +87,11 @@ class Reviews
      */
     private $stars = 0;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublic = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -148,6 +153,18 @@ class Reviews
     public function setStars(int $stars): self
     {
         $this->stars = $stars;
+
+        return $this;
+    }
+
+    public function getIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): self
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

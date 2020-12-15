@@ -5,57 +5,22 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Controller\CreateMediaObjectAction;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use App\DTO\MediaObjectOutput;
+use App\DTO\MediaObject\MediaObjectOutput;
+use App\DTO\MediaObject\MediaObjectInput;
 
 /**
  * @ORM\Entity
  * @ApiResource(
+ *     output=MediaObjectOutput::CLASS,
+ *     input=MediaObjectInput::CLASS,
  *     iri="http://schema.org/MediaObject",
- *     normalizationContext={
- *         "groups"={"mediaobject:read"}
- *     },
  *     collectionOperations={
- *         "post"={
- *             "controller"=CreateMediaObjectAction::class,
- *             "deserialize"=false,
- *             "validation_groups"={"Default", "media_object_create"},
- *             "swagger_context"={
- *                 "consumes"={
- *                     "multipart/form-data",
- *                 },
- *                 "parameters"={
- *                     {
- *                         "in"="formData",
- *                         "name"="file",
- *                         "type"="file",
- *                         "description"="The file to upload",
- *                     },
- *                 },
- *             },
- *             "openapi_context"={
- *                 "requestBody"={
- *                     "content"={
- *                         "multipart/form-data"={
- *                             "schema"={
- *                                 "type"="object",
- *                                 "properties"={
- *                                     "file"={
- *                                         "type"="string",
- *                                         "format"="binary"
- *                                     },
- *                                 }
- *                             }
- *                         }
- *                     }
- *                 }
- *             },
- *         },
+ *         "post",
  *         "get"
  *     },
  *     itemOperations={
@@ -77,16 +42,11 @@ class MediaObject
 
     /**
      * @var string|null
-     *
-     * @ApiProperty(iri="http://schema.org/contentUrl")
-     * @Groups({"mediaobject:read", "servicio:read", "servicio:write"})
      */
     public $contentUrl;
 
     /**
      * @var File|null
-     *
-     * @Assert\NotNull(groups={"media_object:create"})
      * @Vich\UploadableField(mapping="typeService", fileNameProperty="filePath")
      */
     public $file;
@@ -99,31 +59,27 @@ class MediaObject
     public $filePath;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Servicio::class, inversedBy="image")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $servicio;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="profilePicture")
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Servicio::class, inversedBy="serviceImage")
+     */
+    private $servicio;
+
+    private $decodedData;
+
+    private $originalName;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getServicio(): ?Servicio
-    {
-        return $this->servicio;
-    }
-
-    public function setServicio(?Servicio $servicio): self
-    {
-        $this->servicio = $servicio;
-
-        return $this;
     }
 
     /**
@@ -179,6 +135,67 @@ class MediaObject
     public function setContentUrl(?string $contentUrl): void
     {
         $this->contentUrl = $contentUrl;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getServicio(): ?Servicio
+    {
+        return $this->servicio;
+    }
+
+    public function setServicio(Servicio $servicio): self
+    {
+        $this->servicio = $servicio;
+
+        // set the owning side of the relation if necessary
+        if ($servicio->getServiceImage() !== $this) {
+            $servicio->setServiceImage($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDecodedData()
+    {
+        return $this->decodedData;
+    }
+
+    /**
+     * @param mixed $decodedData
+     */
+    public function setDecodedData($decodedData): void
+    {
+        $this->decodedData = $decodedData;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginalName()
+    {
+        return $this->originalName;
+    }
+
+    /**
+     * @param mixed $originalName
+     */
+    public function setOriginalName($originalName): void
+    {
+        $this->originalName = $originalName;
     }
 
 }

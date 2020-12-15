@@ -13,7 +13,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CustomUploaderHelper
 {
-    const SERVICE_IMAGE = 'service_image';
+    const SERVICE_IMAGE = 'services_image';
+    const PUBLIC_IMAGE = 'public_images';
+    const USER_IMAGE = 'user_images';
+
     //const ARTICLE_REFERENCE = 'article_reference';
 
     private $publicFilesystem;
@@ -35,21 +38,30 @@ class CustomUploaderHelper
         $this->publicAssetBaseUrl = $uploadedAssetsBaseUrl;
     }
 
-    public function uploadServiceImage(File $file, ?string $existingFilename): string
+    public function uploadServiceImage(File $file, ?string $existingFilename, string $destination)
     {
-        $newFilename = $this->uploadFile($file, self::SERVICE_IMAGE, true);
+        $newFilename = $this->uploadFile($file, self::SERVICE_IMAGE,true);
 
-        if ($existingFilename) {
-            try {
-                $result = $this->filesystem->delete(self::SERVICE_IMAGE.'/'.$existingFilename);
+        $this->removeIfExistPublic($existingFilename, $destination);
 
-                if ($result === false) {
-                    throw new \Exception(sprintf('Could not delete old uploaded file "%s"', $existingFilename));
-                }
-            } catch (FileNotFoundException $e) {
-                $this->logger->alert(sprintf('Old uploaded file "%s" was missing when trying to delete', $existingFilename));
-            }
-        }
+        return $newFilename;
+    }
+
+    public function uploadUserImage(File $file, ?string $existingFilename, string $destination)
+    {
+        $newFilename = $this->uploadFile($file, self::USER_IMAGE,true);
+
+        $this->removeIfExistPublic($existingFilename, $destination);
+
+        return $newFilename;
+    }
+
+
+    public function uploadPublicImage(File $file, ?string $existingFilename): string
+    {
+        $newFilename = $this->uploadFile($file, self::PUBLIC_IMAGE, true);
+
+        $this->removeIfExistPublic($existingFilename, self::PUBLIC_IMAGE);
 
         return $newFilename;
     }
@@ -67,29 +79,6 @@ class CustomUploaderHelper
                 ->getBasePath().$fullPath;
     }
 
-    /**
-     * @return resource
-     */
-    public function readStream(string $path)
-    {
-        $resource = $this->filesystem->readStream($path);
-
-        if ($resource === false) {
-            throw new \Exception(sprintf('Error opening stream for "%s"', $path));
-        }
-
-        return $resource;
-    }
-
-    public function deleteFile(string $path)
-    {
-        $result = $this->filesystem->delete($path);
-
-        if ($result === false) {
-            throw new \Exception(sprintf('Error deleting "%s"', $path));
-        }
-    }
-
     private function uploadFile(File $file, string $directory, bool $isPublic): string
     {
         if ($file instanceof UploadedFile) {
@@ -98,7 +87,7 @@ class CustomUploaderHelper
             $originalFilename = $file->getFilename();
         }
         $newFilename = Urlizer::urlize(pathinfo($originalFilename, PATHINFO_FILENAME)).'-'.uniqid().'.'.$file->guessExtension();
-
+        //dd($newFilename, $directory);
         $filesystem = $isPublic ? $this->publicFilesystem : $this->privateFilesystem;
 
         $stream = fopen($file->getPathname(), 'r');
@@ -119,5 +108,42 @@ class CustomUploaderHelper
         }
 
         return $newFilename;
+    }
+
+    /**
+     * @param string|null $existingFilename
+     * @throws \Exception
+     */
+    public function removeIfExistPublic(?string $existingFilename, string $destination): void
+    {
+        if ($existingFilename) {
+            try {
+                $result = $this->publicFilesystem->delete($destination . '/' . $existingFilename);
+
+                if ($result === false) {
+                    throw new \Exception(sprintf('Could not delete old uploaded file "%s"', $existingFilename));
+                }
+            } catch (FileNotFoundException $e) {
+                $this->logger->alert(sprintf('Old uploaded file "%s" was missing when trying to delete', $existingFilename));
+            }
+        }
+    }
+    /**
+     * @param string|null $existingFilename
+     * @throws \Exception
+     */
+    public function removeIfExistPrivate(?string $existingFilename, string $destination): void
+    {
+        if ($existingFilename) {
+            try {
+                $result = $this->privateFilesystem->delete($destination . '/' . $existingFilename);
+
+                if ($result === false) {
+                    throw new \Exception(sprintf('Could not delete old uploaded file "%s"', $existingFilename));
+                }
+            } catch (FileNotFoundException $e) {
+                $this->logger->alert(sprintf('Old uploaded file "%s" was missing when trying to delete', $existingFilename));
+            }
+        }
     }
 }
