@@ -49,7 +49,7 @@ class MediaObjectDataPersister implements ContextAwareDataPersisterInterface
             //Se acaba de hacer upload a una imagen nueva
             $data->setFile($uploadedFile);
             $data->setFilePath(
-                $this->uploaderHelper->uploadPublicImage($uploadedFile, $data->getFile())
+                $this->uploaderHelper->uploadPublicImage($uploadedFile, $data->getFilename())
             );
         }
 

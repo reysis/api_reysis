@@ -11,13 +11,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use App\DTO\MediaObject\MediaObjectOutput;
-use App\DTO\MediaObject\MediaObjectInput;
 
 /**
  * @ORM\Entity
  * @ApiResource(
- *     output=MediaObjectOutput::CLASS,
- *     input=MediaObjectInput::CLASS,
  *     iri="http://schema.org/MediaObject",
  *     collectionOperations={
  *         "post",
@@ -41,6 +38,7 @@ class MediaObject
     protected $id;
 
     /**
+     * @Groups({"mediaobject:read", "servicio:read"})
      * @var string|null
      */
     public $contentUrl;
@@ -73,13 +71,57 @@ class MediaObject
      */
     private $servicio;
 
-    private $decodedData;
+    /**
+     * The base64 encoded version of the file
+     *
+     * @Groups({"mediaobject:write", "servicio:write"})
+     * @Assert\NotBlank
+     */
+    private string $data;
 
-    private $originalName;
+    /**
+     * The file name
+     *
+     * @var string
+     * @Groups ({"mediaobject:write", "servicio:write"})
+     * @Assert\NotBlank
+     */
+    private string $filename;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+    /**
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param string $data
+     */
+    public function setData($data): void
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * @param mixed $filename
+     */
+    public function setFilename($filename): void
+    {
+        $this->filename = $filename;
     }
 
     /**
@@ -171,7 +213,7 @@ class MediaObject
      */
     public function getDecodedData()
     {
-        return $this->decodedData;
+        return base64_decode($this->data);
     }
 
     /**
@@ -181,21 +223,4 @@ class MediaObject
     {
         $this->decodedData = $decodedData;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getOriginalName()
-    {
-        return $this->originalName;
-    }
-
-    /**
-     * @param mixed $originalName
-     */
-    public function setOriginalName($originalName): void
-    {
-        $this->originalName = $originalName;
-    }
-
 }
