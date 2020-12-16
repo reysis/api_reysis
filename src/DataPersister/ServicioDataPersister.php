@@ -15,9 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 class ServicioDataPersister implements ContextAwareDataPersisterInterface
 {
     private DataPersisterInterface $decoratedDataPersister;
-    /**
-     * @var CustomUploaderHelper
-     */
     private CustomUploaderHelper $uploaderHelper;
 
     public function __construct(DataPersisterInterface $decoratedDataPersister, CustomUploaderHelper $uploaderHelper)

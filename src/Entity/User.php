@@ -239,10 +239,12 @@ class User implements UserInterface
 
     /**
      * @ApiProperty(
-     *     readableLink=true
+     *     readableLink=true,
+     *     writableLink=true
      * )
-     * @Groups({"user:read", "user:write", "admin:write", "admin:read"})
-     * @ORM\OneToOne(targetEntity=MediaObject::class, mappedBy="user", cascade={"persist", "remove"})
+     * @Groups({"user:read", "user:write", "admin:write", "admin:item:get"})
+     * @var MediaObject
+     * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="user", cascade={"persist", "remove"})
      */
     private $profilePicture;
 
@@ -731,12 +733,6 @@ class User implements UserInterface
     public function setProfilePicture(?MediaObject $profilePicture): self
     {
         $this->profilePicture = $profilePicture;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newUser = null === $profilePicture ? null : $this;
-        if ($profilePicture->getUser() !== $newUser) {
-            $profilePicture->setUser($newUser);
-        }
 
         return $this;
     }

@@ -62,14 +62,9 @@ class MediaObject
     private $updatedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="profilePicture")
-     */
-    private $user;
-
-    /**
      * The base64 encoded version of the file
      *
-     * @Groups({"mediaobject:write", "servicio:write"})
+     * @Groups({"admin:write", "servicio:write", "user:write"})
      * @Assert\NotBlank
      */
     private string $data;
@@ -78,7 +73,7 @@ class MediaObject
      * The file name
      *
      * @var string
-     * @Groups ({"mediaobject:write", "servicio:write"})
+     * @Groups ({"admin:write", "servicio:write", "user:write"})
      * @Assert\NotBlank
      */
     private string $filename;
@@ -87,6 +82,11 @@ class MediaObject
      * @ORM\OneToOne(targetEntity=Servicio::class, mappedBy="serviceImage", cascade={"persist", "remove"})
      */
     private $servicio;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="profilePicture", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -179,18 +179,6 @@ class MediaObject
         $this->contentUrl = $contentUrl;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getServicio(): ?Servicio
     {
         return $this->servicio;
@@ -222,5 +210,27 @@ class MediaObject
     public function setDecodedData($decodedData): void
     {
         $this->decodedData = $decodedData;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setProfilePicture(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getProfilePicture() !== $this) {
+            $user->setProfilePicture($this);
+        }
+
+        $this->user = $user;
+
+        return $this;
     }
 }

@@ -52,7 +52,7 @@ class Persona
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
-     * @Groups({"owner:read", "user:write","admin:write", "admin:item:get"})
+     * @Groups({"owner:read", "user:write","admin:write"})
      */
     private $user;
 

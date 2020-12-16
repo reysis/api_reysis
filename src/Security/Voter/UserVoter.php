@@ -39,7 +39,7 @@ class UserVoter extends Voter
                     return true;
                 return false;
             case 'USER_PUT':
-                if($this->security->isGranted(Role::ADMIN) || $subject->getUsername() === $user->getUsername() )
+                if($this->security->isGranted('ROLE_ADMIN') || $subject === $user )
                     return true;
                 return false;
         }

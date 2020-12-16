@@ -47,7 +47,7 @@ class Servicio
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
-     * @Groups({"servicio:read", "servicio:write"})
+     * @Groups({"servicio:read", "admin:write"})
      * @Assert\NotBlank
      */
     private $nombre;
@@ -57,7 +57,7 @@ class Servicio
      * 
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
-     * @Groups({"servicio:item:get", "servicio:write"})
+     * @Groups({"servicio:item:get", "admin:write"})
      * @Assert\NotBlank
      */
     private $descripcion;
@@ -82,7 +82,7 @@ class Servicio
      * )
      *
      * @var MediaObject
-     * @Groups({"servicio:write", "servicio:read"})
+     * @Groups({"admin:write", "servicio:read"})
      * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="servicio", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */

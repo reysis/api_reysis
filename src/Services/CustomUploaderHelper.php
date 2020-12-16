@@ -47,11 +47,12 @@ class CustomUploaderHelper
         return $newFilename;
     }
 
-    public function uploadUserImage(File $file, ?string $existingFilename, string $destination)
+    public function uploadUserImage(File $file, ?string $existingFilename)
     {
+        dump($file, $existingFilename);
         $newFilename = $this->uploadFile($file, self::USER_IMAGE,true);
 
-        $this->removeIfExistPublic($existingFilename, $destination);
+        $this->removeIfExistPublic($existingFilename, self::USER_IMAGE);
 
         return $newFilename;
     }
@@ -59,6 +60,7 @@ class CustomUploaderHelper
 
     public function uploadPublicImage(File $file, ?string $existingFilename): string
     {
+
         $newFilename = $this->uploadFile($file, self::PUBLIC_IMAGE, true);
 
         $this->removeIfExistPublic($existingFilename, self::PUBLIC_IMAGE);
