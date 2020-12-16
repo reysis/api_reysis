@@ -9,6 +9,8 @@ use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use App\Entity\MediaObject;
 use App\Entity\Servicio;
 use App\Services\CustomUploaderHelper;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\Response;
 
 class ServicioDataPersister implements ContextAwareDataPersisterInterface
 {
@@ -36,12 +38,20 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
-        if(($context['item_opeartion_name'] ?? null) === 'put'){
-            //Aqui puedo crear una traza de que el servicio ha sido modificado
-
-            $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
-        }
         $data->setUpdatedAt(new \DateTime());
+
+        if(!($context['item_opeartion_name'] ?? null) === 'put'){
+            //Si estoy creando el servicio creo el MediaObject nuevo
+            $this->createNewUploadedFile($data);
+        }else{
+            //Estoy updateando el servicio y aqui puedo crear una traza de que el servicio ha sido modificado
+
+            //Si lo que se esta updateando es la imagen entonces no existe y por lo tanto no tiene ID
+            if(!$data->getServiceImage()->getId()){
+                $this->createNewUploadedFile($data);
+            }
+            //$this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
+        }
 
         $this->decoratedDataPersister->persist($data);
     }
@@ -49,5 +59,21 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
     public function remove($data, array $context = [])
     {
         $this->decoratedDataPersister->remove($data);
+    }
+
+    private function createNewUploadedFile($data)
+    {
+        $tmpPath = sys_get_temp_dir().'/service_upload_'.uniqid();
+        file_put_contents($tmpPath, $data->getServiceImage()->getDecodedData());
+        $uploadedFile = new File($tmpPath);
+
+        if(!$uploadedFile){
+            return new Response('El campo filename no debe estar vacio', 400);
+        }
+
+        $data->getServiceImage()->setFile($uploadedFile);
+        $data->getServiceImage()->setFilePath(
+            $this->uploaderHelper->uploadServiceImage($uploadedFile, $data->getServiceImage()->getFile())
+        );
     }
 }

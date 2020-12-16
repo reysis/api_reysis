@@ -52,7 +52,7 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
         }
 
         $service->getServiceImage()->setContentUrl($this->storage->resolveUri($service->getServiceImage(), 'file'));
-
+        dump($service);
         return $service;
     }
 

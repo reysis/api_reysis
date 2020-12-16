@@ -77,13 +77,14 @@ class Servicio
 
     /**
      * @ApiProperty(
-     *     readableLink=true
+     *     readableLink=true,
+     *     writableLink=true
      * )
      *
-     * @ORM\OneToOne(targetEntity=MediaObject::class, mappedBy="servicio", cascade={"persist", "remove"})
+     * @var MediaObject
+     * @Groups({"servicio:write", "servicio:read"})
+     * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="servicio", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"servicio:read", "servicio:write"})
-     * @Assert\NotBlank
      */
     private $serviceImage;
 
@@ -170,10 +171,7 @@ class Servicio
         return substr($this->descripcion, 0, 70).'...';
     }
 
-    /**
-     * @return MediaObject
-     */
-    public function getServiceImage(): MediaObject
+    public function getServiceImage(): ?MediaObject
     {
         return $this->serviceImage;
     }

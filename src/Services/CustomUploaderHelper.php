@@ -38,11 +38,11 @@ class CustomUploaderHelper
         $this->publicAssetBaseUrl = $uploadedAssetsBaseUrl;
     }
 
-    public function uploadServiceImage(File $file, ?string $existingFilename, string $destination)
+    public function uploadServiceImage(File $file, ?string $existingFilename)
     {
         $newFilename = $this->uploadFile($file, self::SERVICE_IMAGE,true);
 
-        $this->removeIfExistPublic($existingFilename, $destination);
+        $this->removeIfExistPublic($existingFilename, self::SERVICE_IMAGE);
 
         return $newFilename;
     }

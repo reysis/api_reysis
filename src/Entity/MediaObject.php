@@ -67,11 +67,6 @@ class MediaObject
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Servicio::class, inversedBy="serviceImage")
-     */
-    private $servicio;
-
-    /**
      * The base64 encoded version of the file
      *
      * @Groups({"mediaobject:write", "servicio:write"})
@@ -87,6 +82,11 @@ class MediaObject
      * @Assert\NotBlank
      */
     private string $filename;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Servicio::class, mappedBy="serviceImage", cascade={"persist", "remove"})
+     */
+    private $servicio;
 
     public function getId(): ?int
     {
