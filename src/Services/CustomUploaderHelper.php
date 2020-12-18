@@ -49,7 +49,7 @@ class CustomUploaderHelper
 
     public function uploadUserImage(File $file, ?string $existingFilename)
     {
-        dump($file, $existingFilename);
+        //dump($file, $existingFilename);
         $newFilename = $this->uploadFile($file, self::USER_IMAGE,true);
 
         $this->removeIfExistPublic($existingFilename, self::USER_IMAGE);

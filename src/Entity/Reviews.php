@@ -14,7 +14,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 /**
  * @ApiResource(
  *     collectionOperations={
- *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "get",
  *          "post" = {"security_post_denormalize"="is_granted('ROLE_USER')"},
  *     },
  *     itemOperations={
