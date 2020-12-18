@@ -37,3 +37,7 @@ yarn-error.log
 /.vscode/
 /.idea/
 ###> IDEs ###
+
+### lock files
+composer.lock
+symfony.lock
