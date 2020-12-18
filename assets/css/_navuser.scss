@@ -106,16 +106,16 @@
         width: 320px;
         display: flex;
         flex-direction: column;
-        transition: .1s ease-in-out;
+        // transition: .1s ease-in-out;
         border-radius: 21px 21px 16px 16px;
         overflow: hidden;
         background: #ffffff50;
         box-shadow: #00000029 0px 4px 16px 0px;
-        top: 60px;
+        top: 58px;
         max-height: 0;
 
         &.show {
-            top: 70px;
+            // top: 70px;
             max-height: 500px;
         }
 
@@ -277,16 +277,16 @@
         width: 320px;
         display: flex;
         flex-direction: column;
-        transition: .1s ease-in-out;
+        // transition: .1s ease-in-out;
         border-radius: 21px 21px 16px 16px;
         overflow: hidden;
         background: #ffffff50;
         box-shadow: #00000029 0px 4px 16px 0px;
-        top: 60px;
+        top: 58px;
         max-height: 0;
 
         &.show {
-            top: 70px;
+            // top: 70px;
             max-height: 2000px;
         }
 
@@ -331,7 +331,7 @@
 
         &-items {
             margin: 0 auto;
-            max-height: calc(100vh - 150px);
+            max-height: calc(100vh - 180px);
             overflow: auto;
 
             &__item {
@@ -380,11 +380,12 @@
 
                     &-right {
                         margin: auto 0;
-                        margin-left: 10px;
                         font-size: .7em;
                         color: $color-muted;
+                        margin-left: calc(10px + 11.19px);
 
                         &.nonreaded {
+                            margin-left: 10px;
                             color: $color-primary;
                         }
                     }
@@ -424,6 +425,58 @@
                 font-weight: 500;
                 margin: 0 auto 2em;
             }
+
+            &--subtitulo {
+                margin: 2px 5px;
+                font-weight: 500;
+                border-bottom: 2px solid #00000030;
+
+                &.readed {
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        &-header {
+            display: flex;
+            margin: 4px 5px 10px 5px;
+            cursor: pointer;
+
+            .dropdown {
+                margin: auto 0;
+                width: 100%;
+            }
+
+            .dropdown-toggle {
+                display: flex;
+
+                &::after {
+                    margin: auto;
+                    margin-right: 0;
+                }
+            }
+
+            // span {
+            //     margin: auto;
+            //     margin-left: 0;
+            // }
+
+            // div {
+            //     border-radius: 30px;
+            //     width: 30px;
+            //     height: 30px;
+            //     display: flex;
+            //     cursor: pointer;
+
+            //     &:focus,
+            //     &:hover {
+            //         background: #00000020;
+            //     }
+
+            //     svg {
+            //         margin: auto;
+            //     }
+            // }
         }
     }
 }

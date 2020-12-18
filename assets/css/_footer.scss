@@ -12,13 +12,21 @@ $color-instagram: #ca2edf;
         padding-top: 100px;
         padding-bottom: .5rem;
 
+        blockquote {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
         .background {
-            position: absolute;
+            margin-top: -20px;
             display: block;
         }
 
         .phrase {
             font-size: 1.2rem;
+            margin-left: -10px;
         }
     }
 

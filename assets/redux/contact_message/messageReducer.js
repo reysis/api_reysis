@@ -11,7 +11,8 @@ const messageReducer = (state = initialState, { type, payload }) => {
         case CONTACT_MESSAGE_SENDING:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                error: null
             }
         case CONTACT_MESSAGE_SUCCESS: {
             return {

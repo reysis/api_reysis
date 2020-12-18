@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBell, faCircle, faEllipsisH, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { notificationGet, notificationReadPut } from '../../redux/notification/notificationActions'
 
+import { DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from 'reactstrap'
+
 const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
 
     const [nonreadNotification, setNonreadNotification] = useState('')
@@ -23,7 +25,8 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
             dispatch(notificationGet(currentPage + 1))
     }
 
-    const notifications = useSelector(state => state.notification.notifications)
+    const notificationsNonReaded = useSelector(state => state.notification.notifications).filter(({ readed }) => !readed)
+    const notificationsReaded = useSelector(state => state.notification.notifications).filter(({ readed }) => readed)
 
     const dispatch = useDispatch()
 
@@ -35,14 +38,29 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
     }, [])
 
     useEffect(() => {
-        const n = notifications.filter(({ readed }) => !readed).length
+        const n = notificationsNonReaded.length
         if (n <= 20)
-            setNonreadNotification(n)
-        else setNonreadNotification(n + '+')
-    }, [notifications])
+            setNonreadNotification(`${n}`)
+        else setNonreadNotification(`${n}+`)
+    }, [notificationsNonReaded])
 
-    const readedClick = (id) => {
+    const readedClick = (e, id) => {
+        console.log("readedClick", e)
+        e.stopPropagation()
         dispatch(notificationReadPut(id))
+    }
+
+    const itemClick = (e, id) => {
+        console.log("itemClick", e)
+        // setShowNotification(true);
+    }
+
+    const markAll = () => {
+
+    }
+
+    const deleteAll = () => {
+
     }
 
     return (
@@ -50,7 +68,7 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
             <div onClick={navNotificationClick} className={`nav-notification__icon ${notificationShow ? "show" : ""}`}>
                 <FontAwesomeIcon icon={faBell} />
                 {
-                    notifications.length > 0 &&
+                    nonreadNotification.length &&
                     <span>{nonreadNotification}</span>
                 }
             </div>
@@ -60,18 +78,45 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                 </div>
                 <div className={`nav-notification__menu ${notificationShow ? "show" : ""}`}>
                     <div className="nav-notification__menu--background">
-                        {/* <div className="nav-notification__menu-header">
-                            <span>Notificaciones</span>
-                            <div>
+                        <div className="nav-notification__menu-header">
+                            <UncontrolledDropdown setActiveFromChild>
+                                <DropdownToggle tag="span" className="" caret>
+                                    Notificaciones
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem onClick={() => markAll()} tag="span">Marcar todas como leídas</DropdownItem>
+                                    <DropdownItem onClick={() => deleteAll()} tag="span">Eliminar todas</DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
+                            {/* <span className="nav-notification__menu-header--notification">Notificaciones</span>
+                            <div className="nav-notification__menu-header--menu_button" onClick={() => notificationSubMenuShowClick()}>
                                 <FontAwesomeIcon icon={faEllipsisH} />
                             </div>
-                        </div> */}
+                            <div className="nav-notification__menu-header--menu">
+                                <ul className="nav-notification__menu-header--menu-list">
+                                    <li className="nav-notification__menu-header--menu_list--item">Marcar todas como leídas</li>
+                                    <li className="nav-notification__menu-header--menu_list--item">Eliminar todas</li>
+                                </ul>
+                            </div> */}
+                        </div>
                         <ul ref={notificationListRef} className="nav-notification__menu-items">
-                            {/* <li className="nav-notification__menu-items--subtitulo">Recientes</li> */}
                             {
-                                !error && notifications.map(({ id, description, date, readed }) => {
+                                !(notificationsReaded.length || notificationsNonReaded.length) && !loading &&
+                                <li className="nav-notification__menu-items__caption">No tienes notificaciones</li>
+                            }
+                            {
+                                !(notificationsReaded.length || notificationsNonReaded.length) && loading &&
+                                <li className="nav-notification__menu-items__caption">Cargando ...</li>
+                            }
+                            {
+                                !error && notificationsNonReaded.length > 0 &&
+                                <li className="nav-notification__menu-items--subtitulo">Recientes</li>
+                            }
+                            {
+                                !error &&
+                                notificationsNonReaded.map(({ id, description, date, readed }) => {
                                     return (
-                                        <li key={id} className="nav-notification__menu-items__item">
+                                        <li key={id} onClick={(e) => itemClick(e, id)} className="nav-notification__menu-items__item">
                                             <div className="nav-notification__menu-items__item-container" >
                                                 <div className="nav-notification__menu-items__item-container-left" >
                                                     <span className={readed ? "nav-notification__menu-items__item-container-left--text" : "nav-notification__menu-items__item-container-left--text nonreaded"} >{description}</span>
@@ -81,7 +126,7 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                                                     {
                                                         readed
                                                             ? <FontAwesomeIcon icon={faCircle} />
-                                                            : <FontAwesomeIcon onClick={() => readedClick(id)} icon={faCircle} />
+                                                            : <FontAwesomeIcon onClick={(e) => readedClick(e, id)} icon={faCircle} />
                                                     }
                                                 </div>
                                             </div>
@@ -90,12 +135,30 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                                 })
                             }
                             {
-                                !notifications.length && !loading &&
-                                <li className="nav-notification__menu-items__caption">No tienes notificaciones</li>
+                                !error && notificationsReaded.length > 0 &&
+                                <li className="nav-notification__menu-items--subtitulo readed">Anteriores</li>
                             }
                             {
-                                !notifications.length && loading &&
-                                <li className="nav-notification__menu-items__caption">Cargando ...</li>
+                                !error &&
+                                notificationsReaded.map(({ id, description, date, readed }) => {
+                                    return (
+                                        <li key={id} onClick={(e) => itemClick(e, id)} className="nav-notification__menu-items__item">
+                                            <div className="nav-notification__menu-items__item-container" >
+                                                <div className="nav-notification__menu-items__item-container-left" >
+                                                    <span className={readed ? "nav-notification__menu-items__item-container-left--text" : "nav-notification__menu-items__item-container-left--text nonreaded"} >{description}</span>
+                                                    <span className="nav-notification__menu-items__item-container-left--date">{moment(date).fromNow()}</span>
+                                                </div>
+                                                <div className={readed ? "nav-notification__menu-items__item-container-right" : "nav-notification__menu-items__item-container-right nonreaded"}>
+                                                    {/* {
+                                                        readed
+                                                            ? <FontAwesomeIcon icon={faCircle} />
+                                                            : <FontAwesomeIcon onClick={(e) => readedClick(e, id)} icon={faCircle} />
+                                                    } */}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    )
+                                })
                             }
                             {
                                 !error && currentPage < lastPage &&
@@ -104,7 +167,6 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                                     <FontAwesomeIcon className={loading ? "loading" : ""} icon={faEllipsisH} />
                                 </li>
                             }
-                            {/* <li className="nav-notification__menu-items--subtitulo">Anteriores</li> */}
                         </ul>
                     </div>
                 </div>

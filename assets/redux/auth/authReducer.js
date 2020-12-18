@@ -2,7 +2,8 @@ import {
 	AUTH_LOGIN_REQUEST, AUTH_LOGIN_SUCCESS, AUTH_LOGIN_ERROR,
 	AUTH_REGISTER_REQUEST, AUTH_REGISTER_SUCCESS, AUTH_REGISTER_ERROR,
 	AUTH_LOGOUT_SUCCESS,
-	AUTH_CLEAR_ERROR
+	AUTH_CLEAR_ERROR,
+	AUTH_SAVE_TOKEN
 } from './authTypes'
 
 const initialState = {
@@ -51,13 +52,13 @@ const authReducer = (state = initialState, { type, payload }) => {
 			}
 		case AUTH_LOGIN_ERROR:
 		case AUTH_REGISTER_ERROR:
-			localStorage.removeItem('token');
-			localStorage.removeItem('tokenUser');
+			//localStorage.removeItem('token');
+			//localStorage.removeItem('tokenUser');
 			return {
 				loading: false,
 				authenticated: false,
-				token: null,
-				tokenUser: null,
+				//token: null,
+				//tokenUser: null,
 				user: null,
 				error: payload
 			}
@@ -65,6 +66,13 @@ const authReducer = (state = initialState, { type, payload }) => {
 			return {
 				...state,
 				error: null
+			}
+		case AUTH_SAVE_TOKEN:
+			localStorage.setItem('token', payload.token)
+			localStorage.setItem('tokenUser', payload.tokenUser)
+			return {
+				...state,
+				...payload
 			}
 		default:
 			return state

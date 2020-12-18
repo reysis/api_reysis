@@ -50,6 +50,7 @@ export const notificationGet = (pag = 1) => (dispatch, getState) => {
             dispatch(notificationSuccess({ notifications, totalItems, lastPage, currentPage }))
         })
         .catch(error => {
+            console.log(error)
             dispatch(notificationError(error.message))
         })
 }

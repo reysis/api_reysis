@@ -6,13 +6,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartArea, faChartLine, faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 import statsBackground from '../assets/count-bg.jpg';
+import { useSelector } from 'react-redux';
 
 const Estadisticas = () => {
 
-    const [arrayOfStadistics] = useState([
-        { id: "1", title: "Años de experiencia", value: "15", img: faChartArea },
-        { id: "2", title: "Media anual de clientes", value: "600", img: faChartLine },
-        { id: "3", title: "Rating", value: "4.3", img: faChartBar },
+    const experienceYears = useSelector(state => state.configuration.configurations.experienceYears)
+    const clientsPerYear = useSelector(state => state.configuration.configurations.clientsPerYear)
+    const rating = useSelector(state => state.configuration.configurations.rating)
+
+    const [statistic] = useState([
+        { title: "Años de experiencia", img: faChartArea },
+        { title: "Media anual de clientes", img: faChartLine },
+        { title: "Rating", img: faChartBar },
     ])
 
     return (
@@ -26,17 +31,31 @@ const Estadisticas = () => {
             <div className="overlay" />
             <div className="statistic-container container">
                 {
-                    arrayOfStadistics.map((statistic, index) => {
-                        return (
-                            <Statistic
-                                key={statistic.id}
-                                title={statistic.title}
-                                value={statistic.value}
-                                img={statistic.img}
-                                aosDelay={300 * index}
-                            />
-                        )
-                    })
+                    experienceYears != undefined &&
+                    <Statistic
+                        title={statistic[0].title}
+                        value={experienceYears}
+                        img={statistic[0].img}
+                        aosDelay={300}
+                    />
+                }
+                {
+                    clientsPerYear != undefined &&
+                    <Statistic
+                        title={statistic[1].title}
+                        value={clientsPerYear}
+                        img={statistic[1].img}
+                        aosDelay={500}
+                    />
+                }
+                {
+                    rating != undefined &&
+                    <Statistic
+                        title={statistic[2].title}
+                        value={rating}
+                        img={statistic[2].img}
+                        aosDelay={700}
+                    />
                 }
             </div>
         </section>

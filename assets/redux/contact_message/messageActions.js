@@ -31,12 +31,16 @@ export const messagePost = ({ nombre, fromEmail, contactPhone, message }) => dis
         body: JSON.stringify({ nombre, fromEmail, contactPhone, message })
     }
 
+    console.log(options.body)
+
     fetch(page, options)
         .then(res => res.json())
         .then(res => {
+            console.log(res)
             dispatch(messageSuccess(res))
         })
         .catch(error => {
-            dispatch(messageError(error))
+            console.error(error)
+            dispatch(messageError(error.message))
         })
-}
+} 

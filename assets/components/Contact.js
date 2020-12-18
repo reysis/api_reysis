@@ -17,6 +17,24 @@ const Contact = () => {
 	const [validEmail, setValidEmail] = useState(false)
 
 	const loading = useSelector(state => state.contactMessage.loading)
+	const error = useSelector(state => state.contactMessage.error)
+
+	const [contactMessageButton, setContactMessageButton] = useState('Enviar Mensaje');
+
+	useEffect(() => {
+		if (loading) {
+			setContactMessageButton("Enviando ...")
+		}
+		else if (error != null) {
+			setContactMessageButton("Error")
+		}
+
+		if (!loading) {
+			setTimeout(() => {
+				setContactMessageButton("Enviar Mensaje")
+			}, 2000);
+		}
+	}, [loading])
 
 	var timeout = null
 
@@ -43,7 +61,7 @@ const Contact = () => {
 	}
 
 	useEffect(() => {
-		if (!loading) {
+		if (!loading && error == null) {
 			setName('')
 			setEmail('')
 			setPhone('')
@@ -117,7 +135,7 @@ const Contact = () => {
 							<div class="sent-message">Your message has been sent. Thank you!</div>
 						</div> */}
 						<Form.Group className="text-center submit-button mb-0">
-							<Button disabled={loading} className="contact-button m-0" type="submit">{loading ? "Enviando ..." : "Enviar Mensaje"}</Button>
+							<Button disabled={loading} className="contact-button m-0" type="submit">{contactMessageButton}</Button>
 						</Form.Group>
 					</Form>
 				</div>
