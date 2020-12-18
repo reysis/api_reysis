@@ -5,21 +5,36 @@ namespace App\DataFixtures;
 
 
 use App\Entity\Address;
+use App\Entity\MediaObject;
 use App\Entity\Persona;
 use App\Entity\PhoneNumber;
+use App\Services\CustomUploaderHelper;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\User;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends BaseFixture
 {
     private $passwordEncoder;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    private static $userImages = [
+        "user-1.jpg",
+        "user-2.jpg",
+        "user-3.jpg",
+        "user-4.jpg",
+        "user-5.jpg",
+        "user-6.jpg"
+    ];
+
+    private CustomUploaderHelper $uploaderHelper;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, CustomUploaderHelper $uploaderHelper)
     {
         $this->passwordEncoder = $passwordEncoder;
+        $this->uploaderHelper = $uploaderHelper;
     }
 
     protected function loadData(ObjectManager $manager)
@@ -44,6 +59,20 @@ class UserFixtures extends BaseFixture
             $address->setPostAddress($this->faker->sentence(6,true).', '.$country);
             $address->setIndications($this->faker->sentence(9,true));
 
+            $randomImage = $this->faker->randomElement(self::$userImages);
+            $targetPath = __DIR__."/images/".$randomImage;
+
+            $file = new File($targetPath);
+
+            $mediaObject = new MediaObject();
+            $mediaObject->setFile($file);
+            $mediaObject->setFilePath(
+                $this->uploaderHelper->uploadUserImage($file, null, "users_images")
+            );
+
+            $manager->persist($mediaObject);
+
+            $user->setProfilePicture($mediaObject);
             $user->setAddress($address);
             $user->setNationality($country);
             $user->setPassword($this->passwordEncoder->encodePassword(
@@ -57,7 +86,7 @@ class UserFixtures extends BaseFixture
             return $user;
         });
 
-        $this->createMany(3, 'admin_users', function($i) {
+        $this->createMany(3, 'admin_users', function($i) use ($manager) {
             $user = new User();
             $user->setEmail(sprintf('admin%d@reysis.com', $i));
             $user->setUsername(sprintf('admin%d', $i));
@@ -74,6 +103,20 @@ class UserFixtures extends BaseFixture
             $personData->setCi($this->faker->numberBetween(10000000000,99999999999));
             $personData->setUser($user);
 
+            $randomImage = $this->faker->randomElement(self::$userImages);
+            $targetPath = __DIR__."/images/".$randomImage;
+
+            $file = new File($targetPath);
+
+            $mediaObject = new MediaObject();
+            $mediaObject->setFile($file);
+            $mediaObject->setFilePath(
+                $this->uploaderHelper->uploadUserImage($file, null, 'users_images')
+            );
+
+            $manager->persist($mediaObject);
+
+            $user->setProfilePicture($mediaObject);
             $address = new Address();
             $country = $this->faker->country;
             $address->setPostAddress($this->faker->sentence(6,true).', '.$country);

@@ -52,7 +52,14 @@ services:
         arguments: ['@App\ApiPlatform\AutoGroupResourceMetadataFactory.inner']
         decoration_priority: -20
 
+    #DATA PERSISTERS
     App\DataPersister\UserDataPersister:
+        bind:
+            $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
+    App\DataPersister\MediaObjectDataPersister:
+        bind:
+            $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
+    App\DataPersister\ServicioDataPersister:
         bind:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
     App\DataPersister\TurnoDataPersister:
@@ -62,10 +69,19 @@ services:
         bind:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
 
+    #DATA PROVIDERS
     App\DataProvider\ServiceDataProvider:
         bind:
             $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
             $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'
+    App\DataProvider\MediaObjectDataProvider:
+        bind:
+            $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
+            $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'
+
+    #DATA TRANSFORMERS
+    'App\DataTransformers\MediaObject\MediaObjectInputDataTransformer': ~
+    'App\DataTransformers\MediaObject\MediaObjectOutputDataTransformer': ~
 
     gesdinet.jwtrefreshtoken.refresh_token_manager:
         class: App\Doctrine\RefreshTokenManager

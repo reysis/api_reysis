@@ -1,9 +1,8 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Entity;
 
+use App\DTO\MediaObject\MediaObjectInput;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -25,13 +24,13 @@ use Doctrine\ORM\Mapping\JoinColumn;
  * Un usuario del sistema, puede ser Persona Natular, Empresa, Proveedor o un Trabajador de la empresa
  *
  * @ApiResource(
- *      security="is_granted('ROLE_ADMIN')",
+ *      attributes={
+ *          "pagination_items_per_page" = 10,
+ *      },
  *      normalizationContext={"groups"={"admin:read", "owner:read"}},
  *      denormalizationContext={"groups"={"user:write", "owner:write", "turno:write"}},
  *      collectionOperations={
- *          "get" = {
- *              "security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"
- *          },
+ *          "get",
  *          "post" = {
  *              "security"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')",
  *              "validation_groups"={"Default", "create"}
@@ -39,12 +38,10 @@ use Doctrine\ORM\Mapping\JoinColumn;
  *      },
  *      itemOperations={
  *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
- *          "put" = {"security" = "is_granted('PUT', object)"},
- *          "delete"
+ *          "put" = {"security" = "is_granted('USER_PUT', object)"},
+ *          "delete" = {"security" = "is_granted('USER_ERASE', object)"}
  *      },
- *     attributes={
- *          "pagination_items_per_page" = 10
- *     },
+ *
  * )
  * @ApiFilter(PropertyFilter::class)
  * @ApiFilter(
@@ -239,6 +236,17 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $isPublic = false;
+
+    /**
+     * @ApiProperty(
+     *     readableLink=true,
+     *     writableLink=true
+     * )
+     * @Groups({"user:read", "user:write", "admin:write", "admin:item:get"})
+     * @var MediaObject
+     * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $profilePicture;
 
     public function __construct()
     {
@@ -713,6 +721,18 @@ class User implements UserInterface
     public function setIsPublic(bool $isPublic): self
     {
         $this->isPublic = $isPublic;
+
+        return $this;
+    }
+
+    public function getProfilePicture(): ?MediaObject
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(?MediaObject $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
 
         return $this;
     }

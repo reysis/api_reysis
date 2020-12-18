@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\DTO\MediaObject\MediaObjectInput;
 use App\Repository\ServicioRepository;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -20,36 +21,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *          "post" = {
  *                  "security_post_denormalize"="is_granted('POST', object)",
  *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios",
- *                  "swagger_context"={
- *                      "consumes"={
- *                          "multipart/form-data",
- *                      },
- *                      "parameters"={
- *                      {
- *                         "in"="formData",
- *                         "name"="image",
- *                         "type"="file",
- *                         "description"="The file to upload",
- *                     },
- *                 },
- *                 "openapi_context"={
- *                      "requestBody"={
- *                          "content"={
- *                              "multipart/form-data"={
- *                                  "schema"={
- *                                      "type"="object",
- *                                      "properties"={
- *                                          "image"={
- *                                              "type"="string",
- *                                              "format"="binary"
- *                                          }
- *                                      }
- *                                  }
- *                              }
- *                          }
- *                      }
- *                  },
- *             },
  *          }
  *     },
  *     itemOperations={
@@ -74,17 +45,20 @@ class Servicio
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
-     * @Groups({"servicio:read", "servicio:read", "servicio:write"})
+     * @Groups({"servicio:read", "admin:write"})
+     * @Assert\NotBlank
      */
     private $nombre;
 
     /**
-     * @var string|null una descripción completa del servicio
+     * @var string una descripción completa del servicio
      * 
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
-     * @Groups({"servicio:item:get","servicio:write"})
+     * @Groups({"servicio:item:get", "admin:write"})
+     * @Assert\NotBlank
      */
     private $descripcion;
 
@@ -102,16 +76,17 @@ class Servicio
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio", orphanRemoval=true, cascade={"persist", "remove"})
-     * @Groups({"servicio:read", "admin:write"})
+     * @ApiProperty(
+     *     readableLink=true,
+     *     writableLink=true
+     * )
+     *
+     * @var MediaObject
+     * @Groups({"admin:write", "servicio:read"})
+     * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="servicio", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $image;
-
-    public function __construct()
-    {
-        $this->servicios = new ArrayCollection();
-        $this->image = new ArrayCollection();
-    }
+    private $serviceImage;
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -130,7 +105,7 @@ class Servicio
         return $this->id;
     }
 
-    public function getNombre(): ?string
+    public function getNombre(): string
     {
         return $this->nombre;
     }
@@ -142,7 +117,7 @@ class Servicio
         return $this;
     }
 
-    public function getDescripcion(): ?string
+    public function getDescripcion(): string
     {
         return $this->descripcion;
     }
@@ -185,7 +160,6 @@ class Servicio
         return $this;
     }
 
-
     /**
      * @Groups({"servicio:read"})
      */
@@ -197,32 +171,14 @@ class Servicio
         return substr($this->descripcion, 0, 70).'...';
     }
 
-    /**
-     * @return Collection|MediaObject[]
-     */
-    public function getImage(): Collection
+    public function getServiceImage(): ?MediaObject
     {
-        return $this->image;
+        return $this->serviceImage;
     }
 
-    public function addImage(MediaObject $image): self
+    public function setServiceImage(MediaObject $serviceImage): self
     {
-        if (!$this->image->contains($image)) {
-            $this->image[] = $image;
-            $image->setServicio($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(MediaObject $image): self
-    {
-        if ($this->image->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getServicio() === $this) {
-                $image->setServicio(null);
-            }
-        }
+        $this->serviceImage = $serviceImage;
 
         return $this;
     }

@@ -21,6 +21,7 @@ class ReviewFixtures extends BaseFixture implements DependentFixtureInterface
             $review->setUser($this->getRandomReference('normal_users'));
             $review->setLikes($this->faker->numberBetween(0, 2000));
             $review->setStars($this->faker->numberBetween(1,5));
+            $review->setIsPublic($this->faker->boolean);
             $manager->persist($review);
             return $review;
         });
