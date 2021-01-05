@@ -1,140 +1,140 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { retrieve, reset } from '../../actions/turno/show';
-import { del } from '../../actions/turno/delete';
+// import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import { Link, Redirect } from 'react-router-dom';
+// import PropTypes from 'prop-types';
+// import { retrieve, reset } from '../../actions/turno/show';
+// import { del } from '../../actions/turno/delete';
 
-class Show extends Component {
-  static propTypes = {
-    retrieved: PropTypes.object,
-    loading: PropTypes.bool.isRequired,
-    error: PropTypes.string,
-    eventSource: PropTypes.instanceOf(EventSource),
-    retrieve: PropTypes.func.isRequired,
-    reset: PropTypes.func.isRequired,
-    deleteError: PropTypes.string,
-    deleteLoading: PropTypes.bool.isRequired,
-    deleted: PropTypes.object,
-    del: PropTypes.func.isRequired
-  };
+// class Show extends Component {
+//   static propTypes = {
+//     retrieved: PropTypes.object,
+//     loading: PropTypes.bool.isRequired,
+//     error: PropTypes.string,
+//     eventSource: PropTypes.instanceOf(EventSource),
+//     retrieve: PropTypes.func.isRequired,
+//     reset: PropTypes.func.isRequired,
+//     deleteError: PropTypes.string,
+//     deleteLoading: PropTypes.bool.isRequired,
+//     deleted: PropTypes.object,
+//     del: PropTypes.func.isRequired
+//   };
 
-  componentDidMount() {
-    this.props.retrieve(decodeURIComponent(this.props.match.params.id));
-  }
+//   componentDidMount() {
+//     this.props.retrieve(decodeURIComponent(this.props.match.params.id));
+//   }
 
-  componentWillUnmount() {
-    this.props.reset(this.props.eventSource);
-  }
+//   componentWillUnmount() {
+//     this.props.reset(this.props.eventSource);
+//   }
 
-  del = () => {
-    if (window.confirm('Are you sure you want to delete this item?'))
-      this.props.del(this.props.retrieved);
-  };
+//   del = () => {
+//     if (window.confirm('Are you sure you want to delete this item?'))
+//       this.props.del(this.props.retrieved);
+//   };
 
-  render() {
-    if (this.props.deleted) return <Redirect to=".." />;
+//   render() {
+//     if (this.props.deleted) return <Redirect to=".." />;
 
-    const item = this.props.retrieved;
+//     const item = this.props.retrieved;
 
-    return (
-      <div>
-        <h2>Show {item && item['@id']}</h2>
+//     return (
+//       <div>
+//         <h2>Show {item && item['@id']}</h2>
 
-        {this.props.loading && (
-          <div className="alert alert-info" role="status">
-            Loading...
-          </div>
-        )}
-        {this.props.error && (
-          <div className="alert alert-danger" role="alert">
-            <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
-            {this.props.error}
-          </div>
-        )}
-        {this.props.deleteError && (
-          <div className="alert alert-danger" role="alert">
-            <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
-            {this.props.deleteError}
-          </div>
-        )}
+//         {this.props.loading && (
+//           <div className="alert alert-info" role="status">
+//             Loading...
+//           </div>
+//         )}
+//         {this.props.error && (
+//           <div className="alert alert-danger" role="alert">
+//             <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
+//             {this.props.error}
+//           </div>
+//         )}
+//         {this.props.deleteError && (
+//           <div className="alert alert-danger" role="alert">
+//             <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
+//             {this.props.deleteError}
+//           </div>
+//         )}
 
-        {item && (
-          <table className="table table-responsive table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Field</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">fecha</th>
-                <td>{item['fecha']}</td>
-              </tr>
-              <tr>
-                <th scope="row">nombre</th>
-                <td>{item['nombre']}</td>
-              </tr>
-              <tr>
-                <th scope="row">tipoEquipo</th>
-                <td>{this.renderLinks('tipo_equipos', item['tipoEquipo'])}</td>
-              </tr>
-              <tr>
-                <th scope="row">defecto</th>
-                <td>{item['defecto']}</td>
-              </tr>
-              <tr>
-                <th scope="row">telefono</th>
-                <td>{item['telefono']}</td>
-              </tr>
-            </tbody>
-          </table>
-        )}
-        <Link to=".." className="btn btn-primary">
-          Back to list
-        </Link>
-        {item && (
-          <Link to={`/turnos/edit/${encodeURIComponent(item['@id'])}`}>
-            <button className="btn btn-warning">Edit</button>
-          </Link>
-        )}
-        <button onClick={this.del} className="btn btn-danger">
-          Delete
-        </button>
-      </div>
-    );
-  }
+//         {item && (
+//           <table className="table table-responsive table-striped table-hover">
+//             <thead>
+//               <tr>
+//                 <th>Field</th>
+//                 <th>Value</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               <tr>
+//                 <th scope="row">fecha</th>
+//                 <td>{item['fecha']}</td>
+//               </tr>
+//               <tr>
+//                 <th scope="row">nombre</th>
+//                 <td>{item['nombre']}</td>
+//               </tr>
+//               <tr>
+//                 <th scope="row">tipoEquipo</th>
+//                 <td>{this.renderLinks('tipo_equipos', item['tipoEquipo'])}</td>
+//               </tr>
+//               <tr>
+//                 <th scope="row">defecto</th>
+//                 <td>{item['defecto']}</td>
+//               </tr>
+//               <tr>
+//                 <th scope="row">telefono</th>
+//                 <td>{item['telefono']}</td>
+//               </tr>
+//             </tbody>
+//           </table>
+//         )}
+//         <Link to=".." className="btn btn-primary">
+//           Back to list
+//         </Link>
+//         {item && (
+//           <Link to={`/turnos/edit/${encodeURIComponent(item['@id'])}`}>
+//             <button className="btn btn-warning">Edit</button>
+//           </Link>
+//         )}
+//         <button onClick={this.del} className="btn btn-danger">
+//           Delete
+//         </button>
+//       </div>
+//     );
+//   }
 
-  renderLinks = (type, items) => {
-    if (Array.isArray(items)) {
-      return items.map((item, i) => (
-        <div key={i}>{this.renderLinks(type, item)}</div>
-      ));
-    }
+//   renderLinks = (type, items) => {
+//     if (Array.isArray(items)) {
+//       return items.map((item, i) => (
+//         <div key={i}>{this.renderLinks(type, item)}</div>
+//       ));
+//     }
 
-    return (
-      <Link to={`../../${type}/show/${encodeURIComponent(items)}`}>
-        {items}
-      </Link>
-    );
-  };
-}
+//     return (
+//       <Link to={`../../${type}/show/${encodeURIComponent(items)}`}>
+//         {items}
+//       </Link>
+//     );
+//   };
+// }
 
-const mapStateToProps = state => ({
-  retrieved: state.turno.show.retrieved,
-  error: state.turno.show.error,
-  loading: state.turno.show.loading,
-  eventSource: state.turno.show.eventSource,
-  deleteError: state.turno.del.error,
-  deleteLoading: state.turno.del.loading,
-  deleted: state.turno.del.deleted
-});
+// const mapStateToProps = state => ({
+//   retrieved: state.turno.show.retrieved,
+//   error: state.turno.show.error,
+//   loading: state.turno.show.loading,
+//   eventSource: state.turno.show.eventSource,
+//   deleteError: state.turno.del.error,
+//   deleteLoading: state.turno.del.loading,
+//   deleted: state.turno.del.deleted
+// });
 
-const mapDispatchToProps = dispatch => ({
-  retrieve: id => dispatch(retrieve(id)),
-  del: item => dispatch(del(item)),
-  reset: eventSource => dispatch(reset(eventSource))
-});
+// const mapDispatchToProps = dispatch => ({
+//   retrieve: id => dispatch(retrieve(id)),
+//   del: item => dispatch(del(item)),
+//   reset: eventSource => dispatch(reset(eventSource))
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Show);
+// export default connect(mapStateToProps, mapDispatchToProps)(Show);
