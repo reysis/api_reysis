@@ -21,14 +21,14 @@ const Opinions = () => {
 	const opinions = useSelector(state => state.opinion.opinions)
 	const error = useSelector(state => state.opinion.error)
 
-	const distpach = useDispatch()
+	const dispatch = useDispatch()
 
 	const [toMaxHeigth, setToMaxHeigth] = useState(-1)
 	const [maxHeight, setMaxHeight] = useState(0)
 	const [reviewCount, setReviewCount] = useState(0)
 
 	useEffect(() => {
-		distpach(opinionFetch())
+		dispatch(opinionFetch())
 	}, [])
 
 	return (
