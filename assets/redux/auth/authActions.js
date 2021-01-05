@@ -6,7 +6,8 @@ import {
 	AUTH_REGISTER_SUCCESS,
 	AUTH_REGISTER_ERROR,
 	AUTH_LOGOUT_SUCCESS,
-	AUTH_CLEAR_ERROR
+	AUTH_CLEAR_ERROR,
+	AUTH_SAVE_TOKEN
 } from "./authTypes";
 import {
 	fetch
@@ -64,6 +65,14 @@ export const clearError = () => {
 	};
 };
 
+
+export const saveToken = (token) => {
+	return {
+		type: AUTH_SAVE_TOKEN,
+		payload: token
+	};
+};
+
 export const loadUser = () => (dispatch, getState) => {
 
 	const page = getState().auth.tokenUser;
@@ -112,6 +121,10 @@ export const loginFetch = ({ username, password }) => dispatch => {
 		.then(res => {
 			const token = res.token
 			const location = res.location
+			dispatch(saveToken({
+				token,
+				tokenUser: location
+			}))
 			fetch(location, getUser(token))
 				.then(res => res.json())
 				.then(res => {
@@ -126,10 +139,12 @@ export const loginFetch = ({ username, password }) => dispatch => {
 					dispatch(loginSuccess(response));
 				})
 				.catch(error => {
+					console.log(error)
 					dispatch(loginError(error.message));
 				});
 		})
 		.catch(error => {
+			console.log(error)
 			dispatch(loginError(error.message));
 		});
 };

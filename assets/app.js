@@ -23,6 +23,7 @@ import './App.scss';
 import history from './history';
 
 import { loadUser } from './redux/auth/authActions';
+import { loadConfiguration } from './redux/configuration/configurationActions';
 
 const App = () => {
 
@@ -36,6 +37,7 @@ const App = () => {
             once: true
         })
         dispatch(loadUser());
+        dispatch(loadConfiguration())
     }, [])
 
     return (

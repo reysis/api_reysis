@@ -6,8 +6,11 @@ use ApiPlatform\Core\Bridge\Doctrine\Common\DataPersister;
 use ApiPlatform\Core\DataPersister\ContextAwareDataPersisterInterface;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use App\Entity\User;
+use App\Services\CustomUploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 
@@ -17,13 +20,23 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
     private $security;
     private $logger;
     private $decoratedDataPersister;
+    private CustomUploaderHelper $uploaderHelper;
+    private $entityManager;
 
-    public function __construct(DataPersisterInterface $decoratedDataPersister,UserPasswordEncoderInterface $userPasswordEncoder, LoggerInterface $logger,Security $security)
+    public function __construct(
+        DataPersisterInterface $decoratedDataPersister,
+        UserPasswordEncoderInterface $userPasswordEncoder,
+        LoggerInterface $logger,
+        Security $security,
+        CustomUploaderHelper $uploaderHelper,
+        EntityManagerInterface $entityManager)
     {
         $this->userPasswordEncoder = $userPasswordEncoder;
         $this->security = $security;
         $this->logger = $logger;
         $this->decoratedDataPersister = $decoratedDataPersister;
+        $this->uploaderHelper = $uploaderHelper;
+        $this->entityManager = $entityManager;
     }
 
     public function supports($data, array $context = []): bool
@@ -38,22 +51,38 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
+        dump($data, $context);
         //$this->logger->alert($data->getPlainPassword());
-        if(($context['item_opeartion_name'] ?? null) === 'put'){
-            $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
-        }
-
-        if(!$data->getId()){
+        if(!($context['item_opeartion_name'] ?? null) === 'put'){
+            $this->createNewUploadedFile($data);
             //Aqui se puede hacer cualquier cosa con el usuario
             //Como mandar un email de confirmacion o un mensaje
             //O añadirlo a cualquier sistema de pago
             $this->logger->info(sprintf('Usuario $s se acaba de registrar', $data->getId()));
+<<<<<<< HEAD
         }
 
         if($data->getPersona()){
+=======
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
             $data->getPersona()->setUser( $data );
-        }
+        }else{
+            $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
 
+            if($data->getProfilePicture()->getDecodedData()){
+                $tmpPath = sys_get_temp_dir().'/user_profilePic_'.uniqid();
+                file_put_contents($tmpPath, $data->getProfilePicture()->getDecodedData());
+                $uploadedFile = new File($tmpPath);
+
+                if(!$uploadedFile){
+                    return new Response('El campo filename no debe estar vacio', 400);
+                }
+                $data->getProfilePicture()->setFilePath(
+                    $this->uploaderHelper->uploadUserImage($uploadedFile, $data->getProfilePicture()->getFilePath())
+                );
+                $data->getProfilePicture()->setFile($uploadedFile);
+            }
+        }
         if($data->getPlainPassword()){
             $data->setPassword(
                 $this->userPasswordEncoder->encodePassword($data,$data->getPlainPassword())
@@ -61,12 +90,31 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
             $data->eraseCredentials();
         }
 
-        //$data->setIsMe($this->security->getUser() === $data);
-
+        dump($data);
         $this->decoratedDataPersister->persist($data);
     }
     public function remove($data, array $context = [])
     {
         $this->decoratedDataPersister->remove($data);
+    }
+
+    /**
+     * @param User $data
+     * @return Response
+     */
+    private function createNewUploadedFile($data)
+    {
+        $tmpPath = sys_get_temp_dir().'/user_profilePic_'.uniqid();
+        file_put_contents($tmpPath, $data->getProfilePicture()->getDecodedData());
+        $uploadedFile = new File($tmpPath);
+
+        if(!$uploadedFile){
+            return new Response('El campo filename no debe estar vacio', 400);
+        }
+
+        $data->getProfilePicture()->setFile($uploadedFile);
+        $data->getProfilePicture()->setFilePath(
+            $this->uploaderHelper->uploadUserImage($uploadedFile, $data->getProfilePicture()->getFile())
+        );
     }
 }

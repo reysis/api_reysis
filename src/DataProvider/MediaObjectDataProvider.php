@@ -10,10 +10,9 @@ use ApiPlatform\Core\DataProvider\DenormalizedIdentifiersAwareItemDataProviderIn
 use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use App\Entity\MediaObject;
-use App\Entity\Servicio;
 use Vich\UploaderBundle\Storage\StorageInterface;
 
-class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface, RestrictedDataProviderInterface, DenormalizedIdentifiersAwareItemDataProviderInterface
+class MediaObjectDataProvider implements ContextAwareCollectionDataProviderInterface, RestrictedDataProviderInterface, DenormalizedIdentifiersAwareItemDataProviderInterface
 {
     private $storage;
     private $collectionDataProvider;
@@ -28,40 +27,30 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
 
     public function getCollection(string $resourceClass, string $operationName = null, array $context = [])
     {
+        $mediaObjects = $this->collectionDataProvider->getCollection($resourceClass, $operationName, $context);
+
         /**
-         * @var Servicio[] $services
+         * @var MediaObject $mediaObject
          */
-        $services = $this->collectionDataProvider->getCollection($resourceClass, $operationName, $context);
-
-        foreach ($services as $service){
-            $service->getServiceImage()->setContentUrl($this->storage->resolveUri($service->getServiceImage(), 'file'));
+        foreach ($mediaObjects as $mediaObject){
+            $mediaObject->setContentUrl($this->storage->resolveUri($mediaObject, 'file'));
         }
-
-        return $services;
     }
 
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = [])
     {
-        /**
-         * @var Servicio $service
-         */
-        $service = $this->itemDataProvider->getItem($resourceClass, $id, $operationName);
+        $mediaObject = $this->collectionDataProvider->getItem($resourceClass, $id, $operationName);
 
-        if(!$service){
+        if(!$mediaObject){
             return null;
         }
+        $mediaObject->setContentUrl($this->storage->resolveUri($mediaObject, 'file'));
 
-        $service->getServiceImage()->setContentUrl($this->storage->resolveUri($service->getServiceImage(), 'file'));
-<<<<<<< HEAD
-
-=======
-        dump($service);
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
-        return $service;
+        return $mediaObject;
     }
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
     {
-        return $resourceClass === Servicio::class;
+        return $resourceClass === MediaObject::class;
     }
 }

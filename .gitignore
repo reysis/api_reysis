@@ -34,12 +34,11 @@ yarn-error.log
 .gitconfig
 
 ###> IDEs ###
-.vscode
-.idea
+/.vscode/
+/.idea/
 ###> IDEs ###
 
-###>locks ###
+### lock files
 composer.lock
 symfony.lock
 package-lock.json
-###

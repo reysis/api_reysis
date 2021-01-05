@@ -47,17 +47,22 @@ const Footer = () => {
         document.getElementById('root').scrollIntoView({ behavior: 'smooth' })
     }
 
+    const footerPhrase = useSelector(state => state.configuration.configurations.footerPhrase)
+
     return (
         <footer className="footer-component">
             {
                 pathName == "/" &&
                 <div className="phrase-container container">
-                    <blockquote data-aos="fade-up" className="blockquote text-center">
-                        {/* <div className="background"><FontAwesomeIcon icon={faQuoteRight} /></div> */}
-                        <svg className="background" width="50" height="42" viewBox="0 0 447 376"><path d="M0 93.406c0 45.628 25.929 81.896 73.071 81.896 15.322 0 29.465-4.68 40.072-11.7l1.029 6.13c.75 4.716 1.328 9.548 1.328 16.1 0 47.91-25.769 99.155-56.551 139.64l-2.378 3.093c-7.071 9.36-10.607 19.89-1.178 26.91l33 23.398c9.428 5.85 17.678 8.19 24.75-1.17l4.387-5.872C158.447 316.43 198 244.37 198 147.224 198 55.968 149.679 8 91.929 8 38.893 8 0 44.268 0 93.406zm249 0C249 44.268 287.893 8 340.929 8 398.679 8 447 55.968 447 147.224c0 100.615-42.429 174.322-84.857 230.48-7.072 9.359-15.322 7.019-24.75 1.17l-33-23.4c-9.066-6.75-6.146-16.744.379-25.824l.8-1.085c31.82-40.948 58.928-93.595 58.928-142.733 0-9.36-1.179-15.21-2.357-22.23-10.607 7.02-24.75 11.7-40.072 11.7-47.142 0-73.071-36.268-73.071-81.896z" fill="#A0CED1" opacity="0.221"></path></svg>
-                        <cite className="phrase mb-0"><q>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo laboriosam facilis magni pariatur, expedita autem.</q></cite>
-                        {/* <footer className="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer> */}
-                    </blockquote>
+                    {
+                        footerPhrase != undefined &&
+                        <blockquote data-aos="fade-up" className="blockquote text-center">
+                            <div>
+                                <svg className="background" width="50" height="42" viewBox="0 0 447 376"><path d="M0 93.406c0 45.628 25.929 81.896 73.071 81.896 15.322 0 29.465-4.68 40.072-11.7l1.029 6.13c.75 4.716 1.328 9.548 1.328 16.1 0 47.91-25.769 99.155-56.551 139.64l-2.378 3.093c-7.071 9.36-10.607 19.89-1.178 26.91l33 23.398c9.428 5.85 17.678 8.19 24.75-1.17l4.387-5.872C158.447 316.43 198 244.37 198 147.224 198 55.968 149.679 8 91.929 8 38.893 8 0 44.268 0 93.406zm249 0C249 44.268 287.893 8 340.929 8 398.679 8 447 55.968 447 147.224c0 100.615-42.429 174.322-84.857 230.48-7.072 9.359-15.322 7.019-24.75 1.17l-33-23.4c-9.066-6.75-6.146-16.744.379-25.824l.8-1.085c31.82-40.948 58.928-93.595 58.928-142.733 0-9.36-1.179-15.21-2.357-22.23-10.607 7.02-24.75 11.7-40.072 11.7-47.142 0-73.071-36.268-73.071-81.896z" fill="#A0CED1" opacity="0.221"></path></svg>
+                            </div>
+                            <cite className="phrase mb-0"><q>{footerPhrase}</q></cite>
+                        </blockquote>
+                    }
                 </div>
             }
             {

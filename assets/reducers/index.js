@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import { reducer as form } from 'redux-form';
 import history from '../history';
 
 import turno from './turno';
@@ -12,10 +11,11 @@ import opinion from '../redux/opinion/opinionReducer';
 import service from '../redux/service/serviceReducer';
 import faq from '../redux/faq/faqReducer';
 import notification from '../redux/notification/notificationReducer'
+import contactMessage from '../redux/contact_message/messageReducer'
+import configuration from '../redux/configuration/configurationReducer'
 
 export default combineReducers({
 	router: connectRouter(history),
-	form,
 	turno,
 	auth,
 	tipoEquipo,
@@ -23,5 +23,7 @@ export default combineReducers({
 	service,
 	opinion,
 	faq,
-	notification
+	notification,
+	contactMessage,
+	configuration
 });

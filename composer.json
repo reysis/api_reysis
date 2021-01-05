@@ -2,11 +2,15 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+<<<<<<< HEAD
         "api-platform/core": "^2.1",
+=======
+        "api-platform/core": "2.5.x-dev",
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
         "composer/package-versions-deprecated": "1.11.99.1",
         "doctrine/annotations": "^1.10",
         "doctrine/doctrine-bundle": "^1.6 || ^2.0",

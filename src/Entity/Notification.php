@@ -15,6 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  *     itemOperations={
  *          "get",
+ *          "put",
  *          "delete"
  *     },
  *     attributes={

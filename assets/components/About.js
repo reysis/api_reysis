@@ -7,7 +7,15 @@ import {
 	faLayerGroup
 } from '@fortawesome/free-solid-svg-icons'
 
+import { useSelector } from 'react-redux'
+
 const About = () => {
+
+	const aboutUs = useSelector(state => state.configuration.configurations.aboutUs)
+	const whoWeAre = useSelector(state => state.configuration.configurations.whoWeAre)
+	const whatWeDo = useSelector(state => state.configuration.configurations.whatWeDo)
+	const meetOurTeam = useSelector(state => state.configuration.configurations.meetOurTeam)
+
 	return (
 		<div id="feature" className="feature-component">
 			<div className="container-fluid">
@@ -17,7 +25,7 @@ const About = () => {
 							<div>
 								<div className="feature-header">
 									<h2 data-aos="fade-left" data-aos-delay="300" className="pb-2">Acerca de <span>nosotros</span></h2>
-									<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con- sequuntur magni dolores</p>
+									{aboutUs != undefined && <p>{aboutUs}</p>}
 								</div>
 								<a href="#">
 									<button className="acercade-button">Leer más</button>
@@ -33,7 +41,7 @@ const About = () => {
 								</div>
 								<div className="feature-content">
 									<h3>Quienes somos</h3>
-									<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con- sequuntur magni dolores </p>
+									{whoWeAre != undefined && <p>{whoWeAre}</p>}
 								</div>
 							</div>
 							<div data-aos="fade-down" data-aos-delay="500" className="feature-item" >
@@ -42,7 +50,7 @@ const About = () => {
 								</div>
 								<div className="feature-content">
 									<h3>Que hacemos</h3>
-									<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con- sequuntur magni dolores </p>
+									{whatWeDo != undefined && <p>{whatWeDo}</p>}
 								</div>
 							</div>
 							<div data-aos="fade-down" data-aos-delay="700" className="feature-item" >
@@ -51,7 +59,7 @@ const About = () => {
 								</div>
 								<div className="feature-content">
 									<h3>Conoce nuestro equipo</h3>
-									<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia con- sequuntur magni dolores </p>
+									{meetOurTeam != undefined && <p>{meetOurTeam}</p>}
 								</div>
 							</div>
 						</div>
