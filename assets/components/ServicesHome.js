@@ -70,7 +70,7 @@ const ServicesHome = () => {
 			</Pagination.Item>
 		)
 
-		if (services && services.length) {
+		if (services !== undefined && services.length > 0) {
 			if (currentPage >= 5)
 				items.push(
 					<Pagination.Ellipsis
@@ -147,7 +147,7 @@ const ServicesHome = () => {
 				<div className="cards-container">
 					<Row>
 						{
-							!error && services && services.length
+							!error && services !== undefined && services.length > 0
 								? services.map((service, index) => {
 									return (
 										<ServiceCard
