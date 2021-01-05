@@ -59,6 +59,12 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
             //Como mandar un email de confirmacion o un mensaje
             //O añadirlo a cualquier sistema de pago
             $this->logger->info(sprintf('Usuario $s se acaba de registrar', $data->getId()));
+<<<<<<< HEAD
+        }
+
+        if($data->getPersona()){
+=======
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
             $data->getPersona()->setUser( $data );
         }else{
             $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));

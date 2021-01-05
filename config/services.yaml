@@ -56,9 +56,12 @@ services:
     App\DataPersister\UserDataPersister:
         bind:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
+<<<<<<< HEAD
+=======
     App\DataPersister\MediaObjectDataPersister:
         bind:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
     App\DataPersister\ServicioDataPersister:
         bind:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
@@ -78,6 +81,10 @@ services:
         bind:
             $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
             $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'
+
+    #DATA TRANSFORMERS
+    'App\DataTransformers\MediaObject\MediaObjectInputDataTransformer': ~
+    'App\DataTransformers\MediaObject\MediaObjectOutputDataTransformer': ~
 
     #DATA TRANSFORMERS
     'App\DataTransformers\MediaObject\MediaObjectInputDataTransformer': ~

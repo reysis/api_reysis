@@ -38,21 +38,37 @@ class CustomUploaderHelper
         $this->publicAssetBaseUrl = $uploadedAssetsBaseUrl;
     }
 
+<<<<<<< HEAD
+    public function uploadServiceImage(File $file, ?string $existingFilename, string $destination)
+    {
+        $newFilename = $this->uploadFile($file, self::SERVICE_IMAGE,true);
+
+        $this->removeIfExistPublic($existingFilename, $destination);
+=======
     public function uploadServiceImage(File $file, ?string $existingFilename)
     {
         $newFilename = $this->uploadFile($file, self::SERVICE_IMAGE,true);
 
         $this->removeIfExistPublic($existingFilename, self::SERVICE_IMAGE);
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
 
         return $newFilename;
     }
 
+<<<<<<< HEAD
+    public function uploadUserImage(File $file, ?string $existingFilename, string $destination)
+    {
+        $newFilename = $this->uploadFile($file, self::USER_IMAGE,true);
+
+        $this->removeIfExistPublic($existingFilename, $destination);
+=======
     public function uploadUserImage(File $file, ?string $existingFilename)
     {
         //dump($file, $existingFilename);
         $newFilename = $this->uploadFile($file, self::USER_IMAGE,true);
 
         $this->removeIfExistPublic($existingFilename, self::USER_IMAGE);
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
 
         return $newFilename;
     }
@@ -60,7 +76,10 @@ class CustomUploaderHelper
 
     public function uploadPublicImage(File $file, ?string $existingFilename): string
     {
+<<<<<<< HEAD
+=======
 
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
         $newFilename = $this->uploadFile($file, self::PUBLIC_IMAGE, true);
 
         $this->removeIfExistPublic($existingFilename, self::PUBLIC_IMAGE);
@@ -83,6 +102,7 @@ class CustomUploaderHelper
 
     private function uploadFile(File $file, string $directory, bool $isPublic): string
     {
+        dump($file);
         if ($file instanceof UploadedFile) {
             $originalFilename = $file->getClientOriginalName();
         } else {

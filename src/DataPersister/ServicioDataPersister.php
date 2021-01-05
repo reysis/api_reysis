@@ -9,12 +9,21 @@ use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use App\Entity\MediaObject;
 use App\Entity\Servicio;
 use App\Services\CustomUploaderHelper;
+<<<<<<< HEAD
+=======
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
 
 class ServicioDataPersister implements ContextAwareDataPersisterInterface
 {
     private DataPersisterInterface $decoratedDataPersister;
+<<<<<<< HEAD
+    /**
+     * @var CustomUploaderHelper
+     */
+=======
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
     private CustomUploaderHelper $uploaderHelper;
 
     public function __construct(DataPersisterInterface $decoratedDataPersister, CustomUploaderHelper $uploaderHelper)
@@ -35,6 +44,14 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
+<<<<<<< HEAD
+        if(($context['item_opeartion_name'] ?? null) === 'put'){
+            //Aqui puedo crear una traza de que el servicio ha sido modificado
+
+            $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
+        }
+        $data->setUpdatedAt(new \DateTime());
+=======
         $data->setUpdatedAt(new \DateTime());
 
         if(!($context['item_opeartion_name'] ?? null) === 'put'){
@@ -49,6 +66,7 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
             }
             //$this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
         }
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
 
         $this->decoratedDataPersister->persist($data);
     }
@@ -57,6 +75,8 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
     {
         $this->decoratedDataPersister->remove($data);
     }
+<<<<<<< HEAD
+=======
 
     private function createNewUploadedFile($data)
     {
@@ -73,4 +93,5 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
             $this->uploaderHelper->uploadServiceImage($uploadedFile, $data->getServiceImage()->getFile())
         );
     }
+>>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
 }
