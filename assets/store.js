@@ -7,7 +7,7 @@ import history from './history';
 
 const middleware = [routerMiddleware(history), thunk];
 
-import rootReducers from './reducers';
+import rootReducers from './redux/rootReducers';
 
 const store = createStore(
 	rootReducers,
