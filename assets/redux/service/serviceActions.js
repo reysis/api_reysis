@@ -54,8 +54,8 @@ export const serviceFetch = (pag = 1) => dispatch => {
         .then(res => {
             const services = res['hydra:member'].map(value => {
                 let image = null
-                if (value['image'].length)
-                    image = value['image'][0]['contentUrl']
+                if (value['serviceImage'] && value['serviceImage'].length)
+                    image = value['serviceImage'][0]['contentUrl']
                 return {
                     id: value['@id'],
                     nombre: value['nombre'],
@@ -83,7 +83,7 @@ export const serviceItemFetch = (id) => dispatch => {
     fetch(page)
         .then(res => res.json())
         .then(res => {
-            const images = res['image'].map(value => {
+            const images = res['serviceImage'].map(value => {
                 return {
                     id: value['@id'],
                     url: value['contentUrl']
