@@ -67,11 +67,7 @@ class UserFixtures extends BaseFixture
             $mediaObject = new MediaObject();
             $mediaObject->setFile($file);
             $mediaObject->setFilePath(
-<<<<<<< HEAD
-                $this->uploaderHelper->uploadImage($file, null, "users_images")
-=======
                 $this->uploaderHelper->uploadUserImage($file, null, "users_images")
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
             );
 
             $manager->persist($mediaObject);
@@ -115,11 +111,7 @@ class UserFixtures extends BaseFixture
             $mediaObject = new MediaObject();
             $mediaObject->setFile($file);
             $mediaObject->setFilePath(
-<<<<<<< HEAD
-                $this->uploaderHelper->uploadImage($file, null, 'users_images')
-=======
                 $this->uploaderHelper->uploadUserImage($file, null, 'users_images')
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
             );
 
             $manager->persist($mediaObject);

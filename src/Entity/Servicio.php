@@ -21,10 +21,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *          "post" = {
  *                  "security_post_denormalize"="is_granted('POST', object)",
  *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios",
-<<<<<<< HEAD
- *                  "attributes"={}
-=======
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
  *          }
  *     },
  *     itemOperations={
@@ -51,11 +47,7 @@ class Servicio
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
-<<<<<<< HEAD
-     * @Groups({"servicio:read"})
-=======
      * @Groups({"servicio:read", "admin:write"})
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
      * @Assert\NotBlank
      */
     private $nombre;
@@ -65,11 +57,7 @@ class Servicio
      * 
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
-<<<<<<< HEAD
-     * @Groups({"servicio:item:get"})
-=======
      * @Groups({"servicio:item:get", "admin:write"})
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
      * @Assert\NotBlank
      */
     private $descripcion;
@@ -88,13 +76,6 @@ class Servicio
     private $updatedAt;
 
     /**
-<<<<<<< HEAD
-     * @var MediaObject
-     * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="servicio", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups({"servicio:read"})
-     * @Assert\NotBlank
-=======
      * @ApiProperty(
      *     readableLink=true,
      *     writableLink=true
@@ -104,7 +85,6 @@ class Servicio
      * @Groups({"admin:write", "servicio:read"})
      * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="servicio", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
      */
     private $serviceImage;
 
@@ -191,18 +171,6 @@ class Servicio
         return substr($this->descripcion, 0, 70).'...';
     }
 
-<<<<<<< HEAD
-    /**
-     * @return MediaObject
-     */
-    public function getServiceImage(): MediaObject
-    {
-        return $this->serviceImage;
-    }
-
-    public function setServiceImage(MediaObject $serviceImage): self
-    {
-=======
     public function getServiceImage(): ?MediaObject
     {
         return $this->serviceImage;
@@ -210,7 +178,6 @@ class Servicio
 
     public function setServiceImage(MediaObject $serviceImage): self
     {
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
         $this->serviceImage = $serviceImage;
 
         return $this;

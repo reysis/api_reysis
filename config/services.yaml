@@ -79,10 +79,6 @@ services:
             $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
             $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'
 
-    #DATA TRANSFORMERS
-    'App\DataTransformers\MediaObject\MediaObjectInputDataTransformer': ~
-    'App\DataTransformers\MediaObject\MediaObjectOutputDataTransformer': ~
-
     gesdinet.jwtrefreshtoken.refresh_token_manager:
         class: App\Doctrine\RefreshTokenManager
         public: true

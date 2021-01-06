@@ -11,16 +11,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use App\DTO\MediaObject\MediaObjectOutput;
-<<<<<<< HEAD
-use App\DTO\MediaObject\MediaObjectInput;
-=======
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
 
 /**
  * @ORM\Entity
  * @ApiResource(
- *     output=MediaObjectOutput::CLASS,
- *     input=MediaObjectInput::CLASS,
  *     iri="http://schema.org/MediaObject",
  *     collectionOperations={
  *         "post",
@@ -64,8 +58,6 @@ class MediaObject
 
     /**
      * @ORM\Column(type="datetime")
-<<<<<<< HEAD
-=======
      */
     private $updatedAt;
 
@@ -88,25 +80,13 @@ class MediaObject
 
     /**
      * @ORM\OneToOne(targetEntity=Servicio::class, mappedBy="serviceImage", cascade={"persist", "remove"})
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
-     */
-    private $updatedAt;
-
-    /**
-<<<<<<< HEAD
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="profilePicture")
-     */
-    private $user;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Servicio::class, mappedBy="serviceImage", cascade={"persist", "remove"})
      */
     private $servicio;
-=======
+
+    /**
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="profilePicture", cascade={"persist", "remove"})
      */
     private $user;
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
 
     public function getId(): ?int
     {
@@ -120,8 +100,6 @@ class MediaObject
         return $this->data;
     }
 
-<<<<<<< HEAD
-=======
     /**
      * @param string $data
      */
@@ -146,7 +124,6 @@ class MediaObject
         $this->filename = $filename;
     }
 
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
     /**
      * @return File|null
      */
@@ -202,35 +179,6 @@ class MediaObject
         $this->contentUrl = $contentUrl;
     }
 
-<<<<<<< HEAD
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-=======
-    public function getServicio(): ?Servicio
-    {
-        return $this->servicio;
-    }
-
-    public function setServicio(Servicio $servicio): self
-    {
-        $this->servicio = $servicio;
-
-        // set the owning side of the relation if necessary
-        if ($servicio->getServiceImage() !== $this) {
-            $servicio->setServiceImage($this);
-        }
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
-
-        return $this;
-    }
-
-<<<<<<< HEAD
     public function getServicio(): ?Servicio
     {
         return $this->servicio;
@@ -248,7 +196,6 @@ class MediaObject
         return $this;
     }
 
-=======
     /**
      * @return mixed
      */
@@ -286,5 +233,4 @@ class MediaObject
 
         return $this;
     }
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
 }

@@ -128,7 +128,6 @@ class UserResourceTest extends CustomApiTestCase
             'headers'=> ['ContentType'=>'application/json+ld'],
         ]);
         $this->assertResponseStatusCodeSame(404);
-        $this->a
 
         //Logueando al usuario 1 y comprobando que puede acceder al recurso
         $token = $this->logIn($client, 'testUser1', 'foo');
