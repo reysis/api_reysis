@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useLocation } from 'react-router-dom';
 import { Container, Form, Button, InputGroup, Alert } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle, faHammer } from '@fortawesome/free-solid-svg-icons';
 
 import TurnoCalendar from "./TurnoCalendar";
-import AuthCreateTurno from './Auth';
+import TurnoAuth from './TurnoAuth';
 import { createTurnoFetch } from '../../redux/turno/create/createTurnoActions';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Create = ({ locations }) => {
 
@@ -124,7 +123,7 @@ const Create = ({ locations }) => {
 									<p>Entre los siguientes datos</p>
 								</div>
 							</div>
-							<AuthCreateTurno setUserAuth={setUserAuth} />
+							<TurnoAuth setUserAuth={setUserAuth} />
 						</div>
 					</Form.Group>
 				}

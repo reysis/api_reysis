@@ -31,7 +31,6 @@ const OpinionsItem = ({ image, autor, reviewText, stars, likes, datePublished })
             <div className="carousel-detail">
                 <span className="carousel-published">{moment(datePublished).fromNow()}</span>
                 <div className="carousel-stars">
-                    {/* <span>{stars}</span> */}
                     {
                         getStars(stars)
                     }

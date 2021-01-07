@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
-import { Button, Form, InputGroup, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationTriangle, faUserTag, faTag, faIdCard } from '@fortawesome/free-solid-svg-icons';
+import {
+	Form,
+	InputGroup,
+	Col
+} from "react-bootstrap";
 
-const AuthCreateTurno = ({ setUserAuth }) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import {
+	faUser,
+	faAt,
+	faPhone,
+	faAddressBook,
+	faIdCard
+} from '@fortawesome/free-solid-svg-icons';
+
+const TurnoAuth = ({ setUserAuth }) => {
 
 	const [name, setName] = useState("")
 	const [lastname, setLastname] = useState("")
@@ -174,4 +186,4 @@ const AuthCreateTurno = ({ setUserAuth }) => {
 	)
 }
 
-export default AuthCreateTurno;
+export default TurnoAuth;

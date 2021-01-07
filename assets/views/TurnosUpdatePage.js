@@ -1,5 +1,5 @@
 import React from 'react'
-import { Update } from "../components/turno"
+// import { Update } from "../components/turno"
 
 const TurnosUpdatePage = () => {
     return (
@@ -7,7 +7,7 @@ const TurnosUpdatePage = () => {
             <div className="update-turno-header">
                 <h1 className="mx-4"><span>Editar</span> turno</h1>
             </div>
-            <Update />
+            {/* <Update /> */}
         </div>
     )
 }

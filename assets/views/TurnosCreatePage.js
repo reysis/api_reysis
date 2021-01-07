@@ -1,5 +1,5 @@
 import React from 'react'
-import { Create } from "../components/turno"
+import Create from "../components/turno/Create"
 
 const TurnosCreatePage = () => {
     return (
