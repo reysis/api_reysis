@@ -15,18 +15,21 @@ const TurnoCalendar = ({ handleDate, handleTime, onChangeDate, onChangeTime }) =
     const [availableDates, setAvailableDates] = useState([])
 
     const availableDatesBag = [
-        new Date(2020, 10, 26),
-        new Date(2020, 10, 27),
-        new Date(2020, 10, 30),
-        new Date(2020, 11, 1),
-        new Date(2020, 11, 2),
-        new Date(2020, 11, 3),
-        new Date(2020, 11, 4),
-        new Date(2020, 11, 7),
-        new Date(2020, 11, 8),
-        new Date(2020, 11, 9),
-        new Date(2020, 11, 10),
-        new Date(2020, 11, 11)
+        new Date(2021, 0, 1),
+        new Date(2021, 0, 2),
+        new Date(2021, 0, 3),
+        new Date(2021, 0, 4),
+        new Date(2021, 0, 7),
+        new Date(2021, 0, 8),
+        new Date(2021, 0, 9),
+        new Date(2021, 0, 10),
+        new Date(2021, 0, 11),
+        new Date(2021, 0, 12),
+        new Date(2021, 0, 13),
+        new Date(2021, 0, 14),
+        new Date(2021, 0, 15),
+        new Date(2021, 0, 16),
+        new Date(2021, 0, 17)
     ]
 
     const turnoTimesBag = [
