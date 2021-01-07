@@ -17,7 +17,6 @@ const ServicioItemPage = ({ match }) => {
 
     useEffect(() => {
         const serviceItem = decodeURIComponent(match.params.id)
-        console.log(serviceItem)
         dispatch(serviceItemFetch(serviceItem))
     }, [])
 

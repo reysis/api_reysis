@@ -33,11 +33,11 @@ const serviceReducer = (state = initialState, { type, payload }) => {
             }
         case SERVICE_LIST_ERROR:
             return {
+                // services: [],
+                // totalItems: 0,
+                // currentPage: 1,
+                // lastPage: 1,
                 loading: false,
-                services: [],
-                totalItems: 0,
-                currentPage: 1,
-                lastPage: 1,
                 error: payload
             }
         case SERVICE_ITEM_REQUEST:
@@ -47,12 +47,14 @@ const serviceReducer = (state = initialState, { type, payload }) => {
             }
         case SERVICE_ITEM_SUCCESS:
             return {
+                ...state,
                 itemLoading: false,
                 itemService: payload,
                 itemError: null
             }
         case SERVICE_ITEM_ERROR:
             return {
+                ...state,
                 itemLoading: false,
                 itemService: {},
                 itemError: payload

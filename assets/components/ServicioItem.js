@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react'
 
 const ServicioItem = ({ id, nombre, descripcion, shortDescription, images }) => {
 
+    useEffect(() => {
+        console.log(nombre)
+        console.log(descripcion)
+        console.log(shortDescription)
+        console.log(images)
+    }, [nombre, descripcion, shortDescription, images])
+
     return (
         <div className="servicio-item-container container">
             <div className="service-item-name">
