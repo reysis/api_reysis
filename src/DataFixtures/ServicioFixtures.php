@@ -72,7 +72,6 @@ class ServicioFixtures extends BaseFixture
             }
             $servicio->setUpdatedAt(new \DateTime());
 
-
             return $servicio;
         });
 

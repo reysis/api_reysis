@@ -39,7 +39,9 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
          */
         foreach ($arrayOfServices as $service){
             foreach ($service->getServiceImages() as $image) {
-                $image->setContentUrl($this->storage->resolveUri($image, 'file'));
+                $uri = $this->storage->resolveUri($image, 'file');
+                dump($uri);
+                $image->setContentUrl($uri);
             }
         }
 
@@ -57,7 +59,9 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
             return null;
         }
 
-        $service->getServiceImage()->setContentUrl($this->storage->resolveUri($service->getServiceImage(), 'file'));
+        foreach ($service->getServiceImages() as $mediaObject){
+            $mediaObject->setContentUrl($this->storage->resolveUri($mediaObject, 'file'));
+        }
         return $service;
     }
 

@@ -18,10 +18,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *     iri="http://schema.org/Service",
  *     collectionOperations={
  *          "get",
- *          "post" = {
- *                  "security_post_denormalize"="is_granted('POST', object)",
- *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios",
- *          }
+ *          "post"
  *     },
  *     itemOperations={
  *          "get" = {"security" = "is_granted('ROLE_ADMIN')"},
@@ -47,7 +44,7 @@ class Servicio
     /**
      * @var string
      * @ORM\Column(type="string", length=255)
-     * @Groups({"servicio:read", "admin:write"})
+     * @Groups({"servicio:read", "servicio:write"})
      * @Assert\NotBlank
      */
     private $nombre;
@@ -57,7 +54,7 @@ class Servicio
      * 
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
-     * @Groups({"servicio:item:get", "admin:write"})
+     * @Groups({"servicio:item:get", "servicio:write"})
      * @Assert\NotBlank
      */
     private $descripcion;
@@ -81,8 +78,8 @@ class Servicio
      *     writableLink=true
      * )
      *
-     * @Groups({"admin:write", "servicio:read"})
-     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio")
+     * @Groups({"servicio:write", "servicio:read"})
+     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio", cascade={"persist", "remove"})
      */
     private $serviceImages;
 
