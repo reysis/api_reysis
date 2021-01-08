@@ -43,7 +43,6 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
     public function persist($data, array $context = [])
     {
         $data->setUpdatedAt(new \DateTime());
-        dump($context);
         if(!($context['item_opeartion_name'] ?? null) === 'put'){
             //Estoy updateando el servicio y aqui puedo crear una traza de que el servicio ha sido modificado
             //Si lo que se esta updateando es la imagen entonces no existe y por lo tanto no tiene ID

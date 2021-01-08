@@ -18,7 +18,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *     iri="http://schema.org/Service",
  *     collectionOperations={
  *          "get",
- *          "post"
+ *          "post" = {"security_post_denormalize"="is_granted('ROLE_ADMIN')"},
  *     },
  *     itemOperations={
  *          "get" = {"security" = "is_granted('ROLE_ADMIN')"},
