@@ -70,7 +70,7 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
     private function createNewUploadedFile($data)
     {
         foreach ($data->getServiceImages() as $serviceImage){
-            $tmpPath = sys_get_temp_dir().'/service_upload_'.uniqid();
+            $tmpPath = sys_get_temp_dir().'/services_image_'.uniqid();
             file_put_contents($tmpPath, $serviceImage->getDecodedData());
             $uploadedFile = new File($tmpPath);
 

@@ -21,7 +21,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *          "post" = {"security_post_denormalize"="is_granted('ROLE_ADMIN')"},
  *     },
  *     itemOperations={
- *          "get" = {"security" = "is_granted('ROLE_ADMIN')"},
+ *          "get",
  *          "put" = {"security" = "is_granted('ROLE_ADMIN')"},
  *          "delete" ={"security" = "is_granted('ROLE_ADMIN')"}
  *      },

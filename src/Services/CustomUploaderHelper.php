@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CustomUploaderHelper
 {
-    const SERVICE_IMAGE = 'services_image';
+    const SERVICES_IMAGE = 'service_image';
     const PUBLIC_IMAGE = 'public_images';
     const USER_IMAGE = 'user_images';
 
@@ -40,8 +40,8 @@ class CustomUploaderHelper
 
     public function uploadServiceImage(File $file, ?string $existingFilename)
     {
-        $newFilename = $this->uploadFile($file, self::SERVICE_IMAGE,true);
-        $this->removeIfExistPublic($existingFilename, self::SERVICE_IMAGE);
+        $newFilename = $this->uploadFile($file, self::SERVICES_IMAGE,true);
+        $this->removeIfExistPublic($existingFilename, self::SERVICES_IMAGE);
 
         return $newFilename;
     }
