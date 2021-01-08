@@ -54,20 +54,22 @@ class ServicioFixtures extends BaseFixture
             $servicio->setDescripcion($this->faker->paragraph);
             $servicio->setNombre($this->faker->sentence(2,true));
 
-            $randomImage = self::$serviceImages[$i];
-            $targetPath = __DIR__."/images/".$randomImage;
+            $amountOfImagesPerService = $this->faker->numberBetween(1,3);
 
-            $file = new File($targetPath);
+            for($i = 0;$i < $amountOfImagesPerService;$i++){
+                $randomImage = self::$serviceImages[$i];
+                $targetPath = __DIR__."/images/".$randomImage;
 
-            $mediaObject = new MediaObject();
-            $mediaObject->setFile($file);
-            $mediaObject->setFilePath(
-                $this->uploaderHelper->uploadServiceImage($file, null)
-            );
+                $file = new File($targetPath);
 
-            $manager->persist($mediaObject);
-
-            $servicio->addServiceImage($mediaObject);
+                $mediaObject = new MediaObject();
+                $mediaObject->setFile($file);
+                $mediaObject->setFilePath(
+                    $this->uploaderHelper->uploadServiceImage($file, null)
+                );
+                $manager->persist($mediaObject);
+                $servicio->addServiceImage($mediaObject);
+            }
             $servicio->setUpdatedAt(new \DateTime());
 
 
