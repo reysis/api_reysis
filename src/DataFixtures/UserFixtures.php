@@ -13,6 +13,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\User;
+use League\Flysystem\FilesystemInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -31,14 +32,21 @@ class UserFixtures extends BaseFixture
 
     private CustomUploaderHelper $uploaderHelper;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, CustomUploaderHelper $uploaderHelper)
+    private $publicUploadFilesystem;
+
+    public function __construct(
+        UserPasswordEncoderInterface $passwordEncoder,
+        CustomUploaderHelper $uploaderHelper,
+        FilesystemInterface $publicUploadFilesystem)
     {
         $this->passwordEncoder = $passwordEncoder;
         $this->uploaderHelper = $uploaderHelper;
+        $this->publicUploadFilesystem = $publicUploadFilesystem;
     }
 
     protected function loadData(ObjectManager $manager)
     {
+        $this->deleteFilesInFilesystem();
         $this->createMany(10, 'normal_users', function($i) use ($manager) {
             $user = new User();
             $user->setEmail(sprintf('user%d@example.com', $i));
@@ -135,5 +143,10 @@ class UserFixtures extends BaseFixture
 
         $manager->flush();
 
+    }
+
+    private function deleteFilesInFilesystem()
+    {
+        $this->publicUploadFilesystem->deleteDir("user_images");
     }
 }

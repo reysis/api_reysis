@@ -79,14 +79,14 @@ class MediaObject
     private string $filename;
 
     /**
-     * @ORM\OneToOne(targetEntity=Servicio::class, mappedBy="serviceImage", cascade={"persist", "remove"})
-     */
-    private $servicio;
-
-    /**
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="profilePicture", cascade={"persist", "remove"})
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Servicio::class, inversedBy="serviceImages")
+     */
+    private $servicio;
 
     public function getId(): ?int
     {
@@ -179,23 +179,6 @@ class MediaObject
         $this->contentUrl = $contentUrl;
     }
 
-    public function getServicio(): ?Servicio
-    {
-        return $this->servicio;
-    }
-
-    public function setServicio(Servicio $servicio): self
-    {
-        $this->servicio = $servicio;
-
-        // set the owning side of the relation if necessary
-        if ($servicio->getServiceImage() !== $this) {
-            $servicio->setServiceImage($this);
-        }
-
-        return $this;
-    }
-
     /**
      * @return mixed
      */
@@ -230,6 +213,18 @@ class MediaObject
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getServicio(): ?Servicio
+    {
+        return $this->servicio;
+    }
+
+    public function setServicio(?Servicio $servicio): self
+    {
+        $this->servicio = $servicio;
 
         return $this;
     }

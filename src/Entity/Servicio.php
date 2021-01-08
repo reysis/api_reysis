@@ -17,16 +17,16 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ApiResource(
  *     iri="http://schema.org/Service",
  *     collectionOperations={
- *          "get" = {"accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')"},
+ *          "get",
  *          "post" = {
  *                  "security_post_denormalize"="is_granted('POST', object)",
  *                  "security_post_denormalize_message"="Solo un Administrador puede crear Tipos de Servicios",
  *          }
  *     },
  *     itemOperations={
- *          "get" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
- *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
- *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
+ *          "get" = {"security" = "is_granted('ROLE_ADMIN')"},
+ *          "put" = {"security" = "is_granted('ROLE_ADMIN')"},
+ *          "delete" ={"security" = "is_granted('ROLE_ADMIN')"}
  *      },
  *     attributes={
  *          "pagination_items_per_page" = 12
@@ -81,12 +81,15 @@ class Servicio
      *     writableLink=true
      * )
      *
-     * @var MediaObject
      * @Groups({"admin:write", "servicio:read"})
-     * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="servicio", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio")
      */
-    private $serviceImage;
+    private $serviceImages;
+
+    public function __construct()
+    {
+        $this->serviceImages = new ArrayCollection();
+    }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -171,14 +174,32 @@ class Servicio
         return substr($this->descripcion, 0, 70).'...';
     }
 
-    public function getServiceImage(): ?MediaObject
+    /**
+     * @return Collection|MediaObject[]
+     */
+    public function getServiceImages(): Collection
     {
-        return $this->serviceImage;
+        return $this->serviceImages;
     }
 
-    public function setServiceImage(MediaObject $serviceImage): self
+    public function addServiceImage(MediaObject $serviceImage): self
     {
-        $this->serviceImage = $serviceImage;
+        if (!$this->serviceImages->contains($serviceImage)) {
+            $this->serviceImages[] = $serviceImage;
+            $serviceImage->setServicio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeServiceImage(MediaObject $serviceImage): self
+    {
+        if ($this->serviceImages->removeElement($serviceImage)) {
+            // set the owning side to null (unless already changed)
+            if ($serviceImage->getServicio() === $this) {
+                $serviceImage->setServicio(null);
+            }
+        }
 
         return $this;
     }

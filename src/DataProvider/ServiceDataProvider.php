@@ -31,13 +31,19 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
         /**
          * @var Servicio[] $services
          */
-        $services = $this->collectionDataProvider->getCollection($resourceClass, $operationName, $context);
+        $arrayOfServices = $this->collectionDataProvider->getCollection($resourceClass, $operationName, $context);
 
-        foreach ($services as $service){
-            $service->getServiceImage()->setContentUrl($this->storage->resolveUri($service->getServiceImage(), 'file'));
+        /**
+         * @var Servicio $service
+         * @var MediaObject $image
+         */
+        foreach ($arrayOfServices as $service){
+            foreach ($service->getServiceImages() as $image) {
+                $image->setContentUrl($this->storage->resolveUri($image, 'file'));
+            }
         }
 
-        return $services;
+        return $arrayOfServices;
     }
 
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = [])

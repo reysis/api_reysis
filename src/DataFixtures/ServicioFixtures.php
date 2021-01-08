@@ -6,6 +6,8 @@ namespace App\DataFixtures;
 
 use App\Entity\MediaObject;
 use App\Entity\Servicio;
+use App\Repository\MediaObjectRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use League\Flysystem\FilesystemInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -28,14 +30,25 @@ class ServicioFixtures extends BaseFixture
 
     private $publicFileSystem;
 
-    public function __construct(FilesystemInterface $publicUploadFilesystem, CustomUploaderHelper $uploaderHelper)
+    private $storage;
+
+    private $mediaObjectRepository;
+
+    public function __construct(
+        FilesystemInterface $publicUploadFilesystem,
+        CustomUploaderHelper $uploaderHelper,
+        MediaObjectRepository $mediaObjectRepository,
+        StorageInterface $storage)
     {
         $this->uploaderHelper = $uploaderHelper;
         $this->publicFileSystem = $publicUploadFilesystem;
+        $this->storage = $storage;
+        $this->mediaObjectRepository = $mediaObjectRepository;
     }
 
     protected function loadData(ObjectManager $manager)
     {
+        $this->deleteFilesInFilesystem();
         $this->createMany(6, 'SERVICIO', function ($i) use ($manager){
             $servicio = new Servicio();
             $servicio->setDescripcion($this->faker->paragraph);
@@ -49,12 +62,12 @@ class ServicioFixtures extends BaseFixture
             $mediaObject = new MediaObject();
             $mediaObject->setFile($file);
             $mediaObject->setFilePath(
-                $this->uploaderHelper->uploadServiceImage($file, null, 'services_images')
+                $this->uploaderHelper->uploadServiceImage($file, null)
             );
 
             $manager->persist($mediaObject);
 
-            $servicio->setServiceImage($mediaObject);
+            $servicio->addServiceImage($mediaObject);
             $servicio->setUpdatedAt(new \DateTime());
 
 
@@ -62,5 +75,10 @@ class ServicioFixtures extends BaseFixture
         });
 
         $manager->flush();
+    }
+
+    private function deleteFilesInFilesystem()
+    {
+        $this->publicFileSystem->deleteDir("services_image");
     }
 }
