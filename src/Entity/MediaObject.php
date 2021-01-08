@@ -64,7 +64,7 @@ class MediaObject
     /**
      * The base64 encoded version of the file
      *
-     * @Groups({"admin:write", "servicio:write", "user:write"})
+     * @Groups({"admin:write", "user:write"})
      * @Assert\NotBlank
      */
     private string $data;
@@ -73,7 +73,7 @@ class MediaObject
      * The file name
      *
      * @var string
-     * @Groups ({"admin:write", "servicio:write", "user:write"})
+     * @Groups ({"admin:write", "user:write"})
      * @Assert\NotBlank
      */
     private string $filename;
