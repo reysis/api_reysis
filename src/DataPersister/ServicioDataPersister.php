@@ -75,14 +75,12 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
             file_put_contents($tmpPath, $serviceImage->getDecodedData());
             $uploadedFile = new File($tmpPath);
 
-            dump($uploadedFile);
             $mediaObject = new MediaObject();
             $mediaObject->setFile($uploadedFile);
             $mediaObject->setUpdatedAt(new \DateTime());
             $mediaObject->setFilePath(
                 $this->uploaderHelper->uploadServiceImage($uploadedFile, null)
             );
-            dump($mediaObject);
             $this->entityManager->persist($mediaObject);
             if(!$uploadedFile){
                 return new Response('El campo filename no debe estar vacio', 400);
