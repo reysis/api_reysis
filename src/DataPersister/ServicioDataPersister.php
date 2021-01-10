@@ -10,6 +10,7 @@ use App\Entity\MediaObject;
 use App\Entity\Servicio;
 use App\Services\CustomUploaderHelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,16 +19,19 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
     private DataPersisterInterface $decoratedDataPersister;
     private CustomUploaderHelper $uploaderHelper;
     private $entityManager;
+    private $logger;
 
     public function __construct(
         DataPersisterInterface $decoratedDataPersister,
         CustomUploaderHelper $uploaderHelper,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        LoggerInterface $logger
     )
     {
         $this->decoratedDataPersister = $decoratedDataPersister;
         $this->uploaderHelper = $uploaderHelper;
         $this->entityManager = $entityManager;
+        $this->logger = $logger;
     }
 
     public function supports($data, array $context = []): bool
@@ -43,18 +47,18 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
     public function persist($data, array $context = [])
     {
         $data->setUpdatedAt(new \DateTime());
-        if(!($context['item_opeartion_name'] ?? null) === 'put'){
+        if(($context['item_operation_name'] ?? null) === 'put'){
             //Estoy updateando el servicio y aqui puedo crear una traza de que el servicio ha sido modificado
             //Si lo que se esta updateando es la imagen entonces no existe y por lo tanto no tiene ID
             if(!$data->getServiceImages()){
                 $this->createNewUploadedFile($data);
             }
-            //$this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
+            $this->logger->info(sprintf('Servicio %s esta siendo actualizado', $data->getId()));
         }else{
             //Si estoy creando el servicio creo el MediaObject nuevo
             $this->createNewUploadedFile($data);
+            $this->logger->info(sprintf('Servicio %s creado satisfactoriamente', $data->getId()));
         }
-
         $this->decoratedDataPersister->persist($data);
     }
 

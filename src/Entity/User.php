@@ -37,7 +37,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
  *          }
  *      },
  *      itemOperations={
- *          "get" = {"security" = "is_granted('IS_AUTHENTICATED_ANONYMOUSLY')"},
+ *          "get" = {"security" = "is_granted('USER_GET', object)"},
  *          "put" = {"security" = "is_granted('USER_PUT', object)"},
  *          "delete" = {"security" = "is_granted('USER_ERASE', object)"}
  *      },

@@ -18,7 +18,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *     iri="http://schema.org/Service",
  *     collectionOperations={
  *          "get",
- *          "post" = {"security_post_denormalize"="is_granted('ROLE_ADMIN')"},
+ *          "post" = {"security"="is_granted('ROLE_ADMIN')"},
  *     },
  *     itemOperations={
  *          "get",
@@ -80,6 +80,7 @@ class Servicio
      *
      * @Groups({"admin:write", "servicio:read"})
      * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio", cascade={"persist", "remove"})
+     * @Assert\NotBlank
      */
     private $serviceImages;
 

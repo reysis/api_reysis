@@ -51,18 +51,10 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
-        //$this->logger->alert($data->getPlainPassword());
-        if(!($context['item_opeartion_name'] ?? null) === 'put'){
-            $this->createNewUploadedFile($data);
-            //Aqui se puede hacer cualquier cosa con el usuario
-            //Como mandar un email de confirmacion o un mensaje
-            //O añadirlo a cualquier sistema de pago
-            $this->logger->info(sprintf('Usuario $s se acaba de registrar', $data->getId()));
-            $data->getPersona()->setUser( $data );
-        }else{
+        if(($context['item_operation_name'] ?? null) === 'put'){
             $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
 
-            if($data->getProfilePicture()->getDecodedData()){
+            if($data->getProfilePicture()){
                 $tmpPath = sys_get_temp_dir().'/user_profilePic_'.uniqid();
                 file_put_contents($tmpPath, $data->getProfilePicture()->getDecodedData());
                 $uploadedFile = new File($tmpPath);
@@ -75,6 +67,13 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
                 );
                 $data->getProfilePicture()->setFile($uploadedFile);
             }
+        }else{
+            $this->createNewUploadedFile($data);
+            //Aqui se puede hacer cualquier cosa con el usuario
+            //Como mandar un email de confirmacion o un mensaje
+            //O añadirlo a cualquier sistema de pago
+            $this->logger->info(sprintf('Usuario $s se acaba de registrar', $data->getId()));
+            $data->getPersona()->setUser( $data );
         }
         if($data->getPlainPassword()){
             $data->setPassword(
@@ -82,8 +81,6 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
             );
             $data->eraseCredentials();
         }
-
-        dump($data);
         $this->decoratedDataPersister->persist($data);
     }
     public function remove($data, array $context = [])

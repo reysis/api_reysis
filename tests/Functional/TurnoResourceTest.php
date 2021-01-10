@@ -21,7 +21,7 @@ class TurnoResourceTest extends CustomApiTestCase{
             'CASA',
             '+5354178553');
 
-        //Testeando que no se pueda crear Turnos sin enviar datos del usuario
+        //Testeando que no se pueda crear Turnos sin estar logueado
         $client->request('POST', '/api/turnos',[
             'headers'=> ['ContentType'=>'application/json+ld'],
             'json' => [
@@ -29,11 +29,15 @@ class TurnoResourceTest extends CustomApiTestCase{
                 'defecto'=>$faker->paragraph(5, true),
             ],
         ]);
-        $this->assertResponseStatusCodeSame(400);
+        $this->assertResponseStatusCodeSame(401);
         
         //Testeando que se cree un turno normalmente estando ya registrado
+        $token = $this->logIn($client, 'testUser', 'foo');
         $client->request('POST', '/api/turnos',[
-            'headers'=> ['ContentType'=>'application/json+ld'],
+            'headers'=> [
+                'ContentType'=>'application/json+ld',
+                'Authorization' => 'Bearer '.$token
+            ],
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
                 'defecto'=>'foo',
@@ -42,7 +46,7 @@ class TurnoResourceTest extends CustomApiTestCase{
         ]);
         $this->assertResponseStatusCodeSame(201);
 
-        //Comprobando que se pueda crear un turno siendo anonimo
+        //Comprobando que NO se pueda crear un turno y registrar al usuario en cascada
         $client->request('POST', '/api/turnos',[
             'headers'=> [
                 'ContentType'=>'application/json+ld'
@@ -69,7 +73,7 @@ class TurnoResourceTest extends CustomApiTestCase{
                 ],
             ],
         ]);
-        $this->assertResponseStatusCodeSame(201);
+        $this->assertResponseStatusCodeSame(401);
     }
 
     public function testUpdateTurno()

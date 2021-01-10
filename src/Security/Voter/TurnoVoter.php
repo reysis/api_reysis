@@ -3,6 +3,7 @@
 namespace App\Security\Voter;
 
 use App\Entity\Turno;
+use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -12,9 +13,12 @@ class TurnoVoter extends Voter
 {
     private $security = null;
 
-    public function __construct(Security $security)
+    private $userRepository;
+
+    public function __construct(Security $security, UserRepository $userRepository)
     {
         $this->security = $security;
+        $this->userRepository = $userRepository;
     }
     protected function supports($attribute, $subject)
     {
@@ -28,22 +32,19 @@ class TurnoVoter extends Voter
     {
         $user = $token->getUser();
         // if the user is anonymous, do not grant access
-/*        if (!$user instanceof UserInterface) {
+        if (!$user instanceof UserInterface) {
             return false;
-        }*/
-
+        }
         /**
          * @var Turno $subject
          */
+
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case 'EDIT':
-            case 'GET_SPECIFC':
-                if($subject->getUser() === $user || in_array('ROLE_ADMIN', $user->getRoles()))
-                    return true;
-                return false;
             case 'ERASE':
-                if(in_array('ROLE_ADMIN', $user->getRoles()))
+            case 'GET_SPECIFC':
+                if($subject->getUser() === $user || $this->security->isGranted('ROLE_ADMIN'))
                     return true;
                 return false;
         }

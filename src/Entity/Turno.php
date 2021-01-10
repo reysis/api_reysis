@@ -13,26 +13,22 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ApiResource(
  *      collectionOperations={
- *          "get" = {
- *                  "security"="is_granted('ROLE_ADMIN')",
- *                  "security_message"="Solo un administrador puede acceder a este recurso.",
- *          },
+ *          "get"={"security" = "is_granted('ROLE_ADMIN')"},
  *          "post" = {
- *                  "accessControl" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
+ *                 "security_post_denormalize"="is_granted('ROLE_USER')",
  *          }
  *      },
  *      itemOperations={
  *          "get" = {
- *                  "security"="is_granted('GET_SPECIFIC', object)",
- *                  "security_message"="Usted solo tiene acceso a sus propios Turnos."
+ *                  "security" = "is_granted('GET_SPECIFC', object)"
  *          },
  *          "put" = {
  *                  "security"="is_granted('EDIT', object)",
  *                  "security_message"="Solamente puede editar sus propios turnos, necesita permisos como administrador para realizar esta acción."
  *          },
- *          "delete" = {
+ *          "delete"= {
  *                  "security"="is_granted('ERASE', object)",
- *                  "security_message"="No puede realizar esta acción a menos que sea administrador."
+ *                  "security_message"="No puede realizar esta acción a menos que sea administrador o dueño del turno."
  *          }
  *      },
  *      attributes={

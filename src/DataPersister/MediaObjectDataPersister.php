@@ -42,6 +42,7 @@ class MediaObjectDataPersister implements ContextAwareDataPersisterInterface
         $tmpPath = sys_get_temp_dir().'/public_upload_'.uniqid();
         file_put_contents($tmpPath, $data->getDecodedData());
         $uploadedFile = new File($tmpPath);
+        $data->setUpdatedAt(new \DateTime());
         if(!$uploadedFile){
             return new Response('El campo file no debe estar vacio', 400);
         }

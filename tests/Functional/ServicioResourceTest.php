@@ -30,15 +30,15 @@ class ServicioResourceTest extends CustomApiTestCase
         $this->assertResponseStatusCodeSame(401);
 
         //Creando un usuario para authenticarlo
-        $user1 = $this->createUser(
+        $user = $this->createUser(
             'testUser1',
             'foo',
             'CASA',
             '+5354178553');
 
         $em = $this->getEntityManager();
-        $user2 = $em->getRepository(User::class)->find(1);
-        $user2->setRoles(['ROLE_ADMIN']);
+        $user = $em->getRepository(User::class)->find(1);
+        $user->setRoles(['ROLE_ADMIN']);
         $em->flush();
 
         $token = $this->logIn($client, 'testUser1', 'foo');

@@ -157,6 +157,9 @@ class MediaObject
     public function setFilePath(?string $filePath): void
     {
         $this->filePath = $filePath;
+        if($filePath){
+            $this->setUpdatedAt(new \DateTime());
+        }
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface

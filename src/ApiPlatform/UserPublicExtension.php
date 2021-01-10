@@ -27,10 +27,13 @@ class UserPublicExtension implements QueryCollectionExtensionInterface, QueryIte
 
     public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, string $operationName = null, array $context = [])
     {
+        if($resourceClass !== User::class){
+            return;
+        }
         if($this->security->isGranted('ROLE_ADMIN'))
             return;
 
-        if(!$this->security->getUser() ){
+        if(!$this->security->getUser()){
             return;
         }else{
             if($queryBuilder->getParameters()->getValues()[0]->getValue() === $this->security->getUser()->getId()) {

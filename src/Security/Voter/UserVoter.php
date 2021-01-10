@@ -22,7 +22,7 @@ class UserVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return in_array($attribute, ['USER_ERASE', 'USER_PUT'])
+        return in_array($attribute, ['USER_GET','USER_ERASE', 'USER_PUT'])
             && $subject instanceof User;
     }
 
@@ -38,6 +38,7 @@ class UserVoter extends Voter
                 if($this->security->isGranted('ROLE_ADMIN'))
                     return true;
                 return false;
+            case 'USER_GET':
             case 'USER_PUT':
                 if($this->security->isGranted('ROLE_ADMIN') || $subject === $user )
                     return true;

@@ -74,13 +74,14 @@ class UserResourceTest extends CustomApiTestCase
         );
         $this->assertJsonContains(['location'=>'/api/users/2']);
 
+        //Se obtiene 404 porque el filtro que se aplica a la entidad Usuario automaticamente quita los datos del usuario si no son los suyos propios
         $client->request('GET', '/api/users/'.$user->getId(),[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
                 'Authorization' => 'Bearer '.$token
             ],
         ]);
-        $this->assertResponseStatusCodeSame(403);
+        $this->assertResponseStatusCodeSame(404);
 
         //Comprobando que pueda ver mis propios Números de Telefonos
         $client->request('GET', '/api/users/2',[
@@ -127,7 +128,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('GET', '/api/users/'.$user->getId(),[
             'headers'=> ['ContentType'=>'application/json+ld'],
         ]);
-        $this->assertResponseStatusCodeSame(404);
+        $this->assertResponseStatusCodeSame(401);
 
         //Logueando al usuario 1 y comprobando que puede acceder al recurso
         $token = $this->logIn($client, 'testUser1', 'foo');
