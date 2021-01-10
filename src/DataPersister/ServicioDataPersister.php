@@ -62,8 +62,15 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
         $this->decoratedDataPersister->persist($data);
     }
 
+    /**
+     * @param Servicio $data
+     * @param array $context
+     */
     public function remove($data, array $context = [])
     {
+        foreach ($data->getServiceImages() as $image){
+            $this->uploaderHelper->removeIfExistPublic($image->getFilePath(), "service_image");
+        }
         $this->decoratedDataPersister->remove($data);
     }
 

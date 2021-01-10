@@ -17,11 +17,22 @@ use App\DTO\MediaObject\MediaObjectOutput;
  * @ApiResource(
  *     iri="http://schema.org/MediaObject",
  *     collectionOperations={
- *         "post",
- *         "get"
+ *         "get" = {
+ *              "security" = "is_granted('ROLE_ADMIN')",
+ *              "security_message" = "Solo un administrador puede acceder a estos recursos"
+ *          },
+ *         "post" = {
+ *              "security" = "is_granted('ROLE_USER')"
+ *          }
  *     },
  *     itemOperations={
- *         "get"
+ *         "get" = {
+ *              "security" = "is_granted('ROLE_USER)"
+ *          },
+ *         "put" = {
+ *              "security" = "is_granted('ROLE_USER')"
+ *          },
+ *         "delete"
  *     }
  * )
  * @Vich\Uploadable

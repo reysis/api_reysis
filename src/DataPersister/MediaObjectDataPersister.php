@@ -39,10 +39,12 @@ class MediaObjectDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
+        $data->setUpdatedAt(new \DateTime());
+
         $tmpPath = sys_get_temp_dir().'/public_upload_'.uniqid();
         file_put_contents($tmpPath, $data->getDecodedData());
         $uploadedFile = new File($tmpPath);
-        $data->setUpdatedAt(new \DateTime());
+
         if(!$uploadedFile){
             return new Response('El campo file no debe estar vacio', 400);
         }
@@ -57,8 +59,17 @@ class MediaObjectDataPersister implements ContextAwareDataPersisterInterface
         $this->decoratedDataPersister->persist($data);
     }
 
+    /**
+     * @param MediaObject $data
+     * @param array $context
+     * @throws \Exception
+     */
     public function remove($data, array $context = [])
     {
+        if($data->getServicio())
+            $this->uploaderHelper->removeIfExistPublic($data->getFilePath(), 'service_image');
+        else
+            $this->uploaderHelper->removeIfExistPublic($data->getFilePath(), 'user_images');
         $this->decoratedDataPersister->remove($data);
     }
 }
