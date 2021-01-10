@@ -35,6 +35,11 @@ class ServicioResourceTest extends CustomApiTestCase
             'foo',
             'CASA',
             '+5354178553');
+        $user2 = $this->createUser(
+            'testUser2',
+            'foo',
+            'CASA',
+            '+5354178553');
 
         $em = $this->getEntityManager();
         $user = $em->getRepository(User::class)->find(1);
@@ -52,7 +57,39 @@ class ServicioResourceTest extends CustomApiTestCase
             $file->data = base64_encode($faker->sentence);
             $arrayOfImages[] = $file;
         }
+        $serviceName = $faker->name;
+        //Comprobando que un admin pueda crear un servicio normalmente
+        $client->request('POST', '/api/servicios',[
+            'headers'=> [
+                'Content-Type' => 'application/ld+json',
+                'Authorization' => 'Bearer '.$token
+            ],
+            'json' => [
+                'nombre' => $serviceName,
+                'descripcion'=> $faker->sentence,
+                'updatedAt'=> new \DateTime(),
+                'serviceImages' => $arrayOfImages
+            ],
+        ]);
+        $this->assertResponseIsSuccessful();
+        $this->assertJsonContains(['nombre'=>$serviceName]);
 
+        //Comprobando que anonimamente no se pueda crear un servicio
+        $client->request('POST', '/api/servicios',[
+            'headers'=> [
+                'Content-Type' => 'application/ld+json',
+            ],
+            'json' => [
+                'nombre' => $faker->name,
+                'descripcion'=> $faker->sentence,
+                'updatedAt'=> new \DateTime(),
+                'serviceImages' => $arrayOfImages
+            ],
+        ]);
+        $this->assertResponseStatusCodeSame(401);
+
+        //Comprobando que un usuario normal no pueda crear un servicio
+        $token = $this->logIn($client, 'testUser2', 'foo');
         $client->request('POST', '/api/servicios',[
             'headers'=> [
                 'Content-Type' => 'application/ld+json',
@@ -64,6 +101,18 @@ class ServicioResourceTest extends CustomApiTestCase
                 'updatedAt'=> new \DateTime(),
                 'serviceImages' => $arrayOfImages
             ],
+        ]);
+        $this->assertResponseStatusCodeSame(403);
+    }
+
+    public function testGetAllServices()
+    {
+        $client = self::createClient();
+        //Comprobando que se pueda acceder a los servicios anonimamente
+        $client->request('GET', '/api/servicios',[
+            'headers'=> [
+                'Content-Type' => 'application/ld+json'
+            ]
         ]);
         $this->assertResponseIsSuccessful();
     }
