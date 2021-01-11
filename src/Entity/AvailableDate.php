@@ -49,11 +49,22 @@ class AvailableDate
     private $date;
 
     /**
+     * The current amount of available appointments for the day
+     *
      * @ORM\Column(type="integer")
      * @Groups({"availabledate:read", "admin:write"})
      * @Assert\NotBlank
      */
     private $amountAvailable;
+
+    /**
+     * The max amount of available appointments for the day
+     *
+     * @ORM\Column(type="integer")
+     * @Groups({"admin:read","admin:write"})
+     * @Assert\NotBlank
+     */
+    private $originalAmount;
 
     public function getId(): ?int
     {
@@ -80,6 +91,18 @@ class AvailableDate
     public function setAmountAvailable(int $amountAvailable): self
     {
         $this->amountAvailable = $amountAvailable;
+
+        return $this;
+    }
+
+    public function getOriginalAmount(): ?int
+    {
+        return $this->originalAmount;
+    }
+
+    public function setOriginalAmount(int $originalAmount): self
+    {
+        $this->originalAmount = $originalAmount;
 
         return $this;
     }

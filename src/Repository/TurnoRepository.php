@@ -20,7 +20,7 @@ class TurnoRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Turno[] Returns an array of Turno objects
+    //  * @return AvailableDate[] Returns an array of AvailableDate objects
     //  */
     /*
     public_html function findByExampleField($value)
@@ -37,7 +37,7 @@ class TurnoRepository extends ServiceEntityRepository
     */
 
     /*
-    public_html function findOneBySomeField($value): ?Turno
+    public_html function findOneBySomeField($value): ?AvailableDate
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

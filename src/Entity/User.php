@@ -66,7 +66,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @ORM\OneToOne(targetEntity=Persona::class, cascade={"persist", "remove"})
-     * @Groups({"owner:read", "user:write","turno:write", "admin:write", "admin:read"})
+     * @Groups({"owner:read", "user:write", "admin:write", "admin:read"})
      * @Assert\NotBlank(groups={"create"})
      */
     private $username;
@@ -87,7 +87,7 @@ class User implements UserInterface
      * Una variable temporal para almacenar la password y poder encriptarla en el proceso de normalización
      *
      * @var string The plain password
-     * @Groups({"user:write", "turno:write", "admin:write", "admin:read"})
+     * @Groups({"user:write", "admin:write", "admin:read"})
      * @Assert\NotBlank(groups={"create"})
      * @SerializedName("password")
      */
@@ -144,7 +144,7 @@ class User implements UserInterface
      *
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="users", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"user:write", "owner:read", "turno:write", "admin:write", "admin:item:get"})
+     * @Groups({"user:write", "owner:read", "admin:write", "admin:item:get"})
      * @Assert\Valid()
      */
     private $address;
@@ -157,7 +157,7 @@ class User implements UserInterface
      *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="phonenumber_id", referencedColumnName="id", unique=true)}
      *      )
-     * @Groups({"user:write", "owner:read", "turno:write", "admin:item:get", "admin:write"})
+     * @Groups({"user:write", "owner:read", "admin:item:get", "admin:write"})
      * @Assert\NotBlank(groups={"create"})
      * @Assert\Valid()
      */
@@ -176,7 +176,7 @@ class User implements UserInterface
      * Datos del usuario si es una persona
      *
      * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:read", "user:item:get", "turno:write","admin:write", "admin:item:get"})
+     * @Groups({"user:read", "user:item:get","admin:write", "admin:item:get"})
      * @Assert\Valid()
      */
     private $persona;
@@ -185,7 +185,7 @@ class User implements UserInterface
      * Nacionalidad del usuario, ya sea una empresa o una Persona
      *
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:write","owner:read","turno:write", "admin:read", "admin:write"})
+     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
      */
     private $nationality;
 

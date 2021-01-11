@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\TurnoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Validator as OwnAssert;
 
 /**
  * @ApiResource(
@@ -51,6 +52,7 @@ class Turno
      * @ORM\Column(type="datetime")
      * @Groups({"turno:read", "turno:write", "user:read"})
      * @Assert\NotBlank()
+     * @OwnAssert\AvailableDate()
      */
     private $fecha;
 
