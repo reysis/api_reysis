@@ -22,6 +22,11 @@ class UserPublicExtension implements QueryCollectionExtensionInterface, QueryIte
 
     public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
     {
+        if($resourceClass !== User::class){
+            return;
+        }
+        if($this->security->isGranted('ROLE_ADMIN'))
+            return;
         $this->addWhere($resourceClass, $queryBuilder);
     }
 
@@ -32,6 +37,10 @@ class UserPublicExtension implements QueryCollectionExtensionInterface, QueryIte
         }
         if($this->security->isGranted('ROLE_ADMIN'))
             return;
+
+        if(($context['request_uri'] ?? null) !== '/api/users'){
+            return;
+        }
 
         if(!$this->security->getUser()){
             return;
@@ -52,20 +61,10 @@ class UserPublicExtension implements QueryCollectionExtensionInterface, QueryIte
      */
     public function addWhere(string $resourceClass, QueryBuilder $queryBuilder): void
     {
-        if ($resourceClass !== User::class) {
-            return;
-        }
-
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return;
         }
 
-
-        /*if($queryBuilder->getParameters()->count() === 1
-            && $queryBuilder->getParameters()->getValues()[0]->getValue() === $this->security->getUser()->getId()){
-            return;
-        }*/
-        //dd($queryBuilder);
         $rootAlias = $queryBuilder->getRootAliases()[0];
         $queryBuilder->andWhere(sprintf('%s.isPublic = :isPublic', $rootAlias))
             ->setParameter('isPublic', true);

@@ -70,6 +70,7 @@ class Turno
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"turno:read", "turno:write"})
      * @Assert\NotBlank
+     * @OwnAssert\IsTurnoOwnerValid()
      */
     private $user;
 
