@@ -14,7 +14,7 @@ class ReviewFixtures extends BaseFixture implements DependentFixtureInterface
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'reviews', function ($i) use ($manager){
+        $this->createMany(200, 'reviews', function ($i) use ($manager){
             $review = new Reviews();
             $review->setDatePublished($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $review->setReviewText($this->faker->paragraph);

@@ -2,7 +2,7 @@ import { OPINIONS_LIST_REQUEST, OPINIONS_LIST_SUCCESS, OPINIONS_LIST_ERROR } fro
 
 const initialState = {
     loading: false,
-    opinions: [],
+    opinions: null,
     error: ''
 }
 
@@ -14,6 +14,7 @@ const opinionListReducer = (state = initialState, { type, payload }) => {
                 loading: true
             }
         case OPINIONS_LIST_SUCCESS:
+            console.log(`REVIEWS DE UN USUARIO ${payload}`)
             return {
                 loading: false,
                 opinions: payload,
@@ -22,7 +23,7 @@ const opinionListReducer = (state = initialState, { type, payload }) => {
         case OPINIONS_LIST_ERROR:
             return {
                 loading: false,
-                opinions: [],
+                opinions: null,
                 error: payload
             }
         default:

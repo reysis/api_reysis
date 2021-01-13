@@ -4,7 +4,7 @@ import ShowStars from "./ShowStars";
 
 const ReviewCard = ({title, faded, date, likes, reviewText, stars}) => {
     return (
-        <div data-aos="fade-up">
+        <div>
             { !faded
                 ? (
                     <Card>

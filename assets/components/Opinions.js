@@ -46,7 +46,7 @@ const Opinions = () => {
 			</div>
 			<div data-aos="fade-up" className="opinions-container container">
 				{
-					loading != undefined && !loading && error != undefined && !error && opinions.length > 0
+					loading !== undefined && !loading && error !== undefined && !error && opinions
 						? (
 							<Carousel>
 								{

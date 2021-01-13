@@ -1,0 +1,10 @@
+.opinions-container{
+  display: flex !important;
+  flex-flow: column nowrap;
+  min-height: 500px;
+  max-height: 500px;
+  overflow-x: auto;
+  overflow-y: auto;
+  display: -webkit-box;
+  display: -moz-box;
+}

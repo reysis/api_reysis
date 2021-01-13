@@ -26,12 +26,12 @@ const TabUserProfile = ({user}) => {
                     </Nav>
                 </Col>
                 <Col sm={10}>
-                    <Tab.Content>
+                    <Tab.Content className="reviews-tab-content">
                         <Tab.Pane eventKey="first">
                             <UserInformationContainer user={user}/>
                         </Tab.Pane>
-                        <Tab.Pane eventKey="second">
-                            <ReviewsContainer reviews={user['reviews']}/>
+                        <Tab.Pane eventKey="second" className="reviews-tap-pane">
+                            <ReviewsContainer userId={user['@id']}/>
                             {/*<PaginationSystem*/}
                             {/*    totalItems={reviews.length}*/}
                             {/*    currentPage={1}*/}
