@@ -6,11 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-<<<<<<< HEAD
-        "api-platform/core": "^2.1",
-=======
         "api-platform/core": "2.5.x-dev",
->>>>>>> 86e250389ab11f18b2c4bc89a904ec9d2aa02f5b
         "composer/package-versions-deprecated": "1.11.99.1",
         "doctrine/annotations": "^1.10",
         "doctrine/doctrine-bundle": "^1.6 || ^2.0",
@@ -44,8 +40,7 @@
         "symfony/validator": "5.1.*",
         "symfony/var-dumper": "5.1.*",
         "symfony/webpack-encore-bundle": "^1.7",
-        "symfony/yaml": "5.1.*",
-        "vich/uploader-bundle": "^1.15"
+        "symfony/yaml": "5.1.*"
     },
     "require-dev": {
         "behat/behat": "^3.7",

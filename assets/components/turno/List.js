@@ -37,7 +37,7 @@
 //   render() {
 //     return (
 //       <div>
-//         <h2>Turno List</h2>
+//         <h2>AvailableDate List</h2>
 
 //         {this.props.loading && (
 //           <div className="alert alert-info">Loading...</div>

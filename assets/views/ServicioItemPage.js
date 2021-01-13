@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ServicioItem from "../components/ServicioItem";
-import { serviceItemFetch } from '../redux/service/serviceActions'
+import { serviceFetch } from '../redux/service/show/serviceShowActions'
 import { useDispatch, useSelector } from 'react-redux';
 import { Alert } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

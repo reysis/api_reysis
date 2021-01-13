@@ -62,7 +62,7 @@ const NavUser = () => {
         }
     }, [authenticated])
 
-    const perfilClick = () => history.push('/cuenta')
+    const perfilClick = () => history.push('/profile')
 
     const comentariosClick = () => {
         handleProfileShow(false)

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Carousel, CarouselItem, Image, Alert } from 'react-bootstrap';
-import { opinionFetch } from '../redux/opinion/opinionActions';
+import { opinionFetch } from '../redux/opinion/list/opinionListActions';
 import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,9 +17,9 @@ import OpinionsItem from './OpinionsItem'
 
 const Opinions = () => {
 
-	const loading = useSelector(state => state.opinion.loading)
-	const opinions = useSelector(state => state.opinion.opinions)
-	const error = useSelector(state => state.opinion.error)
+	const loading = useSelector(state => state.opinion.list.loading)
+	const opinions = useSelector(state => state.opinion.list.opinions)
+	const error = useSelector(state => state.opinion.list.error)
 
 	const dispatch = useDispatch()
 

@@ -1,4 +1,4 @@
-import { OPINIONS_LIST_REQUEST, OPINIONS_LIST_SUCCESS, OPINIONS_LIST_ERROR } from './opinionTypes'
+import { OPINIONS_LIST_REQUEST, OPINIONS_LIST_SUCCESS, OPINIONS_LIST_ERROR } from './opinionListTypes'
 
 const initialState = {
     loading: false,
@@ -6,7 +6,7 @@ const initialState = {
     error: ''
 }
 
-const opinionReducer = (state = initialState, { type, payload }) => {
+const opinionListReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case OPINIONS_LIST_REQUEST:
             return {
@@ -30,4 +30,4 @@ const opinionReducer = (state = initialState, { type, payload }) => {
     }
 }
 
-export default opinionReducer
+export default opinionListReducer

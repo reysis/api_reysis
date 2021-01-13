@@ -5,12 +5,14 @@ import history from '../history';
 import turno from './turno';
 import tipoUsuario from './tipo_usuario/tipoUsuarioReducer';
 import auth from './auth/authReducer';
-import opinion from './opinion/opinionReducer';
-import service from './service/serviceReducer';
+import opinion from './opinion';
+import service from './service';
 import faq from './faq/faqReducer';
 import notification from './notification/notificationReducer'
 import contactMessage from './contact_message/messageReducer'
 import configuration from './configuration/configurationReducer'
+import user from './user';
+import mediaObject from './mediaObject';
 
 export default combineReducers({
     router: connectRouter(history),
@@ -22,5 +24,7 @@ export default combineReducers({
     faq,
     notification,
     contactMessage,
-    configuration
+    configuration,
+    user,
+    mediaObject
 });

@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Carousel, Image } from 'react-bootstrap'
-import { faStar as faStarFull, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons'
+import ShowStars from "./layouts/ShowStars";
 
 const OpinionsItem = ({ image, autor, reviewText, stars, likes, datePublished }) => {
-
-    const getStars = (s) => {
-        const res = []
-        for (let i = 0; i < s; i++)
-            res.push(<FontAwesomeIcon key={"stars" + i} icon={faStarFull} />)
-        for (let i = s; i < 5; i++)
-            res.push(<FontAwesomeIcon key={"stars" + i} icon={faStarEmpty} />)
-        return res;
-    }
 
     const [like, setLike] = useState(likes)
 
@@ -31,9 +22,7 @@ const OpinionsItem = ({ image, autor, reviewText, stars, likes, datePublished })
             <div className="carousel-detail">
                 <span className="carousel-published">{moment(datePublished).fromNow()}</span>
                 <div className="carousel-stars">
-                    {
-                        getStars(stars)
-                    }
+                    <ShowStars times={stars}/>
                 </div>
                 <div onClick={likeClick} className="carousel-likes">
                     <FontAwesomeIcon icon={faThumbsUp} />

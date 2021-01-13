@@ -1,7 +1,6 @@
 import {
-    SERVICE_LIST_REQUEST, SERVICE_LIST_SUCCESS, SERVICE_LIST_ERROR,
-    SERVICE_ITEM_REQUEST, SERVICE_ITEM_SUCCESS, SERVICE_ITEM_ERROR
-} from './serviceTypes'
+    SERVICE_LIST_REQUEST, SERVICE_LIST_SUCCESS, SERVICE_LIST_ERROR
+} from './serviceListTypes'
 
 const initialState = {
     loading: false,
@@ -15,7 +14,7 @@ const initialState = {
     itemError: null
 }
 
-const serviceReducer = (state = initialState, { type, payload }) => {
+const serviceListReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case SERVICE_LIST_REQUEST:
             return {
@@ -40,28 +39,9 @@ const serviceReducer = (state = initialState, { type, payload }) => {
                 loading: false,
                 error: payload
             }
-        case SERVICE_ITEM_REQUEST:
-            return {
-                ...state,
-                itemLoading: true
-            }
-        case SERVICE_ITEM_SUCCESS:
-            return {
-                ...state,
-                itemLoading: false,
-                itemService: payload,
-                itemError: null
-            }
-        case SERVICE_ITEM_ERROR:
-            return {
-                ...state,
-                itemLoading: false,
-                itemService: {},
-                itemError: payload
-            }
-        default:
+                default:
             return state
     }
 }
 
-export default serviceReducer
+export default serviceListReducer

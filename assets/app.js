@@ -12,6 +12,7 @@ import NotFoundPage from './components/Errors/NotFoundPage';
 import turnoRoutes from './routes/turno';
 import navbarRoutes from './routes/navbar';
 import authenticationsRoutes from './routes/authentication';
+import userRoutes from './routes/user';
 
 import { ConnectedRouter } from 'connected-react-router';
 
@@ -48,6 +49,7 @@ const App = () => {
                 {navbarRoutes}
                 {turnoRoutes}
                 {authenticationsRoutes}
+                {userRoutes}
                 <Route component={NotFoundPage} key="notfound" />
             </Switch>
             <LoaderSpinner />

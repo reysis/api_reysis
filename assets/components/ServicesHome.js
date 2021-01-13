@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
 import PropTypes from "prop-types";
-import { serviceFetch } from '../redux/service/serviceActions';
+import { servicesFetch } from '../redux/service/list/serviceListActions';
 
 import ServiceCard from '../components/ServiceCard';
 
@@ -20,7 +20,7 @@ const ServicesHome = () => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		dispatch(serviceFetch())
+		dispatch(servicesFetch())
 	}, [])
 
 	const [paginations, setPaginations] = useState([])
