@@ -29,7 +29,12 @@ class CustomUploaderHelper
 
     private $publicAssetBaseUrl;
 
-    public function __construct(FilesystemInterface $publicUploadsFilesystem,FilesystemInterface $privateUploadsFilesystem, RequestStackContext $requestStackContext, LoggerInterface $logger, string $uploadedAssetsBaseUrl)
+    public function __construct(
+        FilesystemInterface $publicUploadsFilesystem,
+        FilesystemInterface $privateUploadsFilesystem,
+        RequestStackContext $requestStackContext,
+        LoggerInterface $logger,
+        string $uploadedAssetsBaseUrl)
     {
         $this->publicFilesystem = $publicUploadsFilesystem;
         $this->privateFilesystem = $privateUploadsFilesystem;

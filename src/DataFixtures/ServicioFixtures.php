@@ -13,7 +13,6 @@ use League\Flysystem\FilesystemInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Filesystem\Filesystem;
 use App\Services\CustomUploaderHelper;
-use Vich\UploaderBundle\Storage\StorageInterface;
 
 class ServicioFixtures extends BaseFixture
 {
@@ -30,19 +29,15 @@ class ServicioFixtures extends BaseFixture
 
     private $publicFileSystem;
 
-    private $storage;
-
     private $mediaObjectRepository;
 
     public function __construct(
         FilesystemInterface $publicUploadFilesystem,
         CustomUploaderHelper $uploaderHelper,
-        MediaObjectRepository $mediaObjectRepository,
-        StorageInterface $storage)
+        MediaObjectRepository $mediaObjectRepository)
     {
         $this->uploaderHelper = $uploaderHelper;
         $this->publicFileSystem = $publicUploadFilesystem;
-        $this->storage = $storage;
         $this->mediaObjectRepository = $mediaObjectRepository;
     }
 
@@ -65,7 +60,7 @@ class ServicioFixtures extends BaseFixture
                 $mediaObject = new MediaObject();
                 $mediaObject->setFile($file);
                 $mediaObject->setFilePath(
-                    $this->uploaderHelper->uploadServiceImage($file, null)
+                    "service_image/".$this->uploaderHelper->uploadServiceImage($file, null)
                 );
                 $manager->persist($mediaObject);
                 $servicio->addServiceImage($mediaObject);

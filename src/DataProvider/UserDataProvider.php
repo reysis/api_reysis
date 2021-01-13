@@ -10,13 +10,13 @@ use ApiPlatform\Core\DataProvider\DenormalizedIdentifiersAwareItemDataProviderIn
 use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use App\Entity\MediaObject;
+use App\Entity\User;
 use App\Services\CustomUploaderHelper;
-use Vich\UploaderBundle\Storage\StorageInterface;
 
-class MediaObjectDataProvider implements ContextAwareCollectionDataProviderInterface, RestrictedDataProviderInterface, DenormalizedIdentifiersAwareItemDataProviderInterface
+class UserDataProvider implements ContextAwareCollectionDataProviderInterface, RestrictedDataProviderInterface, DenormalizedIdentifiersAwareItemDataProviderInterface
 {
-    private $collectionDataProvider;
-    private $itemDataProvider;
+    private CollectionDataProviderInterface $collectionDataProvider;
+    private ItemDataProviderInterface $itemDataProvider;
     private CustomUploaderHelper $customUploaderHelper;
 
     public function __construct(
@@ -31,32 +31,38 @@ class MediaObjectDataProvider implements ContextAwareCollectionDataProviderInter
 
     public function getCollection(string $resourceClass, string $operationName = null, array $context = [])
     {
-        $mediaObjects = $this->collectionDataProvider->getCollection($resourceClass, $operationName, $context);
+        $arrayOfUsers = $this->collectionDataProvider->getCollection($resourceClass, $operationName, $context);
 
         /**
-         * @var MediaObject $mediaObject
+         * @var User $user
+         * @var MediaObject $image
          */
-        foreach ($mediaObjects as $mediaObject){
-            $mediaObject->setContentUrl($this->customUploaderHelper->getPublicPath($mediaObject->getFilePath()));
+        foreach ($arrayOfUsers as $user){
+            $uri = $this->customUploaderHelper->getPublicPath($user->getProfilePicture()->getFilePath());
+            $user->getProfilePicture()->setContentUrl($uri);
         }
+
+        return $arrayOfUsers;
     }
+
     public function getItem(string $resourceClass, $id, string $operationName = null, array $context = [])
     {
         /**
-         * @var MediaObject $mediaObject
+         * @var User $user
          */
-        $mediaObject = $this->collectionDataProvider->getItem($resourceClass, $id, $operationName);
+        $user = $this->itemDataProvider->getItem($resourceClass, $id, $operationName);
 
-        if(!$mediaObject){
+        if(!$user){
             return null;
         }
-        $mediaObject->setContentUrl($this->customUploaderHelper->getPublicPath($mediaObject->getFilePath()));
 
-        return $mediaObject;
+        $user->getProfilePicture()->setContentUrl($this->customUploaderHelper->getPublicPath($user->getProfilePicture()->getFilePath()));
+
+        return $user;
     }
 
     public function supports(string $resourceClass, string $operationName = null, array $context = []): bool
     {
-        return $resourceClass === MediaObject::class;
+        return $resourceClass === User::class;
     }
 }

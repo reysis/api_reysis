@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\DTO\MediaObject\MediaObjectInput;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -245,7 +244,6 @@ class User implements UserInterface
      * @Groups({"user:read", "user:write", "admin:write", "admin:item:get"})
      * @var MediaObject
      * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="user", cascade={"persist", "remove"})
-     *
      */
     private $profilePicture;
 

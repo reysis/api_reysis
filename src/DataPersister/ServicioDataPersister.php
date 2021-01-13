@@ -89,7 +89,7 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
             $mediaObject->setFile($uploadedFile);
             $mediaObject->setUpdatedAt(new \DateTime());
             $mediaObject->setFilePath(
-                $this->uploaderHelper->uploadServiceImage($uploadedFile, null)
+                "service_image/".$this->uploaderHelper->uploadServiceImage($uploadedFile, null)
             );
             $this->entityManager->persist($mediaObject);
             if(!$uploadedFile){
@@ -98,7 +98,7 @@ class ServicioDataPersister implements ContextAwareDataPersisterInterface
 
             $serviceImage->setFile($uploadedFile);
             $serviceImage->setFilePath(
-                $this->uploaderHelper->uploadServiceImage($uploadedFile, $serviceImage->getFile())
+                "service_image/".$this->uploaderHelper->uploadServiceImage($uploadedFile, $serviceImage->getFile())
             );
         }
         $this->entityManager->flush();

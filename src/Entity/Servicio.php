@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\DTO\MediaObject\MediaObjectInput;
 use App\Repository\ServicioRepository;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -11,7 +10,6 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ApiResource(
@@ -30,7 +28,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *     },
  * )
  * @ORM\Entity(repositoryClass=ServicioRepository::class)
- * @Vich\Uploadable
  */
 class Servicio
 {

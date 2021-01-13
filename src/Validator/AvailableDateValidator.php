@@ -32,6 +32,13 @@ class AvailableDateValidator extends ConstraintValidator
         }
 
         $availableDate = $this->availableDateRepository->findOneByDate($value);
+
+        if(!$availableDate){
+            $this->context->buildViolation($constraint->message)
+                ->setParameter('{{ value }}', $value->format('Y-m-d H:i:s'))
+                ->addViolation();
+        }
+
         if($availableDate->getAmountAvailable() === 0){
             // TODO: implement the validation here
             $this->context->buildViolation($constraint->message)

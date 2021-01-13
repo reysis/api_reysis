@@ -30,6 +30,9 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *                  "security_message" = "Solo el propio usuario que la redacto puede eliminar una review"
  *          }
  *      },
+ *     attributes={
+ *          "pagination_items_per_page" = 10
+ *     }
  * )
  * @ApiFilter(PropertyFilter::class)
  * @ApiFilter(

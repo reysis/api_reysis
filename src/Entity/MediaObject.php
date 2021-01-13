@@ -3,14 +3,11 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use App\DTO\MediaObject\MediaObjectOutput;
 
 /**
  * @ORM\Entity
@@ -35,7 +32,6 @@ use App\DTO\MediaObject\MediaObjectOutput;
  *         "delete"
  *     }
  * )
- * @Vich\Uploadable
  */
 class MediaObject
 {
@@ -49,14 +45,13 @@ class MediaObject
     protected $id;
 
     /**
-     * @Groups({"mediaobject:read", "servicio:read"})
+     * @Groups({"mediaobject:read", "servicio:read", "user:item:get"})
      * @var string|null
      */
     public $contentUrl;
 
     /**
      * @var File|null
-     * @Vich\UploadableField(mapping="typeService", fileNameProperty="filePath")
      */
     public $file;
 

@@ -11,19 +11,23 @@ use ApiPlatform\Core\DataProvider\ItemDataProviderInterface;
 use ApiPlatform\Core\DataProvider\RestrictedDataProviderInterface;
 use App\Entity\MediaObject;
 use App\Entity\Servicio;
+use App\Services\CustomUploaderHelper;
 use Vich\UploaderBundle\Storage\StorageInterface;
 
 class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface, RestrictedDataProviderInterface, DenormalizedIdentifiersAwareItemDataProviderInterface
 {
-    private $storage;
     private $collectionDataProvider;
     private $itemDataProvider;
+    private CustomUploaderHelper $customUploaderHelper;
 
-    public function __construct(CollectionDataProviderInterface $collectionDataProvider,StorageInterface $storage, ItemDataProviderInterface $itemDataProvider)
+    public function __construct(
+        CollectionDataProviderInterface $collectionDataProvider,
+        CustomUploaderHelper $customUploaderHelper,
+        ItemDataProviderInterface $itemDataProvider)
     {
-        $this->storage = $storage;
         $this->collectionDataProvider = $collectionDataProvider;
         $this->itemDataProvider = $itemDataProvider;
+        $this->customUploaderHelper = $customUploaderHelper;
     }
 
     public function getCollection(string $resourceClass, string $operationName = null, array $context = [])
@@ -39,8 +43,7 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
          */
         foreach ($arrayOfServices as $service){
             foreach ($service->getServiceImages() as $image) {
-                $uri = $this->storage->resolveUri($image, 'file');
-                dump($image,$uri);
+                $uri = $this->customUploaderHelper->getPublicPath($image->getFilePath());
                 $image->setContentUrl($uri);
             }
         }
@@ -60,7 +63,7 @@ class ServiceDataProvider implements ContextAwareCollectionDataProviderInterface
         }
 
         foreach ($service->getServiceImages() as $mediaObject){
-            $mediaObject->setContentUrl($this->storage->resolveUri($mediaObject, 'file'));
+            $mediaObject->setContentUrl($this->customUploaderHelper->getPublicPath($mediaObject->getFilePath()));
         }
         return $service;
     }
