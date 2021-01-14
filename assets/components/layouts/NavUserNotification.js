@@ -6,6 +6,7 @@ import { faBell, faCircle, faEllipsisH, faTimes } from '@fortawesome/free-solid-
 import { notificationGet, notificationReadPut } from '../../redux/notification/notificationActions'
 
 import { DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from 'reactstrap'
+import Moment from 'react-moment'
 
 const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
 
@@ -120,7 +121,7 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                                             <div className="nav-notification__menu-items__item-container" >
                                                 <div className="nav-notification__menu-items__item-container-left" >
                                                     <span className={readed ? "nav-notification__menu-items__item-container-left--text" : "nav-notification__menu-items__item-container-left--text nonreaded"} >{description}</span>
-                                                    <span className="nav-notification__menu-items__item-container-left--date">{moment(date).fromNow()}</span>
+                                                    <Moment fromNow className="nav-notification__menu-items__item-container-left--date">{date}</Moment>
                                                 </div>
                                                 <div className={readed ? "nav-notification__menu-items__item-container-right" : "nav-notification__menu-items__item-container-right nonreaded"}>
                                                     {
@@ -146,7 +147,7 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                                             <div className="nav-notification__menu-items__item-container" >
                                                 <div className="nav-notification__menu-items__item-container-left" >
                                                     <span className={readed ? "nav-notification__menu-items__item-container-left--text" : "nav-notification__menu-items__item-container-left--text nonreaded"} >{description}</span>
-                                                    <span className="nav-notification__menu-items__item-container-left--date">{moment(date).fromNow()}</span>
+                                                    <Moment fromNow className="nav-notification__menu-items__item-container-left--date">{date}</Moment>
                                                 </div>
                                                 <div className={readed ? "nav-notification__menu-items__item-container-right" : "nav-notification__menu-items__item-container-right nonreaded"}>
                                                     {/* {

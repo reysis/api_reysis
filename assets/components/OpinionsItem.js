@@ -3,6 +3,7 @@ import { Carousel, Image } from 'react-bootstrap'
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ShowStars from "./layouts/ShowStars";
+import Moment from 'react-moment'
 
 const OpinionsItem = ({ image, autor, reviewText, stars, likes, datePublished }) => {
 
@@ -20,7 +21,7 @@ const OpinionsItem = ({ image, autor, reviewText, stars, likes, datePublished })
             <h2 className="my-3 text-author">{autor}</h2>
             <p className="my-3">{reviewText}</p>
             <div className="carousel-detail">
-                <span className="carousel-published">{moment(datePublished).fromNow()}</span>
+                <Moment fromNow className="carousel-published">{datePublished}</Moment>
                 <div className="carousel-stars">
                     <ShowStars times={stars}/>
                 </div>
