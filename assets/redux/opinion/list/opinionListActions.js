@@ -25,6 +25,7 @@ export const opinionFetch = (url) => async dispatch => {
     dispatch(opinionRequest());
 
     try {
+        console.log(url);
         const review_resp = await fetch(url);
         const response = await review_resp.json();
         console.log(response);

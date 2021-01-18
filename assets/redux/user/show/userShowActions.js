@@ -33,7 +33,6 @@ export const userShow = (id) => (dispatch, getState) => {
     fetch(page, {headers})
         .then(res => res.json())
         .then(res => {
-            console.log(`RESPONSE ${res}`);
             dispatch(userShowSuccess(res));
         })
         .catch(error => {

@@ -7,36 +7,6 @@ export const getHeaders = (state) => {
     return new Headers(headers)
 }
 
-export const getOpinionsFiltersURL = (
-    pag = 1,
-    user = "",
-    before = null,
-    strictlyBefore = null,
-    after = null,
-    strictlyAfter = null,
-    reviewText = "") =>
-{
-    let url = "/api/reviews?";
-
-    if(user !== ""){
-        url === "/api/reviews?" ? (url += 'user=' + user.replace('/','%2F')) : (url += '&user=' + user.replace('/','%2F'));
-    }
-    if(before)
-        url === "/api/reviews?" ? (url += "datePublished%5Bbefore%5D=" + before) : (url += "&datePublished%5Bbefore%5D=" + before);
-    if(strictlyBefore)
-        url === "/api/reviews?" ? (url += "datePublished%5Bstrictly_before%5D=" + strictlyBefore) : (url += "&datePublished%5Bstrictly_before%5D=" + strictlyBefore);
-    if(after)
-        url === "/api/reviews?" ? (url += "datePublished%5Bafter%5D=" + after) : (url += "&datePublished%5Bafter%5D=" + after);
-    if(strictlyAfter)
-        url === "/api/reviews?" ? (url += "datePublished%5Bstrictly_after%5D=" + strictlyAfter) : (url += "&datePublished%5Bstrictly_after%5D=" + strictlyAfter);
-    if(reviewText !== "")
-        url === "/api/reviews?" ? (url += "reviewText=" + reviewText) : (url += "&reviewText=" + reviewText);
-
-    url === "/api/reviews?" ? ( url += 'page=' + pag) : (url += '&page=' + pag);
-
-    return url;
-}
-
 export const decodeLastPage = (page = "") => {
     let sol = "";
     for(let i = page.length - 1; page[i] !== '='; i--){
@@ -58,4 +28,117 @@ export const changePageNumberFromURL = (page, newValue) =>{
     let sol = page.slice(0, i);
     console.log(`CADENA PICADA = ${sol}`);
     return sol + newValue;
+}
+
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
+export const getHoursFromDate = (date) =>{
+    console.log(date);
+    let h = date.getHours();
+    let m = date.getMinutes();
+
+    return addZero(h) + ':' + addZero(m);
+}
+
+export const getFormatedDate = (date) =>{
+    let m = date.getMonth() + 1;
+    if(m < 10)
+        m = '0'+ m;
+    let dateString = "";
+    dateString = dateString + date.getFullYear() + '-' + m + '-' + date.getDate();
+    return dateString;
+}
+
+export const addDays = (date, amountOfDays) => {
+    return date.setSeconds(amountOfDays * 86400);
+}
+
+// Parse an ISO date string (i.e. "2019-01-18T00:00:00.000Z",
+// "2019-01-17T17:00:00.000-07:00", or "2019-01-18T07:00:00.000+07:00",
+// which are the same time) and return a JavaScript Date object with the
+// value represented by the string.
+export const isoStringToDate = ( isoString ) => {
+
+    // Split the string into an array based on the digit groups.
+    var dateParts = isoString.split( /\D+/ );
+
+    // Set up a date object with the current time.
+    var returnDate = new Date();
+
+    // Manually parse the parts of the string and set each part for the
+    // date. Note: Using the UTC versions of these functions is necessary
+    // because we're manually adjusting for time zones stored in the
+    // string.
+    returnDate.setUTCFullYear( parseInt( dateParts[ 0 ] ) );
+
+    // The month numbers are one "off" from what normal humans would expect
+    // because January == 0.
+    returnDate.setUTCMonth( parseInt( dateParts[ 1 ] - 1 ) );
+    returnDate.setUTCDate( parseInt( dateParts[ 2 ] ) );
+
+    // Set the time parts of the date object.
+    returnDate.setUTCHours( parseInt( dateParts[ 3 ] ) );
+    returnDate.setUTCMinutes( parseInt( dateParts[ 4 ] ) );
+    returnDate.setUTCSeconds( parseInt( dateParts[ 5 ] ) );
+    returnDate.setUTCMilliseconds( parseInt( dateParts[ 6 ] ) );
+
+    // Track the number of hours we need to adjust the date by based
+    // on the timezone.
+    var timezoneOffsetHours = 0;
+
+    // If there's a value for either the hours or minutes offset.
+    if ( dateParts[ 7 ] || dateParts[ 8 ] ) {
+
+        // Track the number of minutes we need to adjust the date by
+        // based on the timezone.
+        var timezoneOffsetMinutes = 0;
+
+        // If there's a value for the minutes offset.
+        if ( dateParts[ 8 ] ) {
+
+            // Convert the minutes value into an hours value.
+            timezoneOffsetMinutes = parseInt( dateParts[ 8 ] ) / 60;
+        }
+
+        // Add the hours and minutes values to get the total offset in
+        // hours.
+        timezoneOffsetHours = parseInt( dateParts[ 7 ] ) + timezoneOffsetMinutes;
+
+        // If the sign for the timezone is a plus to indicate the
+        // timezone is ahead of UTC time.
+        if ( isoString.substr( -6, 1 ) === "+" ) {
+
+            // Make the offset negative since the hours will need to be
+            // subtracted from the date.
+            timezoneOffsetHours *= -1;
+        }
+    }
+
+    // Get the current hours for the date and add the offset to get the
+    // correct time adjusted for timezone.
+    returnDate.setHours( returnDate.getHours() + timezoneOffsetHours );
+
+    // Return the Date object calculated from the string.
+    return returnDate;
+}
+
+export const changeTimeZone = (date, ianatz) =>{
+    var invdate = new Date(date.toLocaleString('en-US',{
+        timeZone: ianatz
+    }));
+
+    var diff = date.getTime() - invdate.getTime();
+
+    return new Date(date.getTime() - diff);
+}
+
+export const getIdFromUrl = (url) =>{
+    let array = url.split("/");
+
+    return array[array.length - 1];
 }

@@ -40,8 +40,7 @@ const authReducer = (state = initialState, { type, payload }) => {
 				error: null
 			}
 		case AUTH_LOGOUT_SUCCESS:
-			localStorage.removeItem('token');
-			localStorage.removeItem('tokenUser');
+			localStorage.clear();
 			return {
 				loading: false,
 				authenticated: false,
@@ -70,6 +69,8 @@ const authReducer = (state = initialState, { type, payload }) => {
 		case AUTH_SAVE_TOKEN:
 			localStorage.setItem('token', payload.token)
 			localStorage.setItem('tokenUser', payload.tokenUser)
+			localStorage.setItem('refreshToken', payload.refreshToken)
+			console.log(payload);
 			return {
 				...state,
 				...payload

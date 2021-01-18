@@ -1,8 +1,8 @@
 import {
-    TURNO_UPDATE_SUCCESS,
-    TURNO_UPDATE_REQUEST,
-    TURNO_UPDATE_ERROR
-} from './updateTurnoTypes'
+    USER_DELETE_ERROR,
+    USER_DELETE_REQUEST,
+    USER_DELETE_SUCCESS
+} from './deleteUserTypes'
 
 const initialState = {
     loading: false,
@@ -10,20 +10,20 @@ const initialState = {
     error: null
 }
 
-const turnoUpdateReducer = (state = initialState, { type, payload }) => {
+const userDeleteReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case TURNO_UPDATE_REQUEST:
+        case USER_DELETE_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case TURNO_UPDATE_SUCCESS:
+        case USER_DELETE_SUCCESS:
             return {
                 loading: false,
                 user: payload,
                 error: null
             }
-        case TURNO_UPDATE_ERROR:
+        case USER_DELETE_ERROR:
             return {
                 loading: false,
                 user: null,
@@ -34,4 +34,4 @@ const turnoUpdateReducer = (state = initialState, { type, payload }) => {
     }
 }
 
-export default turnoUpdateReducer
+export default userDeleteReducer

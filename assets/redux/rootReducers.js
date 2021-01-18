@@ -3,6 +3,7 @@ import { connectRouter } from 'connected-react-router';
 import history from '../history';
 
 import turno from './turno';
+import availableDate from './availableDate';
 import auth from './auth/authReducer';
 import opinion from './opinion';
 import service from './service';
@@ -16,6 +17,7 @@ import mediaObject from './mediaObject';
 export default combineReducers({
     router: connectRouter(history),
     turno,
+    availableDate,
     auth,
     service,
     opinion,

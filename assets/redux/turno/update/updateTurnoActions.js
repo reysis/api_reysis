@@ -1,141 +1,68 @@
 import {
-	RETRIEVE_TURNO_ERROR,
-	RETRIEVE_TURNO_REQUEST,
-	RETRIEVE_TURNO_SUCCESS
+	TURNO_UPDATE_ERROR,
+	TURNO_UPDATE_REQUEST,
+	TURNO_UPDATE_SUCCESS
 } from './updateTurnoTypes'
 
 import { fetch } from "../../../utils/dataAccess";
+import {getHeaders} from "../../utiles";
 
-import { createTurnoRequest } from "../create/createTurnoActions";
-import { loading, error } from "./delete";
-
-export const retrieveTurnoRequest = () => {
+export const updateTurnoRequest = () => {
 	return {
-		type: RETRIEVE_TURNO_REQUEST
+		type: TURNO_UPDATE_REQUEST
 	};
 }
 
-export const retrieveTurnoSuccess = (retrieved) => {
+export const updateTurnoSuccess = (retrieved) => {
 	return {
-		type: "RETRIEVE_TURNO_SUCCESS",
+		type: TURNO_UPDATE_SUCCESS,
 		payload: retrieved
 	};
 }
 
-export const retrieveTurnoError = (error) => {
+export const updateTurnoError = (error) => {
 	return {
-		type: RETRIEVE_TURNO_ERROR,
+		type: TURNO_UPDATE_ERROR,
 		payload: error
 	};
 }
 
-export const retrieveTurnoFetch = (id) => dispatch => {
-	dispatch(retrieveTurnoRequest());
+export const updateTurnoFetch = (id, {fecha, defecto, turno}) => dispatch => {
+	dispatch(updateTurnoRequest());
 
-	return fetch(id)
+	const page = "/api/turnos/" + id;
+	const method = "PUT"
+	let values ={};
+	if(fecha !== "" && fecha !== turno['fecha']){
+		values = {
+			...values,
+			fecha: fecha
+		};
+	}
+	if(defecto !== "" && defecto !== turno['defectp']){
+		values = {
+			...values,
+			fecha: fecha
+		};
+	}
+	const headers = getHeaders(getState);
+	const body = JSON.stringify({
+		fecha: fecha,
+		defecto: defecto,
+		user: turno['user']['@id']
+	})
+	return fetch(id, {method, values, headers})
 		.then(res => res.json())
 		.then(res => {
 			const response = {
 				...res,
 				id: res['@id']
 			}
-			dispatch(retrieveTurnoSuccess(response))
+			dispatch(updateTurnoSuccess(response))
 		})
 		.catch(error => {
-			dispatch(retrieveTurnoError(error.message))
+			dispatch(updateTurnoError(error.message))
 		})
 }
 
-export const updateTurnoRequest = () => {
-	return {
-		type: UPDATE_TURNO_REQUEST,
-	};
-}
 
-export const updateTurnoSuccess = (updated) => {
-	return {
-		type: "UPDATE_TURNO_SUCCESS",
-		payload: updated
-	};
-}
-
-export const updateTurnoError = (error) => {
-	return {
-		type: UPDATE_TURNO_ERROR,
-		payload: error
-	};
-}
-
-export const updateTurnoFetch = (item, values) => dispatch => {
-	dispatch(updateError(null));
-	dispatch(createSuccess(null));
-	dispatch(updateLoading(true));
-
-	return fetch(item["@id"], {
-		method: "PUT",
-		body: JSON.stringify(values)
-	})
-		.then(response =>
-			response
-				.json()
-				.then(retrieved => ({
-					retrieved,
-					hubURL: extractHubURL(response)
-				}))
-		)
-		.then(({ retrieved, hubURL }) => {
-			retrieved = normalize(retrieved);
-
-			dispatch(updateLoading(false));
-			dispatch(updateSuccess(retrieved));
-
-			if (hubURL)
-				dispatch(mercureSubscribe(hubURL, retrieved["@id"]));
-		})
-		.catch(e => {
-			dispatch(updateLoading(false));
-
-			if (e instanceof SubmissionError) {
-				dispatch(updateError(e.errors._error));
-				throw e;
-			}
-
-			dispatch(updateError(e.message));
-		});
-};
-
-export function reset(eventSource) {
-	return dispatch => {
-		if (eventSource) eventSource.close();
-
-		dispatch({ type: "TURNO_UPDATE_RESET" });
-		dispatch(error(null));
-		dispatch(loading(false));
-		dispatch(createSuccess(null));
-	};
-}
-
-export function mercureSubscribe(hubURL, topic) {
-	return dispatch => {
-		const eventSource = subscribe(hubURL, [topic]);
-		dispatch(mercureOpen(eventSource));
-		eventSource.addEventListener("message", event =>
-			dispatch(mercureMessage(normalize(JSON.parse(event.data))))
-		);
-	};
-}
-
-export function mercureOpen(eventSource) {
-	return { type: "TURNO_UPDATE_MERCURE_OPEN", eventSource };
-}
-
-export function mercureMessage(retrieved) {
-	return dispatch => {
-		if (1 === Object.keys(retrieved).length) {
-			dispatch({ type: "TURNO_UPDATE_MERCURE_DELETED", retrieved });
-			return;
-		}
-
-		dispatch({ type: "TURNO_UPDATE_MERCURE_MESSAGE", retrieved });
-	};
-}

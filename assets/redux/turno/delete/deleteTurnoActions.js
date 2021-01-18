@@ -1,29 +1,33 @@
 import { fetch } from '../../utils/dataAccess';
-
-export function error(error) {
-  return { type: 'TURNO_DELETE_ERROR', error };
+import {
+  TURNO_DELETE_ERROR,
+  TURNO_DELETE_REQUEST,
+  TURNO_DELETE_SUCCESS
+} from './deleteTurnoTypes'
+export function turnoDeleteError(error) {
+  return { type: TURNO_DELETE_ERROR, error };
 }
 
-export function loading(loading) {
-  return { type: 'TURNO_DELETE_LOADING', loading };
+export function turnoDeleteRequest(loading) {
+  return { type: TURNO_DELETE_REQUEST, loading };
 }
 
-export function success(deleted) {
-  return { type: 'TURNO_DELETE_SUCCESS', deleted };
+export function turnoDeleteSuccess(deleted) {
+  return { type: TURNO_DELETE_SUCCESS, deleted };
 }
 
-export function del(item) {
+export function turnoDelete(id) {
   return dispatch => {
-    dispatch(loading(true));
-
-    return fetch(item['@id'], { method: 'DELETE' })
-      .then(() => {
-        dispatch(loading(false));
-        dispatch(success(item));
-      })
-      .catch(e => {
-        dispatch(loading(false));
-        dispatch(error(e.message));
-      });
+    dispatch(turnoDeleteRequest(true));
+    const url = '/api/turnos/' + id;
+    return fetch(url, { method: 'DELETE' })
+        .then(() => {
+          dispatch(loading(false));
+          dispatch(success(item));
+        })
+        .catch(e => {
+          dispatch(loading(false));
+          dispatch(error(e.message));
+        });
   };
 }

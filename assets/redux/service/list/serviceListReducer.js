@@ -4,14 +4,8 @@ import {
 
 const initialState = {
     loading: false,
-    services: [],
-    totalItems: 0,
-    currentPage: 1,
-    lastPage: 1,
+    services: null,
     error: null,
-    itemLoading: false,
-    itemService: {},
-    itemError: null
 }
 
 const serviceListReducer = (state = initialState, { type, payload }) => {
@@ -24,20 +18,14 @@ const serviceListReducer = (state = initialState, { type, payload }) => {
         case SERVICE_LIST_SUCCESS:
             return {
                 loading: false,
-                services: payload.services,
-                totalItems: payload.totalItems,
-                currentPage: payload.currentPage,
-                lastPage: payload.lastPage,
+                services: payload,
                 error: null
             }
         case SERVICE_LIST_ERROR:
             return {
-                // services: [],
-                // totalItems: 0,
-                // currentPage: 1,
-                // lastPage: 1,
                 loading: false,
-                error: payload
+                error: payload,
+                services: null
             }
                 default:
             return state

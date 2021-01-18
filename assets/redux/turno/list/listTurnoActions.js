@@ -1,85 +1,46 @@
 import {
-  fetch,
-  normalize,
-  extractHubURL,
-  mercureSubscribe as subscribe
-} from '../../utils/dataAccess';
-import { success as deleteSuccess } from './delete';
+    LIST_TURNO_ERROR,
+    LIST_TURNO_REQUEST,
+    LIST_TURNO_SUCCESS
+} from "./listTurnoTypes";
 
-export function error(error) {
-  return { type: 'TURNO_LIST_ERROR', error };
-}
+import { fetch } from "../../../utils/dataAccess";
 
-export function loading(loading) {
-  return { type: 'TURNO_LIST_LOADING', loading };
-}
+import { getHeaders } from '../../utiles'
 
-export function success(retrieved) {
-  return { type: 'TURNO_LIST_SUCCESS', retrieved };
-}
+export const listTurnoRequest = () => {
+    return {
+        type: LIST_TURNO_REQUEST
+    };
+};
 
-export function list(page = '/api/turnos') {
-  return dispatch => {
-    dispatch(loading(true));
-    dispatch(error(''));
+export const listTurnoSuccess = turnos => {
+    return {
+        type: LIST_TURNO_SUCCESS,
+        payload: turnos
+    };
+};
 
-    fetch(page)
-      .then(response =>
-        response
-          .json()
-          .then(retrieved => ({ retrieved, hubURL: extractHubURL(response) }))
-      )
-      .then(({ retrieved, hubURL }) => {
-        retrieved = normalize(retrieved);
+export const listTurnoError = error => {
+    return {
+        type: LIST_TURNO_ERROR,
+        payload: error
+    };
+};
 
-        dispatch(loading(false));
-        dispatch(success(retrieved));
+export const listTurnoFetch = () => (dispatch, getState) => {
+    dispatch(listTurnoRequest());
 
-        if (hubURL && retrieved['hydra:member'].length)
-          dispatch(
-            mercureSubscribe(
-              hubURL,
-              retrieved['hydra:member'].map(i => i['@id'])
-            )
-          );
-      })
-      .catch(e => {
-        dispatch(loading(false));
-        dispatch(error(e.message));
-      });
-  };
-}
+    const page = "/api/turnos";
+    const headers = getHeaders(getState);
 
-export function reset(eventSource) {
-  return dispatch => {
-    if (eventSource) eventSource.close();
-
-    dispatch({ type: 'TURNO_LIST_RESET' });
-    dispatch(deleteSuccess(null));
-  };
-}
-
-export function mercureSubscribe(hubURL, topics) {
-  return dispatch => {
-    const eventSource = subscribe(hubURL, topics);
-    dispatch(mercureOpen(eventSource));
-    eventSource.addEventListener('message', event =>
-      dispatch(mercureMessage(normalize(JSON.parse(event.data))))
-    );
-  };
-}
-
-export function mercureOpen(eventSource) {
-  return { type: 'TURNO_LIST_MERCURE_OPEN', eventSource };
-}
-
-export function mercureMessage(retrieved) {
-  return dispatch => {
-    if (1 === Object.keys(retrieved).length) {
-      dispatch({ type: 'TURNO_LIST_MERCURE_DELETED', retrieved });
-      return;
-    }
-
-    dispatch({ type: 'TURNO_LIST_MERCURE_MESSAGE', retrieved });
-  };
-}
+    fetch(page, {headers})
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            dispatch(listTurnoSuccess(res));
+        })
+        .catch(error => {
+            dispatch(listTurnoError(error.message));
+        });
+};

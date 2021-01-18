@@ -1,32 +1,32 @@
 import {
-    TURNO_UPDATE_SUCCESS,
-    TURNO_UPDATE_REQUEST,
-    TURNO_UPDATE_ERROR
-} from './updateTurnoTypes'
+    LIST_TURNO_REQUEST,
+    LIST_TURNO_SUCCESS,
+    LIST_TURNO_ERROR
+} from './listTurnoTypes'
 
 const initialState = {
     loading: false,
-    user: null,
+    turnos: null,
     error: null
 }
 
-const turnoUpdateReducer = (state = initialState, { type, payload }) => {
+const listTurnoReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case TURNO_UPDATE_REQUEST:
+        case LIST_TURNO_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case TURNO_UPDATE_SUCCESS:
+        case LIST_TURNO_SUCCESS:
             return {
                 loading: false,
-                user: payload,
+                turnos: payload,
                 error: null
             }
-        case TURNO_UPDATE_ERROR:
+        case LIST_TURNO_ERROR:
             return {
                 loading: false,
-                user: null,
+                turnos: null,
                 error: payload
             }
         default:
@@ -34,4 +34,4 @@ const turnoUpdateReducer = (state = initialState, { type, payload }) => {
     }
 }
 
-export default turnoUpdateReducer
+export default listTurnoReducer

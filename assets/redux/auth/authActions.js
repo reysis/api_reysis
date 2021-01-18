@@ -26,6 +26,13 @@ export const loginSuccess = user => {
 	};
 };
 
+export const setUser = user =>{
+	return {
+		type: AUTH_SET_USER,
+		payload: user
+	};
+};
+
 export const loginError = error => {
 	return {
 		type: AUTH_LOGIN_ERROR,
@@ -75,8 +82,8 @@ export const saveToken = (token) => {
 
 export const loadUser = () => (dispatch, getState) => {
 
-	const page = getState().auth.tokenUser;
-	const token = getState().auth.token;
+	const page = localStorage.getItem('tokenUser');
+	const token = localStorage.getItem('token');
 
 	if (page && token) {
 		dispatch(loginRequest());
@@ -94,6 +101,8 @@ export const loadUser = () => (dispatch, getState) => {
 				dispatch(loginSuccess(response));
 			})
 			.catch(error => {
+				if(error.message === "Expired JWT Token"){}
+					//el token a expirado y necesito refrescar al usuario
 				dispatch(loginError(error.message));
 			});
 	}
@@ -121,9 +130,11 @@ export const loginFetch = ({ username, password }) => dispatch => {
 		.then(res => {
 			const token = res.token
 			const location = res.location
+			const refreshToken = res['refresh_token']
 			dispatch(saveToken({
 				token,
-				tokenUser: location
+				tokenUser: location,
+				refreshToken: refreshToken
 			}))
 			fetch(location, getUser(token))
 				.then(res => res.json())

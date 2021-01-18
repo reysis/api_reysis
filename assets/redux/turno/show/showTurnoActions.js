@@ -1,78 +1,48 @@
 import {
-  fetch,
-  extractHubURL,
-  normalize,
-  mercureSubscribe as subscribe
-} from '../../../utils/dataAccess';
+  TURNO_SHOW_ERROR,
+  TURNO_SHOW_REQUEST,
+  TURNO_SHOW_SUCCESS
+} from './showTurnoTypes'
 
-export function error(error) {
-  return { type: 'TURNO_SHOW_ERROR', error };
+import { fetch } from "../../../utils/dataAccess";
+import {getHeaders} from "../../utiles";
+
+export const showTurnoRequest = () => {
+  return {
+    type: TURNO_SHOW_REQUEST
+  };
 }
 
-export function loading(loading) {
-  return { type: 'TURNO_SHOW_LOADING', loading };
+export const showTurnoSuccess = (retrieved) => {
+  return {
+    type: TURNO_SHOW_SUCCESS,
+    payload: retrieved
+  };
 }
 
-export function success(retrieved) {
-  return { type: 'TURNO_SHOW_SUCCESS', retrieved };
+export const showTurnoError = (error) => {
+  return {
+    type: TURNO_SHOW_ERROR,
+    payload: error
+  };
 }
 
-export function retrieve(id) {
-  return dispatch => {
-    dispatch(loading(true));
+export const showTurnoFetch = (id) => (dispatch, getState) => {
+  dispatch(showTurnoRequest());
 
-    return fetch(id)
-      .then(response =>
-        response
-          .json()
-          .then(retrieved => ({ retrieved, hubURL: extractHubURL(response) }))
-      )
-      .then(({ retrieved, hubURL }) => {
-        retrieved = normalize(retrieved);
-
-        dispatch(loading(false));
-        dispatch(success(retrieved));
-
-        if (hubURL) dispatch(mercureSubscribe(hubURL, retrieved['@id']));
+  const page = "/api/turnos/" + id;
+  const method = "GET"
+  const headers = getHeaders(getState);
+  console.log(getState());
+  console.log(headers);
+  return fetch(page, {method, headers})
+      .then(res => res.json())
+      .then(res => {
+        dispatch(showTurnoSuccess(res))
       })
-      .catch(e => {
-        dispatch(loading(false));
-        dispatch(error(e.message));
-      });
-  };
+      .catch(error => {
+        dispatch(showTurnoError(error.message))
+      })
 }
 
-export function reset(eventSource) {
-  return dispatch => {
-    if (eventSource) eventSource.close();
 
-    dispatch({ type: 'TURNO_SHOW_RESET' });
-    dispatch(error(null));
-    dispatch(loading(false));
-  };
-}
-
-export function mercureSubscribe(hubURL, topic) {
-  return dispatch => {
-    const eventSource = subscribe(hubURL, [topic]);
-    dispatch(mercureOpen(eventSource));
-    eventSource.addEventListener('message', event =>
-      dispatch(mercureMessage(normalize(JSON.parse(event.data))))
-    );
-  };
-}
-
-export function mercureOpen(eventSource) {
-  return { type: 'TURNO_SHOW_MERCURE_OPEN', eventSource };
-}
-
-export function mercureMessage(retrieved) {
-  return dispatch => {
-    if (1 === Object.keys(retrieved).length) {
-      dispatch({ type: 'TURNO_SHOW_MERCURE_DELETED', retrieved });
-      return;
-    }
-
-    dispatch({ type: 'TURNO_SHOW_MERCURE_MESSAGE', retrieved });
-  };
-}

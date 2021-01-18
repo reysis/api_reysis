@@ -1,8 +1,8 @@
 import {
-    TURNO_UPDATE_SUCCESS,
-    TURNO_UPDATE_REQUEST,
-    TURNO_UPDATE_ERROR
-} from './updateTurnoTypes'
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_ERROR
+} from './updateUserTypes'
 
 const initialState = {
     loading: false,
@@ -10,20 +10,20 @@ const initialState = {
     error: null
 }
 
-const turnoUpdateReducer = (state = initialState, { type, payload }) => {
+const updateUserReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case TURNO_UPDATE_REQUEST:
+        case UPDATE_USER_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case TURNO_UPDATE_SUCCESS:
+        case UPDATE_USER_SUCCESS:
             return {
                 loading: false,
                 user: payload,
                 error: null
             }
-        case TURNO_UPDATE_ERROR:
+        case UPDATE_USER_ERROR:
             return {
                 loading: false,
                 user: null,
@@ -34,4 +34,4 @@ const turnoUpdateReducer = (state = initialState, { type, payload }) => {
     }
 }
 
-export default turnoUpdateReducer
+export default updateUserReducer

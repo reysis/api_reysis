@@ -1,16 +1,11 @@
 import { combineReducers } from 'redux';
-// import list from './list';
-// import update from './update';
-// import del from './delete';
-// import show from './show';
 
-import createTurno from './create/createTurnoReducer'
+import create from './create/createTurnoReducer'
+import show from './show/showTurnoReducer';
+import update from './update/updateTurnoReducer';
+import del from './delete/deleteTurnoReducer';
+import list from './list/listTurnoReducer';
 
 export default combineReducers({
-    createTurno
+    create, show, update, del, list
 });
-
-// list,
-// update,
-// del,
-// show
