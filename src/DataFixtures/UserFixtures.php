@@ -60,7 +60,6 @@ class UserFixtures extends BaseFixture
             $personData = new Persona();
             $personData->setNombre($this->faker->name);
             $personData->setCi($this->faker->numberBetween(10000000000,99999999999));
-            $personData->setUser($user);
 
             $address = new Address();
             $country = $this->faker->country;
@@ -78,7 +77,7 @@ class UserFixtures extends BaseFixture
                 "user_images/".$this->uploaderHelper->uploadUserImage($file, null)
             );
 
-            $manager->persist($mediaObject);
+            //$manager->persist($mediaObject);
 
             $user->setProfilePicture($mediaObject);
             $user->setAddress($address);
@@ -109,7 +108,7 @@ class UserFixtures extends BaseFixture
             $personData = new Persona();
             $personData->setNombre($this->faker->name);
             $personData->setCi($this->faker->numberBetween(10000000000,99999999999));
-            $personData->setUser($user);
+            //$personData->setUser($user);
 
             $randomImage = $this->faker->randomElement(self::$userImages);
             $targetPath = __DIR__."/images/".$randomImage;
@@ -122,14 +121,14 @@ class UserFixtures extends BaseFixture
                 $this->uploaderHelper->uploadUserImage($file, null, 'users_images')
             );
 
-            $manager->persist($mediaObject);
+            //$manager->persist($mediaObject);
 
-            $user->setProfilePicture($mediaObject);
             $address = new Address();
             $country = $this->faker->country;
             $address->setPostAddress($this->faker->sentence(6,true).', '.$country);
             $address->setIndications($this->faker->sentence(9,true));
 
+            $user->setProfilePicture($mediaObject);
             $user->setPersona($personData);
             $user->setAddress($address);
             $user->setNationality($country);

@@ -22,8 +22,9 @@ class TurnoVoter extends Voter
     }
     protected function supports($attribute, $subject)
     {
-        // replace with your own logic
-        // https://symfony.com/doc/current/security/voters.html
+        dump($subject);
+        dump($subject instanceof Turno);
+        dump(in_array($attribute, ['ERASE', 'EDIT', 'GET_SPECIFIC']));
         return in_array($attribute, ['ERASE', 'EDIT', 'GET_SPECIFIC'])
             && $subject instanceof Turno;
     }
@@ -38,17 +39,17 @@ class TurnoVoter extends Voter
         /**
          * @var Turno $subject
          */
-
+        dump($subject->getUser(), $user);
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case 'EDIT':
             case 'ERASE':
-            case 'GET_SPECIFC':
+            case 'GET_SPECIFIC':
                 if($subject->getUser() === $user || $this->security->isGranted('ROLE_ADMIN'))
                     return true;
                 return false;
         }
 
-        throw new \Exception(sprint('Atributo no manejado "%s" ', $atribute));
+        throw new \Exception(sprintf('Atributo no manejado "%s" ', $attribute));
     }
 }

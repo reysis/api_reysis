@@ -25,7 +25,7 @@ use Doctrine\ORM\Mapping as ORM;
  *      },
  *     attributes={
  *          "pagination_items_per_page" = 12
- *     },
+ *     }
  * )
  * @ORM\Entity(repositoryClass=ServicioRepository::class)
  */

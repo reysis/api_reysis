@@ -25,6 +25,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *          "put" = {"accessControl" = "is_granted('ROLE_ADMIN')"},
  *          "delete" ={"accessControl" = "is_granted('ROLE_ADMIN')"}
  *      },
+ *     attributes={
+ *          "pagination_items_per_page" = 30
+ *     }
  * )
  * @ApiFilter(
  *     DateFilter::class, properties={"date"}

@@ -16,7 +16,21 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 /**
  * @ORM\Entity(repositoryClass=PersonaRepository::class)
  * @ApiResource(
- *      iri="http://schema.org/Person",
+ *     iri="http://schema.org/Person",
+ *     collectionOperations={
+ *          "get" = {
+ *              "security" = "is_granted('ROLE_ADMIN')"
+ *          },
+ *          "post" = {
+ *              "security"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')",
+ *              "validation_groups"={"Default", "create"}
+ *          }
+ *      },
+ *      itemOperations={
+ *          "get" = {"security" = "is_granted('PERSONA_GET', object)"},
+ *          "put" = {"security" = "is_granted('PERSONA_PUT', object)"},
+ *          "delete" = {"security" = "is_granted('PERSONA_ERASE', object)"}
+ *      },
  * )
  * @ApiFilter(PropertyFilter::class)
  * @ApiFilter(
@@ -38,21 +52,20 @@ class Persona
     private $id;
     /**
      * @ORM\Column(type="string", length=11)
-     * @Groups({"user:read", "user:item:get", "turno:write","socialmedia:read", "admin:write", "admin:read"})
-     * @Assert\NotBlank()
+     * @Groups({"user:read", "user:write", "turno:write","socialmedia:read", "admin:write", "admin:read"})
+     * @Assert\NotBlank
      */
     private $ci;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:read", "user:item:get", "turno:write","socialmedia:read", "admin:write", "admin:read"})
-     * @Assert\NotBlank()
+     * @Groups({"user:read", "user:write", "turno:write","socialmedia:read", "admin:write", "admin:read"})
+     * @Assert\NotBlank
      */
     private $nombre;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="persona", cascade={"persist", "remove"})
-     * @Groups({"owner:read", "user:write","admin:write"})
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="persona", cascade={"persist", "remove"})
      */
     private $user;
 
@@ -92,22 +105,19 @@ class Persona
         return $this->user;
     }
 
-    public function setUsername(User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function setUser(?User $user): self
     {
-        $this->user = $user;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newPersona = null === $user ? null : $this;
-        if ($user->getPersona() !== $newPersona) {
-            $user->setPersona($newPersona);
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setPersona(null);
         }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getPersona() !== $this) {
+            $user->setPersona($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

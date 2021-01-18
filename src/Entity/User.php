@@ -145,6 +145,7 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"user:write", "owner:read", "admin:write", "admin:item:get"})
      * @Assert\Valid()
+     * @Assert\NotBlank(groups={"create"})
      */
     private $address;
 
@@ -172,19 +173,11 @@ class User implements UserInterface
     private $empresa;
 
     /**
-     * Datos del usuario si es una persona
-     *
-     * @ORM\OneToOne(targetEntity=Persona::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:read", "user:item:get","admin:write", "admin:item:get"})
-     * @Assert\Valid()
-     */
-    private $persona;
-
-    /**
      * Nacionalidad del usuario, ya sea una empresa o una Persona
      *
      * @ORM\Column(type="string", length=255)
      * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
+     * @Assert\NotBlank(groups={"create"})
      */
     private $nationality;
 
@@ -241,11 +234,20 @@ class User implements UserInterface
      *     readableLink=true,
      *     writableLink=true
      * )
-     * @Groups({"user:read", "user:write", "admin:write", "admin:item:get"})
+     * @Groups({"user:read", "user:write", "reviews:read","admin:write", "admin:item:get"})
      * @var MediaObject
      * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="user", cascade={"persist", "remove"})
      */
     private $profilePicture;
+
+    /**
+     * @var Persona
+     *
+     * @ORM\OneToOne(targetEntity=Persona::class, inversedBy="user", cascade={"persist", "remove"})
+     * @Groups({"user:read", "user:write", "admin:write", "admin:item:get"})
+     * @Assert\NotBlank(groups={"create"})
+     */
+    private $persona;
 
     public function __construct()
     {
@@ -518,19 +520,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPersona(): ?Persona
-    {
-        return $this->persona;
-    }
-
-    public function setPersona(?Persona $persona): self
-    {
-        $this->persona = $persona;
-        $this->lastEdited = new \DateTime();
-
-        return $this;
-    }
-
     public function getNationality(): ?string
     {
         return $this->nationality;
@@ -732,6 +721,18 @@ class User implements UserInterface
     public function setProfilePicture(?MediaObject $profilePicture): self
     {
         $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    public function getPersona(): ?Persona
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(?Persona $persona): self
+    {
+        $this->persona = $persona;
 
         return $this;
     }

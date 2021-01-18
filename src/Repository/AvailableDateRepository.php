@@ -22,19 +22,17 @@ class AvailableDateRepository extends ServiceEntityRepository
     // /**
     //  * @return AvailableDate[] Returns an array of AvailableDate objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findOneById($value)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
+            ->andWhere('a.id = :val')
             ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
-    */
+
     public function findOneByDate($value): ?AvailableDate
     {
         return $this->createQueryBuilder('a')

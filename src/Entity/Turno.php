@@ -10,19 +10,18 @@ use App\Repository\TurnoRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Validator as OwnAssert;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
  *      collectionOperations={
- *          "get"={"security" = "is_granted('ROLE_ADMIN')"},
+ *          "get"={"security" = "is_granted('ROLE_USER')"},
  *          "post" = {
  *                 "security_post_denormalize"="is_granted('ROLE_USER')",
  *          }
  *      },
  *      itemOperations={
- *          "get" = {
- *                  "security" = "is_granted('GET_SPECIFC', object)"
- *          },
+ *          "get" = {"security" = "is_granted('GET_SPECIFIC', object)"},
  *          "put" = {
  *                  "security"="is_granted('EDIT', object)",
  *                  "security_message"="Solamente puede editar sus propios turnos, necesita permisos como administrador para realizar esta acción."
@@ -38,6 +37,13 @@ use App\Validator as OwnAssert;
  * )
  * @ORM\Entity(repositoryClass=TurnoRepository::class)
  * @ApiFilter(DateFilter::class, properties={"fecha"})
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "user":"exact"
+ *      }
+ * )
+ * @OwnAssert\AvailableDate()
  */
 class Turno
 {
@@ -52,7 +58,6 @@ class Turno
      * @ORM\Column(type="datetime")
      * @Groups({"turno:read", "turno:write", "user:read"})
      * @Assert\NotBlank()
-     * @OwnAssert\AvailableDate()
      */
     private $fecha;
 

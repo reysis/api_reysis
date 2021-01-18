@@ -45,7 +45,7 @@ class MediaObject
     protected $id;
 
     /**
-     * @Groups({"mediaobject:read", "servicio:read", "user:item:get"})
+     * @Groups({"mediaobject:read", "servicio:read", "user:item:get", "reviews:read"})
      * @var string|null
      */
     public $contentUrl;
@@ -73,7 +73,7 @@ class MediaObject
      * @Groups({"admin:write", "user:write"})
      * @Assert\NotBlank
      */
-    private string $data;
+    private string $data ="";
 
     /**
      * The file name
@@ -82,7 +82,7 @@ class MediaObject
      * @Groups ({"admin:write", "user:write"})
      * @Assert\NotBlank
      */
-    private string $filename;
+    private string $filename = "";
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="profilePicture", cascade={"persist", "remove"})
