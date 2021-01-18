@@ -6,6 +6,7 @@ namespace App\DataPersister;
 
 use ApiPlatform\Core\DataPersister\ContextAwareDataPersisterInterface;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
+use App\Entity\AvailableDate;
 use App\Entity\Turno;
 use App\Entity\User;
 use App\Repository\AvailableDateRepository;
@@ -51,11 +52,33 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
-        if(($context['collection_operation_name'] ?? null) === 'post' ||
-            ($context['item_operation_name'] ?? null) === 'put'
-        ){
+        dump($data, $context);
+        if(($context['collection_operation_name'] ?? null) === 'post'){
             $this->decrementAvailableTurno($data->getFecha());
             $this->sendAppointmentConfirmationMail($data, $context);
+        }
+        if(($context['item_operation_name'] ?? null) == 'put'){
+            $oldObject = $this->entityManager
+                ->getUnitOfWork()
+                ->getOriginalEntityData($data);
+
+            if($oldObject['fecha'] !== $data->getFecha()){
+                $this->decrementAvailableTurno($data->getFecha());
+                /**
+                 * @var AvailableDate $dateBeforeUpdate
+                 */
+                $dateBeforeUpdate = $this->availableDateRepository->findOneById($oldObject['id']);
+                if(!$dateBeforeUpdate){
+                    $newDateAvailable = new AvailableDate();
+                    $newDateAvailable->setOriginalAmount(1);
+                    $newDateAvailable->setAmountAvailable(1);
+                    $newDateAvailable->setDate($oldObject['fecha']);
+                    $this->entityManager->persist($newDateAvailable);
+                    $this->entityManager->flush();
+                }else{
+                    $this->incrementAvailableTurno($oldObject['fecha']);
+                }
+            }
         }
 
         $this->decoratedDataPersister->persist($data);
@@ -74,8 +97,12 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
     private function decrementAvailableTurno(\DateTimeInterface $date)
     {
         $availableDate = $this->availableDateRepository->findOneByDate($date);
-        $availableDate->setAmountAvailable($availableDate->getAmountAvailable() - 1);
-        $this->entityManager->persist($availableDate);
+        if($availableDate->getAmountAvailable() === 1){
+            $this->entityManager->remove($availableDate);
+        }else {
+            $availableDate->setAmountAvailable($availableDate->getAmountAvailable() - 1);
+            $this->entityManager->persist($availableDate);
+        }
         $this->entityManager->flush();
     }
 

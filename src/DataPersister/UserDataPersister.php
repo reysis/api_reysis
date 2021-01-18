@@ -51,10 +51,10 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
+        dump($data, $context);
         if(($context['item_operation_name'] ?? null) === 'put'){
             $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
-
-            if($data->getProfilePicture()){
+            if($data->getProfilePicture()->getFilename() !== "" && $data->getProfilePicture()->getData() !== ""){
                 $tmpPath = sys_get_temp_dir().'/user_profilePic_'.uniqid();
                 file_put_contents($tmpPath, $data->getProfilePicture()->getDecodedData());
                 $uploadedFile = new File($tmpPath);
