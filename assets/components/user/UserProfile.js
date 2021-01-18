@@ -7,7 +7,7 @@ import {Container, Jumbotron} from "react-bootstrap";
 import TabUserProfile from "../layouts/TabUserProfile";
 import ProfilePicture from "../layouts/ProfilePicture";
 
-const UserProfile = ({userID}) => {
+const UserProfile = () => {
     const user = useSelector(state => state.auth.user);
 
     return (
@@ -16,10 +16,12 @@ const UserProfile = ({userID}) => {
                 user &&
                 <div>
                     <Jumbotron fluid>
+                        <div className="user-profile-header">
+                            <h1 className="mt-4 mb-5">Perfil del Usuario <span>{user['persona']['nombre']}</span></h1>
+                        </div>
                         <ProfilePicture img={user['profilePicture']['contentUrl']}/>
-                        <h1>Perfil del Usuario {user['persona']['nombre']}</h1>
                     </Jumbotron>
-                    <Container>
+                    <Container className="user-profile-tab">
                         <TabUserProfile user={user}/>
                     </Container>
                 </div>

@@ -14,6 +14,7 @@ import user_opinion from '../assets/opinion-user-1.png';
 import testimonialBackground from '../assets/testimonial.jpg';
 
 import OpinionsItem from './OpinionsItem'
+import {getOpinionsFiltersURL} from "../redux/requestFilters";
 
 const Opinions = () => {
 
@@ -28,7 +29,7 @@ const Opinions = () => {
 	const [reviewCount, setReviewCount] = useState(0)
 
 	useEffect(() => {
-		dispatch(opinionFetch())
+		dispatch(opinionFetch(getOpinionsFiltersURL(1)))
 	}, [])
 
 	return (
@@ -50,17 +51,16 @@ const Opinions = () => {
 						? (
 							<Carousel>
 								{
-									opinions.map(({ id, autor, reviewText, stars, likes, datePublished }) => {
-										const image = user_opinion
+									opinions['hydra:member'].map(item => {
 										return (
-											<Carousel.Item key={id}>
+											<Carousel.Item key={item['@id']}>
 												<OpinionsItem
-													autor={autor}
-													image={image}
-													reviewText={reviewText}
-													stars={stars}
-													likes={likes}
-													datePublished={datePublished}
+													// autor={autor}
+													 image={item['user']['profilePicture']['contentUrl']}
+													reviewText={item['reviewText']}
+													stars={item['stars']}
+													likes={item['likes']}
+													datePublished={item['datePublished']}
 												/>
 											</Carousel.Item>
 										)

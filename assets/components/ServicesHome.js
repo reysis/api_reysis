@@ -7,23 +7,52 @@ import { servicesFetch } from '../redux/service/list/serviceListActions';
 import ServiceCard from '../components/ServiceCard';
 
 import { Row, Pagination } from 'react-bootstrap';
+import PaginationSystem from "./PaginationSystem";
+import {getServiceFilters} from "../redux/requestFilters";
+import {opinionFetch} from "../redux/opinion/list/opinionListActions";
+import {changePageNumberFromURL, decodeLastPage} from "../redux/utiles";
+import {serviceFetch} from "../redux/service/show/serviceShowActions";
 
 const ServicesHome = () => {
 
-	const loading = useSelector(state => state.service.loading)
-	const services = useSelector(state => state.service.services)
-	const totalItems = useSelector(state => state.service.totalItems)
-	const currentPage = useSelector(state => state.service.currentPage)
-	const lastPage = useSelector(state => state.service.lastPage)
-	const error = useSelector(state => state.service.error)
+	const loading = useSelector(state => state.service.list.loading)
+	const response = useSelector(state => state.service.list.services)
+	const error = useSelector(state => state.service.list.error)
+	const [totalItems, setTotalItems] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [lastPage, setLastPage] = useState(1);
 
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		dispatch(servicesFetch())
+		dispatch(servicesFetch(getServiceFilters(currentPage)))
 	}, [])
 
-	const [paginations, setPaginations] = useState([])
+	useEffect(()=>{
+		if(response){
+			if(response['hydra:view']){
+				setLastPage(decodeLastPage(response['hydra:view']['hydra:last']));
+			}else{
+				setLastPage(1);
+			}
+		}
+	},[response])
+
+	const goToPage = (pageNumber)=>{
+		if(pageNumber !== currentPage){
+			if(response['hydra:view']){
+				dispatch(
+					serviceFetch(
+						changePageNumberFromURL(response['hydra:view']['@id'], pageNumber)
+					)
+				);
+			}else{
+				dispatch(
+					serviceFetch()
+				);
+			}
+		}
+	}
 
 	const [serviceSpinners] = useState(() => {
 		const items = []
@@ -46,97 +75,6 @@ const ServicesHome = () => {
 		return items
 	})
 
-	const getPagination = () => {
-		const items = []
-
-		if (currentPage > 1)
-			items.push(
-				<Pagination.Ellipsis
-					key={"pagination-n1"}
-					disabled
-					className="d-sm-none"
-				/>
-			)
-
-		items.push(
-			<Pagination.Item
-				key={"pagination" + 1}
-				active={1 === currentPage}
-				disabled={loading}
-				onClick={() => goToPage(1)}
-				className={1 !== currentPage ? "d-none d-sm-block" : ""}
-			>
-				{1}
-			</Pagination.Item>
-		)
-
-		if (services !== undefined && services.length > 0) {
-			if (currentPage >= 5)
-				items.push(
-					<Pagination.Ellipsis
-						key={"pagination-d1"}
-						disabled
-						className="d-none d-sm-block"
-					/>
-				)
-
-			for (let i = Math.max(2, currentPage - 2); i <= Math.min(lastPage - 1, currentPage + 2); i++)
-				items.push(
-					<Pagination.Item
-						key={"pagination" + i}
-						active={i === currentPage}
-						disabled={loading}
-						onClick={() => goToPage(i)}
-						className={i !== currentPage ? "d-none d-sm-block" : ""}
-					>
-						{i}
-					</Pagination.Item>
-				);
-
-			if (currentPage <= lastPage - 4)
-				items.push(
-					<Pagination.Ellipsis
-						key={"pagination-d2"}
-						disabled
-						className="d-none d-sm-block"
-					/>
-				)
-
-			if (lastPage > 1)
-				items.push(
-					<Pagination.Item
-						key={"pagination" + lastPage}
-						active={lastPage === currentPage}
-						disabled={loading}
-						onClick={() => goToPage(lastPage)}
-						className={lastPage !== currentPage ? "d-none d-sm-block" : ""}
-					>
-						{lastPage}
-					</Pagination.Item>)
-		}
-
-		if (currentPage < lastPage)
-			items.push(
-				<Pagination.Ellipsis
-					key={"pagination-n2"}
-					disabled
-					className="d-sm-none"
-				/>
-			)
-
-		return items
-	}
-
-	useEffect(() => {
-		setPaginations(getPagination)
-	}, [loading])
-
-	const goToPage = (pag) => {
-		let page = Math.max(1, Math.min(pag, lastPage))
-		page != currentPage
-			&& dispatch(serviceFetch(page))
-	}
-
 	return (
 		<section id="services" className="services-component section-padding">
 			<div className="container">
@@ -144,34 +82,42 @@ const ServicesHome = () => {
 					<h2 className="mx-4 pb-2">Nuestros <span>servicios</span></h2>
 					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste omnis <br />atque explicabo rerum enim ullam?</p>
 				</div>
-				<div className="cards-container">
+			<div className="cards-container">
 					<Row>
 						{
-							!error && services !== undefined && services.length > 0
-								? services.map((service, index) => {
+							response
+								? response['hydra:member'].map((service, index) => {
 									return (
 										<ServiceCard
-											key={service.id}
-											id={service.id}
-											nombre={service.nombre}
-											descripcion={service.descripcion}
-											image={service.image}
-											loading={loading}
+											key={index}
+											id={service['@id']}
+											nombre={service['nombre']}
+											descripcion={service['shortDescription']}
+											images={service['serviceImages']}
+											loading={false}
 										/>
 									)
 								})
+
 								: serviceSpinners
 						}
 					</Row>
 				</div>
 				<Row>
-					<Pagination className="services-pagniation mx-auto my-3">
-						<Pagination.First disabled={loading} onClick={() => goToPage(1)} />
-						<Pagination.Prev disabled={loading} onClick={() => goToPage(currentPage - 1)} />
-						{paginations}
-						<Pagination.Next disabled={loading} onClick={() => goToPage(currentPage + 1)} />
-						<Pagination.Last disabled={loading} onClick={() => goToPage(lastPage)} />
-					</Pagination>
+					<PaginationSystem
+						goToPage={goToPage}
+						currentPage={currentPage}
+						lastPage={lastPage}
+						loading={loading}
+						totalItems={totalItems}
+					/>
+					{/*<Pagination className="services-pagniation mx-auto my-3">*/}
+					{/*	<Pagination.First disabled={loading} onClick={() => goToPage(1)} />*/}
+					{/*	<Pagination.Prev disabled={loading} onClick={() => goToPage(currentPage - 1)} />*/}
+					{/*	{paginations}*/}
+					{/*	<Pagination.Next disabled={loading} onClick={() => goToPage(currentPage + 1)} />*/}
+					{/*	<Pagination.Last disabled={loading} onClick={() => goToPage(lastPage)} />*/}
+					{/*</Pagination>*/}
 				</Row>
 			</div>
 		</section>

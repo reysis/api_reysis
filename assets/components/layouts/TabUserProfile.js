@@ -7,10 +7,11 @@ import { opinionFetch } from "../../redux/opinion/list/opinionListActions";
 import { useParams } from 'react-router-dom';
 import ReviewsContainer from "./ReviewsContainer";
 import UserInformationContainer from "./UserInformationContainer";
+import TurnosContainer from "./TurnosContainer";
 
 const TabUserProfile = ({user}) => {
     return (
-        <Tab.Container id="left-tab" defaultActiveKey="first">
+        <Tab.Container className="user-profile-tab__container" id="left-tab" defaultActiveKey="first">
             <Row>
                 <Col sm={2}>
                     <Nav variant="pills" className="flex-column">
@@ -32,15 +33,9 @@ const TabUserProfile = ({user}) => {
                         </Tab.Pane>
                         <Tab.Pane eventKey="second" className="reviews-tap-pane">
                             <ReviewsContainer userId={user['@id']}/>
-                            {/*<PaginationSystem*/}
-                            {/*    totalItems={reviews.length}*/}
-                            {/*    currentPage={1}*/}
-                            {/*    lastPage={reviews.length / 10}*/}
-                            {/*    loading={opinionsLoading}*/}
-                            {/*/>*/}
                         </Tab.Pane>
                         <Tab.Pane eventKey="third">
-                            <p>Turnos pendientes</p>
+                            <TurnosContainer />
                         </Tab.Pane>
                     </Tab.Content>
                 </Col>

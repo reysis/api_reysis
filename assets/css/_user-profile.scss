@@ -1,0 +1,50 @@
+.user-profile-page{
+  .user-profile-header{
+    margin-top: 20px;
+    text-align: center;
+
+    h1 {
+      font-size: 2.5em;
+      font-weight: 700;
+
+      span {
+        color: $color-primary;
+      }
+    }
+  }
+  .user-profile-picture{
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    justify-content: center;
+  }
+  .user-profile-tab{
+      color: #6c757d;
+      .user-profile-tab__container{
+          padding: 25px;
+          border: none;
+          border-radius: 6px;
+          box-shadow: 2px 6px 9px 0px #00000030;
+          .user-profile-tab__info-field{
+              padding: 5px;
+              color: black;
+          }
+          .user-profile-tab__info-icon{
+
+          }
+          .user-profile-tab__info-data{
+            margin-left: 10px;
+            margin-bottom: 15px;
+          }
+          .user-profile-buttons{
+            margin: 10px;
+          }
+      }
+  }
+  @media screen
+    and (min-device-width: 1200px)
+    and (max-device-width: 1600px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+
+  }
+}

@@ -4,9 +4,12 @@ import ReviewCard from "./ReviewCard";
 import {opinionFetch} from '../../redux/opinion/list/opinionListActions';
 import PaginationSystem from "../PaginationSystem";
 import {
-    getOpinionsFiltersURL,
     decodeLastPage,
-    changePageNumberFromURL } from "../../redux/utiles";
+    changePageNumberFromURL
+} from "../../redux/utiles";
+import {
+    getOpinionsFiltersURL
+} from "../../redux/requestFilters";
 
 function ReviewsContainer({userId}) {
     const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +30,11 @@ function ReviewsContainer({userId}) {
         //aqui me quedo con la cantidad de paginas que hay totales ya que si miras
         //el hydra:view de la response veras que te da lo que necesitas para paginar
         if(response){
-            setLastPage(decodeLastPage(response['hydra:view']['hydra:last']));
+            if(response['hydra:view']){
+                setLastPage(decodeLastPage(response['hydra:view']['hydra:last']));
+            }else{
+                setLastPage(1);
+            }
         }
     },[response])
 

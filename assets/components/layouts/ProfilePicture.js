@@ -3,8 +3,8 @@ import {Image} from "react-bootstrap";
 
 const ProfilePicture = ({img}) => {
     return (
-        <div>
-            <Image src={img} rounded/>
+        <div className="user-profile-picture">
+            <Image src={img} roundedCircle/>
         </div>
     );
 };

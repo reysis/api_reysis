@@ -8,6 +8,7 @@ import { Redirect, Link } from "react-router-dom";
 import { Button, Form, InputGroup, Col, Row, Alert, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationTriangle, faIdCard, faBars } from '@fortawesome/free-solid-svg-icons';
+import Phones from "../Phones";
 
 const Register = () => {
 
@@ -18,6 +19,7 @@ const Register = () => {
     const [password, setPassword] = useState("")
     const [passwordCheck, setPasswordCheck] = useState("")
     const [email, setEmail] = useState("")
+    const [phones, setPhones] = useState([]);
 
     const [phoneType, setPhoneType] = useState("")
     const [phone, setPhone] = useState("")
@@ -65,15 +67,10 @@ const Register = () => {
             || !arePasswordMatch
             || !email.length
             || !validEmail
-            || !phone.length
-            || !phoneType.length
+            || !phones.length
             || !address.length
             || authLoading) return;
 
-        const phoneNumbers = [{
-            phoneType,
-            number: phone
-        }]
 
         const persona = {
             nombre: [name, lastname].join(' '),
@@ -84,7 +81,7 @@ const Register = () => {
 
         dispatch(registerFetch({
             persona,
-            phoneNumbers,
+            phoneNumbers: phones,
             address: {
                 postAddress: address,
                 indications: address
@@ -171,7 +168,7 @@ const Register = () => {
                 {authError}
             </Alert>
             <Row>
-                <Form onSubmit={handleSubmit} className="mx-auto my-3 pb-3 col-xl-9 col-lg-10 col-md-12 form-register">
+                <Form id="form-register" onSubmit={handleSubmit} className="mx-auto my-3 pb-3 col-xl-9 col-lg-10 col-md-12 form-register">
                     <Row>
                         <Col md={4} className="d-none d-md-flex flex-column register-left-side">
                             <h2 className="mt-auto">¿Ya tienes una cuenta?</h2>
@@ -208,37 +205,6 @@ const Register = () => {
                                     </InputGroup>
                                 </Form.Group>
                             </Form.Row>
-
-                            <Form.Row>
-                                <Form.Group as={Col} md={6}>
-                                    <InputGroup>
-                                        <InputGroup.Prepend>
-                                            <label className="input-group-text" htmlFor="register-phone">
-                                                <FontAwesomeIcon icon={faPhone} />
-                                            </label>
-                                        </InputGroup.Prepend>
-                                        <Form.Control type="phone" id="register-phone" placeholder="Número de Teléfono" value={phone} onChange={(e) => setPhone(e.target.value)} required={true} />
-                                    </InputGroup>
-                                </Form.Group>
-                                <Form.Group as={Col} md={6}>
-                                    <InputGroup>
-                                        <InputGroup.Prepend>
-                                            <label className="input-group-text" htmlFor="register-phone-type">
-                                                <FontAwesomeIcon icon={faBars} />
-                                            </label>
-                                        </InputGroup.Prepend>
-                                        <Form.Control id="register-phone-type" className="custom-select" as="select" defaultValue={phoneType} onChange={(e) => setPhoneType(e.target.value)} required={true}>
-                                            <option value="" >Tipo de Télefono ...</option>
-                                            {
-                                                phoneTypes.map((value, index) => (
-                                                    <option key={index} value={value}>{value}</option>
-                                                ))
-                                            }
-                                        </Form.Control>
-                                    </InputGroup>
-                                </Form.Group>
-                            </Form.Row>
-
                             <Form.Group >
                                 <InputGroup>
                                     <InputGroup.Prepend>
@@ -261,9 +227,11 @@ const Register = () => {
                                 </InputGroup>
                             </Form.Group>
 
+{/*
                             <div className="mx-4 my-2 register-separator">
                                 <p className="mb-0 hr">o</p>
                             </div>
+*/}
 
                             <Form.Group>
                                 <InputGroup>
@@ -309,6 +277,7 @@ const Register = () => {
                                     </InputGroup>
                                 </Form.Group>
                             </Form.Row>
+                            <Phones phones={phones} setPhones={setPhones} enableEdit={true} />
 
                             <Form.Group className="register-condition-term">
                                 <span className="form-text text-muted mx-5">Al registrarse estás aceptando nuestros <a href="#">Términos y Condiciones</a></span>
@@ -317,10 +286,6 @@ const Register = () => {
                             <Form.Group className="register-submit">
                                 <Button variant="primary" block disabled={disabledForm} type="submit">Registrarse</Button>
                             </Form.Group>
-
-                            {/* <div className="mx-4 register-separator s-2x">
-                                <p>o</p>
-                            </div> */}
 
                             <Form.Group className="d-md-none register-sub-text">
                                 <span className="mr-3">¿Ya te registraste?</span>

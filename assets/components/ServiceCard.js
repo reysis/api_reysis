@@ -1,15 +1,30 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { Card } from 'reactstrap';
 
 import LoaderLocal from './LoaderLocal';
 
 import { Link } from 'react-router-dom'
 
-const ServiceCard = ({ id, nombre, descripcion, image, loading }) => {
+const ServiceCard = ({ id, nombre, descripcion, images, loading }) => {
 
 	/* using react hooks */
 	const card_button = useRef(null);
 	const card = useRef(null);
+	const [imageIndex, setImageIndex] = useState(0);
+
+	/*useEffect(()=>{
+		const interval = setInterval( () =>{
+			if(images){
+				if(imageIndex === images.length - 1){
+					setImageIndex(0);
+				}
+				else{
+					setImageIndex(imageIndex + 1);
+				}
+			}
+		}, 4000);
+		return () => clearInterval(interval);
+	})*/
 
 	/* is the same that componentWillMount */
 	useEffect(() => {
@@ -33,7 +48,9 @@ const ServiceCard = ({ id, nombre, descripcion, image, loading }) => {
 					loading
 						? <LoaderLocal />
 						: <figure ref={card}>
-							<div><img src={image} alt={"Servicio " + nombre} /></div>
+							<div>
+								<img src={images[imageIndex]['contentUrl']} alt={"Servicio " + nombre} />
+							</div>
 							<figcaption>
 								<h3>{nombre}</h3>
 								<p>{descripcion}</p>

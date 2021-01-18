@@ -4,7 +4,7 @@ import UserProfile from "../components/user/UserProfile";
 
 const UserProfilePage = ({match}) => {
     return (
-        <main className="content-wrap page">
+        <main className="user-profile-page content-wrap page">
             <UserProfile userID={decodeURIComponent(match.params.userID)} />
         </main>
     )
