@@ -108,7 +108,7 @@ const Phones = ({phones, setPhones, enableEdit}) => {
                                 </Form.Control>
                             </InputGroup>
                             <Form.Group className="register-submit">
-                                <Button disabled={disableSubmit} variant="primary"  type="submit">
+                                <Button disabled={disableSubmit} onClick={handleSubmit} variant="primary" type="button">
                                     <FontAwesomeIcon icon={faPlus}/>
                                 </Button>
                             </Form.Group>
