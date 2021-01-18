@@ -13,9 +13,9 @@ import {changeTimeZone} from "../../redux/utiles";
 
 const Create = ({ locations }) => {
 
-	const loading = useSelector(state => state.turno.createTurno.loading)
-	const turno = useSelector(state => state.turno.createTurno.turno)
-	const error = useSelector(state => state.turno.createTurno.error)
+	const loading = useSelector(state => state.turno.create.loading)
+	const turno = useSelector(state => state.turno.create.turno)
+	const error = useSelector(state => state.turno.create.error)
 
 	const authenticated = useSelector(state => state.auth.authenticated)
 	const user = useSelector(state => state.auth.user)
