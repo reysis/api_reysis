@@ -1,13 +1,13 @@
 import React from 'react'
-// import { Update } from "../components/turno"
+import Update from "../components/turno/Update"
 
 const TurnosUpdatePage = () => {
     return (
-        <div className="content-wrap turnos-update-page">
+        <div className="content-wrap turnos-update-page page">
             <div className="update-turno-header">
-                <h1 className="mx-4"><span>Editar</span> turno</h1>
+                <h1 className="mt-4 mb-5">Reprogamemos sus turno busquemos un mejor momento!</h1>
             </div>
-            {/* <Update /> */}
+            <Update/>
         </div>
     )
 }

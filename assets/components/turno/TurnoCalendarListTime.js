@@ -6,7 +6,7 @@ const TurnoCalendarListTime = ({ turnoTimes, value, onChange, optionTime, setOpt
     const [current, setCurrent] = useState(-1);
 
     useEffect(() => {
-        if (current != -1)
+        if (current !== -1)
             onChange(turnoTimes[current])
         else
             onChange(null)
@@ -19,13 +19,13 @@ const TurnoCalendarListTime = ({ turnoTimes, value, onChange, optionTime, setOpt
     return (
         <div className="turno-calendar__list">
             <div className="turno-calendar__options">
-                <span onClick={() => optionClick(0)} className={optionTime == 0 ? "current" : ""}>am/pm</span>
+                <span onClick={() => optionClick(0)} className={optionTime === 0 ? "current" : ""}>am/pm</span>
                 <span>-</span>
-                <span onClick={() => optionClick(1)} className={optionTime == 1 ? "current" : ""}>24h</span>
+                <span onClick={() => optionClick(1)} className={optionTime === 1 ? "current" : ""}>24h</span>
             </div>
             <div className="turno-calendar__items">
                 {
-                    turnoTimes.length
+                    turnoTimes.length !== 0
                         ? turnoTimes.map((value, index) => {
                             return (
                                 <TurnoCalendarTime

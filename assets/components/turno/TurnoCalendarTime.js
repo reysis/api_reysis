@@ -12,10 +12,10 @@ const TurnoCalendarTime = ({ time, index, current, setCurrent, optionTime }) => 
 
     useEffect(() => {
         if (time) {
-            let hv = time.hour
-            let ap = ""
-            if (optionTime == 0) {
-                if (hv > 12) {
+            let [hour, minuts] = time.split(':');
+            let hv = parseInt(hour), ap = "";
+            if (optionTime === 0) {
+                if (parseInt(hour) > 12) {
                     hv -= 12
                     ap = " pm"
                 }
@@ -24,9 +24,9 @@ const TurnoCalendarTime = ({ time, index, current, setCurrent, optionTime }) => 
                     hv = 12
             }
             let hs = hv.toString()
-            let ms = time.minute.toString()
-            let h = hs.length == 1 ? `0${hs}` : hs
-            let m = ms.length == 1 ? `0${ms}` : ms
+            let ms = minuts.toString()
+            let h = hs.length === 1 ? `0${hs}` : hs
+            let m = ms.length === 1 ? `0${ms}` : ms
             setFormatedTime(`${h}:${m}${ap}`)
         }
         else setFormatedTime("")
@@ -34,9 +34,9 @@ const TurnoCalendarTime = ({ time, index, current, setCurrent, optionTime }) => 
 
     return (
         <div onClick={itemClick} className="turno-calendar__item">
-            <div className={`turno-calendar__item-icon ${current == index ? "current" : ""}`}>
+            <div className={`turno-calendar__item-icon ${current === index ? "current" : ""}`}>
                 {
-                    current == index && <FontAwesomeIcon icon={faCheck} />
+                    current === index && <FontAwesomeIcon icon={faCheck} />
                 }
             </div>
             <label className="turno-calendar__item-label">{formatedTime}</label>

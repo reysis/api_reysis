@@ -6,84 +6,81 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import TurnoCalendarListTime from './TurnoCalendarListTime';
 import LoaderLocalSpinner from '../LoaderLocal';
 import { Form } from 'react-bootstrap';
+import {useDispatch, useSelector} from "react-redux";
+import {setAvailableDateURLFilters} from "../../redux/requestFilters";
+import {availableDateFetch} from "../../redux/availableDate/list/availableDateActions";
+import {getFormatedDate, addDays, getHoursFromDate, isoStringToDate} from "../../redux/utiles";
+import turno from "../../routes/turno";
 
 const TurnoCalendar = ({ handleDate, handleTime, onChangeDate, onChangeTime }) => {
 
-    const [now] = useState(new Date())
     const [planningDays] = useState(15)
+    const [minDate, setMinDate] = useState(null);
+    const [maxDate, setMaxDate] = useState(null);
+    const availableDates = useSelector(state=> state.availableDate.list.availableDates);
+    const error = useSelector(state=> state.availableDate.list.error);
+    const loading = useSelector(state=> state.availableDate.list.loading);
+    const dispatch = useDispatch();
 
-    const [availableDates, setAvailableDates] = useState([])
-
-    const availableDatesBag = [
-        new Date(2021, 0, 1),
-        new Date(2021, 0, 2),
-        new Date(2021, 0, 3),
-        new Date(2021, 0, 4),
-        new Date(2021, 0, 7),
-        new Date(2021, 0, 8),
-        new Date(2021, 0, 9),
-        new Date(2021, 0, 10),
-        new Date(2021, 0, 11),
-        new Date(2021, 0, 12),
-        new Date(2021, 0, 13),
-        new Date(2021, 0, 14),
-        new Date(2021, 0, 15),
-        new Date(2021, 0, 16),
-        new Date(2021, 0, 17)
-    ]
-
-    const turnoTimesBag = [
-        { hour: 8, minute: 30 },
-        { hour: 9, minute: 0 },
-        { hour: 10, minute: 0 },
-        { hour: 10, minute: 30 },
-        { hour: 11, minute: 30 },
-        { hour: 13, minute: 30 },
-        { hour: 14, minute: 0 },
-        { hour: 15, minute: 0 },
-        { hour: 15, minute: 30 }
-    ]
-
-    const [turnoTimes, setTurnoTimes] = useState(null)
-
-    const [valueDate, setValueDate] = useState(null);
-
+    const [loadingCalendarTime, setLoadingCalendarTime] = useState(false)
+    const [loadingCalendarDate, setLoadingCalendarDate] = useState(true)
+    const [formatedDate, setFormatedDate] = useState("Seleccione una fecha")
+    const [formatedYear, setFormatedYear] = useState(" ")
+    const [formatedTime, setFormatedTime] = useState("Elija una hora")
+    const [turnoTimes, setTurnoTimes] = useState([])
+    const [valueDate, setValueDate] = useState(new Date());
     const [valueTime, setValueTime] = useState(handleTime);
+    const daysText = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+    const monthsText = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
+    //carga las fechas disponibles al cargar el componente
+    useEffect(()=>{
+        setValueDate(new Date());
+        dispatch(availableDateFetch(
+            setAvailableDateURLFilters(
+                null
+            )
+        ))
+    }, []);
+
+    //Cambia la fecha escogida en el componente padre
     useEffect(() => {
         onChangeDate(valueDate)
     }, [valueDate])
 
+    //cambia la hora escogida en el componente padre
     useEffect(() => {
         onChangeTime(valueTime)
     }, [valueTime])
 
-    const [minDate, setMinDate] = useState(null);
-
-    const [maxDate, setMaxDate] = useState(null);
+    useEffect(()=>{
+        if(availableDates){
+            let array = [];
+            availableDates['hydra:member'].map(item=>{
+                if(isSameDay(item.date, valueDate)){
+                    array.push(getHoursFromDate(isoStringToDate(item.date)));
+                }
+            });
+            setTurnoTimes(array);
+        }
+    },[valueDate])
 
     useEffect(() => {
-        if (availableDates.length)
+        if (availableDates){
             setMinDate(availableDates[0]);
-        setMinDate(new Date(now));
-
-        let res = new Date(now)
+            let array = [];
+            availableDates['hydra:member'].map(item=>{
+                if(isSameDay(item.date, valueDate)){
+                    array.push(getHoursFromDate(new Date(item.date) ));
+                }
+            });
+            setTurnoTimes(array);
+        }
+        setMinDate(new Date());
+        let res = new Date()
         res.setDate(res.getDate() + planningDays)
         setMaxDate(res)
     }, [availableDates])
-
-    const [loadingCalendarTime, setLoadingCalendarTime] = useState(false)
-
-    const [loadingCalendarDate, setLoadingCalendarDate] = useState(true)
-
-    const [formatedDate, setFormatedDate] = useState("Seleccione una fecha")
-
-    const [formatedYear, setFormatedYear] = useState(" ")
-
-    const [formatedTime, setFormatedTime] = useState("Elija una hora")
-
-    const daysText = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
-    const monthsText = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
     useEffect(() => {
         if (valueDate) {
@@ -96,70 +93,51 @@ const TurnoCalendar = ({ handleDate, handleTime, onChangeDate, onChangeTime }) =
         }
     }, [valueDate])
 
-    useEffect(() => {
-        if (!valueDate) return;
-        // loading times availables
-        // simulating delay time
-        setTurnoTimes(null)
-        setLoadingCalendarTime(true)
-        setTimeout(() => {
-            setTurnoTimes([...turnoTimesBag])
-            setLoadingCalendarTime(false)
-        }, 3000)
-    }, [valueDate])
-
     const [optionTime, setOptionTime] = useState(0)
 
     useEffect(() => {
         if (valueTime) {
-            let hv = valueTime.hour
+            let [hour, minutes] = valueTime.split(':');
+            let hv = hour
             let ap = ""
-            if (optionTime == 0) {
+            if (optionTime === 0) {
                 if (hv > 12) {
                     hv -= 12
                     ap = " pm"
                 }
                 else ap = " am"
-                if (hv == 0)
+                if (hv === 0)
                     hv = 12
             }
             let hs = hv.toString()
-            let ms = valueTime.minute.toString()
-            let h = hs.length == 1 ? `0${hs}` : hs
-            let m = ms.length == 1 ? `0${ms}` : ms
+            let ms = minutes.toString()
+            let h = hs.length === 1 ? `0${hs}` : hs
+            let m = ms.length === 1 ? `0${ms}` : ms
             setFormatedTime(`${h}:${m}${ap}`)
         }
         else setFormatedTime("Elija una hora")
     }, [valueTime, optionTime])
 
     const isSameDay = (date_1, date_2) => {
-        return date_1.getFullYear() === date_2.getFullYear()
-            && date_1.getMonth() === date_2.getMonth()
-            && date_1.getDate() === date_2.getDate();
-    }
+        let date = isoStringToDate(date_1);
+        return date.getFullYear() === date_2.getFullYear()
+            && date.getMonth() === date_2.getMonth()
+            && date.getDate() === date_2.getDate();
 
-    const isWeekEnd = (date) => {
-        return date.getDay() === 0 || date.getDay() === 6;
     }
 
     const tileDisable = ({ date }) => {
-        return !availableDates.find(_date => isSameDay(_date, date));
+        return !availableDates['hydra:member'].some(_date => {
+            let result = isSameDay(_date.date, date);
+            return result;
+        });
     }
-
-    useEffect(() => {
-        // loading available dates
-        // simulating delay time
-        setTimeout(() => {
-            setAvailableDates(availableDatesBag)
-            setLoadingCalendarDate(false)
-        }, 3000);
-    }, [])
 
     return (
 
         <div className="row turno-calendar">
             {
-                loadingCalendarDate
+                !availableDates
                     ? <div className="col-md-6 m-auto turno-calendar__date-block">
                         <div><LoaderLocalSpinner /></div>
                     </div>
@@ -178,7 +156,7 @@ const TurnoCalendar = ({ handleDate, handleTime, onChangeDate, onChangeTime }) =
                             nextLabel={<FontAwesomeIcon icon={faAngleRight} />}
                             prevLabel={<FontAwesomeIcon icon={faAngleLeft} />}
 
-                            activeStartDate={handleDate}
+                            //activeStartDate={handleDate}
 
                             tileDisabled={tileDisable}
                             minDate={minDate}
@@ -189,7 +167,7 @@ const TurnoCalendar = ({ handleDate, handleTime, onChangeDate, onChangeTime }) =
                     </div>
             }
             {
-                turnoTimes
+                turnoTimes.length !== 0
                     ? <div className="col-md-6 m-auto turno-calendar__time">
                         <div className="turno-calendar__formated-time">
                             <h3 className="p-0">{formatedTime}</h3>
@@ -204,7 +182,7 @@ const TurnoCalendar = ({ handleDate, handleTime, onChangeDate, onChangeTime }) =
                     </div>
                     : <div className="col-md-6 m-auto turno-calendar__time-block">
                         {
-                            loadingCalendarTime
+                            loading
                                 ? <div><LoaderLocalSpinner /></div>
                                 : <div className="turno-calendar__time-block__label">
                                     <h3>Seleccione una fecha</h3>

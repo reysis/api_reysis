@@ -9,6 +9,7 @@ import { faExclamationTriangle, faHammer } from '@fortawesome/free-solid-svg-ico
 import TurnoCalendar from "./TurnoCalendar";
 import TurnoAuth from './TurnoAuth';
 import { createTurnoFetch } from '../../redux/turno/create/createTurnoActions';
+import {changeTimeZone} from "../../redux/utiles";
 
 const Create = ({ locations }) => {
 
@@ -57,17 +58,15 @@ const Create = ({ locations }) => {
 		e.preventDefault();
 
 		console.log(date, time)
+		let [hour, minute] = time.split(':');
 
-		const fecha = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.hour, time.minute)
-		let userTurno = null
-		if (authenticated)
-			userTurno = user.id
-		else userTurno = userAuth
-
+		const fecha = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, minute);
+		let isoDate = changeTimeZone(fecha, "America/Havana").toISOString();
+		console.log('LA FECHAAAAAAAA', isoDate);
 		dispatch(createTurnoFetch({
-			fecha,
+			fecha: isoDate,
 			defecto,
-			user: userTurno
+			user: user.id
 		}))
 	}
 

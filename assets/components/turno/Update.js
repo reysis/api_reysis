@@ -1,123 +1,76 @@
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { Link, Redirect } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-// // import Form from './Form';
-// import { retrieve, update, reset } from '../../actions/turno/update';
-// import { del } from '../../actions/turno/delete';
+import React, {useEffect, useState} from 'react';
+import TurnoCalendar from "./TurnoCalendar";
+import {Button, Form, InputGroup} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHammer} from "@fortawesome/free-solid-svg-icons";
+import {updateTurnoFetch} from "../../redux/turno/update/updateTurnoActions";
+import {useDispatch, useSelector} from "react-redux";
+import { useParams } from 'react-router-dom';
+import {showTurnoFetch} from "../../redux/turno/show/showTurnoActions";
+import LoaderLocalSpinner from "../LoaderLocal";
 
-// class Update extends Component {
-//   static propTypes = {
-//     retrieved: PropTypes.object,
-//     retrieveLoading: PropTypes.bool.isRequired,
-//     retrieveError: PropTypes.string,
-//     updateLoading: PropTypes.bool.isRequired,
-//     updateError: PropTypes.string,
-//     deleteLoading: PropTypes.bool.isRequired,
-//     deleteError: PropTypes.string,
-//     updated: PropTypes.object,
-//     deleted: PropTypes.object,
-//     eventSource: PropTypes.instanceOf(EventSource),
-//     retrieve: PropTypes.func.isRequired,
-//     update: PropTypes.func.isRequired,
-//     del: PropTypes.func.isRequired,
-//     reset: PropTypes.func.isRequired
-//   };
+const Update = () => {
+    const [date, setDate] = useState(null);
+    const [time, setTime] = useState(null);
+    const [defecto, setDefecto] = useState("");
+    const [disabledForm, setDisabledForm] = useState(true)
 
-//   componentDidMount() {
-//     this.props.retrieve(decodeURIComponent(this.props.match.params.id));
-//   }
+    const turno = useSelector(state=> state.turno.show.turno);
+    const loading = useSelector(state=> state.turno.show.loading);
+    const error = useSelector(state=> state.turno.show.error);
 
-//   componentWillUnmount() {
-//     this.props.reset(this.props.eventSource);
-//   }
+    const dispatch = useDispatch();
+    const {id} = useParams();
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        console.log(id);
+        dispatch(updateTurnoFetch(1))
+    }
 
-//   del = () => {
-//     if (window.confirm('Are you sure you want to delete this item?'))
-//       this.props.del(this.props.retrieved);
-//   };
+    useEffect(()=>{
+        dispatch(showTurnoFetch(id));
+    },[])
 
-//   render() {
-//     if (this.props.deleted) return <Redirect to=".." />;
+    useEffect(() => {
+        setDisabledForm(() => {
+            return !date
+                || !time
+                || !defecto
+        })
+    }, [date, time, defecto])
 
-//     const item = this.props.updated ? this.props.updated : this.props.retrieved;
+    return (
+        <div>
+            {
+                turno ? (
+                    <Form onSubmit={handleSubmit} className="create-turno__form" >
+                        <TurnoCalendar
+                            handleDate={date}
+                            handleTime={time}
+                            onChangeDate={setDate}
+                            onChangeTime={setTime}
+                        />
+                        <Form.Group>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                    <label className="input-group-text" htmlFor="defecto" >
+                                        <FontAwesomeIcon icon={faHammer} />
+                                    </label>
+                                </InputGroup.Prepend>
+                                <Form.Control type="text" placeholder="Defecto del equipo" value={defecto} onChange={(e) => setDefecto(e.target.value)} />
+                            </InputGroup>
+                        </Form.Group>
 
-//     return (
-//       <div>
-//         <h2>Edit {item && item['@id']}</h2>
+                        <Form.Group>
+                            <Button variant="primary" block type="submit" disabled={disabledForm}>Crear Turno</Button>
+                        </Form.Group>
+                    </Form>
+                ):(
+                    <LoaderLocalSpinner />
+                )
+            }
+        </div>
+    );
+};
 
-//         {this.props.created && (
-//           <div className="alert alert-success" role="status">
-//             {this.props.created['@id']} created.
-//           </div>
-//         )}
-//         {this.props.updated && (
-//           <div className="alert alert-success" role="status">
-//             {this.props.updated['@id']} updated.
-//           </div>
-//         )}
-//         {(this.props.retrieveLoading ||
-//           this.props.updateLoading ||
-//           this.props.deleteLoading) && (
-//             <div className="alert alert-info" role="status">
-//               Loading...
-//             </div>
-//           )}
-//         {this.props.retrieveError && (
-//           <div className="alert alert-danger" role="alert">
-//             <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
-//             {this.props.retrieveError}
-//           </div>
-//         )}
-//         {this.props.updateError && (
-//           <div className="alert alert-danger" role="alert">
-//             <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
-//             {this.props.updateError}
-//           </div>
-//         )}
-//         {this.props.deleteError && (
-//           <div className="alert alert-danger" role="alert">
-//             <span className="fa fa-exclamation-triangle" aria-hidden="true" />{' '}
-//             {this.props.deleteError}
-//           </div>
-//         )}
-
-//         {item && (
-//           {/* <Form
-//             onSubmit={values => this.props.update(item, values)}
-//             initialValues={item}
-//           /> */}
-//         )}
-//         <Link to=".." className="btn btn-primary">
-//           Back to list
-//         </Link>
-//         <button onClick={this.del} className="btn btn-danger">
-//           Delete
-//         </button>
-//       </div>
-//     );
-//   }
-// }
-
-// const mapStateToProps = state => ({
-//   retrieved: state.turno.update.retrieved,
-//   retrieveError: state.turno.update.retrieveError,
-//   retrieveLoading: state.turno.update.retrieveLoading,
-//   updateError: state.turno.update.updateError,
-//   updateLoading: state.turno.update.updateLoading,
-//   deleteError: state.turno.del.error,
-//   deleteLoading: state.turno.del.loading,
-//   eventSource: state.turno.update.eventSource,
-//   created: state.turno.create.created,
-//   deleted: state.turno.del.deleted,
-//   updated: state.turno.update.updated
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   retrieve: id => dispatch(retrieve(id)),
-//   update: (item, values) => dispatch(update(item, values)),
-//   del: item => dispatch(del(item)),
-//   reset: eventSource => dispatch(reset(eventSource))
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Update);
+export default Update;

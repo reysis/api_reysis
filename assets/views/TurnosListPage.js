@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import {List} from "../components/turno";
+import ListTurno from "../components/turno/ListTurno";
 
 const TurnosListPage = () => {
     return (
-        <div className="content-wrap turnos-list-page">
+        <main className="content-wrap turnos-list-page page">
             <div className="header">
                 <h1><span>Listado de Turnos</span></h1>
             </div>
-            {/* <List/> */}
-        </div>
+            <ListTurno/>
+        </main>
     )
 }
-
-TurnosListPage.propTypes = {};
 
 export default TurnosListPage;
