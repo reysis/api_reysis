@@ -34,7 +34,6 @@ class AvailableDateValidator extends ConstraintValidator
         if (null === $value || '' === $value) {
             return;
         }
-        dump($value);
         /**
          * @var Turno $oldObject
          */
@@ -42,7 +41,6 @@ class AvailableDateValidator extends ConstraintValidator
             ->getUnitOfWork()
             ->getOriginalEntityData($value);
 
-        dump($oldObject);
 
         if($oldObject === []) {
             //POST Operation
@@ -65,9 +63,7 @@ class AvailableDateValidator extends ConstraintValidator
     public function checkDisponibility($value, AvailableDate $constraint): void
     {
         $availableDate = $this->availableDateRepository->findOneByDate($value->getFecha());
-        dump($availableDate);
         if (!$availableDate) {
-            dump("ENTRO AQUI");
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ value }}', $value->getFecha()->format('Y-m-d H:i:s'))
                 ->addViolation();

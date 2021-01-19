@@ -61,6 +61,11 @@ const Create = ({ locations }) => {
 		let [hour, minute] = time.split(':');
 
 		const fecha = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, minute);
+		const isoDte = new Date(fecha.getTime()-(date.getTimezoneOffset()*60000)).toISOString();
+		console.log("ISO",isoDate);
+		console.log(fecha.toISOString());
+		console.log(changeTimeZone(fecha));
+		console.log(fecha.toUTCString());
 		let isoDate = changeTimeZone(fecha, "America/Havana").toISOString();
 		console.log('LA FECHAAAAAAAA', isoDate);
 		dispatch(createTurnoFetch({

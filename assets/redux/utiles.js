@@ -132,6 +132,7 @@ export const changeTimeZone = (date, ianatz) =>{
         timeZone: ianatz
     }));
 
+    console.log("INVDATE",invdate);
     var diff = date.getTime() - invdate.getTime();
 
     return new Date(date.getTime() - diff);

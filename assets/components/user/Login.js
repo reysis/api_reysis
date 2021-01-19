@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faExclamationTriangle, faUserCircle, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
 
     const loading = useSelector(state => state.auth.loading)
     const authenticated = useSelector(state => state.auth.authenticated)
@@ -26,30 +26,29 @@ const Login = () => {
     const [disabledForm, setDisabledForm] = useState(true)
 
     const location = useLocation()
+    //const {from} = this.props.location.state
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (username.length == 0 || password.length == 0) return;
+        if (username.length === 0 || password.length === 0) return;
         dispatch(clearError())
         dispatch(loginFetch({ username, password }))
     }
 
     useEffect(() => {
         setDisabledForm(() => {
-            return username.length == 0
-                || password.length == 0
+            return username.length === 0
+                || password.length === 0
                 || loading
         })
     }, [username, password, loading])
 
     if (authenticated) {
-        if (location && location.search == '?redirect' && location.state && location.state.redirect) {
-            return <Redirect to={{
-                pathname: location.state.redirect,
-                state: { ...location.state }
-            }} />
+        if(location.state){
+            return <Redirect to={location.state.from.pathname}/>
+        }else{
+            return <Redirect to={"/"}/>
         }
-        return <Redirect to='/' />
     }
     return (
         <Container>

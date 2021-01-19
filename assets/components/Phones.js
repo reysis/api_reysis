@@ -61,8 +61,12 @@ const Phones = ({phones, setPhones, enableEdit}) => {
     return (
         <Container>
             { enableEdit &&
-                <Form onSubmit={handleSubmit}>
-                    <Form.Row>
+                <Form onSubmit={handleSubmit} className="phone-form">
+                    <Form.Group className="form-header text-center my-4">
+                        <h2 className="mb-2"><span>Teléfonos</span></h2>
+                        <span>¡Añada sus teléfonos!</span>
+                    </Form.Group>
+                    <Form.Row className="phone-form-row">
                         <Form.Group as={Col} md={6}>
                             <InputGroup>
                                 <InputGroup.Prepend>
@@ -107,11 +111,11 @@ const Phones = ({phones, setPhones, enableEdit}) => {
                                     }
                                 </Form.Control>
                             </InputGroup>
-                            <Form.Group className="register-submit">
-                                <Button disabled={disableSubmit} onClick={handleSubmit} variant="primary" type="button">
-                                    <FontAwesomeIcon icon={faPlus}/>
-                                </Button>
-                            </Form.Group>
+                        </Form.Group>
+                        <Form.Group className="register-submit">
+                            <Button block disabled={disableSubmit} onClick={handleSubmit} variant="primary" type="button">
+                                <FontAwesomeIcon icon={faPlus}/>
+                            </Button>
                         </Form.Group>
                     </Form.Row>
                 </Form>

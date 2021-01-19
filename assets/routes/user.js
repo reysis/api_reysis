@@ -2,7 +2,8 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import UserProfilePage from "../views/UserProfilePage";
+import PrivateRoute from "./Routes Component/PrivateRoute";
 
 export default [
-    <Route path="/profile" component={UserProfilePage} key="profile" />
+    <PrivateRoute path="/profile" component={UserProfilePage} key="profile" />
 ];

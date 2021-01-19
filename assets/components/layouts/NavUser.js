@@ -107,7 +107,7 @@ const NavUser = () => {
                         <ul className="nav-user__menu-items">
                             {
                                 authenticated
-                                    ? <li onClick={perfilClick} className="nav-user__menu-items__item item-selectionable nav-user__item-perfil">
+                                    ? <li key={1} onClick={perfilClick} className="nav-user__menu-items__item item-selectionable nav-user__item-perfil">
                                         <div className="nav-user__item--photo">
                                             <Image src={userProfile} />
                                         </div>
@@ -116,7 +116,7 @@ const NavUser = () => {
                                             <span className="subtitle">Ver tu perfil</span>
                                         </div>
                                     </li>
-                                    : <li className="nav-user__menu-items__item nav-user__item-no-perfil">
+                                    : <li key={2} className="nav-user__menu-items__item nav-user__item-no-perfil">
                                         <div className="nav-user__item--icon">
                                             <FontAwesomeIcon icon={faUser} />
                                         </div>
@@ -126,7 +126,7 @@ const NavUser = () => {
                                         </div>
                                     </li>
                             }
-                            <li className="nav-user__menu-items__item--separator" />
+                            <li key={3} className="nav-user__menu-items__item--separator" />
                             {
                                 authenticated &&
                                 <>
