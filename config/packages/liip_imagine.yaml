@@ -13,6 +13,8 @@ liip_imagine:
 
     resolvers:
         flysystem_resolver:
+            web_path: 
+                web_root: '%kernel.project_dir%/../public_html'
             flysystem:
                 filesystem_service: oneup_flysystem.public_uploads_filesystem_filesystem
                 root_url: '%uploads_base_url%'
