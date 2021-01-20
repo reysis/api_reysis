@@ -1,9 +1,12 @@
 export const getHeaders = (state) => {
-    const headers = {
+    let headers = {
         'Content-Type': 'application/ld+json',
     }
     if (state().auth.authenticated)
-        headers.Authorization = `Bearer ${state().auth.token}`
+        headers = {
+            ...headers,
+            'Php-Auth-Digest': `Bearer ${state().auth.token}`
+        }
     return new Headers(headers)
 }
 

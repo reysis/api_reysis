@@ -165,7 +165,7 @@ const getUser = (token) => {
 		method: 'GET',
 		headers: new Headers({
 			'Content-Type': 'application/ld+json',
-			Authorization: `Bearer ${token}`
+			'Php-Auth-Digest': `Bearer ${token}`
 		})
 	}
 }
