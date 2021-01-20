@@ -28,7 +28,6 @@ class PersonaVoter extends Voter
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
-        dump($user, $subject);
         /**
          * @var Persona $subject
          */

@@ -246,7 +246,7 @@ const Register = () => {
                                 </InputGroup>
                             </Form.Group>
 
-                            <Form.Group className="mb-0">
+                            <Form.Group >
                                 <InputGroup>
                                     <InputGroup.Prepend>
                                         <label className="input-group-text" htmlFor="register-address">

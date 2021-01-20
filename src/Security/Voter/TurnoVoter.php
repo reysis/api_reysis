@@ -22,9 +22,6 @@ class TurnoVoter extends Voter
     }
     protected function supports($attribute, $subject)
     {
-        dump($subject);
-        dump($subject instanceof Turno);
-        dump(in_array($attribute, ['ERASE', 'EDIT', 'GET_SPECIFIC']));
         return in_array($attribute, ['ERASE', 'EDIT', 'GET_SPECIFIC'])
             && $subject instanceof Turno;
     }
@@ -39,7 +36,6 @@ class TurnoVoter extends Voter
         /**
          * @var Turno $subject
          */
-        dump($subject->getUser(), $user);
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case 'EDIT':

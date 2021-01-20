@@ -19,7 +19,6 @@
     justify-content: center;
   }
   .user-profile-tab{
-      color: #6c757d;
       .user-profile-tab__container{
           padding: 25px;
           border: none;
@@ -38,6 +37,37 @@
           }
           .user-profile-buttons{
             margin: 10px;
+          }
+          .form-update{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            .form-header {
+
+              h2 {
+                font-size: 2em;
+                font-weight: 500;
+                text-transform: uppercase;
+
+                span {
+                  color: $color-primary
+                }
+              }
+
+              &>span {
+                color: $color-muted;
+              }
+            }
+            .form-update-main-row{
+              justify-content: center;
+              align-content: center;
+              .form-update-main-col{
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                flex-flow: column wrap;
+              }
+            }
           }
       }
   }

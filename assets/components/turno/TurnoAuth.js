@@ -134,7 +134,14 @@ const TurnoAuth = ({ setUserAuth }) => {
 							<FontAwesomeIcon icon={faAt} />
 						</label>
 					</InputGroup.Prepend>
-					<Form.Control type="email" id="create-turno-email" placeholder="Correo Electrónico" isInvalid={email.length && !validEmail} isValid={email.length && validEmail} value={email} onChange={(e) => setEmail(e.target.value)} ></Form.Control>
+					<Form.Control
+						type="email"
+						id="create-turno-email"
+						placeholder="Correo Electrónico"
+						isInvalid={email.length && !validEmail}
+						isValid={email.length && validEmail}
+						value={email} onChange={(e) => setEmail(e.target.value)}
+					/>
 				</InputGroup>
 			</Form.Group>
 
@@ -146,7 +153,13 @@ const TurnoAuth = ({ setUserAuth }) => {
 								<FontAwesomeIcon icon={faPhone} />
 							</label>
 						</InputGroup.Prepend>
-						<Form.Control type="phone" id="create-turno-phone" placeholder="Número de Teléfono" value={phone} onChange={(e) => setPhone(e.target.value)} ></Form.Control>
+						<Form.Control
+							type="phone"
+							id="create-turno-phone"
+							placeholder="Número de Teléfono"
+							value={phone}
+							onChange={(e) => setPhone(e.target.value)}
+						/>
 					</InputGroup>
 				</Form.Group>
 				<Form.Group as={Col} md={6}>
@@ -156,7 +169,12 @@ const TurnoAuth = ({ setUserAuth }) => {
 								<FontAwesomeIcon icon={faPhone} />
 							</label>
 						</InputGroup.Prepend>
-						<Form.Control as="select" id="create-turno-phone-type" className="custom-select" as="select" defaultValue={phoneType} onChange={(e) => setPhoneType(e.target.value)} >
+						<Form.Control
+							id="create-turno-phone-type"
+							className="custom-select"
+							as="select"
+							defaultValue={phoneType}
+							onChange={(e) => setPhoneType(e.target.value)} >
 							<option value="" >Tipo de Télefono ...</option>
 							{
 								phoneTypes.map((value, index) => (
@@ -175,7 +193,13 @@ const TurnoAuth = ({ setUserAuth }) => {
 							<FontAwesomeIcon icon={faAddressBook} />
 						</label>
 					</InputGroup.Prepend>
-					<Form.Control type="text" id="create-turno-address" placeholder="Dirección Particular" value={address} onChange={(e) => setAddress(e.target.value)} ></Form.Control>
+					<Form.Control
+						type="text"
+						id="create-turno-address"
+						placeholder="Dirección Particular"
+						value={address}
+						onChange={(e) => setAddress(e.target.value)}
+					/>
 				</InputGroup>
 			</Form.Group>
 
