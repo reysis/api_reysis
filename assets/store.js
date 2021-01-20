@@ -9,7 +9,7 @@ const middleware = [routerMiddleware(history), thunk];
 
 import rootReducers from './redux/rootReducers';
 
-const store = process.env.NODE_ENV === 'production'
+const store = process.env.NODE_ENV !== 'production'
 	? createStore(
 		rootReducers,
 		compose(
