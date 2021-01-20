@@ -75,6 +75,6 @@ class ServicioFixtures extends BaseFixture
 
     private function deleteFilesInFilesystem()
     {
-        $this->publicFileSystem->deleteDir("services_image");
+        $this->publicFileSystem->deleteDir("service_image");
     }
 }
