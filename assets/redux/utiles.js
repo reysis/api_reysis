@@ -29,7 +29,6 @@ export const changePageNumberFromURL = (page, newValue) =>{
 
     i++;
     let sol = page.slice(0, i);
-    console.log(`CADENA PICADA = ${sol}`);
     return sol + newValue;
 }
 
@@ -41,7 +40,6 @@ function addZero(i) {
 }
 
 export const getHoursFromDate = (date) =>{
-    console.log(date);
     let h = date.getHours();
     let m = date.getMinutes();
 
@@ -135,7 +133,6 @@ export const changeTimeZone = (date, ianatz) =>{
         timeZone: ianatz
     }));
 
-    console.log("INVDATE",invdate);
     var diff = date.getTime() - invdate.getTime();
 
     return new Date(date.getTime() - diff);
@@ -145,4 +142,21 @@ export const getIdFromUrl = (url) =>{
     let array = url.split("/");
 
     return array[array.length - 1];
+}
+
+Date.prototype.toIsoStringMine = function() {
+    var tzo = -this.getTimezoneOffset(),
+        dif = tzo >= 0 ? '+' : '-',
+        pad = function(num) {
+            var norm = Math.floor(Math.abs(num));
+            return (norm < 10 ? '0' : '') + norm;
+        };
+    return this.getFullYear() +
+        '-' + pad(this.getMonth() + 1) +
+        '-' + pad(this.getDate()) +
+        'T' + pad(this.getHours()) +
+        ':' + pad(this.getMinutes()) +
+        ':' + pad(this.getSeconds()) +
+        dif + pad(tzo / 60) +
+        ':' + pad(tzo % 60);
 }

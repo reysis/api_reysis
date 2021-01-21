@@ -2,7 +2,8 @@ import {
 	CREATE_TURNO_REQUEST,
 	CREATE_TURNO_SUCCESS,
 	CREATE_TURNO_ERROR,
-	CREATE_TURNO_CLEAR_ERROR
+	CREATE_TURNO_CLEAR_ERROR,
+	CREATE_TURNO_CLEAR
 } from "./createTurnoTypes";
 
 import { fetch } from "../../../utils/dataAccess";
@@ -30,7 +31,6 @@ export const createTurnoError = error => {
 };
 
 export const createTurnoFetch = ({fecha, defecto, user}) => (dispatch, getState) => {
-	console.log("ENTRE AQUIIIIIIII");
 	dispatch(createTurnoRequest());
 
 	const page = "/api/turnos";
@@ -40,7 +40,6 @@ export const createTurnoFetch = ({fecha, defecto, user}) => (dispatch, getState)
 		defecto: defecto,
 		user: user
 	})
-	console.log(body);
 	const headers = getHeaders(getState);
 
 	fetch(page, { method, body, headers })
@@ -60,5 +59,11 @@ export const createTurnoFetch = ({fecha, defecto, user}) => (dispatch, getState)
 export const createTurnoClearError = () => {
 	return {
 		type: CREATE_TURNO_CLEAR_ERROR
+	};
+};
+
+export const createTurnoClear = () => {
+	return {
+		type: CREATE_TURNO_CLEAR
 	};
 };
