@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { Route, Switch } from 'react-router-dom';
 
@@ -14,21 +14,22 @@ import navbarRoutes from './routes/navbar';
 import authenticationsRoutes from './routes/authentication';
 import userRoutes from './routes/user';
 
-import { ConnectedRouter } from 'connected-react-router';
+// import { ConnectedRouter } from 'connected-react-router';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.scss';
 
-import history from './history';
-
 import { loadUser } from './redux/auth/authActions';
 import { loadConfiguration } from './redux/configuration/configurationActions';
+import { useLocation } from 'react-router-dom'
 
 const App = () => {
 
     const dispatch = useDispatch()
+
+    const location = useLocation()
 
     useEffect(() => {
         AOS.init({
@@ -41,8 +42,14 @@ const App = () => {
         dispatch(loadConfiguration())
     }, [])
 
+    useEffect(() => {
+        const id = location.hash.substr(1)
+        const elem = document.getElementById(id)
+        id && elem && elem.scrollIntoView({ behavior: 'smooth' })
+    }, [location])
+
     return (
-        <ConnectedRouter history={history}>
+        <>
             <Header />
             <Switch>
                 <Route path="/" component={Home} strict={true} exact={true} key="home" />
@@ -54,7 +61,7 @@ const App = () => {
             </Switch>
             <LoaderSpinner />
             <Footer />
-        </ConnectedRouter>
+        </>
     )
 };
 

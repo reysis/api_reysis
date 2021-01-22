@@ -79,10 +79,10 @@ const Header = () => {
 		pathname && window.scroll(0, 0)
 	}, [pathname])
 
-	useEffect(() => {
-		const id = hash.substr(1)
-		id && document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
-	}, [location])
+	// useEffect(() => {
+	// 	const id = hash.substr(1)
+	// 	id && document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
+	// }, [location])
 
 	const upClick = () => {
 		document.getElementById('root').scrollIntoView({ behavior: 'smooth' })
