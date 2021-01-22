@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapMarkerAlt, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'
+import {faMapMarkerAlt, faEnvelope, faPhone, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { messagePost } from '../redux/contact_message/messageActions'
 import { Form, Button } from 'react-bootstrap'
+import Toast from "./layouts/Toast";
 
 const Contact = () => {
 
@@ -16,10 +17,15 @@ const Contact = () => {
 	const [message, setMessage] = useState('')
 	const [validEmail, setValidEmail] = useState(false)
 
+	const [toastType, setToastType] = useState(null);
+	const [toastList, setToastList] = useState([]);
+
 	const loading = useSelector(state => state.contactMessage.loading)
 	const error = useSelector(state => state.contactMessage.error)
+	const messageResponse = useSelector(state=> state.contactMessage.message);
 
 	const [contactMessageButton, setContactMessageButton] = useState('Enviar Mensaje');
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		if (loading) {
@@ -47,7 +53,42 @@ const Contact = () => {
 		}, 1000);
 	}, [email])
 
-	const dispatch = useDispatch()
+
+	useEffect(()=>{
+		if(error){
+			let toastProperties = {
+				id: Math.floor((Math.random() * 100) + 1),
+				type: 'danger-toast',
+				title: "Oh vaya :(!",
+				description: error,
+				icon: faTimes
+			};
+			setToastList([...toastList, toastProperties]);
+		}
+	}, [error])
+
+	useEffect(()=>{
+		if(messageResponse){
+			setToastType('success')
+			let toastProperties = {
+				id: Math.floor((Math.random() * 100) + 1),
+				type: 'success-toast',
+				title: "Excelente!",
+				description: "Su mensaje ha sido enviado correctamente!",
+				icon: faCheck
+			};
+			setToastList([...toastList, toastProperties]);
+		}
+	}, [messageResponse])
+
+	useEffect(() => {
+		if (!loading && error == null) {
+			setName('')
+			setEmail('')
+			setPhone('')
+			setMessage('')
+		}
+	}, [loading])
 
 	const handleContactMessage = (e) => {
 		e.preventDefault()
@@ -59,15 +100,6 @@ const Contact = () => {
 			message
 		}))
 	}
-
-	useEffect(() => {
-		if (!loading && error == null) {
-			setName('')
-			setEmail('')
-			setPhone('')
-			setMessage('')
-		}
-	}, [loading])
 
 	return (
 		<section id="contact-home" className="contact-component section-padding">
@@ -126,111 +158,20 @@ const Contact = () => {
 						</div>
 						<div className="form-group">
 							<textarea className="form-control contact-home-message" id="message" placeholder="Su Mensaje" rows="5" data-error="Escriba un mensaje" required value={message} onChange={(e) => setMessage(e.target.value)} />
-							{/* <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea> */}
-							{/* <div class="validate"></div> */}
 						</div>
-						{/* <div class="mb-3">
-							<div class="loading">Loading</div>
-							<div class="error-message"></div>
-							<div class="sent-message">Your message has been sent. Thank you!</div>
-						</div> */}
 						<Form.Group className="text-center submit-button mb-0">
 							<Button disabled={loading} className="contact-button m-0" type="submit">{contactMessageButton}</Button>
 						</Form.Group>
 					</Form>
 				</div>
 			</div>
-		</section>
-	)
-
-	return (
-		<section id="contact-home" className="contact-component section-padding">
-			<div className="container">
-				<div data-aos="fade-up" className="row contact-form-area">
-					<div className="col-md-6 col-lg-6 col-sm-12">
-						<div className="contact-block">
-							<div className="contact-title">
-								<h2>Send us <span>a message</span></h2>
-							</div>
-							<Form onSubmit={handleContactMessage} id="contactForm">
-								<div className="row">
-									<div className="col-md-12">
-										<div className="form-group">
-											<input type="text" className="form-control" id="name" name="name" placeholder="Nombre" required data-error="Por favor entre su nombre" value={name} onChange={(e) => setName(e.target.value)} />
-											<div className="help-block with-errors"></div>
-										</div>
-									</div>
-									<div className="col-md-6">
-										<div className="form-group">
-											<Form.Control type="email" id="email" placeholder="Correo" isInvalid={email.length && !validEmail} isValid={email.length && validEmail} value={email} onChange={(e) => setEmail(e.target.value)} required data-error="Por favor entre su correo" />
-											{/* <input type="text" placeholder="Correo" className="form-control" name="email" required data-error="Por favor entre su correo" /> */}
-											<div className="help-block with-errors"></div>
-										</div>
-									</div>
-									<div className="col-md-6">
-										<div className="form-group">
-											<input type="text" placeholder="Teléfono" id="phone" className="form-control" name="phone" required data-error="Por favor entre su teléfono" value={phone} onChange={(e) => setPhone(e.target.value)} />
-											<div className="help-block with-errors"></div>
-										</div>
-									</div>
-									<div className="col-md-12">
-										<div className="form-group">
-											<textarea className="form-control contact-home-message" id="message" placeholder="Su Mensaje" rows="5" data-error="Escriba un mensaje" required value={message} onChange={(e) => setMessage(e.target.value)} />
-											<div className="help-block with-errors"></div>
-										</div>
-										<Form.Group className="submit-button">
-											<Button disabled={loading} className="contact-button" type="submit">{loading ? "Enviando..." : "Enviar Mensaje"}</Button>
-										</Form.Group>
-									</div>
-								</div>
-							</Form>
-						</div>
-					</div>
-					<div className="col-md-6 col-lg-6 col-sm-12">
-						<div data-aos="fade-up" className="contact-right-area">
-							<div className="contact-title">
-								<h2 className="pb-4">Get in <span>touch</span></h2>
-								<p>We’re very approachable and would love to speak to you. Feel free to call, send us an email, Tweet us or simply complete the enquiry form.</p>
-							</div>
-							{/* <div className="contact-header">
-								<h2>Contáctenos</h2>
-							</div> */}
-							<div className="row contact-right">
-								<div className="col-lg-12 single-contact">
-									<div className="contact-icon">
-										<FontAwesomeIcon icon={faMapMarkerAlt} />
-									</div>
-									<p><span>Calle 23 y M, La Habana, Cuba</span></p>
-								</div>
-								<div className="col-lg-6 single-contact">
-									<div className="contact-icon">
-										<FontAwesomeIcon icon={faEnvelope} />
-									</div>
-									<p><span><a href="mailto:contact@reysis.su" target="_blank">contact@reysis.su</a></span></p>
-								</div>
-								<div className="col-lg-6 single-contact">
-									<div className="contact-icon">
-										<FontAwesomeIcon icon={faPhone} />
-									</div>
-									<p><span><a href="tel:5355555555" target="_blank">(+53) 555 555 55</a></span></p>
-								</div>
-								<div className="col-lg-6 single-contact">
-									<div className="contact-icon">
-										<FontAwesomeIcon icon={faTwitter} />
-									</div>
-									<p><span><a href="https://www.twitter.com/reysis" target="_blank">@reysis</a></span></p>
-								</div>
-								<div className="col-lg-6 single-contact">
-									<div className="contact-icon">
-										<FontAwesomeIcon icon={faFacebookF} />
-									</div>
-									<p><span><a href="https://www.facebook.com/reysis" target="_blank">/reysis</a></span></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<Toast
+				type={toastType}
+				toastList={toastList}
+				position="bottom-left"
+				autoDelete={true}
+				autoDeleteTime={4000}
+			/>
 		</section>
 	)
 }
