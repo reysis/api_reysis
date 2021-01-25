@@ -3,7 +3,7 @@ import {
     UPDATE_USER_REQUEST,
     UPDATE_USER_SUCCESS
 } from './updateUserTypes'
-import {setUser} from "../../auth/authActions";
+import {updateUserAuthenticated} from "../../auth/token/authTokenActions";
 
 import { fetch } from "../../../utils/dataAccess";
 
@@ -115,7 +115,7 @@ export const updateUserFetch = (id, {
         .then(res => res.json())
         .then(res => {
             dispatch(updateUserSuccess(res))
-            dispatch(setUser(res));
+            dispatch(updateUserAuthenticated(res));
         })
         .catch(error => {
             dispatch(updateUserError(error.message))

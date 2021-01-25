@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { logoutSuccess } from '../../redux/auth/authActions';
+import { userLogout } from "../../redux/auth/login/authLoginActions";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
@@ -15,7 +14,7 @@ const Logout = () => {
     let timeout = null;
 
     useEffect(() => {
-        dispatch(logoutSuccess())
+        dispatch(userLogout())
         timeout = setTimeout(() => {
             setRedirect(true)
         }, 10000)

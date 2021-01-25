@@ -21,9 +21,10 @@ import 'aos/dist/aos.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.scss';
 
-import { loadUser } from './redux/auth/authActions';
 import { loadConfiguration } from './redux/configuration/configurationActions';
 import { useLocation } from 'react-router-dom'
+import {userLoguedFetch} from "./redux/auth/token/authTokenActions";
+import {loginSuccess} from "./redux/auth/login/authLoginActions";
 
 const App = () => {
 
@@ -38,7 +39,10 @@ const App = () => {
             offset: 100,
             once: true
         })
-        dispatch(loadUser());
+        if(localStorage.getItem('user')){
+            dispatch(loginSuccess(true));
+            dispatch(userLoguedFetch(localStorage.getItem('user')));
+        }
         dispatch(loadConfiguration())
     }, [])
 

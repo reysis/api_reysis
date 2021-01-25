@@ -4,7 +4,7 @@ import history from '../history';
 
 import turno from './turno';
 import availableDate from './availableDate';
-import auth from './auth/authReducer';
+import auth from './auth';
 import opinion from './opinion';
 import service from './service';
 import faq from './faq/faqReducer';

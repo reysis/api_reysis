@@ -11,6 +11,10 @@ security:
                 class: App\Entity\User
                 property: username
     firewalls:
+        refresh:
+            pattern: ^/api/refresh-token
+            stateless: true
+            anonymous: true
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -26,10 +30,6 @@ security:
                 check_path: /api/authentication
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
-        refresh:
-            pattern: ^/api/token/refresh
-            stateless: true
-            anonymous: true
         main:
             anonymous: true
             lazy: true
@@ -46,4 +46,4 @@ security:
     access_control:
          - { path: ^/api/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
          - { path: ^/api/authentication, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/api/refresh-token, roles: IS_AUTHENTICATED_ANONYMOUSLY }

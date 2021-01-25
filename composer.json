@@ -40,7 +40,8 @@
         "symfony/validator": "5.1.*",
         "symfony/var-dumper": "5.1.*",
         "symfony/webpack-encore-bundle": "^1.7",
-        "symfony/yaml": "5.1.*"
+        "symfony/yaml": "5.1.*",
+        "symfonycasts/verify-email-bundle": "^1.1"
     },
     "require-dev": {
         "behat/behat": "^3.7",

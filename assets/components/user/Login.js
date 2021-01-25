@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { clearError, loginFetch } from "../../redux/auth/authActions";
+import { loginFetch } from "../../redux/auth/login/authLoginActions";
 
 import { Redirect, Link } from "react-router-dom";
 
@@ -13,9 +13,9 @@ import { useLocation } from 'react-router-dom';
 
 const Login = (props) => {
 
-    const loading = useSelector(state => state.auth.loading)
-    const authenticated = useSelector(state => state.auth.authenticated)
-    const error = useSelector(state => state.auth.error)
+    const loading = useSelector(state => state.auth.login.loading)
+    const authenticated = useSelector(state => state.auth.token.authenticatedUser)
+    const error = useSelector(state => state.auth.login.error)
 
     const dispatch = useDispatch()
 
@@ -30,8 +30,6 @@ const Login = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (username.length === 0 || password.length === 0) return;
-        dispatch(clearError())
         dispatch(loginFetch({ username, password }))
     }
 
@@ -50,10 +48,11 @@ const Login = (props) => {
             return <Redirect to={"/"}/>
         }
     }
+    console.log("ERROR:",error);
     return (
         <Container>
             <Alert role={"status"} variant={"info"} show={loading} >Loading...</Alert>
-            <Alert role={"alert"} variant={"danger"} show={error} >
+            <Alert role={"alert"} variant={"danger"} show={error !== null} >
                 <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
                 {error}
             </Alert>

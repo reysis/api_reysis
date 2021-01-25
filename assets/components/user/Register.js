@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { clearError, registerFetch } from "../../redux/auth/authActions";
+import { registerFetch } from "../../redux/auth/register/authRegisterActions";
 
 import { Redirect, Link } from "react-router-dom";
 
@@ -47,15 +47,11 @@ const Register = () => {
         timeout4 = null,
         timeout5 = null
 
-    const authLoading = useSelector(state => state.auth.loading)
-    const authAuthenticated = useSelector(state => state.auth.authenticated)
-    const authError = useSelector(state => state.auth.error)
+    const authLoading = useSelector(state => state.auth.register.loading)
+    const authAuthenticated = useSelector(state => state.auth.login.authenticated)
+    const authError = useSelector(state => state.auth.register.error)
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(clearError())
-    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -124,14 +120,6 @@ const Register = () => {
             setValidUsername(() => reg.test(username))
         }, 1000);
     }, [username])
-
-    // useEffect(() => {
-    //     if (timeout4) clearTimeout(timeout4)
-    //     timeout4 = setTimeout(() => {
-    //         let reg = new RegExp("^[0-9 \+\(\)]+$");
-    //         setValidPhone(() => reg.test(phone))
-    //     }, 1000);
-    // }, [phone])
 
     useEffect(() => {
         if (timeout5) clearTimeout(timeout5)

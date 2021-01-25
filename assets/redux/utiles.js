@@ -2,11 +2,12 @@ export const getHeaders = (state) => {
     let headers = {
         'Content-Type': 'application/ld+json',
     }
-    if (state().auth.authenticated)
+    if (localStorage.getItem('token'))
         headers = {
             ...headers,
-            'Php-Auth-Digest': `Bearer ${state().auth.token}`
+            'Php-Auth-Digest': `Bearer ${localStorage.getItem('token')}`
         }
+    console.log(headers);
     return new Headers(headers)
 }
 

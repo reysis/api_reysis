@@ -27,12 +27,15 @@ export function fetch(id, options = {}) {
         .then(json => {
           console.log(json)
 
+            if(json['message'] === 'Invalid credentials.'){
+                throw new Error("Credenciales incorrectas");
+            }
           const error =
             json['hydra:description'] ||
             json['hydra:title'] ||
             json['error'];
           if (!json.violations)
-            throw Error(error);
+            throw new Error(error);
 
           let errors = { _error: error };
           json.violations.forEach(violation =>

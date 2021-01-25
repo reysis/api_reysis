@@ -11,8 +11,8 @@ import { useSelector } from 'react-redux';
 
 const NavUserProfile = ({ name, profileShow }) => {
 
-    const authenticated = useSelector(state => state.auth.authenticated)
-    const loading = useSelector(state => state.auth.loading)
+    const authenticated = useSelector(state => state.auth.login.authenticated)
+    const loading = useSelector(state => state.auth.login.loading)
 
     return (
         <>

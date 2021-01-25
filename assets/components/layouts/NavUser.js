@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button, Image, Modal } from 'react-bootstrap'
@@ -18,12 +18,14 @@ import { useLocation, useHistory } from 'react-router-dom';
 import ModalOpinion from './ModalOpinion';
 import NavUserProfile from './NavUserProfile';
 import NavUserNotification from './NavUserNotification';
+import {userLogout} from "../../redux/auth/login/authLoginActions";
 
 const NavUser = () => {
 
-    const authenticated = useSelector(state => state.auth.authenticated)
-    const user = useSelector(state => state.auth.user);
+    const authenticated = useSelector(state => state.auth.login.authenticated)
+    const user = useSelector(state => state.auth.token.authenticatedUser);
 
+    const dispatch = useDispatch();
     const history = useHistory()
 
     const { pathname } = useLocation()
@@ -54,13 +56,14 @@ const NavUser = () => {
     }, [pathname])
 
     useEffect(() => {
-        if (authenticated && user.persona && user.persona.nombre) {
+        console.log(user);
+        if (authenticated && user) {
             setName(user.persona.nombre)
         }
         else {
             setName("")
         }
-    }, [authenticated])
+    }, [authenticated, user])
 
     const perfilClick = () => history.push('/profile')
 
@@ -90,6 +93,8 @@ const NavUser = () => {
 
     const logoutClick = () => {
         handleProfileShow(false)
+
+        dispatch(userLogout());
         history.push('/logout')
     }
 

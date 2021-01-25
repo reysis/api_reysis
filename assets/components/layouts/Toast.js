@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //     icon: checkIcon
 // }
 
-const Toast = ({ toastList, position, autoDelete, autoDeleteTime }) => {
+const Toast = ({ toastList, setToastList, position, autoDelete, autoDeleteTime }) => {
     const [list, setList] = useState(toastList);
     const [classType, setClassType] = useState();
 
@@ -39,7 +39,9 @@ const Toast = ({ toastList, position, autoDelete, autoDeleteTime }) => {
         const index = list.findIndex(e => e.id === id);
         list.splice(index, 1);
         const toastListItem = toastList.findIndex(e => e.id === id);
-        toastList.splice(toastListItem, 1);
+        setToastList(toastList.filter(({index})=>{
+            return index !== toastListItem
+        }));
         setList([...list]);
     }
 

@@ -168,6 +168,7 @@ const Contact = () => {
 			<Toast
 				type={toastType}
 				toastList={toastList}
+				setToastList={setToastList}
 				position="bottom-left"
 				autoDelete={true}
 				autoDeleteTime={4000}
