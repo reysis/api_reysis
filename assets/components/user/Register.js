@@ -91,7 +91,6 @@ const Register = () => {
             password,
             nationality
         }
-        console.log(request);
 
         dispatch(registerFetch(request))
     }
@@ -138,27 +137,6 @@ const Register = () => {
     useEffect(() => {
         if(timeout4) clearTimeout(timeout4);
         timeout4 = setTimeout(() => {
-            console.log("TODO:",!username.length
-                || (!name.length && !lastname.length)
-                || !password.length
-                || !validPassword
-                || !arePasswordMatch
-                || !email.length
-                || !validEmail
-                || !phones.length
-                || !address.length);
-            console.log("USERNAME:",!username.length)
-            console.log("NAME:",(!name.length && !lastname.length))
-            console.log("PASSWORD:",!password.length)
-            console.log("VALID PASSWORD:",!validPassword)
-            console.log("PASSWORD MATCH: ",!arePasswordMatch)
-            console.log("EMAIL: ",!email.length)
-            console.log("VALID EMAIL: ",!validEmail)
-            console.log("PHONES",!phones.length)
-            console.log("ADDRESS: ",!address.length)
-            console.log("CI:", !cid.length);
-            console.log("CI:", !validCid);
-
             setDisabledForm(() => {
                 return !username.length
                     || (!name.length && !lastname.length)

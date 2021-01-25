@@ -17,9 +17,6 @@ const Toast = ({ toastList, setToastList, position, autoDelete, autoDeleteTime }
     const [list, setList] = useState(toastList);
     const [classType, setClassType] = useState();
 
-    console.log(toastList, position,autoDelete, autoDeleteTime);
-
-
     useEffect(() => {
         const interval = setInterval(() => {
             if (autoDelete && toastList.length && list.length) {

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Col, Container, Form, InputGroup, Table} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faPhone, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faPhone, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
 
 const Phones = ({phones, setPhones, enableEdit}) => {
     const [phone, setPhone] = useState("");
@@ -16,6 +16,12 @@ const Phones = ({phones, setPhones, enableEdit}) => {
         "Trabajo"
     ])
 
+    const handleDeletePhone = (id) =>{
+        setPhones(phones.filter( (currentValue, index)=> {
+            return index !== id
+        } ));
+    }
+
     const handleSubmit = (e) =>{
         e.preventDefault();
 
@@ -24,9 +30,6 @@ const Phones = ({phones, setPhones, enableEdit}) => {
         setPhoneType("");
     }
 
-    const handleDelete = (index) =>{
-        delete phones[index];
-    }
     let timeout = null;
 
     useEffect(() => {
@@ -38,13 +41,17 @@ const Phones = ({phones, setPhones, enableEdit}) => {
     }, [phone])
 
     useEffect(()=>{
-        console.log("ACTIVATED USE EFFECT!")
         let array = [phones.map((item, index)=>{
             return (
                 <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{item.number}</td>
                     <td>{item.phoneType}</td>
+                    <td>
+                        <div onClick={()=>handleDeletePhone(index)}>
+                            <FontAwesomeIcon icon={faTrash} color="red"/>
+                        </div>
+                    </td>
                 </tr>
             )
         })];
@@ -61,77 +68,85 @@ const Phones = ({phones, setPhones, enableEdit}) => {
     return (
         <Container>
             { enableEdit &&
-                <Form onSubmit={handleSubmit} className="phone-form">
-                    <Form.Group className="form-header text-center my-4">
-                        <h2 className="mb-2"><span>Teléfonos</span></h2>
-                        <span>¡Añada sus teléfonos!</span>
+            <Form onSubmit={handleSubmit} className="phone-form">
+                <Form.Group className="form-header text-center my-4">
+                    <h2 className="mb-2"><span>Teléfonos</span></h2>
+                    <span>¡Añada sus teléfonos!</span>
+                </Form.Group>
+                <Form.Row className="phone-form-row">
+                    <Form.Group as={Col} md={6}>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <label className="input-group-text" htmlFor="register-phone">
+                                    <FontAwesomeIcon icon={faPhone} />
+                                </label>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                                disabled={!enableEdit}
+                                type="phone"
+                                id="register-phone"
+                                placeholder="Número de Teléfono"
+                                value={phone}
+                                isInvalid={phone.length && !isValidPhone}
+                                isValid={phone.length && isValidPhone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                required={true}
+                            />
+                        </InputGroup>
                     </Form.Group>
-                    <Form.Row className="phone-form-row">
-                        <Form.Group as={Col} md={6}>
-                            <InputGroup>
-                                <InputGroup.Prepend>
-                                    <label className="input-group-text" htmlFor="register-phone">
-                                        <FontAwesomeIcon icon={faPhone} />
-                                    </label>
-                                </InputGroup.Prepend>
-                                <Form.Control
-                                    disabled={!enableEdit}
-                                    type="phone"
-                                    id="register-phone"
-                                    placeholder="Número de Teléfono"
-                                    value={phone}
-                                    isInvalid={phone.length && !isValidPhone}
-                                    isValid={phone.length && isValidPhone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    required={true}
-                                />
-                            </InputGroup>
-                        </Form.Group>
-                        <Form.Group as={Col} md={6}>
-                            <InputGroup>
-                                <InputGroup.Prepend>
-                                    <label className="input-group-text" htmlFor="register-phone-type">
-                                        <FontAwesomeIcon icon={faBars} />
-                                    </label>
-                                </InputGroup.Prepend>
-                                <Form.Control
-                                    disabled={!enableEdit}
-                                    id="register-phone-type"
-                                    className="custom-select"
-                                    as="select"
-                                    defaultValue={phoneType}
-                                    onChange={(e) => setPhoneType(e.target.value)}
-                                    required={true}
-                                >
-                                    <option value="" >Tipo de Télefono ...</option>
-                                    {
-                                        phoneTypes.map((value, index) => (
-                                            <option key={index} value={value}>{value}</option>
-                                        ))
-                                    }
-                                </Form.Control>
-                            </InputGroup>
-                        </Form.Group>
-                        <Form.Group className="register-submit">
-                            <Button block disabled={disableSubmit} onClick={handleSubmit} variant="primary" type="button">
-                                <FontAwesomeIcon icon={faPlus}/>
-                            </Button>
-                        </Form.Group>
-                    </Form.Row>
-                </Form>
+                    <Form.Group as={Col} md={6}>
+                        <InputGroup>
+                            <InputGroup.Prepend>
+                                <label className="input-group-text" htmlFor="register-phone-type">
+                                    <FontAwesomeIcon icon={faBars} />
+                                </label>
+                            </InputGroup.Prepend>
+                            <Form.Control
+                                disabled={!enableEdit}
+                                id="register-phone-type"
+                                className="custom-select"
+                                as="select"
+                                defaultValue={phoneType}
+                                onChange={(e) => setPhoneType(e.target.value)}
+                                required={true}
+                            >
+                                <option value="" >Tipo de Télefono ...</option>
+                                {
+                                    phoneTypes.map((value, index) => (
+                                        <option key={index} value={value}>{value}</option>
+                                    ))
+                                }
+                            </Form.Control>
+                        </InputGroup>
+                    </Form.Group>
+                    <Form.Group className="register-submit">
+                        <Button block disabled={disableSubmit} onClick={handleSubmit} variant="primary" type="button">
+                            <FontAwesomeIcon icon={faPlus}/>
+                        </Button>
+                    </Form.Group>
+                </Form.Row>
+            </Form>
             }
-            <Table>
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Número</th>
-                        <th>Tipo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableOfPhones}
-                </tbody>
-            </Table>
+            {
+                tableOfPhones.length !== 0
+                    ? (
+                    <Table>
+                        <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Número</th>
+                            <th>Tipo</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {tableOfPhones}
+                        </tbody>
+                    </Table>
+                    ):(
+                        <div>No hay números añadidos aun</div>
+                    )
+            }
         </Container>
     );
 };
