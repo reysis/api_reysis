@@ -30,7 +30,7 @@ function ReviewsContainer({userId}) {
         //aqui me quedo con la cantidad de paginas que hay totales ya que si miras
         //el hydra:view de la response veras que te da lo que necesitas para paginar
         if(response){
-            if(response['hydra:view']){
+            if(response['hydra:view'] && response['hydra:totalItems']){
                 setLastPage(decodeLastPage(response['hydra:view']['hydra:last']));
             }else{
                 setLastPage(1);
