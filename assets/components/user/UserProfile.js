@@ -8,7 +8,7 @@ import TabUserProfile from "../layouts/TabUserProfile";
 import ProfilePicture from "../layouts/ProfilePicture";
 
 const UserProfile = () => {
-    const user = useSelector(state => state.auth.user);
+    const user = useSelector(state => state.auth.token.authenticatedUser);
 
     return (
         <div>
