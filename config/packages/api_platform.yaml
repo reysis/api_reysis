@@ -20,5 +20,5 @@ api_platform:
         versions: [ 3 ]
         api_keys:
             apiKey:
-                name: Authorization
+                name: Php-Auth-Digest
                 type: header
