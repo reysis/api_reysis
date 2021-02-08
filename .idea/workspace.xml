@@ -2,62 +2,83 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/BaseFixture.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/ReviewFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TipoServicioFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TipoUserFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/MediaObjectType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/UploaderHelper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Swagger/SwaggerDecorator.php" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/config/gesdinet_jwt_refresh_token.yaml" afterDir="false" />
->>>>>>> 651c4c7644d3dc275596c26191b6c222d41a0710
+      <change afterPath="$PROJECT_DIR$/assets/components/layouts/ModalProfilePicture.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/_dropzone.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/_modals.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210203152134.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210203152635.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210203153130.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210203194511.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210204144501.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Security/Voter/MediaObjectVoter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Serializer/Denormalizer/MediaObjectDenormalizer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Test/images/default-user.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Validator/IsValidMediaObject.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Validator/IsValidMediaObjectValidator.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/assets/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/api_platform.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/api_platform.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/lexik_jwt_authentication.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/lexik_jwt_authentication.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CreateMediaObjectAction.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CreateMediaObjectAction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/MediaObjectFixtures.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/About.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/Opinions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Opinions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/OpinionsItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/OpinionsItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ProfilePicture.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ProfilePicture.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ReviewCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ReviewCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ReviewsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ReviewsContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_opinions.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_opinions.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_user-profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_user-profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/ReviewsListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ReviewsListPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201106202704.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201107024355.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/MediaObjectDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/MediaObjectDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataProvider/MediaObjectDataProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataProvider/MediaObjectDataProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Accesorios.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Banco.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Contrato.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CuentaBancaria.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CuentaBanco.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Empresa.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Equipo.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Garantia.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Marca.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/MediaObject.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MediaObject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TiposServicios.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TiposServicios.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/OrdenServicio.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TipoCuenta.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TipoEquipo.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/src/Security/Voter/UserVoter.php" afterDir="false" />
-=======
->>>>>>> doctrine
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Empresa.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Empresa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Persona.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Reviews.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reviews.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Turno.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Turno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/Voter/TurnoVoter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/Voter/TurnoVoter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/TipoServiciosResourceTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/AccesoriosRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/AlmacenProductoRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/AlmacenRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/AvailableHourRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/BancoRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ContratoRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CuentaBancariaRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CuentaBancoRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CuentaMNRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/EmpresaRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/EquipoRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ExistenciasTecnicoRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/GarantiaRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ManoObraRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/MarcaRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/OrdenServicioRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ServicioRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ServicioRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/SolicitudProductoRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/SolicitudRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TipoCuentaRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TipoEquipoRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/FAQResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/MediaObjectResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/MediaObjectResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/NotificationsResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/NotificationsResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/ServicioResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/ServicioResourceTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Functional/TurnoResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/TurnoResourceTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Functional/UserResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/UserResourceTest.php" afterDir="false" />
->>>>>>> doctrine
-=======
-      <change beforePath="$PROJECT_DIR$/src/Swagger/SwaggerDecorator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swagger/SwaggerDecorator.php" afterDir="false" />
->>>>>>> 651c4c7644d3dc275596c26191b6c222d41a0710
->>>>>>> frontend
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,146 +105,145 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
-      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/flex" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/vendor/gedmo/doctrine-extensions" />
+      <path value="$PROJECT_DIR$/vendor/namshi/jose" />
       <path value="$PROJECT_DIR$/vendor/symfony/dependency-injection" />
-      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
-      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
-      <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/cache" />
-      <path value="$PROJECT_DIR$/vendor/symfony/console" />
-      <path value="$PROJECT_DIR$/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-guard" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/validator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/vendor/psr/link" />
       <path value="$PROJECT_DIR$/vendor/psr/cache" />
-      <path value="$PROJECT_DIR$/vendor/fig/link-util" />
-      <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/api-platform/core" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/reflection" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
-      <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
-      <path value="$PROJECT_DIR$/vendor/ocramius/package-versions" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/vendor/symfony/framework-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-http" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-csrf" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/lexik/jwt-authentication-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/error-handler" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache" />
+      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-core" />
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
-      <path value="$PROJECT_DIR$/vendor/symfony/var-exporter" />
-      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
-      <path value="$PROJECT_DIR$/vendor/symfony/web-link" />
-      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/serializer" />
-      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/gesdinet/jwt-refresh-token-bundle" />
+      <path value="$PROJECT_DIR$/vendor/scienta/doctrine-json-functions" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
       <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
-      <path value="$PROJECT_DIR$/vendor/symfony/property-access" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
-      <path value="$PROJECT_DIR$/vendor/symfony/routing" />
-      <path value="$PROJECT_DIR$/vendor/symfony/property-info" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php73" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
-      <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/framework-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/http-kernel" />
-      <path value="$PROJECT_DIR$/vendor/symfony/http-foundation" />
-      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
-      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/flex" />
-      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
-      <path value="$PROJECT_DIR$/vendor/webimpress/safe-writer" />
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-eventmanager" />
       <path value="$PROJECT_DIR$/vendor/laminas/laminas-code" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-bundle" />
+      <path value="$PROJECT_DIR$/vendor/ocramius/proxy-manager" />
+      <path value="$PROJECT_DIR$/vendor/webimpress/safe-writer" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/serializer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/vendor/theofidry/alice-data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/nelmio/alice" />
+      <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/doctrine/migrations" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-migrations-bundle" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/sql-formatter" />
-      <path value="$PROJECT_DIR$/vendor/namshi/jose" />
-      <path value="$PROJECT_DIR$/vendor/ocramius/proxy-manager" />
-      <path value="$PROJECT_DIR$/vendor/symfony/security-core" />
-      <path value="$PROJECT_DIR$/vendor/symfony/security-csrf" />
-      <path value="$PROJECT_DIR$/vendor/symfony/security-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/doctrine-bridge" />
-      <path value="$PROJECT_DIR$/vendor/symfony/security-http" />
-      <path value="$PROJECT_DIR$/vendor/symfony/security-guard" />
-      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
-      <path value="$PROJECT_DIR$/vendor/lexik/jwt-authentication-bundle" />
-      <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
-      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
-      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
-      <path value="$PROJECT_DIR$/vendor/twig/twig" />
-      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
-      <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
-      <path value="$PROJECT_DIR$/vendor/behat/gherkin" />
-      <path value="$PROJECT_DIR$/vendor/behat/behat" />
-      <path value="$PROJECT_DIR$/vendor/symfony/form" />
-      <path value="$PROJECT_DIR$/vendor/symfony/monolog-bridge" />
-      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
-      <path value="$PROJECT_DIR$/vendor/symfony/monolog-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/web-profiler-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/intl" />
-      <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
-      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
-      <path value="$PROJECT_DIR$/vendor/symfony/debug-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/asset" />
-      <path value="$PROJECT_DIR$/vendor/symfony/maker-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
-      <path value="$PROJECT_DIR$/vendor/symfony/dotenv" />
-      <path value="$PROJECT_DIR$/vendor/symfony/expression-language" />
-      <path value="$PROJECT_DIR$/vendor/symfony/validator" />
-      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
-      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
-      <path value="$PROJECT_DIR$/vendor/symfony/twig-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/mime" />
-      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/twig-bridge" />
-      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
-      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
-      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
-      <path value="$PROJECT_DIR$/vendor/nelmio/alice" />
-      <path value="$PROJECT_DIR$/vendor/theofidry/alice-data-fixtures" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
-      <path value="$PROJECT_DIR$/vendor/symfony/phpunit-bridge" />
-      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
-      <path value="$PROJECT_DIR$/vendor/hautelook/alice-bundle" />
-      <path value="$PROJECT_DIR$/vendor/symfony/http-client" />
-      <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
-      <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
-      <path value="$PROJECT_DIR$/vendor/imagine/imagine" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-migrations-bundle" />
+      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/sql-formatter" />
+      <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/symfony/expression-language" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/vendor/symfony/asset" />
+      <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/vendor/symfony/templating" />
-      <path value="$PROJECT_DIR$/vendor/symfony/process" />
-      <path value="$PROJECT_DIR$/vendor/liip/imagine-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/monolog-bridge" />
+      <path value="$PROJECT_DIR$/vendor/fig/link-util" />
+      <path value="$PROJECT_DIR$/vendor/imagine/imagine" />
+      <path value="$PROJECT_DIR$/vendor/hautelook/alice-bundle" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/vendor/oneup/flysystem-bundle" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/behat/behat" />
+      <path value="$PROJECT_DIR$/vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
+      <path value="$PROJECT_DIR$/vendor/psr/link" />
       <path value="$PROJECT_DIR$/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/vendor/api-platform/core" />
       <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
-<<<<<<< HEAD
-      <path value="$PROJECT_DIR$/vendor/gesdinet/jwt-refresh-token-bundle" />
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <path value="$PROJECT_DIR$/vendor/gesdinet/jwt-refresh-token-bundle" />
->>>>>>> doctrine
-=======
-      <path value="$PROJECT_DIR$/vendor/gesdinet/jwt-refresh-token-bundle" />
->>>>>>> 651c4c7644d3dc275596c26191b6c222d41a0710
->>>>>>> frontend
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/vendor/symfony/web-profiler-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/phpunit-bridge" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dotenv" />
+      <path value="$PROJECT_DIR$/vendor/symfony/maker-bundle" />
+      <path value="$PROJECT_DIR$/vendor/liip/imagine-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-bridge" />
+      <path value="$PROJECT_DIR$/vendor/symfony/web-link" />
+      <path value="$PROJECT_DIR$/vendor/symfony/doctrine-bridge" />
+      <path value="$PROJECT_DIR$/vendor/symfony/apache-pack" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/vendor/symfony/monolog-bundle" />
+      <path value="$PROJECT_DIR$/vendor/friendsofphp/proxy-manager-lts" />
+      <path value="$PROJECT_DIR$/vendor/symfonycasts/verify-email-bundle" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/reflection" />
+      <path value="$PROJECT_DIR$/vendor/ocramius/package-versions" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/symfony/form" />
+      <path value="$PROJECT_DIR$/vendor/symfony/intl" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -237,18 +257,24 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Test/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\trabajo pagiNA\api_reysis\src\Test\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\trabajo pagiNA\api_reysis\public_html\uploads\user_images" />
+      <recent name="D:\trabajo pagiNA\api_reysis\src\Test" />
+      <recent name="D:\trabajo pagiNA\api_reysis\tests\Functional" />
       <recent name="D:\trabajo pagiNA\my-api_reysis\src\DataFixtures\images" />
       <recent name="D:\trabajo pagiNA\my-api_reysis\assets\fonts" />
-      <recent name="D:\trabajo pagiNA\my-api_reysis\assets" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -284,114 +310,33 @@
       <workItem from="1602270267253" duration="16049000" />
       <workItem from="1602520224948" duration="27838000" />
       <workItem from="1602853804174" duration="45387000" />
-<<<<<<< HEAD
-      <workItem from="1603289194801" duration="10409000" />
-      <workItem from="1603320421866" duration="684000" />
-      <workItem from="1603327272248" duration="5565000" />
-      <workItem from="1603375879938" duration="1559000" />
-      <workItem from="1603456968417" duration="907000" />
-=======
       <workItem from="1603289194801" duration="6665000" />
       <workItem from="1604928584278" duration="28588000" />
-<<<<<<< HEAD
->>>>>>> doctrine
-=======
       <workItem from="1605892316608" duration="590000" />
->>>>>>> doctrine
+      <workItem from="1612298067203" duration="1313000" />
+      <workItem from="1612361894841" duration="25031000" />
+      <workItem from="1612795962832" duration="700000" />
+      <workItem from="1612796975661" duration="130000" />
+      <workItem from="1612797290203" duration="17659000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602552384043">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="254" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1602552384043" />
-<<<<<<< HEAD
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1603819648472">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1603819648472" />
-    <state x="595" y="161" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603735233794">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="595" y="161" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1603735233794" />
-=======
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser" timestamp="1605560645329">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="605" y="112" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1605560645329" />
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605193998512">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1605193998512" />
->>>>>>> doctrine
-    <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602867674534">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="530" y="177" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860@0.0.1600.860" timestamp="1602867674534" />
-<<<<<<< HEAD
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603724475494">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1603724475494" />
-=======
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605560662180">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="530" y="185" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.860@0.0.1600.860" timestamp="1605560662180" />
->>>>>>> doctrine
-    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1600700043484">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1600700043484" />
-<<<<<<< HEAD
-    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1603821645178">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1603821645178" />
-=======
-    <state x="567" y="153" key="NewPhpClassDialog" timestamp="1605560621977">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="567" y="153" key="NewPhpClassDialog/0.0.1600.860@0.0.1600.860" timestamp="1605560621977" />
->>>>>>> doctrine
-    <state x="634" y="353" key="NewPhpFileDialog" timestamp="1602167511276">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="634" y="353" key="NewPhpFileDialog/0.0.1600.860@0.0.1600.860" timestamp="1602167511276" />
-    <state x="626" y="132" key="RollbackChangesDialog" timestamp="1603899027390">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="626" y="132" key="RollbackChangesDialog/0.0.1600.860@0.0.1600.860" timestamp="1603899027390" />
-    <state x="301" y="75" key="SettingsEditor" timestamp="1602790991465">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1602790991465" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <state x="456" y="195" key="run.anything.popup" timestamp="1603774117517">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1603774117517" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1603773025256">
-=======
-    <state x="456" y="195" key="run.anything.popup" timestamp="1605565773645">
-=======
-    <state x="456" y="195" key="run.anything.popup" timestamp="1605621583506">
->>>>>>> doctrine
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1605621583506" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1602952168779">
->>>>>>> doctrine
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1603773025256" />
   </component>
 </project>

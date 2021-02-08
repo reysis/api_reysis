@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\MediaObjectRepository;
 
 /**
  * @ORM\Entity
@@ -15,23 +16,26 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     iri="http://schema.org/MediaObject",
  *     collectionOperations={
  *         "get" = {
- *              "security" = "is_granted('ROLE_ADMIN')",
- *              "security_message" = "Solo un administrador puede acceder a estos recursos"
+ *              "security"="is_granted('MEDIA_OBJECT_GET')",
+ *              "security_message"="Solo un administrador puede acceder a estos recursos"
  *          },
  *         "post" = {
- *              "security" = "is_granted('ROLE_USER')"
+ *              "security_post_denormalize"="is_granted('MEDIA_OBJECT_POST', object)"
  *          }
  *     },
  *     itemOperations={
  *         "get" = {
- *              "security" = "is_granted('ROLE_USER)"
+ *              "security"="is_granted('MEDIA_OBJECT_GET_SINGLE', object)"
  *          },
  *         "put" = {
- *              "security" = "is_granted('ROLE_USER')"
+ *              "security"="is_granted('MEDIA_OBJECT_PUT', object)"
  *          },
- *         "delete"
+ *         "delete" = {
+ *              "security"="is_granted('MEDIA_OBJECT_ERASE', object)"
+ *          }
  *     }
  * )
+ * @ORM\Entity(repositoryClass=MediaObjectRepository::class)
  */
 class MediaObject
 {
@@ -85,14 +89,18 @@ class MediaObject
     private string $filename = "";
 
     /**
+     * @Groups ({"admin:write", "user:write"})
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="profilePicture", cascade={"persist", "remove"})
      */
     private $user;
 
     /**
+     * @Groups ({"admin:write", "user:write"})
      * @ORM\ManyToOne(targetEntity=Servicio::class, inversedBy="serviceImages")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $servicio;
+
 
     public function getId(): ?int
     {
@@ -209,15 +217,10 @@ class MediaObject
         return $this->user;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(User $user): self
     {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setProfilePicture(null);
-        }
-
         // set the owning side of the relation if necessary
-        if ($user !== null && $user->getProfilePicture() !== $this) {
+        if ($user->getProfilePicture() !== $this) {
             $user->setProfilePicture($this);
         }
 

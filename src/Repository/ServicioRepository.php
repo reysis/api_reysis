@@ -20,7 +20,7 @@ class ServicioRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return OrdenServicio[] Returns an array of OrdenServicio objects
+    //  * @return Servicio[] Returns an array of Servicio objects
     //  */
     /*
     public_html function findByExampleField($value)
@@ -36,15 +36,14 @@ class ServicioRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public_html function findOneBySomeField($value): ?OrdenServicio
+    public function findOneById($value): ?Servicio
     {
+        $array = explode('/', $value);
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('s.id = :val')
+            ->setParameter('val', $array[3])
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
 }

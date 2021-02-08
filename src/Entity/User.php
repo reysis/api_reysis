@@ -106,15 +106,6 @@ class User implements UserInterface
     private $isMe = false;
 
     /**
-     * Cuentas bancarias del usuario
-     *
-     * @ORM\OneToMany(targetEntity=CuentaBancaria::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"owner:read","admin:item:get", "admin:write"})
-     * @Assert\Valid()
-     */
-    protected $cuentaBancaria;
-
-    /**
      * Fecha en la que se registró el usuario, solamente se llena cuando al usuario se le va a prestar un servicio
      *
      * @ORM\Column(type="datetime", nullable=true)
@@ -163,14 +154,6 @@ class User implements UserInterface
      */
     private $phoneNumbers;
 
-    /**
-     * Datos del usuario si es de tipo empresa
-     *
-     * @ORM\OneToOne(targetEntity=Empresa::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"owner:read","admin:read", "admin:write"})
-     * @Assert\Valid()
-     */
-    private $empresa;
 
     /**
      * Nacionalidad del usuario, ya sea una empresa o una Persona
@@ -180,21 +163,6 @@ class User implements UserInterface
      * @Assert\NotBlank(groups={"create"})
      */
     private $nationality;
-
-    /**
-     * Contrato del usuario, este campo solo estará lleno si el usuario es un trabajador
-     *
-     * @ORM\OneToOne(targetEntity=Contrato::class, inversedBy="user", cascade={"persist", "remove"})
-     * @Assert\Valid()
-     */
-    private $contrato;
-
-    /**
-     * Ordenes de servicio emitidas para servicios prestados a este usuario
-     *
-     * @ORM\OneToMany(targetEntity=OrdenServicio::class, mappedBy="user")
-     */
-    private $serviceOrder;
 
     /**
      * Turnos pendientes de este usuario
@@ -230,17 +198,6 @@ class User implements UserInterface
     private $isPublic = false;
 
     /**
-     * @ApiProperty(
-     *     readableLink=true,
-     *     writableLink=true
-     * )
-     * @Groups({"user:read", "user:write", "reviews:read","admin:write", "admin:item:get"})
-     * @var MediaObject
-     * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="user", cascade={"persist", "remove"})
-     */
-    private $profilePicture;
-
-    /**
      * @var Persona
      *
      * @ORM\OneToOne(targetEntity=Persona::class, inversedBy="user", cascade={"persist", "remove"})
@@ -249,11 +206,19 @@ class User implements UserInterface
      */
     private $persona;
 
+    /**
+     * @ApiProperty(
+     *     readableLink=true
+     * )
+     * @Groups({"user:read", "user:write", "admin:write"})
+     * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $profilePicture;
+
     public function __construct()
     {
-        $this->cuentaBancaria = new ArrayCollection();
         $this->phoneNumbers = new ArrayCollection();
-        $this->serviceOrder = new ArrayCollection();
         $this->turnos = new ArrayCollection();
         $this->reviews = new ArrayCollection();
         $this->socialMedias = new ArrayCollection();
@@ -395,38 +360,6 @@ class User implements UserInterface
         $this->isMe = $isMe;
     }
 
-    /**
-     * @return Collection|CuentaBancaria[]
-     */
-    public function getCuentaBancaria(): Collection
-    {
-        return $this->cuentaBancaria;
-    }
-
-    public function addCuentaBancarium(CuentaBancaria $cuentaBancarium): self
-    {
-        if (!$this->cuentaBancaria->contains($cuentaBancarium)) {
-            $this->cuentaBancaria[] = $cuentaBancarium;
-            $cuentaBancarium->setUser($this);
-        }
-        $this->lastEdited = new \DateTime();
-
-        return $this;
-    }
-
-    public function removeCuentaBancarium(CuentaBancaria $cuentaBancarium): self
-    {
-        if ($this->cuentaBancaria->contains($cuentaBancarium)) {
-            $this->cuentaBancaria->removeElement($cuentaBancarium);
-            // set the owning side to null (unless already changed)
-            if ($cuentaBancarium->getUser() === $this) {
-                $cuentaBancarium->setUser(null);
-            }
-        }
-        $this->lastEdited = new \DateTime();
-
-        return $this;
-    }
 
     public function getDateRegistered(): ?\DateTimeInterface
     {
@@ -507,19 +440,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getEmpresa(): ?Empresa
-    {
-        return $this->empresa;
-    }
-
-    public function setEmpresa(?Empresa $empresa): self
-    {
-        $this->empresa = $empresa;
-        $this->lastEdited = new \DateTime();
-
-        return $this;
-    }
-
     public function getNationality(): ?string
     {
         return $this->nationality;
@@ -528,52 +448,6 @@ class User implements UserInterface
     public function setNationality(string $nationality): self
     {
         $this->nationality = $nationality;
-        $this->lastEdited = new \DateTime();
-
-        return $this;
-    }
-
-    public function getContrato(): ?Contrato
-    {
-        return $this->contrato;
-    }
-
-    public function setContrato(?Contrato $contrato): self
-    {
-        $this->contrato = $contrato;
-        $this->lastEdited = new \DateTime();
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|OrdenServicio[]
-     */
-    public function getServiceOrder(): Collection
-    {
-        return $this->serviceOrder;
-    }
-
-    public function addServiceOrder(OrdenServicio $serviceOrder): self
-    {
-        if (!$this->serviceOrder->contains($serviceOrder)) {
-            $this->serviceOrder[] = $serviceOrder;
-            $serviceOrder->setUser($this);
-        }
-        $this->lastEdited = new \DateTime();
-
-        return $this;
-    }
-
-    public function removeServiceOrder(OrdenServicio $serviceOrder): self
-    {
-        if ($this->serviceOrder->contains($serviceOrder)) {
-            $this->serviceOrder->removeElement($serviceOrder);
-            // set the owning side to null (unless already changed)
-            if ($serviceOrder->getUser() === $this) {
-                $serviceOrder->setUser(null);
-            }
-        }
         $this->lastEdited = new \DateTime();
 
         return $this;
@@ -713,18 +587,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getProfilePicture(): ?MediaObject
-    {
-        return $this->profilePicture;
-    }
-
-    public function setProfilePicture(?MediaObject $profilePicture): self
-    {
-        $this->profilePicture = $profilePicture;
-
-        return $this;
-    }
-
     public function getPersona(): ?Persona
     {
         return $this->persona;
@@ -733,6 +595,18 @@ class User implements UserInterface
     public function setPersona(?Persona $persona): self
     {
         $this->persona = $persona;
+
+        return $this;
+    }
+
+    public function getProfilePicture(): ?MediaObject
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(MediaObject $profilePicture): self
+    {
+        $this->profilePicture = $profilePicture;
 
         return $this;
     }

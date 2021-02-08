@@ -57,12 +57,6 @@ class Servicio
     private $descripcion;
 
     /**
-     * @ORM\OneToMany(targetEntity=OrdenServicio::class, mappedBy="servicio", orphanRemoval=true)
-     * @Groups({"admin:read", "admin:write"})
-     */
-    private $servicioPrestado;
-
-    /**
      * Ultia fecha en la que se actualizó la imagen
      *
      * @ORM\Column(type="datetime")
@@ -70,14 +64,7 @@ class Servicio
     private $updatedAt;
 
     /**
-     * @ApiProperty(
-     *     readableLink=true,
-     *     writableLink=true
-     * )
-     *
-     * @Groups({"admin:write", "servicio:read"})
-     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio", cascade={"persist", "remove"})
-     * @Assert\NotBlank
+     * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio", orphanRemoval=true)
      */
     private $serviceImages;
 
@@ -127,36 +114,6 @@ class Servicio
         return $this;
     }
 
-    /**
-     * @return Collection|OrdenServicio[]
-     */
-    public function getServicioPrestado(): Collection
-    {
-        return $this->servicioPrestado;
-    }
-
-    public function addServicioPrestado(OrdenServicio $servicio): self
-    {
-        if (!$this->servicioPrestado->contains($servicio)) {
-            $this->servicioPrestado[] = $servicio;
-            $servicio->setTipoServicio($this);
-        }
-
-        return $this;
-    }
-
-    public function removeServicioPrestado(OrdenServicio $servicio): self
-    {
-        if ($this->servicioPrestado->contains($servicio)) {
-            $this->servicioPrestado->removeElement($servicio);
-            // set the owning side to null (unless already changed)
-            if ($servicio->getTipoServicio() === $this) {
-                $servicio->setTipoServicio(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @Groups({"servicio:read"})
