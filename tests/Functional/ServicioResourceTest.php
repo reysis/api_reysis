@@ -62,7 +62,7 @@ class ServicioResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/servicios',[
             'headers'=> [
                 'Content-Type' => 'application/ld+json',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json' => [
                 'nombre' => $serviceName,
@@ -93,7 +93,7 @@ class ServicioResourceTest extends CustomApiTestCase
         $client->request('POST', '/api/servicios',[
             'headers'=> [
                 'Content-Type' => 'application/ld+json',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json' => [
                 'nombre' => $faker->name,

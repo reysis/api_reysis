@@ -51,6 +51,7 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
+        //dump($data);
         if(($context['item_operation_name'] ?? null) === 'put'){
             $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
             if($data->getProfilePicture()->getFilename() !== "" && $data->getProfilePicture()->getData() !== ""){
@@ -67,7 +68,7 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
                 $data->getProfilePicture()->setFile($uploadedFile);
             }
         }else{
-            $this->createNewUploadedFile($data);
+            //$this->createNewUploadedFile($data);
             //Aqui se puede hacer cualquier cosa con el usuario
             //Como mandar un email de confirmacion o un mensaje
             //O añadirlo a cualquier sistema de pago

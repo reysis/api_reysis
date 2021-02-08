@@ -62,7 +62,6 @@ class AvailableDateValidator extends ConstraintValidator
      */
     public function checkDisponibility($value, AvailableDate $constraint): void
     {
-        dump($value->getFecha());
         $availableDate = $this->availableDateRepository->findOneByDate($value->getFecha());
         if (!$availableDate) {
             $this->context->buildViolation($constraint->message)

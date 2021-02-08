@@ -36,7 +36,7 @@ class TurnoResourceTest extends CustomApiTestCase{
         $client->request('POST', '/api/turnos',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
@@ -95,7 +95,7 @@ class TurnoResourceTest extends CustomApiTestCase{
         $client->request('POST', '/api/turnos',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
@@ -110,7 +110,7 @@ class TurnoResourceTest extends CustomApiTestCase{
         $client->request('PUT', '/api/turnos/1', [
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json' => [
                 'defecto'=>'foo',
@@ -123,7 +123,7 @@ class TurnoResourceTest extends CustomApiTestCase{
         $client->request('PUT', '/api/turnos/1', [
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$tokenUser
+                'Php-Auth-Digest' => 'Bearer '.$tokenUser
             ],
             'json' => [
                 'defecto'=>'foo',
@@ -141,7 +141,7 @@ class TurnoResourceTest extends CustomApiTestCase{
         $client->request('PUT', '/api/turnos/1', [
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$tokenAdmin
+                'Php-Auth-Digest' => 'Bearer '.$tokenAdmin
             ],
             'json' => [
                 'defecto'=>'foo',
@@ -164,12 +164,13 @@ class TurnoResourceTest extends CustomApiTestCase{
             '123456789',
             '+54178553');
 
+        $this->createAvailableDateAsAdmin($client, "2020-08-20T20:11:28.000Z");
         //creando turno de usuario 1
         $token = $this->logIn($client, 'testUser1', 'foo');
         $client->request('POST', '/api/turnos',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json' => [
                 'fecha' => '2020-08-20T20:11:28.498Z',
@@ -179,12 +180,13 @@ class TurnoResourceTest extends CustomApiTestCase{
         ]);
         $this->assertResponseStatusCodeSame(201);
         
-        //Intentando eliminar el turno de otro usuario
+        //Intentando eliminar el turno de otro usuario: La respuesta sera 404 porque
+        //el u
         $tokenUser = $this->logIn($client, 'testUser2', 'foo');
         $client->request('DELETE', '/api/turnos/1',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$tokenUser
+                'Php-Auth-Digest' => 'Bearer '.$tokenUser
             ],
         ]);
         $this->assertResponseStatusCodeSame(403);
@@ -199,7 +201,7 @@ class TurnoResourceTest extends CustomApiTestCase{
         $client->request('DELETE', '/api/turnos/1',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$tokenAdmin
+                'Php-Auth-Digest' => 'Bearer '.$tokenAdmin
                 ],
         ]);
         $this->assertResponseStatusCodeSame(204);
@@ -225,10 +227,10 @@ class TurnoResourceTest extends CustomApiTestCase{
         $client->request('GET', '/api/turnos',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
         ]);
-        $this->assertResponseStatusCodeSame(403);
+        $this->assertResponseStatusCodeSame(200);
 
         //Comprobando que un usuario Administrador si tenga acceso al recurso
         $em = $this->getEntityManager();
@@ -240,7 +242,7 @@ class TurnoResourceTest extends CustomApiTestCase{
         $client->request('GET', '/api/turnos',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
         ]);
         $this->assertResponseStatusCodeSame(200);

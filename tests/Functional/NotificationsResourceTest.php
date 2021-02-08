@@ -34,7 +34,7 @@ class NotificationsResourceTest extends CustomApiTestCase
         $client->request('GET', '/api/notifications',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
         ]);
         $this->assertResponseStatusCodeSame(200);

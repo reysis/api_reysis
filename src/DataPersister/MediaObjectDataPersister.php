@@ -41,19 +41,39 @@ class MediaObjectDataPersister implements ContextAwareDataPersisterInterface
     {
         $data->setUpdatedAt(new \DateTime());
 
-        $tmpPath = sys_get_temp_dir().'/public_upload_'.uniqid();
-        file_put_contents($tmpPath, $data->getDecodedData());
-        $uploadedFile = new File($tmpPath);
+        //dump($data, $context);
 
-        if(!$uploadedFile){
-            return new Response('El campo file no debe estar vacio', 400);
-        }
-        if(!$data->getId()){
-            //Se acaba de hacer upload a una imagen nueva
-            $data->setFile($uploadedFile);
-            $data->setFilePath(
-                $this->uploaderHelper->uploadPublicImage($uploadedFile, $data->getFilename())
-            );
+        $uploadedFile = $this->createUploadedFile($data);
+        $data->setFile($uploadedFile);
+        $data->setUpdatedAt(new \DateTime());
+
+        if(($context['item_operation_name'] ?? null) === 'put'){
+            //updateando una imagen existente
+            if($data->getServicio()!== null){
+                //updateando imagen de servicio
+                $data->setFilePath(
+                    $this->uploaderHelper->uploadServiceImage($uploadedFile, null)
+                );
+                //Falta remover la imagen vieja
+            }else if($data->getUser() !== null){
+                //updateando una imagen de usuario
+                $data->setFilePath(
+                    $this->uploaderHelper->uploadUserImage($uploadedFile, null)
+                );
+            }
+        }else{
+            //creando una nueva imagen
+            if($data->getServicio()!== null){
+                //creando una imagen de un servicio
+                $data->setFilePath(
+                    $this->uploaderHelper->uploadServiceImage($uploadedFile, null)
+                );
+            }else if($data->getUser() !== null){
+                //creando una imagen de usuario
+                $data->setFilePath(
+                    $this->uploaderHelper->uploadUserImage($uploadedFile, null)
+                );
+            }
         }
 
         $this->decoratedDataPersister->persist($data);
@@ -71,5 +91,12 @@ class MediaObjectDataPersister implements ContextAwareDataPersisterInterface
         else
             $this->uploaderHelper->removeIfExistPublic($data->getFilePath(), 'user_images');
         $this->decoratedDataPersister->remove($data);
+    }
+
+    private function createUploadedFile($data): File
+    {
+        $tmpPath = sys_get_temp_dir().'/upload_'.uniqid();
+        file_put_contents($tmpPath, $data->getDecodedData());
+        return new File($tmpPath);
     }
 }

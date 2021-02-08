@@ -2,7 +2,9 @@
 
 namespace App\Test\Functional;
 
+use App\Entity\MediaObject;
 use App\Entity\User;
+use App\Services\CustomUploaderHelper;
 use App\Test\CustomApiTestCase;
 use Hautelook\AliceBundle\PhpUnit\ReloadDatabaseTrait;
 use Faker\Factory;
@@ -10,6 +12,7 @@ use Faker\Factory;
 class UserResourceTest extends CustomApiTestCase
 {
     use ReloadDatabaseTrait;
+
     public function testCreateUser(){
 
         $faker = Factory::create();
@@ -74,20 +77,20 @@ class UserResourceTest extends CustomApiTestCase
         );
         $this->assertJsonContains(['location'=>'/api/users/2']);
 
-        //Se obtiene 404 porque el filtro que se aplica a la entidad Usuario automaticamente quita los datos del usuario si no son los suyos propios
+        //No puede acceer a los datos de un usuario que no sea el mismo
         $client->request('GET', '/api/users/'.$user->getId(),[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
         ]);
-        $this->assertResponseStatusCodeSame(404);
+        $this->assertResponseStatusCodeSame(403);
 
         //Comprobando que pueda ver mis propios Números de Telefonos
         $client->request('GET', '/api/users/2',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
         ]);
         $data = $client->getResponse()->toArray();
@@ -102,7 +105,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('GET', '/api/users/'.$user->getId(),[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token2
+                'Php-Auth-Digest' => 'Bearer '.$token2
             ],
         ]);
         $this->assertArrayHasKey('phoneNumbers',$data);
@@ -135,7 +138,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('GET', '/api/users/'.$user->getId(),[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
         ]);
         $this->assertResponseStatusCodeSame(200);
@@ -150,7 +153,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('GET', '/api/users/'.$user2->getId(),[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token2
+                'Php-Auth-Digest' => 'Bearer '.$token2
             ],
         ]);
         $this->assertResponseIsSuccessful();
@@ -169,7 +172,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('PUT', '/api/users/'.$user->getId(), [
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json' => [
                 'username' => 'newusername',
@@ -220,7 +223,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('DELETE', '/api/users/'.$user->getId(),[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token2
+                'Php-Auth-Digest' => 'Bearer '.$token2
             ],
         ]);
         $this->assertResponseIsSuccessful();
@@ -229,7 +232,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('DELETE', '/api/users/'.$user->getId(),[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token2
+                'Php-Auth-Digest' => 'Bearer '.$token2
             ],
         ]);
         $this->assertResponseStatusCodeSame(404);
@@ -255,7 +258,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('GET', '/api/users',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
         ]);
         $this->assertResponseStatusCodeSame(200);
@@ -276,7 +279,7 @@ class UserResourceTest extends CustomApiTestCase
         $client->request('GET', '/api/users',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token2
+                'Php-Auth-Digest' => 'Bearer '.$token2
             ],
         ]);
         $this->assertResponseIsSuccessful();

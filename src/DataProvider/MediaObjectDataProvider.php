@@ -45,7 +45,7 @@ class MediaObjectDataProvider implements ContextAwareCollectionDataProviderInter
         /**
          * @var MediaObject $mediaObject
          */
-        $mediaObject = $this->collectionDataProvider->getItem($resourceClass, $id, $operationName);
+        $mediaObject = $this->itemDataProvider->getItem($resourceClass, $id, $operationName);
 
         if(!$mediaObject){
             return null;

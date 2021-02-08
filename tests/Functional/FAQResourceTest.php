@@ -51,7 +51,7 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('POST','/api/f-a-qs',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json'=>[
                 'question' => $faker->sentence(6,true),
@@ -74,7 +74,7 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('POST','/api/f-a-qs',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json'=>[
                 'question' => $faker->sentence(6,true),
@@ -107,7 +107,7 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('POST','/api/f-a-qs',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
             'json'=>[
                 'question' => $faker->sentence(6,true),
@@ -121,7 +121,7 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('GET','/api/f-a-qs/1',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
         ]);
         $this->assertResponseIsSuccessful();
@@ -145,7 +145,7 @@ class FAQResourceTest extends CustomApiTestCase
         $client->request('GET','/api/f-a-qs/1',[
             'headers'=> [
                 'ContentType'=>'application/json+ld',
-                'Authorization' => 'Bearer '.$token
+                'Php-Auth-Digest' => 'Bearer '.$token
             ],
         ]);
         $this->assertResponseStatusCodeSame(403);

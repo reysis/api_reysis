@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/components/layouts/ModalProfilePicture.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/_dropzone.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/_modals.scss" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/migrations/Version20210203152134.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/migrations/Version20210203152635.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/migrations/Version20210203153130.php" afterDir="false" />
@@ -317,7 +314,7 @@
       <workItem from="1612361894841" duration="25031000" />
       <workItem from="1612795962832" duration="700000" />
       <workItem from="1612796975661" duration="130000" />
-      <workItem from="1612797290203" duration="17659000" />
+      <workItem from="1612797290203" duration="18006000" />
     </task>
     <servers />
   </component>
