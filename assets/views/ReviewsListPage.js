@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import List from '../components/reviews/List';
+import ListReviews from "../components/reviews/ListReviews";
 
 class ReviewsListPage extends Component {
     render() {
         return (
-            <div>
-                <List/>
+            <div className="reviews-page page">
+                <div className="page-header">
+                    <h1>Opiniones de nuestros <span>Usuarios!</span></h1>
+                </div>
+                <ListReviews />
             </div>
         );
     }

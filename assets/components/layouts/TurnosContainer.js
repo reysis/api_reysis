@@ -17,7 +17,7 @@ const TurnosContainer = () => {
     }, [])
 
     return (
-        <div>
+        <div className="container">
             {turnos
                 ?(
                     turnos['hydra:member'].map((item, index)=>{

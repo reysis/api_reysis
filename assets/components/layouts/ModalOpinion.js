@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect, useDebugValue} from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons'
 import { faStar as faStarFull } from '@fortawesome/free-solid-svg-icons'
+import {useDispatch} from "react-redux";
+import {updateOpinionFetch} from "../../redux/opinion/update/updateOpinionActions";
+import {createOpinionFetch} from "../../redux/opinion/create/createOpinionActions";
 
-const ModalOpinion = ({ show, onHide }) => {
+const ModalOpinion = ({ show, onHide, values }) => {
 
-    const [countStar, setCountStar] = useState(-1)
+    const [countStar, setCountStar] = useState(values.stars)
 
+    const dispatch = useDispatch();
     const [stars, setStars] = useState([
-        { id: 1, marked: false },
-        { id: 2, marked: false },
-        { id: 3, marked: false },
-        { id: 4, marked: false },
-        { id: 5, marked: false }
+        { id: 1, marked: values.stars >= 1 },
+        { id: 2, marked: values.stars >= 2 },
+        { id: 3, marked: values.stars >= 3 },
+        { id: 4, marked: values.stars >= 4 },
+        { id: 5, marked: values.stars >= 5 }
     ])
 
-    const maxlength = 250
-
-    const placeholder = '¿Quiere comentar algo? Nos encantaría leerlo.'
+    const maxlength = 250;
 
     const setStar = (t = 0) => {
         setStars(() => {
             return [1, 2, 3, 4, 5].map(v => {
                 return {
                     id: v,
-                    marked: (v <= t ? true : false)
+                    marked: (v <= t)
                 }
             })
         })
     }
 
     const clickStar = (s) => {
-        if (s == 1) {
+        if (s === 1) {
             if (stars[0].marked && !stars[1].marked) {
                 setStar(0)
                 setCountStar(0)
@@ -49,20 +51,28 @@ const ModalOpinion = ({ show, onHide }) => {
         }
     }
 
-    const [reviewLength, setReviewLength] = useState(0)
+    const [reviewLength, setReviewLength] = useState(values.reviewText.length)
 
-    const [reviewText, setReviewText] = useState('')
+    const [reviewText, setReviewText] = useState(values.reviewText)
 
     useEffect(() => {
         setReviewLength(reviewText.length)
     }, [reviewText])
 
-    useEffect(() => {
-        if (!show) {
-            setStar(0)
-            setReviewText('')
+    const handleSubmit = ()=>{
+        if(values.id){
+            dispatch(updateOpinionFetch({
+                reviewText,
+                stars: countStar,
+                iri: values.id
+            }))
+        }else{
+            dispatch(createOpinionFetch({
+                reviewText,
+                stars: countStar
+            }))
         }
-    }, [show])
+    }
 
     return (
         <Modal
@@ -80,7 +90,7 @@ const ModalOpinion = ({ show, onHide }) => {
                     <span className="modal-opinion__body-review__rest">{reviewLength}/{maxlength}</span> */}
                     <textarea
                         value={reviewText}
-                        placeholder={placeholder}
+                        placeholder={values.reviewText}
                         onChange={(e) => setReviewText(e.target.value)}
                         className="modal-opinion__body-review__textarea"
                         rows={6}
@@ -107,7 +117,7 @@ const ModalOpinion = ({ show, onHide }) => {
                 <div className="modal-opinion__footer-review_length">
                     <span>{reviewLength}/{maxlength}</span>
                 </div>
-                <Button className="modal-opinion__footer-button" variant="primary" onClick={onHide}>Publicar</Button>
+                <Button className="modal-opinion__footer-button" variant="primary" onClick={handleSubmit}>Publicar</Button>
             </Modal.Footer>
         </Modal>
     )

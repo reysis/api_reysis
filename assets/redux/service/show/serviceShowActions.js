@@ -23,7 +23,7 @@ export const serviceShowError = (error) => {
     }
 }
 
-export const serviceFetch = (id) => dispatch => {
+export const serviceItemFetch = (id) => dispatch => {
     dispatch(serviceShowRequest());
 
     const page = `/api/servicios/${id}`;

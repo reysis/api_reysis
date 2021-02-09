@@ -40,6 +40,37 @@
         padding-left: 0;
         max-width: 700px;
 
+        .opinions-button__container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .opinions-button__see-all {
+                font-family: 'IBMPlexSans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 1.1em;
+                font-weight: 500;
+                color: $color-light;
+                width: 200px;
+                height: 50px;
+                background-color: $color-button-primary;
+                border-radius: 25px;
+                box-shadow: -4px 3px 18px 0px #0000007d;
+                border-color: transparent !important;
+                margin: 40px auto 30px;
+                text-transform: uppercase;
+                transition: 0.2s ease-out;
+                align-self: center;
+
+                &:hover {
+                    background-color: #222;
+                }
+
+                &:link,
+                &:active {
+                    border: 2px solid $color-primary !important;
+                }
+            }
+        }
+
         .carousel {
             width: 100%;
 

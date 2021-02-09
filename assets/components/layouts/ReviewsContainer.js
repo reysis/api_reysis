@@ -24,11 +24,13 @@ function ReviewsContainer({userId}) {
                     return (
                         <ReviewCard
                             key={item['@id']}
+                            id={item['@id']}
                             title={item['title']}
                             date={item['datePublished']}
                             likes={item['likes']}
                             stars={item['stars']}
                             reviewText={item['reviewText']}
+                            owner={item['user']}
                             faded={false}
                         />
                     )

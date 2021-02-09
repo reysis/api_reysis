@@ -30,25 +30,22 @@ export const uploadFileError = error => {
 };
 
 export const uploadFileFetch = (value) => (dispatch, getState) => {
-
-    dispatch(createTurnoRequest());
+    dispatch(uploadFileRequest());
 
     const page = "/api/media-objects";
     const method = "POST"
+    console.log(value.filename);
     const body = JSON.stringify({
         filename: value.filename,
         data: value.data
     })
+    console.log(body);
     const headers = getHeaders(getState);
 
     fetch(page, { method, body, headers })
         .then(res => res.json())
         .then(res => {
-            const response = {
-                ...res,
-                id: res['@id']
-            };
-            dispatch(uploadFileSuccess(response));
+            dispatch(uploadFileSuccess(res));
         })
         .catch(error => {
             dispatch(uploadFileError(error.message));

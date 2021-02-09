@@ -18,8 +18,8 @@ const Create = ({ locations }) => {
 	const error = useSelector(state => state.turno.create.error)
 	const [redirect, setRedirect] = useState(false);
 
-	const authenticated = useSelector(state => state.auth.authenticated)
-	const user = useSelector(state => state.auth.user)
+	const authenticated = useSelector(state => state.auth.login.authenticated)
+	const user = useSelector(state => state.auth.token.authenticatedUser)
 
 	const [disabledForm, setDisabledForm] = useState(true)
 
@@ -65,12 +65,12 @@ const Create = ({ locations }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		let [hour, minute] = time.split(':');
-
+		console.log("USER: ", user);
 		const fecha = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, minute);
 		dispatch(createTurnoFetch({
 			fecha: fecha.toUTCString(),
 			defecto,
-			user: user.id
+			user: user['@id']
 		}))
 	}
 

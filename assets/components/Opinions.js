@@ -15,6 +15,7 @@ import testimonialBackground from '../assets/testimonial.jpg';
 
 import OpinionsItem from './OpinionsItem'
 import {getOpinionsFiltersURL} from "../redux/requestFilters";
+import {Link} from "react-router-dom";
 
 const Opinions = () => {
 
@@ -23,10 +24,6 @@ const Opinions = () => {
 	const error = useSelector(state => state.opinion.list.error)
 
 	const dispatch = useDispatch()
-
-	const [toMaxHeigth, setToMaxHeigth] = useState(-1)
-	const [maxHeight, setMaxHeight] = useState(0)
-	const [reviewCount, setReviewCount] = useState(0)
 
 	useEffect(() => {
 		dispatch(opinionFetch(getOpinionsFiltersURL(1)))
@@ -88,6 +85,11 @@ const Opinions = () => {
 							</div>
 						)
 				}
+				<div data-aos="fade-up" data-aos-delay="500" className="opinions-button__container">
+					<Link to="/reviews">
+						<button className="opinions-button__see-all">Ver todas</button>
+					</Link>
+				</div>
 			</div>
 		</section>
 	)

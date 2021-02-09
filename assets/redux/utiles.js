@@ -8,6 +8,7 @@ export const getHeaders = (state) => {
             'Php-Auth-Digest': `Bearer ${localStorage.getItem('token')}`
         }
     console.log(headers);
+    console.log(localStorage.getItem('token'));
     return new Headers(headers)
 }
 

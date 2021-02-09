@@ -4,6 +4,7 @@ import { Card } from 'reactstrap';
 import LoaderLocal from './LoaderLocal';
 
 import { Link } from 'react-router-dom'
+import {getIdFromUrl} from "../redux/utiles";
 
 const ServiceCard = ({ id, nombre, descripcion, images, loading }) => {
 
@@ -54,7 +55,7 @@ const ServiceCard = ({ id, nombre, descripcion, images, loading }) => {
 							<figcaption>
 								<h3>{nombre}</h3>
 								<p>{descripcion}</p>
-								<Link to={`/services/${encodeURIComponent(id)}`} ref={card_button}>Leer más</Link>
+								<Link to={`/services/${getIdFromUrl(id)}`} ref={card_button}>Leer más</Link>
 							</figcaption>
 						</figure>
 				}

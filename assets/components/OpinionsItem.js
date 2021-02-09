@@ -16,7 +16,12 @@ const OpinionsItem = ({ image, autor, reviewText, stars, likes, datePublished })
     return (
         <Carousel.Caption>
             <div className="image-shadow-container">
-                <Image src={image} alt="Author de la frase" className="image-carousel" />
+                <Image src={image}
+                       alt="Author de la frase"
+                       className="image-carousel"
+                       roundedCircle
+                       fluid
+                />
             </div>
             <h2 className="my-3 text-author">{autor}</h2>
             <p className="my-3">{reviewText}</p>

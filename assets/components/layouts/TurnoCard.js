@@ -9,7 +9,7 @@ import {getIdFromUrl} from "../../redux/utiles";
 const TurnoCard = ({defecto, date, index, time, id}) => {
     return (
         <div>
-            <Card>
+            <Card className="turno-card__container">
                 <Card.Body>
                     <Card.Title>Turno No. {index}</Card.Title>
                     <Card.Subtitle>

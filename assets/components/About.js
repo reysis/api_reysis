@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 import { useSelector } from 'react-redux'
+import {Link} from "react-router-dom";
 
 const About = () => {
 
@@ -25,11 +26,11 @@ const About = () => {
 							<div>
 								<div className="feature-header">
 									<h2 data-aos="fade-left" data-aos-delay="300" className="pb-2">Acerca de <span>nosotros</span></h2>
-									{aboutUs != undefined && <p>{aboutUs}</p>}
+									{aboutUs !== undefined && <p>{aboutUs}</p>}
 								</div>
-								<a href="#">
+								<Link to="/about">
 									<button className="acercade-button">Leer más</button>
-								</a>
+								</Link>
 							</div>
 						</div>
 					</div>
