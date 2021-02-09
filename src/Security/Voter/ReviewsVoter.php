@@ -21,7 +21,7 @@ class ReviewsVoter extends Voter
 
     protected function supports(string $attribute, $subject)
     {
-        return in_array($attribute, ['GET_SPECIFIC', 'PUT', 'DELETE'])
+        return in_array($attribute, ['REVIEW_PUT', 'ERASE'])
             && $subject instanceof Reviews;
     }
 
@@ -32,18 +32,17 @@ class ReviewsVoter extends Voter
             return false;
         }
 
-        /**
-         * @var Reviews $subject
-         */
-        switch ($subject){
-            case 'PUT':
-            case 'GET_SPECIFIC':
-            case 'DELETE':
-                if(in_array('ROLE_ADMIN', $user->getRoles()) || $subject->getUser() === $user)
+        if($this->security->isGranted('ROLE_ADMIN'))
+            return true;
+
+        switch ($attribute){
+            case 'REVIEW_PUT':
+            case 'ERASE':
+                if($this->security->isGranted('ROLE_USER') || $subject->getUser() === $user)
                     return true;
                 return false;
         }
 
-        throw new \Exception(sprint('Atributo no manejado "%s" ', $atribute));
+        throw new \Exception(sprintf('Atributo no manejado "%s" ', $attribute));
     }
 }

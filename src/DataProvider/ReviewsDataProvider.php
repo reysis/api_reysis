@@ -58,7 +58,7 @@ class ReviewsDataProvider implements ContextAwareCollectionDataProviderInterface
             return null;
         }
 
-        $review->getUser()->getProfilePicture()->setContentUrl($this->customUploaderHelper->getPublicPath($user->getProfilePicture()->getFilePath()));
+        $review->getUser()->getProfilePicture()->setContentUrl($this->customUploaderHelper->getPublicPath($review->getUser()->getProfilePicture()->getFilePath()));
 
         return $review;
     }

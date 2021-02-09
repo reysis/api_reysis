@@ -19,15 +19,15 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *     },
  *     itemOperations={
  *          "get" = {
- *                  "security" = "is_granted('IS_AUTHENTICATED_ANOUNYMOUSLY')",
+ *                  "security"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')",
  *          },
  *          "put" = {
- *                  "security" = "is_granted('PUT', object)",
- *                  "security_message" = "Solo el propio usuario que la redacto puede modificar las reviews."
+ *                  "security"="is_granted('REVIEW_PUT', object)",
+ *                  "security_message"="Solo el propio usuario que la redacto puede modificar las reviews."
  *          },
  *          "delete" ={
- *                  "security" = "is_granted('DELETE', object)",
- *                  "security_message" = "Solo el propio usuario que la redacto puede eliminar una review"
+ *                  "security"="is_granted('ERASE', object)",
+ *                  "security_message"="Solo el propio usuario que la redacto puede eliminar una review"
  *          }
  *      },
  *     attributes={

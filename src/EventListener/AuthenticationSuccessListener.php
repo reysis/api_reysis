@@ -14,21 +14,29 @@ class AuthenticationSuccessListener
 {
     private $requestStack;
     private $security;
+    private UserRepository $userRepository;
 
-    public function __construct(RequestStack $requestStack, Security $security)
+    public function __construct(
+        RequestStack $requestStack,
+        Security $security,
+        UserRepository $userRepository
+    )
     {
         $this->requestStack = $requestStack;
         $this->security = $security;
+        $this->userRepository = $userRepository;
     }
 
     public function onAuthenticationSuccessResponse(AuthenticationSuccessEvent $event)
     {
         $data = $event->getData();
+
         /**
          * @var User $user
          */
-        $user = $this->security->getUser();
+        $user = $this->userRepository->findOneByUsername($event->getUser()->getUsername());
         $user->setLastLoggued(new \DateTime());
+        dump($user, $data, $event);
 
         $data['location'] = '/api/users/'.$user->getId();
 

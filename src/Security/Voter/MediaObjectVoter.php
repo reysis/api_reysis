@@ -68,6 +68,6 @@ class MediaObjectVoter extends Voter
 
         }
 
-        throw new \Exception(sprint('Atributo no manejado "%s" ', $atribute));
+        throw new \Exception(sprintf('Atributo no manejado "%s" ', $attribute));
     }
 }
