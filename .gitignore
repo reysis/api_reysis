@@ -36,6 +36,7 @@ yarn-error.log
 ###> IDEs ###
 /.vscode/
 /.idea/
+/.idea/workspace.xml
 ###> IDEs ###
 
 ### lock files
