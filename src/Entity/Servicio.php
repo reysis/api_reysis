@@ -64,6 +64,7 @@ class Servicio
     private $updatedAt;
 
     /**
+     * @Groups({"servicio:read", "admin:write"})
      * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio", orphanRemoval=true)
      */
     private $serviceImages;
