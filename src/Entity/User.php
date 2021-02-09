@@ -210,7 +210,7 @@ class User implements UserInterface
      * @ApiProperty(
      *     readableLink=true
      * )
-     * @Groups({"user:read", "user:write", "admin:write"})
+     * @Groups({"user:read", "user:write", "admin:write", "reviews:read"})
      * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
