@@ -25,6 +25,14 @@ const NavUser = () => {
     const authenticated = useSelector(state => state.auth.login.authenticated)
     const user = useSelector(state => state.auth.token.authenticatedUser);
 
+    const values = {
+        title:"",
+        date: new Date(),
+        likes: 0,
+        reviewText: "",
+        stars: 0,
+        id: null
+    };
     const dispatch = useDispatch();
     const history = useHistory()
 
@@ -202,6 +210,7 @@ const NavUser = () => {
             <ModalOpinion
                 show={showComentarioModal}
                 onHide={handleCloseComentarioModal}
+                values={values}
             />
         </>
     )

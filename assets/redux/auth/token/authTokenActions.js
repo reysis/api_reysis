@@ -14,6 +14,7 @@ import {
 } from "../../../utils/dataAccess";
 import {getHeaders} from "../../utiles";
 import {userShowError, userShowSuccess} from "../../user/show/userShowActions";
+import {loginRequest, loginSuccess} from "../login/authLoginActions";
 
 export const saveTokensToStorage = ({token, refreshToken, user}) => {
     localStorage.setItem('token',token);
@@ -79,24 +80,44 @@ export const userLoguedFetch = (id) => (dispatch, getState) =>{
     fetch(id, {headers})
         .then(res => res.json())
         .then(res => {
+            console.log("LO CARGO BIEN");
             dispatch(loadUserSuccess(res));
         })
         .catch(error => {
+            if(error['message'] === "Expired JWT Token"){
+                dispatch(authRefreshToken(localStorage.getItem('refreshToken')))
+            }
             dispatch(loadUserError(error.message));
         })
 }
 
 export const authRefreshToken = (refreshToken)=> dispatch =>{
+    dispatch(loginRequest(true))
     dispatch(refreshTokenLoading(true));
-    const headers = {
-        'ContentType': 'application/ld+json'
-    }
-    const body = JSON.stringify(refreshToken);
+    dispatch(tokenClearState());
+    let headers = new Headers();
+    headers.set('Content-Type', 'application/ld+json');
+    const body = JSON.stringify({
+        'refresh_token': refreshToken
+    });
+    const method = "POST"
 
-    fetch('/api/refesh-token', {body, headers})
+    fetch('/api/refresh-token', {method, body, headers})
         .then(res => res.json())
         .then(res => {
-            console.log(res);
-            //PENDING TO TO
+            const token = res.token
+            const location = res.location
+            const refreshToken = res['refresh_token']
+            console.log(token);
+            console.log(location);
+            console.log(refreshToken);
+            dispatch(saveTokensToStorage({
+                token,
+                refreshToken: refreshToken,
+                user: location
+            }))
+            dispatch(loginSuccess(true));
+            dispatch(userLoguedFetch(location));
         })
+        .catch()
 }

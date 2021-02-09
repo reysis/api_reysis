@@ -27,6 +27,9 @@ export function fetch(id, options = {}) {
         .then(json => {
           console.log(json)
 
+            if(json['message'] === 'Expired JWT Token'){
+                throw new Error("Expired JWT Token");
+            }
             if(json['message'] === 'Invalid credentials.'){
                 throw new Error("Credenciales incorrectas");
             }

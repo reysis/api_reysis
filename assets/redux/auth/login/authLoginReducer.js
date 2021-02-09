@@ -28,6 +28,7 @@ const authLoginReducer = (state = initialState, {type, payload})=>{
         case AUTH_LOGIN_REQUEST:
             return {
                 ...state,
+                authenticated: false,
                 loading: payload
             }
         case AUTH_USER_LOGOUT:

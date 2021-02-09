@@ -31,7 +31,7 @@ export const loginError = error => {
 };
 
 export const loginFetch = ({ username, password }) => dispatch => {
-    dispatch(loginRequest());
+    dispatch(loginRequest(true));
 
     const page = "/api/authentication";
     const method = "POST";
