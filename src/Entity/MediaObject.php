@@ -49,7 +49,7 @@ class MediaObject
     protected $id;
 
     /**
-     * @Groups({"mediaobject:read", "servicio:read", "user:item:get", "reviews:read"})
+     * @Groups({"mediaobject:read", "servicio:read", "user:read", "reviews:read"})
      * @var string|null
      */
     public $contentUrl;

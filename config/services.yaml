@@ -70,10 +70,6 @@ services:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
 
     #DATA PROVIDERS
-    App\DataProvider\UserDataProvider:
-        bind:
-            $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
-            $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'
     App\DataProvider\ReviewsDataProvider:
         bind:
             $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
@@ -96,3 +92,6 @@ services:
         arguments: [ '@request_stack' ]
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+
+    App\Doctrine\SetProfilePictureOnUserListener:
+        tags: [doctrine.orm.entity_listener]

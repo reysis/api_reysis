@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210210155440.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210210155739.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Doctrine/SetProfilePictureOnUserListener.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ServicioFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ServicioFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Servicio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Functional/ServicioResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/ServicioResourceTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataProvider/UserDataProvider.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/MediaObject.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MediaObject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -247,7 +247,7 @@
       <workItem from="1612795962832" duration="700000" />
       <workItem from="1612796975661" duration="130000" />
       <workItem from="1612797290203" duration="53109000" />
-      <workItem from="1612972109373" duration="1994000" />
+      <workItem from="1612972109373" duration="4671000" />
     </task>
     <servers />
   </component>
