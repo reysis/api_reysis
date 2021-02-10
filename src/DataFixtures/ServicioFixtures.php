@@ -61,7 +61,7 @@ class ServicioFixtures extends BaseFixture
                 $mediaObject = new MediaObject();
                 $mediaObject->setFile($file);
                 $mediaObject->setFilePath(
-                    "service_image/".$this->uploaderHelper->uploadServiceImage($file, null)
+                    $this->uploaderHelper->uploadServiceImage($file, null)
                 );
                 $manager->persist($mediaObject);
                 $servicio->addServiceImage($mediaObject);

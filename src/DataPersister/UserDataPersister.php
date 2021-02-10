@@ -63,7 +63,7 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
                     return new Response('El campo filename no debe estar vacio', 400);
                 }
                 $data->getProfilePicture()->setFilePath(
-                    "user_images/".$this->uploaderHelper->uploadUserImage($uploadedFile, $data->getProfilePicture()->getFilePath())
+                    $this->uploaderHelper->uploadUserImage($uploadedFile, $data->getProfilePicture()->getFilePath())
                 );
                 $data->getProfilePicture()->setFile($uploadedFile);
             }
@@ -104,7 +104,7 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
 
         $data->getProfilePicture()->setFile($uploadedFile);
         $data->getProfilePicture()->setFilePath(
-            'user_images/'.$this->uploaderHelper->uploadUserImage($uploadedFile, $data->getProfilePicture()->getFile())
+            $this->uploaderHelper->uploadUserImage($uploadedFile, $data->getProfilePicture()->getFile())
         );
     }
 }

@@ -173,7 +173,7 @@ class CustomApiTestCase extends ApiTestCase
     {
         $servicio = new Servicio();
         $servicio->setNombre('testServicio');
-        $servicio->setDescripcion('some description');
+        $servicio->setDescription('some description');
         $servicio->setUpdatedAt(new \DateTime());
 
         $em = $this->getEntityManager();

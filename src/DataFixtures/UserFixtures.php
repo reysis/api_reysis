@@ -74,7 +74,7 @@ class UserFixtures extends BaseFixture
             $mediaObject = new MediaObject();
             $mediaObject->setFile($file);
             $mediaObject->setFilePath(
-                "user_images/".$this->uploaderHelper->uploadUserImage($file, null)
+                $this->uploaderHelper->uploadUserImage($file, null)
             );
 
             //$manager->persist($mediaObject);

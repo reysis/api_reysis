@@ -25,13 +25,11 @@ class ReviewPublicExtension implements QueryCollectionExtensionInterface, QueryI
 
     public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
     {
-        dump($queryBuilder, $resourceClass, $operationName, $queryNameGenerator);
         $this->addWhere($resourceClass, $queryBuilder);
     }
 
     public function applyToItem(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, array $identifiers, string $operationName = null, array $context = [])
     {
-        dump($queryBuilder->getParameters());
         $this->addWhere($resourceClass, $queryBuilder);
     }
 

@@ -36,7 +36,6 @@ class AuthenticationSuccessListener
          */
         $user = $this->userRepository->findOneByUsername($event->getUser()->getUsername());
         $user->setLastLoggued(new \DateTime());
-        dump($user, $data, $event);
 
         $data['location'] = '/api/users/'.$user->getId();
 

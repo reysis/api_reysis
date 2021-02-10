@@ -69,16 +69,6 @@ services:
         bind:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
 
-    #DATA PROVIDERS
-    App\DataProvider\ReviewsDataProvider:
-        bind:
-            $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
-            $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'
-    App\DataProvider\MediaObjectDataProvider:
-        bind:
-            $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
-            $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'
-
     gesdinet.jwtrefreshtoken.refresh_token_manager:
         class: App\Doctrine\RefreshTokenManager
         public: true

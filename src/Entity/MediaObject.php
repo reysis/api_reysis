@@ -17,7 +17,7 @@ use App\Doctrine\SetContentUrlOnMediaObjectListener;
  *     iri="http://schema.org/MediaObject",
  *     collectionOperations={
  *         "get" = {
- *              "security"="is_granted('MEDIA_OBJECT_GET')",
+ *              "security"="is_granted('ROLE_ADMIN')",
  *              "security_message"="Solo un administrador puede acceder a estos recursos"
  *          },
  *         "post" = {
@@ -97,7 +97,6 @@ class MediaObject
     private $user;
 
     /**
-     * @Groups ({"admin:write", "user:write"})
      * @ORM\ManyToOne(targetEntity=Servicio::class, inversedBy="serviceImages")
      * @ORM\JoinColumn(nullable=true)
      */
