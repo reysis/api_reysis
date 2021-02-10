@@ -110,7 +110,7 @@ class CustomUploaderHelper
             fclose($stream);
         }
 
-        return $newFilename;
+        return $directory.'/'.$newFilename;
     }
 
     /**

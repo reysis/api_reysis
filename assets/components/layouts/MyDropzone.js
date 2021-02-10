@@ -11,6 +11,7 @@ function MyDropzone({setShow}) {
     const savingImageLoading = useSelector(state=> state.mediaObject.upload.loading);
     const errorSavingImage = useSelector(state=> state.mediaObject.upload.error);
     const image = useSelector(state=> state.mediaObject.upload.file);
+    const user = useSelector(state=> state.auth.token.authenticatedUser);
 
     const dispatch = useDispatch();
 
@@ -29,7 +30,9 @@ function MyDropzone({setShow}) {
                 reader.onerror = () => console.log('file reading has failed')
                 reader.onload = () => {
                     // Do whatever you want with the file contents
-                    setData(reader.result);
+                    let b64 = reader.result.replace(/^data:.+;base64,/, '');
+                    console.log(b64);
+                    setData(b64);
                     setFilename(file.path);
                 }
                 reader.readAsDataURL(file)
@@ -55,7 +58,8 @@ function MyDropzone({setShow}) {
     const handleSubmit = () =>{
         const values = {
             filename: filename,
-            data: data
+            data: data,
+            user: user['@id']
         }
         dispatch(uploadFileFetch(values));
     }

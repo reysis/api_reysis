@@ -6,7 +6,7 @@ import {faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {getIdFromUrl} from "../../redux/utiles";
 
-const TurnoCard = ({defecto, date, index, time, id}) => {
+const TurnoCard = ({defecto, date, index, time, id, deleteTurno}) => {
     return (
         <div>
             <Card className="turno-card__container">
@@ -19,9 +19,9 @@ const TurnoCard = ({defecto, date, index, time, id}) => {
                     <Link to={`/turnos/edit/${getIdFromUrl(id)}`}>
                         <FontAwesomeIcon icon={faEdit} />
                     </Link>
-                    <Link to={`/turnos/delete/${getIdFromUrl(id)}`}>
+                    <div onClick={deleteTurno(getIdFromUrl(id))}>
                         <FontAwesomeIcon className="" icon={faTrash} />
-                    </Link>
+                    </div>
                 </Card.Body>
             </Card>
         </div>

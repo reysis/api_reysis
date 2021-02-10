@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import LoaderLocalSpinner from "../LoaderLocal";
 import TurnoCard from "./TurnoCard";
 import {listTurnoFetch} from "../../redux/turno/list/listTurnoActions";
-import {getFormatedDate, getHoursFromDate, isoStringToDate} from "../../redux/utiles";
+import {getFormatedDate, getHoursFromDate, getIdFromUrl, isoStringToDate} from "../../redux/utiles";
 
 const TurnosContainer = () => {
     const turnos = useSelector(state=>state.turno.list.turnos);
@@ -15,6 +15,10 @@ const TurnosContainer = () => {
     useEffect(()=>{
         dispatch(listTurnoFetch());
     }, [])
+
+    const handleDeleteTurno = (id) =>{
+        console.log('delete turno', id);
+    }
 
     return (
         <div className="container">
@@ -28,6 +32,7 @@ const TurnosContainer = () => {
                             date={getFormatedDate(isoStringToDate(item['fecha']))}
                             time={getHoursFromDate(isoStringToDate(item['fecha']))}
                             index={index + 1}
+                            deleteTurno={handleDeleteTurno}
                         />
                     })
                 ):

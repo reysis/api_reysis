@@ -3,31 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/About.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Opinions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Opinions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/OpinionsItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/OpinionsItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/ServiceCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/ServiceCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ModalOpinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ModalOpinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/ServicesHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/ServicesHome.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ReviewCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ReviewCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ReviewsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ReviewsContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_opinions.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_opinions.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_page.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_user-profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_user-profile.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/update/updateOpinionActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/update/updateOpinionActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/service/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/service/show/serviceShowActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/service/show/serviceShowActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/utiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/utiles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/ReviewsListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ReviewsListPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/ServicioItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ServicioItemPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/TurnosListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/TurnosListPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/create/createOpinionActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/create/createOpinionActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/MediaObjectDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/MediaObjectDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Serializer/Denormalizer/MediaObjectDenormalizer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Serializer/Denormalizer/MediaObjectDenormalizer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/CustomUploaderHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/CustomUploaderHelper.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,7 +250,7 @@
       <workItem from="1612361894841" duration="25031000" />
       <workItem from="1612795962832" duration="700000" />
       <workItem from="1612796975661" duration="130000" />
-      <workItem from="1612797290203" duration="41734000" />
+      <workItem from="1612797290203" duration="52686000" />
     </task>
     <servers />
   </component>

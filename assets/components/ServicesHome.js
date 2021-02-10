@@ -9,9 +9,7 @@ import ServiceCard from '../components/ServiceCard';
 import { Row, Pagination } from 'react-bootstrap';
 import PaginationSystem from "./PaginationSystem";
 import {getServiceFilters} from "../redux/requestFilters";
-import {opinionFetch} from "../redux/opinion/list/opinionListActions";
 import {changePageNumberFromURL, decodeLastPage} from "../redux/utiles";
-import {serviceFetch} from "../redux/service/show/serviceShowActions";
 
 const ServicesHome = () => {
 
@@ -42,13 +40,13 @@ const ServicesHome = () => {
 		if(pageNumber !== currentPage){
 			if(response['hydra:view']){
 				dispatch(
-					serviceFetch(
+					servicesFetch(
 						changePageNumberFromURL(response['hydra:view']['@id'], pageNumber)
 					)
 				);
 			}else{
 				dispatch(
-					serviceFetch()
+					servicesFetch()
 				);
 			}
 		}

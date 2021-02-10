@@ -2,7 +2,7 @@ import {
     OPINION_CREATE_SUCCESS,
     OPINION_CREATE_REQUEST,
     OPINION_CREATE_ERROR
-} from "./CREATEOpinionTypes";
+} from "./createOpinionTypes";
 
 import { fetch } from "../../../utils/dataAccess";
 

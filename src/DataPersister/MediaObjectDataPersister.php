@@ -41,8 +41,6 @@ class MediaObjectDataPersister implements ContextAwareDataPersisterInterface
     {
         $data->setUpdatedAt(new \DateTime());
 
-        //dump($data, $context);
-
         $uploadedFile = $this->createUploadedFile($data);
         $data->setFile($uploadedFile);
         $data->setUpdatedAt(new \DateTime());
