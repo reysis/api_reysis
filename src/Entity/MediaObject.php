@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\MediaObjectRepository;
+use App\Doctrine\SetContentUrlOnMediaObjectListener;
 
 /**
  * @ORM\Entity
@@ -36,6 +37,7 @@ use App\Repository\MediaObjectRepository;
  *     }
  * )
  * @ORM\Entity(repositoryClass=MediaObjectRepository::class)
+ * @ORM\EntityListeners({SetContentUrlOnMediaObjectListener::class})
  */
 class MediaObject
 {

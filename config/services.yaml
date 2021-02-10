@@ -74,10 +74,6 @@ services:
         bind:
             $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
             $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'
-    App\DataProvider\ServiceDataProvider:
-        bind:
-            $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
-            $itemDataProvider: '@api_platform.doctrine.orm.default.item_data_provider'
     App\DataProvider\MediaObjectDataProvider:
         bind:
             $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
@@ -93,5 +89,5 @@ services:
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
 
-    App\Doctrine\SetProfilePictureOnUserListener:
-        tags: [doctrine.orm.entity_listener]
+    App\Doctrine\SetContentUrlOnMediaObjectListener:
+        tags: [ doctrine.orm.entity_listener ]

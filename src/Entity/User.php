@@ -18,7 +18,6 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\JoinColumn;
-use App\Doctrine\SetProfilePictureOnUserListener;
 
 /**
  * Un usuario del sistema, puede ser Persona Natular, Empresa, Proveedor o un Trabajador de la empresa
@@ -53,7 +52,6 @@ use App\Doctrine\SetProfilePictureOnUserListener;
  * )
  * @UniqueEntity({"username", "email"})
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\EntityListeners({SetProfilePictureOnUserListener::class})
  */
 class User implements UserInterface
 {

@@ -4,10 +4,10 @@
 namespace App\Doctrine;
 
 
-use App\Entity\User;
+use App\Entity\MediaObject;
 use App\Services\CustomUploaderHelper;
 
-class SetProfilePictureOnUserListener
+class SetContentUrlOnMediaObjectListener
 {
     private CustomUploaderHelper $customUploaderHelper;
 
@@ -16,9 +16,8 @@ class SetProfilePictureOnUserListener
         $this->customUploaderHelper = $customUploaderHelper;
     }
 
-    public function postLoad(User $user)
+    public function postLoad(MediaObject $mediaObject)
     {
-        $uri = $this->customUploaderHelper->getPublicPath($user->getProfilePicture()->getFilePath());
-        $user->getProfilePicture()->setContentUrl($uri);
+        $mediaObject->setContentUrl($this->customUploaderHelper->getPublicPath($mediaObject->getFilePath()));
     }
 }
