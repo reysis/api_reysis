@@ -51,10 +51,9 @@ class Servicio
      * 
      * @ORM\Column(type="text")
      * @ApiProperty(iri="http://schema.org/description")
-     * @Groups({"servicio:item:get", "admin:write"})
-     * @Assert\NotBlank
+     * @Groups({"servicio:read", "admin:write"})
      */
-    private $descripcion;
+    private $description;
 
     /**
      * Ultia fecha en la que se actualizó la imagen
@@ -68,6 +67,12 @@ class Servicio
      * @ORM\OneToMany(targetEntity=MediaObject::class, mappedBy="servicio", orphanRemoval=true)
      */
     private $serviceImages;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"servicio:read", "admin:write"})
+     */
+    private $shortDescription;
 
     public function __construct()
     {
@@ -103,28 +108,16 @@ class Servicio
         return $this;
     }
 
-    public function getDescripcion(): string
+    public function getDescription(): string
     {
-        return $this->descripcion;
+        return $this->description;
     }
 
-    public function setDescripcion(string $descripcion): self
+    public function setDescription(string $description): self
     {
-        $this->descripcion = $descripcion;
+        $this->description = $description;
 
         return $this;
-    }
-
-
-    /**
-     * @Groups({"servicio:read"})
-     */
-    public function getShortDescription(): ?string
-    {
-        if(strlen($this->descripcion) < 70){
-            return $this->descripcion;
-        }
-        return substr($this->descripcion, 0, 70).'...';
     }
 
     /**
@@ -153,6 +146,18 @@ class Servicio
                 $serviceImage->setServicio(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription(?string $shortDescription): self
+    {
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }

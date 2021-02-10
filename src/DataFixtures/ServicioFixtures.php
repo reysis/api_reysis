@@ -46,7 +46,8 @@ class ServicioFixtures extends BaseFixture
         $this->deleteFilesInFilesystem();
         $this->createMany(6, 'SERVICIO', function ($i) use ($manager){
             $servicio = new Servicio();
-            $servicio->setDescripcion($this->faker->paragraph);
+            $servicio->setDescription($this->faker->paragraph);
+            $servicio->setShortDescription($this->faker->sentence);
             $servicio->setNombre($this->faker->sentence(2,true));
 
             $amountOfImagesPerService = $this->faker->numberBetween(1,3);

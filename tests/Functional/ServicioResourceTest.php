@@ -66,9 +66,8 @@ class ServicioResourceTest extends CustomApiTestCase
             ],
             'json' => [
                 'nombre' => $serviceName,
-                'descripcion'=> $faker->sentence,
-                'updatedAt'=> new \DateTime(),
-                'serviceImages' => $arrayOfImages
+                'description'=> $faker->sentence,
+                'updatedAt'=> new \DateTime()
             ],
         ]);
         $this->assertResponseIsSuccessful();

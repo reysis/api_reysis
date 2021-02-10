@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210210155440.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210210155739.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/ServicesHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/ServicesHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/create/createOpinionActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/create/createOpinionActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataPersister/MediaObjectDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/MediaObjectDataPersister.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Serializer/Denormalizer/MediaObjectDenormalizer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Serializer/Denormalizer/MediaObjectDenormalizer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/CustomUploaderHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/CustomUploaderHelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ServicioFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ServicioFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Functional/ServicioResourceTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Functional/ServicioResourceTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +246,8 @@
       <workItem from="1612361894841" duration="25031000" />
       <workItem from="1612795962832" duration="700000" />
       <workItem from="1612796975661" duration="130000" />
-      <workItem from="1612797290203" duration="52686000" />
+      <workItem from="1612797290203" duration="53109000" />
+      <workItem from="1612972109373" duration="1994000" />
     </task>
     <servers />
   </component>
