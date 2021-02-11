@@ -74,6 +74,12 @@ class Servicio
      */
     private $shortDescription;
 
+    /**
+     * @Groups({"servicio:read", "admin:write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $urlPortada;
+
     public function __construct()
     {
         $this->serviceImages = new ArrayCollection();
@@ -158,6 +164,18 @@ class Servicio
     public function setShortDescription(?string $shortDescription): self
     {
         $this->shortDescription = $shortDescription;
+
+        return $this;
+    }
+
+    public function getUrlPortada(): ?string
+    {
+        return $this->urlPortada;
+    }
+
+    public function setUrlPortada(?string $urlPortada): self
+    {
+        $this->urlPortada = $urlPortada;
 
         return $this;
     }

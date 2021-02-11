@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210211141450.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ApiPlatform/ReviewPublicExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ApiPlatform/ReviewPublicExtension.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/ServicioFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ServicioFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataPersister/ServicioDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/ServicioDataPersister.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataProvider/MediaObjectDataProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataProvider/ReviewsDataProvider.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/MediaObject.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MediaObject.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventListener/AuthenticationSuccessListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventListener/AuthenticationSuccessListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test/CustomApiTestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +248,8 @@
       <workItem from="1612796975661" duration="130000" />
       <workItem from="1612797290203" duration="53109000" />
       <workItem from="1612972109373" duration="9607000" />
-      <workItem from="1612984941549" duration="2969000" />
+      <workItem from="1612984941549" duration="4835000" />
+      <workItem from="1613052131138" duration="969000" />
     </task>
     <servers />
   </component>
