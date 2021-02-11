@@ -38,7 +38,7 @@ export const listTurnoFetch = () => (dispatch, getState) => {
         .then(res => res.json())
         .then(res => {
             console.log(res);
-            dispatch(listTurnoSuccess(res));
+            dispatch(listTurnoSuccess(res['hydra:member']));
         })
         .catch(error => {
             dispatch(listTurnoError(error.message));

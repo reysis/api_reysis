@@ -19,7 +19,7 @@ const TurnoCard = ({defecto, date, index, time, id, deleteTurno}) => {
                     <Link to={`/turnos/edit/${getIdFromUrl(id)}`}>
                         <FontAwesomeIcon icon={faEdit} />
                     </Link>
-                    <div onClick={deleteTurno(getIdFromUrl(id))}>
+                    <div onClick={deleteTurno}>
                         <FontAwesomeIcon className="" icon={faTrash} />
                     </div>
                 </Card.Body>
