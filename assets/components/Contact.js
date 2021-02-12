@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faMapMarkerAlt, faEnvelope, faPhone, faCheck, faTimes} from '@fortawesome/free-solid-svg-icons'
+import { faMapMarkerAlt, faEnvelope, faPhone, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { messagePost } from '../redux/contact_message/messageActions'
 import { Form, Button } from 'react-bootstrap'
-import Toast from "./layouts/Toast";
+
+// import Toast from "./layouts/Toast";
+
+import Toast from './Utils/Toast'
 
 const Contact = () => {
 
@@ -17,12 +20,12 @@ const Contact = () => {
 	const [message, setMessage] = useState('')
 	const [validEmail, setValidEmail] = useState(false)
 
-	const [toastType, setToastType] = useState(null);
-	const [toastList, setToastList] = useState([]);
+	// const [toastType, setToastType] = useState(null);
+	// const [toastList, setToastList] = useState([]);
 
 	const loading = useSelector(state => state.contactMessage.loading)
 	const error = useSelector(state => state.contactMessage.error)
-	const messageResponse = useSelector(state=> state.contactMessage.message);
+	const messageResponse = useSelector(state => state.contactMessage.message);
 
 	const [contactMessageButton, setContactMessageButton] = useState('Enviar Mensaje');
 	const dispatch = useDispatch()
@@ -53,31 +56,37 @@ const Contact = () => {
 		}, 1000);
 	}, [email])
 
+	useEffect(() => {
+		console.log("it works")
+		Toast.dark("it works")
+	}, [])
 
-	useEffect(()=>{
-		if(error){
-			let toastProperties = {
-				id: Math.floor((Math.random() * 100) + 1),
-				type: 'danger-toast',
-				title: "Oh vaya :(!",
-				description: error,
-				icon: faTimes
-			};
-			setToastList([...toastList, toastProperties]);
+	useEffect(() => {
+		if (error) {
+			// let toastProperties = {
+			// 	id: Math.floor((Math.random() * 100) + 1),
+			// 	type: 'danger-toast',
+			// 	title: "Oh vaya :(!",
+			// 	description: error,
+			// 	icon: faTimes
+			// };
+			// setToastList([...toastList, toastProperties]);
+			Toast.error(error)
 		}
 	}, [error])
 
-	useEffect(()=>{
-		if(messageResponse){
-			setToastType('success')
-			let toastProperties = {
-				id: Math.floor((Math.random() * 100) + 1),
-				type: 'success-toast',
-				title: "Excelente!",
-				description: "Su mensaje ha sido enviado correctamente!",
-				icon: faCheck
-			};
-			setToastList([...toastList, toastProperties]);
+	useEffect(() => {
+		if (messageResponse) {
+			// setToastType('success')
+			// let toastProperties = {
+			// 	id: Math.floor((Math.random() * 100) + 1),
+			// 	type: 'success-toast',
+			// 	title: "Excelente!",
+			// 	description: "Su mensaje ha sido enviado correctamente!",
+			// 	icon: faCheck
+			// };
+			// setToastList([...toastList, toastProperties]);
+			Toast.success("Su mensaje ha sido enviado correctamente!")
 		}
 	}, [messageResponse])
 
@@ -165,14 +174,14 @@ const Contact = () => {
 					</Form>
 				</div>
 			</div>
-			<Toast
+			{/* <Toast
 				type={toastType}
 				toastList={toastList}
 				setToastList={setToastList}
 				position="bottom-left"
 				autoDelete={true}
 				autoDeleteTime={4000}
-			/>
+			/> */}
 		</section>
 	)
 }
