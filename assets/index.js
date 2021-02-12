@@ -10,6 +10,10 @@ import history from './history';
 import App from "./app";
 import { ConnectedRouter } from 'connected-react-router';
 
+import { toast } from 'react-toastify'
+
+toast.configure()
+
 ReactDOM.render(
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
