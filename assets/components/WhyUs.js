@@ -12,7 +12,7 @@ const Whyus = () => {
     return (
         <section id="whyus" className="whyus-component section-padding">
             <div className="whyus-header">
-                <h2 className="mx-4 pb-2">¿<span>Por qué</span> nosotros?</h2>
+                <h2 className="mx-4 pb-2">¿Por qué <span>nosotros?</span></h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste omnis <br />atque explicabo rerum enim ullam?</p>
             </div>
             <div className="whyus-container">

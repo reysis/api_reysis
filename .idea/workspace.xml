@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Contact.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/user/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/user/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/Logout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/auth/login/authLoginActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/auth/login/authLoginActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/auth/login/authLoginReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/auth/login/authLoginReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/auth/token/authTokenActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/auth/token/authTokenActions.js" afterDir="false" />
-    </list>
+    <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -253,7 +243,7 @@
       <workItem from="1612972109373" duration="9607000" />
       <workItem from="1612984941549" duration="4835000" />
       <workItem from="1613052131138" duration="969000" />
-      <workItem from="1613242047267" duration="11020000" />
+      <workItem from="1613242047267" duration="11679000" />
     </task>
     <servers />
   </component>
