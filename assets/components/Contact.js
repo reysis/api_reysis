@@ -20,9 +20,6 @@ const Contact = () => {
 	const [message, setMessage] = useState('')
 	const [validEmail, setValidEmail] = useState(false)
 
-	// const [toastType, setToastType] = useState(null);
-	// const [toastList, setToastList] = useState([]);
-
 	const loading = useSelector(state => state.contactMessage.loading)
 	const error = useSelector(state => state.contactMessage.error)
 	const messageResponse = useSelector(state => state.contactMessage.message);
@@ -57,35 +54,13 @@ const Contact = () => {
 	}, [email])
 
 	useEffect(() => {
-		console.log("it works")
-		Toast.dark("it works")
-	}, [])
-
-	useEffect(() => {
 		if (error) {
-			// let toastProperties = {
-			// 	id: Math.floor((Math.random() * 100) + 1),
-			// 	type: 'danger-toast',
-			// 	title: "Oh vaya :(!",
-			// 	description: error,
-			// 	icon: faTimes
-			// };
-			// setToastList([...toastList, toastProperties]);
 			Toast.error(error)
 		}
 	}, [error])
 
 	useEffect(() => {
 		if (messageResponse) {
-			// setToastType('success')
-			// let toastProperties = {
-			// 	id: Math.floor((Math.random() * 100) + 1),
-			// 	type: 'success-toast',
-			// 	title: "Excelente!",
-			// 	description: "Su mensaje ha sido enviado correctamente!",
-			// 	icon: faCheck
-			// };
-			// setToastList([...toastList, toastProperties]);
 			Toast.success("Su mensaje ha sido enviado correctamente!")
 		}
 	}, [messageResponse])

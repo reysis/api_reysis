@@ -7,7 +7,7 @@ import {
 import {
     fetch
 } from "../../../utils/dataAccess";
-import {userLoguedFetch, saveTokensToStorage} from "../token/authTokenActions";
+import {userLoguedFetch, saveTokensToStorage, tokenClearState} from "../token/authTokenActions";
 
 export const loginRequest = () => {
     return {

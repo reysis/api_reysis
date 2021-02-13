@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
 import { Col, Row, Alert, Jumbotron } from 'react-bootstrap';
+import {tokenClearState} from "../../redux/auth/token/authTokenActions";
 
 const Logout = () => {
 
@@ -15,6 +16,7 @@ const Logout = () => {
 
     useEffect(() => {
         dispatch(userLogout())
+        dispatch(tokenClearState())
         timeout = setTimeout(() => {
             setRedirect(true)
         }, 10000)

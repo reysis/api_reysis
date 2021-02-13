@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux'
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './views/Home';
@@ -24,14 +24,30 @@ import './App.scss';
 
 import { loadConfiguration } from './redux/configuration/configurationActions';
 import { useLocation } from 'react-router-dom'
-import {userLoguedFetch} from "./redux/auth/token/authTokenActions";
+import {authRefreshToken, userLoguedFetch} from "./redux/auth/token/authTokenActions";
 import {loginSuccess} from "./redux/auth/login/authLoginActions";
 
+let expirationInterval = null;
 const App = () => {
 
     const dispatch = useDispatch()
-
     const location = useLocation()
+    const authenticated = useSelector(state => state.auth.login.authenticated);
+    let expirationTime = 10;
+
+    useEffect(()=>{
+        if(expirationInterval)
+            clearInterval(expirationInterval);
+        if(authenticated){
+            expirationInterval = setInterval(()=>{
+                if(expirationTime === 1){
+                    dispatch(authRefreshToken(localStorage.getItem('refreshToken')));
+                    expirationTime = 10
+                }
+                expirationTime--;
+            },60000);
+        }
+    },[authenticated])
 
     useEffect(() => {
         AOS.init({
@@ -41,8 +57,7 @@ const App = () => {
             once: true
         })
         if(localStorage.getItem('user')){
-            dispatch(loginSuccess(true));
-            dispatch(userLoguedFetch(localStorage.getItem('user')));
+            dispatch(authRefreshToken(localStorage.getItem('refreshToken')))
         }
         dispatch(loadConfiguration())
     }, [])

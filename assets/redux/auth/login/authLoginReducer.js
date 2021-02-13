@@ -33,7 +33,9 @@ const authLoginReducer = (state = initialState, {type, payload})=>{
             }
         case AUTH_USER_LOGOUT:
             return {
-                ...initialState
+                loading: false,
+                authenticated: null,
+                error: null
             }
         default:
             return state;

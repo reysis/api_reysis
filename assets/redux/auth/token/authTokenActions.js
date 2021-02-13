@@ -17,9 +17,9 @@ import {userShowError, userShowSuccess} from "../../user/show/userShowActions";
 import {loginRequest, loginSuccess} from "../login/authLoginActions";
 
 export const saveTokensToStorage = ({token, refreshToken, user}) => {
-    localStorage.setItem('token',token);
-    localStorage.setItem('refreshToken', refreshToken);
-    localStorage.setItem('user', user);
+    localStorage.token = token;
+    localStorage.refreshToken = refreshToken;
+    localStorage.user = user;
     return {
         type: AUTH_SAVE_TOKENS
     }
@@ -47,6 +47,7 @@ export const loadUserLoading = (loading) =>{
 }
 
 export const tokenClearState = () => {
+    console.log("LIMPIANDO DENTRO DE LA ACTION");
     return{
         type: AUTH_TOKEN_CLEAR_STATE,
     }
@@ -92,10 +93,10 @@ export const userLoguedFetch = (id) => (dispatch, getState) =>{
 }
 
 export const authRefreshToken = (refreshToken)=> dispatch =>{
-    dispatch(loginRequest(true))
     dispatch(refreshTokenLoading(true));
-    dispatch(tokenClearState());
+
     let headers = new Headers();
+    console.log(refreshToken);
     headers.set('Content-Type', 'application/ld+json');
     const body = JSON.stringify({
         'refresh_token': refreshToken

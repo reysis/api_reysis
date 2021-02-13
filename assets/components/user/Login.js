@@ -42,6 +42,7 @@ const Login = (props) => {
     }, [username, password, loading])
 
     if (authenticated) {
+        console.log("ESTA ENTRANDO AQUI Y NO SE PORQUE");
         if(location.state){
             return <Redirect to={location.state.from.pathname}/>
         }else{
