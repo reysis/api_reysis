@@ -42,14 +42,12 @@ const Login = (props) => {
     }, [username, password, loading])
 
     if (authenticated) {
-        console.log("ESTA ENTRANDO AQUI Y NO SE PORQUE");
         if(location.state){
             return <Redirect to={location.state.from.pathname}/>
         }else{
             return <Redirect to={"/"}/>
         }
     }
-    console.log("ERROR:",error);
     return (
         <Container>
             <Alert role={"status"} variant={"info"} show={loading} >Loading...</Alert>
@@ -92,7 +90,7 @@ const Login = (props) => {
                                 <p>o</p>
                             </div>
 
-                            <Form.Group>
+                            {/*<Form.Group>
                                 <InputGroup>
                                     <InputGroup.Prepend>
                                         <label className="input-group-text" htmlFor="login-pin" >
@@ -101,7 +99,7 @@ const Login = (props) => {
                                     </InputGroup.Prepend>
                                     <Form.Control type="user" id="login-pin" placeholder="PIN de Seguridad" value={securePIN} onChange={(e) => setSecurePIN(e.target.value)} />
                                 </InputGroup>
-                            </Form.Group>
+                            </Form.Group>*/}
 
                             <Form.Group className="login-forgot-password">
                                 <span className="form-text text-muted text-center"><a href="#">¿Has olvidado tu contraseña?</a></span>

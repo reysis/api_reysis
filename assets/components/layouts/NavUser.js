@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button, Image, Modal } from 'react-bootstrap'
 import {
-    faCalendarAlt,
+    faCalendarAlt, faCalendarCheck,
     faCommentAlt,
     faSignInAlt,
     faSignOutAlt,
@@ -88,6 +88,10 @@ const NavUser = () => {
         handleProfileShow(false)
         history.push('/turnos')
     }
+    const makeTurnoClick = () => {
+        handleProfileShow(false)
+        history.push('/turnos/create')
+    }
 
     const loginClick = () => {
         handleProfileShow(false)
@@ -157,14 +161,24 @@ const NavUser = () => {
                             }
                             {
                                 authenticated &&
-                                <li onClick={turnosClick} className="nav-user__menu-items__item item-selectionable nav-user__turnos">
-                                    <div className="nav-user__item--icon">
-                                        <FontAwesomeIcon icon={faCalendarAlt} />
-                                    </div>
-                                    <div className="nav-user__item--right">
-                                        <span className="title">Mis Turnos</span>
-                                    </div>
-                                </li>
+                                <>
+                                    <li onClick={turnosClick} className="nav-user__menu-items__item item-selectionable nav-user__turnos">
+                                        <div className="nav-user__item--icon">
+                                            <FontAwesomeIcon icon={faCalendarAlt} />
+                                        </div>
+                                        <div className="nav-user__item--right">
+                                            <span className="title">Mis citas</span>
+                                        </div>
+                                    </li>
+                                    <li onClick={makeTurnoClick} className="nav-user__menu-items__item item-selectionable nav-user__turnos">
+                                        <div className="nav-user__item--icon">
+                                            <FontAwesomeIcon icon={faCalendarCheck} />
+                                        </div>
+                                        <div className="nav-user__item--right">
+                                            <span className="title">Hacer cita</span>
+                                        </div>
+                                    </li>
+                                </>
                             }
                             {
                                 !authenticated &&
