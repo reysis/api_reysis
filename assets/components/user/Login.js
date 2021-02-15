@@ -10,6 +10,7 @@ import { Button, Form, InputGroup, Col, Row, Alert, Container } from "react-boot
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faExclamationTriangle, faUserCircle, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
+import Toast from "../Utils/Toast";
 
 const Login = (props) => {
 
@@ -19,7 +20,6 @@ const Login = (props) => {
 
     const dispatch = useDispatch()
 
-    const [securePIN, setSecurePIN] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -41,6 +41,18 @@ const Login = (props) => {
         })
     }, [username, password, loading])
 
+    useEffect(()=>{
+        if(authenticated){
+            Toast.success("Bienvenido, es un placer tenerlo aquí!")
+        }
+    }, [authenticated])
+
+    useEffect(()=>{
+        if(error){
+            Toast.error(error);
+        }
+    }, [error])
+
     if (authenticated) {
         if(location.state){
             return <Redirect to={location.state.from.pathname}/>
@@ -51,10 +63,6 @@ const Login = (props) => {
     return (
         <Container>
             <Alert role={"status"} variant={"info"} show={loading} >Loading...</Alert>
-            <Alert role={"alert"} variant={"danger"} show={error !== null} >
-                <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
-                {error}
-            </Alert>
             <Row>
                 <Form onSubmit={handleSubmit} className="mx-auto my-3 pb-3 col-xl-8 col-lg-9 col-md-12 form-login" >
                     <Row>
