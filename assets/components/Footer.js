@@ -134,7 +134,7 @@ const Footer = () => {
                         <div className="pr-2"><FontAwesomeIcon icon={faUsers} /></div>
                         Nuestro Equipo
                     </Link>
-                    <Link className="menu-item d-flex flex-row" to="/about">
+                    <Link className="menu-item d-flex flex-row" to="/mission">
                         <div className="pr-2"><FontAwesomeIcon icon={faBullseye} /></div>
                         Misión
                     </Link>
