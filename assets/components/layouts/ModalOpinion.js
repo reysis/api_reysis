@@ -4,13 +4,18 @@ import { Button, Modal } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons'
 import { faStar as faStarFull } from '@fortawesome/free-solid-svg-icons'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {updateOpinionFetch} from "../../redux/opinion/update/updateOpinionActions";
 import {createOpinionFetch} from "../../redux/opinion/create/createOpinionActions";
+import Toast from "../Utils/Toast";
 
 const ModalOpinion = ({ show, onHide, values }) => {
 
     const [countStar, setCountStar] = useState(values.stars)
+    const user = useSelector(state=> state.auth.token.authenticatedUser)
+    const opinion = useSelector(state => state.opinion.create.opinion)
+    const loading = useSelector(state=> state.opinion.create.loading)
+    const error = useSelector(state=> state.opinion.create.error)
 
     const dispatch = useDispatch();
     const [stars, setStars] = useState([
@@ -52,12 +57,59 @@ const ModalOpinion = ({ show, onHide, values }) => {
     }
 
     const [reviewLength, setReviewLength] = useState(values.reviewText.length)
-
+    const [buttonText, setButtonText] = useState("Enviar")
     const [reviewText, setReviewText] = useState(values.reviewText)
+    const [disabledSubmit, setDisabledSubmit] = useState(true);
+    const [toasted, setToasted] = useState(false)
+
+    const clearVariables = () =>{
+        setReviewText("");
+        setCountStar(0);
+        setToasted(false);
+        setStar(0);
+    }
 
     useEffect(() => {
         setReviewLength(reviewText.length)
     }, [reviewText])
+
+    useEffect(()=>{
+        if(opinion && !toasted){
+            onHide();
+            setToasted(true);
+            Toast.success("Gracias por enviarnos su opinión! Sus sugerencias nos ayudan a mejorar nuestro trabajo.")
+            clearVariables();
+        }
+    },[opinion])
+
+    useEffect(()=>{
+        if(error && !toasted){
+            setToasted(true);
+            Toast.error(error)
+        }
+    },[error])
+
+    useEffect(()=>{
+        if(countStar !== 0 && reviewText !== "")
+            setDisabledSubmit(false);
+        else
+            setDisabledSubmit(true);
+    }, [countStar, reviewText])
+
+    useEffect(() => {
+        if (loading) {
+            setButtonText("Enviando ...")
+        }
+        else if (error != null) {
+            setButtonText("Error")
+        }
+
+        if (!loading) {
+            setTimeout(() => {
+                setButtonText("Enviar")
+            }, 2000);
+        }
+    }, [loading])
 
     const handleSubmit = ()=>{
         if(values.id){
@@ -69,7 +121,8 @@ const ModalOpinion = ({ show, onHide, values }) => {
         }else{
             dispatch(createOpinionFetch({
                 reviewText,
-                stars: countStar
+                stars: countStar,
+                user: user['@id']
             }))
         }
     }
@@ -117,7 +170,7 @@ const ModalOpinion = ({ show, onHide, values }) => {
                 <div className="modal-opinion__footer-review_length">
                     <span>{reviewLength}/{maxlength}</span>
                 </div>
-                <Button className="modal-opinion__footer-button" variant="primary" onClick={handleSubmit}>Publicar</Button>
+                <Button disabled={disabledSubmit} className="modal-opinion__footer-button" variant="primary" onClick={handleSubmit}>{buttonText}</Button>
             </Modal.Footer>
         </Modal>
     )

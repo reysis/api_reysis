@@ -61,7 +61,7 @@ class Reviews
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"reviews:read", "user:item:get", "admin:read"})
+     * @Groups({"reviews:read", "reviews:write","user:item:get", "admin:read"})
      */
     private $reviewText;
 
@@ -74,23 +74,24 @@ class Reviews
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"reviews:read", "user:item:get", "admin:read"})
+     * @Groups({"reviews:read", "reviews:write","user:item:get", "admin:read"})
      */
     private $user;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"reviews:read", "user:item:get", "admin:read"})
+     * @Groups({"reviews:read", "reviews:write","user:item:get", "admin:read"})
      */
     private $likes = 0;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"reviews:read", "user:item:get", "admin:read"})
+     * @Groups({"reviews:read", "reviews:write","user:item:get", "admin:read"})
      */
     private $stars = 0;
 
     /**
+     * @Groups({"admin:write", "admin:read"})
      * @ORM\Column(type="boolean")
      */
     private $isPublic = false;

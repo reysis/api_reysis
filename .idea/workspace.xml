@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DataPersister/ReviewDataPersister.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Mision.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Mision.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/TermsCondition.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/TermsCondition.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Vision.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Vision.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/WhyUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/WhyUs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/configuration/configurationActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/configuration/configurationActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/AboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/AboutPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/Contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Contact.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ModalOpinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ModalOpinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/create/createOpinionActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/create/createOpinionActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reviews.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reviews.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +251,7 @@
       <workItem from="1612972109373" duration="9607000" />
       <workItem from="1612984941549" duration="4835000" />
       <workItem from="1613052131138" duration="969000" />
-      <workItem from="1613242047267" duration="17964000" />
+      <workItem from="1613242047267" duration="22896000" />
     </task>
     <servers />
   </component>

@@ -29,8 +29,9 @@ export const createOpinionError = error => {
 };
 
 export const createOpinionFetch = ({
-   reviewText,
-   stars
+    reviewText,
+    stars,
+    user
 }) => (dispatch, getState) => {
     dispatch(createOpinionRequest());
 
@@ -39,7 +40,8 @@ export const createOpinionFetch = ({
     const body = JSON.stringify({
         reviewText,
         likes: 0,
-        stars
+        stars,
+        user
     })
     const headers = getHeaders(getState);
 

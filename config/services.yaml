@@ -68,6 +68,9 @@ services:
     App\DataPersister\ContactMessageDataPersister:
         bind:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
+    App\DataPersister\ReviewDataPersister:
+        bind:
+            $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
 
     gesdinet.jwtrefreshtoken.refresh_token_manager:
         class: App\Doctrine\RefreshTokenManager
