@@ -10,6 +10,7 @@ import TurnoCalendar from "./TurnoCalendar";
 import TurnoAuth from './TurnoAuth';
 import { createTurnoFetch, createTurnoClear} from '../../redux/turno/create/createTurnoActions';
 import {changeTimeZone} from "../../redux/utiles";
+import Toast from "../Utils/Toast";
 
 const Create = ({ locations }) => {
 
@@ -50,9 +51,16 @@ const Create = ({ locations }) => {
 	useEffect(()=>{
 		if(turno){
 			setRedirect(true);
+			Toast.success("Su cita se ha programado satisfactoriamente. Nos veremos pronto!")
 			dispatch(createTurnoClear());
 		}
 	}, [turno])
+
+	useEffect(()=>{
+		if(error){
+			Toast.error(error)
+		}
+	}, [error])
 
 	useEffect(() => {
 		if (location && location.state) {
@@ -92,10 +100,10 @@ const Create = ({ locations }) => {
 	return (
 		<Container className="create-turno">
 			<Alert role={"status"} variant={"info"} show={loading}>Loading...</Alert>
-			<Alert role={"alert"} variant={"danger"} show={error} >
-				<FontAwesomeIcon icon={faExclamationTriangle} />{' '}
-				{error}
-			</Alert>
+			{/*<Alert role={"alert"} variant={"danger"} show={error} >*/}
+			{/*	<FontAwesomeIcon icon={faExclamationTriangle} />{' '}*/}
+			{/*	{error}*/}
+			{/*</Alert>*/}
 			<Form onSubmit={handleSubmit} className="create-turno__form" >
 
 				<TurnoCalendar handleDate={date} onChangeDate={setDate} handleTime={time} onChangeTime={setTime} />
