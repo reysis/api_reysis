@@ -9,6 +9,7 @@ const Phones = ({phones, setPhones, enableEdit}) => {
     const [tableOfPhones, setTableOfPhones] = useState([]);
     const [disableSubmit, setDisableSubmit] = useState([]);
     const [isValidPhone, setIsValidPhone] = useState(true);
+    const [animation, setAnimation] = useState('');
 
     const [phoneTypes] = useState([
         "Casa",
@@ -59,10 +60,14 @@ const Phones = ({phones, setPhones, enableEdit}) => {
     }, [phones])
 
     useEffect(()=>{
-        if(phone !== "" && phoneType !== "")
+        if(phone !== "" && phoneType !== ""){
+            setAnimation('bounce');
             setDisableSubmit(false);
-        else
+        }
+        else{
+            setAnimation('');
             setDisableSubmit(true);
+        }
     }, [phone, phoneType]);
 
     return (
@@ -73,8 +78,8 @@ const Phones = ({phones, setPhones, enableEdit}) => {
                     <h2 className="mb-2"><span>Teléfonos</span></h2>
                     <span>¡Añada sus teléfonos!</span>
                 </Form.Group>
-                <Form.Row className="phone-form-row">
-                    <Form.Group as={Col} md={6}>
+                <Form.Row className="phone-form__row">
+                    <Form.Group as={Col} md={5}>
                         <InputGroup>
                             <InputGroup.Prepend>
                                 <label className="input-group-text" htmlFor="register-phone">
@@ -94,7 +99,7 @@ const Phones = ({phones, setPhones, enableEdit}) => {
                             />
                         </InputGroup>
                     </Form.Group>
-                    <Form.Group as={Col} md={6}>
+                    <Form.Group as={Col} md={5}>
                         <InputGroup>
                             <InputGroup.Prepend>
                                 <label className="input-group-text" htmlFor="register-phone-type">
@@ -119,7 +124,7 @@ const Phones = ({phones, setPhones, enableEdit}) => {
                             </Form.Control>
                         </InputGroup>
                     </Form.Group>
-                    <Form.Group className="register-submit">
+                    <Form.Group as={Col} md={2} className={`phone-form__submit ${animation}`}>
                         <Button block disabled={disableSubmit} onClick={handleSubmit} variant="primary" type="button">
                             <FontAwesomeIcon icon={faPlus}/>
                         </Button>

@@ -9,6 +9,7 @@ import { Button, Form, InputGroup, Col, Row, Alert, Container } from "react-boot
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faAt, faPhone, faRedoAlt, faAddressBook, faExclamationTriangle, faIdCard, faBars } from '@fortawesome/free-solid-svg-icons';
 import Phones from "../Phones";
+import Toast from "../Utils/Toast";
 
 const Register = () => {
 
@@ -154,15 +155,23 @@ const Register = () => {
 
     }, [username, cid, name, lastname, password, passwordCheck, email, phones, address])
 
+    useEffect(()=>{
+        if(authAuthenticated){
+            Toast.success("Bienvenido a nuestra comunidad! Será siempre un placer atenderlo.")
+        }
+    }, [authAuthenticated])
+
+    useEffect(()=>{
+        if(authError){
+            Toast.error(authError);
+        }
+    }, [authError])
+
     if (authAuthenticated)
         return <Redirect to='/' />
     return (
         <Container>
             <Alert role={"status"} variant={"info"} show={authLoading}>Loading...</Alert>
-            <Alert role={"alert"} variant={"danger"} show={authError} >
-                <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
-                {authError}
-            </Alert>
             <Row>
                 <Form id="form-register" onSubmit={handleSubmit} className="mx-auto my-3 pb-3 col-xl-9 col-lg-10 col-md-12 form-register">
                     <Row>
