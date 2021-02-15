@@ -27,7 +27,7 @@ export const updateTurnoError = (error) => {
 	};
 }
 
-export const updateTurnoFetch = (id, {fecha, defecto, turno}) => dispatch => {
+export const updateTurnoFetch = (id, {fecha, defecto, turno}) => (dispatch, getState) => {
 	dispatch(updateTurnoRequest());
 
 	const page = "/api/turnos/" + id;
@@ -39,26 +39,22 @@ export const updateTurnoFetch = (id, {fecha, defecto, turno}) => dispatch => {
 			fecha: fecha
 		};
 	}
-	if(defecto !== "" && defecto !== turno['defectp']){
+	if(defecto !== "" && defecto !== turno['defecto']){
 		values = {
 			...values,
-			fecha: fecha
+			defecto: defecto
 		};
 	}
 	const headers = getHeaders(getState);
 	const body = JSON.stringify({
 		fecha: fecha,
 		defecto: defecto,
-		user: turno['user']['@id']
+		user: turno['user']
 	})
-	return fetch(id, {method, values, headers})
+	return fetch(page, {method, body, headers})
 		.then(res => res.json())
 		.then(res => {
-			const response = {
-				...res,
-				id: res['@id']
-			}
-			dispatch(updateTurnoSuccess(response))
+			dispatch(updateTurnoSuccess(res))
 		})
 		.catch(error => {
 			dispatch(updateTurnoError(error.message))

@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     loading: false,
-    user: null,
+    turno: null,
     error: null
 }
 
@@ -20,13 +20,13 @@ const turnoUpdateReducer = (state = initialState, { type, payload }) => {
         case TURNO_UPDATE_SUCCESS:
             return {
                 loading: false,
-                user: payload,
+                turno: payload,
                 error: null
             }
         case TURNO_UPDATE_ERROR:
             return {
                 loading: false,
-                user: null,
+                turno: null,
                 error: payload
             }
         default:

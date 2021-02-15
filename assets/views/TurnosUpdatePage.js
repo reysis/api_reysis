@@ -3,9 +3,9 @@ import Update from "../components/turno/Update"
 
 const TurnosUpdatePage = () => {
     return (
-        <div className="content-wrap turnos-update-page page">
-            <div className="update-turno-header">
-                <h1 className="mt-4 mb-5">Reprogamemos sus turno busquemos un mejor momento!</h1>
+        <div className="content-wrap turnos-update-page page container">
+            <div className="page-header">
+                <h1 className="mx-4 pb-2">Reprogamemos su turno, <span>busquemos un mejor momento!</span></h1>
             </div>
             <Update/>
         </div>

@@ -66,7 +66,7 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
                 /**
                  * @var AvailableDate $dateBeforeUpdate
                  */
-                $dateBeforeUpdate = $this->availableDateRepository->findOneById($oldObject['id']);
+                $dateBeforeUpdate = $this->availableDateRepository->findOneByDate($oldObject['fecha']);
                 if(!$dateBeforeUpdate){
                     $newDateAvailable = new AvailableDate();
                     $newDateAvailable->setOriginalAmount(1);
