@@ -4,7 +4,7 @@ import ListTurno from "../components/turno/ListTurno";
 
 const TurnosListPage = () => {
     return (
-        <main className="content-wrap turnos-list-page page">
+        <main className="content-wrap turnos-list-page page container">
             <div className="page-header">
                 <h1>Listado de sus <span>Turnos</span></h1>
             </div>

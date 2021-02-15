@@ -44,8 +44,9 @@ function addZero(i) {
 export const getHoursFromDate = (date) =>{
     let h = date.getHours();
     let m = date.getMinutes();
+    //let ampm = h >= 12 ? 'pm' : 'am';
 
-    return addZero(h) + ':' + addZero(m);
+    return addZero(h) + ':' + addZero(m);// + ' ' + ampm;
 }
 
 export const getFormatedDate = (date) =>{

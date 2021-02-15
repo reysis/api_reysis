@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/css/_turno_list.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/Update.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Update.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/turno/update/updateTurnoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/update/updateTurnoActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/turno/update/updateTurnoReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/update/updateTurnoReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/TurnosUpdatePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/TurnosUpdatePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_cards.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_cards.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/turno/delete/deleteTurnoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/delete/deleteTurnoActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/turno/delete/deleteTurnoReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/delete/deleteTurnoReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/utiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/utiles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/TurnosListPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/TurnosListPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,7 +254,7 @@
       <workItem from="1612972109373" duration="9607000" />
       <workItem from="1612984941549" duration="4835000" />
       <workItem from="1613052131138" duration="969000" />
-      <workItem from="1613242047267" duration="28095000" />
+      <workItem from="1613242047267" duration="33533000" />
     </task>
     <servers />
   </component>

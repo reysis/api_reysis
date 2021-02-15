@@ -3,15 +3,15 @@ import {TURNO_DELETE_ERROR, TURNO_DELETE_REQUEST, TURNO_DELETE_SUCCESS} from './
 import {getHeaders} from "../../utiles";
 
 export function turnoDeleteError(error) {
-  return { type: TURNO_DELETE_ERROR, error };
+  return { type: TURNO_DELETE_ERROR, payload: error };
 }
 
 export function turnoDeleteRequest(loading) {
-  return { type: TURNO_DELETE_REQUEST, loading };
+  return { type: TURNO_DELETE_REQUEST, payload: loading };
 }
 
 export function turnoDeleteSuccess(deleted) {
-  return { type: TURNO_DELETE_SUCCESS, deleted };
+  return { type: TURNO_DELETE_SUCCESS, payload: deleted };
 }
 
 export function turnoDelete(id) {
@@ -20,12 +20,10 @@ export function turnoDelete(id) {
 
     let headers = getHeaders();
       return fetch(id, { method: 'DELETE', headers })
-        .then((item) => {
-          dispatch(turnoDeleteRequest(false));
-          dispatch(turnoDeleteSuccess(item));
+        .then(res => {
+          dispatch(turnoDeleteSuccess(true));
         })
         .catch(e => {
-          dispatch(turnoDeleteRequest(false));
           dispatch(turnoDeleteError(e.message));
         });
   };

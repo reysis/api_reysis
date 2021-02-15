@@ -5,3 +5,18 @@
   box-shadow: 2px 6px 9px 0 #00000030;
   margin: 5px;
 }
+
+.turno-card__container{
+  .card-body{
+    .turno-card__links-container{
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      .turno-card__link{
+        margin: 5px;
+        cursor: pointer;
+        color: #007bff;
+      }
+    }
+  }
+}

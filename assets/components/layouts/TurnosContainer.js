@@ -4,14 +4,17 @@ import LoaderLocalSpinner from "../LoaderLocal";
 import TurnoCard from "./TurnoCard";
 import {listTurnoFetch, listTurnoSuccess} from "../../redux/turno/list/listTurnoActions";
 import {getFormatedDate, getHoursFromDate, getIdFromUrl, isoStringToDate} from "../../redux/utiles";
-import Toast from '../../Toast';
-import {toast} from "react-toastify";
 import {turnoDelete} from "../../redux/turno/delete/deleteTurnoActions";
+import {Button, Row} from "react-bootstrap";
+import Toast from "../Utils/Toast";
+import {Link} from "react-router-dom";
 
 const TurnosContainer = () => {
     const turnos = useSelector(state=>state.turno.list.turnos);
     const loading = useSelector(state=>state.turno.list.loading);
     const error = useSelector(state=>state.turno.list.error);
+    const turnoDeleted = useSelector(state=> state.turno.del.deleted);
+    const turnoDeleteError = useSelector(state=> state.turno.del.error);
 
     const [deleted, setDeleted] = useState(null);
     const dispatch = useDispatch();
@@ -22,18 +25,37 @@ const TurnosContainer = () => {
 
     const handleDeleteTurno = (id) =>{
         dispatch(turnoDelete(id))
-        dispatch(listTurnoSuccess(
-            turnos.filter( (value)=>{
-                return value['@id'] !== id
-            }
-        )))
+        setDeleted(id);
     }
 
+    useEffect(()=>{
+        if(turnoDeleted){
+            dispatch(listTurnoSuccess(
+                turnos.filter( (value)=>{
+                        return value['@id'] !== deleted
+                    }
+                ))
+            )
+            Toast.success("Su cita ha sido eliminada! Siempre que quiera puede reprogramarla")
+        }
+    }, [turnoDeleted])
+
+    useEffect(()=>{
+        if(turnoDeleteError){
+            Toast.error(turnoDeleteError);
+        }
+    }, [turnoDeleteError])
+
     return (
-        <div className="container">
+        <Row className="container turno-list__container">
             {
                 turnos && turnos.length === 0 &&
-                    <p>No hay turnos que mostrar</p>
+                    <div className="turno-list__nothing-to-display">
+                        <p>No hay turnos que mostrar</p>
+                        <Link to="/turnos/create">
+                            <button className="turno-card_make-appointment-button">Hacer cita</button>
+                        </Link>
+                    </div>
             }
             {turnos &&
                 turnos.map((item, index)=>{
@@ -52,7 +74,7 @@ const TurnosContainer = () => {
                 loading &&
                 <LoaderLocalSpinner/>
             }
-        </div>
+        </Row>
     );
 };
 

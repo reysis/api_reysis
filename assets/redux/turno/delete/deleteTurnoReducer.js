@@ -6,11 +6,12 @@ import {
 
 const initialState = {
     loading: false,
-    user: null,
+    deleted: null,
     error: null
 }
 
-const turnoShowReducer = (state = initialState, { type, payload }) => {
+const turnoDeleteReducer = (state = initialState, { type, payload }) => {
+    console.log("PAYLOAD:", payload);
     switch (type) {
         case TURNO_DELETE_REQUEST:
             return {
@@ -20,13 +21,13 @@ const turnoShowReducer = (state = initialState, { type, payload }) => {
         case TURNO_DELETE_SUCCESS:
             return {
                 loading: false,
-                user: payload,
+                deleted: payload,
                 error: null
             }
         case TURNO_DELETE_ERROR:
             return {
                 loading: false,
-                user: null,
+                deleted: null,
                 error: payload
             }
         default:
@@ -34,4 +35,4 @@ const turnoShowReducer = (state = initialState, { type, payload }) => {
     }
 }
 
-export default turnoShowReducer
+export default turnoDeleteReducer
