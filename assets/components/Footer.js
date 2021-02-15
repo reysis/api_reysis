@@ -115,7 +115,7 @@ const Footer = () => {
                 </div>
                 <div data-aos="fade-up" className="learn-more-menu menu-footer">
                     <h3 className="menu-title">Aprenda más</h3>
-                    <Link className="menu-item d-flex flex-row" to="/contact">
+                    <Link className="menu-item d-flex flex-row" to="/#contact-title">
                         <div className="pr-2"><FontAwesomeIcon icon={faEnvelope} /></div>
                         Contáctenos
                     </Link>
@@ -123,7 +123,7 @@ const Footer = () => {
                         <div className="pr-2"><FontAwesomeIcon icon={faQuestionCircle} /></div>
                         Preguntas frecuentes
                     </Link>
-                    <Link className="menu-item d-flex flex-row" to="/services">
+                    <Link className="menu-item d-flex flex-row" to="/terms-condition">
                         <div className="pr-2"><FontAwesomeIcon icon={faUserSecret} /></div>
                         Terminos y privacidad
                     </Link>

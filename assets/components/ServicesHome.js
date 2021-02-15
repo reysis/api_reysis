@@ -77,7 +77,7 @@ const ServicesHome = () => {
 		<section id="services" className="services-component section-padding">
 			<div className="container">
 				<div className="services-header">
-					<h2 className="mx-4 pb-2">Nuestros <span>servicios</span></h2>
+					<h2 id="servicios-title" className="mx-4 pb-2">Nuestros <span>servicios</span></h2>
 					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste omnis <br />atque explicabo rerum enim ullam?</p>
 				</div>
 			<div className="cards-container">

@@ -89,7 +89,7 @@ const Contact = () => {
 		<section id="contact-home" className="contact-component section-padding">
 			<div data-aos="fade-up" className="container">
 				<div className="contact-header">
-					<h2><span>Contáctanos</span></h2>
+					<h2 id="contact-title"><span>Contáctanos</span></h2>
 					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
 				</div>
 				<div className="row contact-info">

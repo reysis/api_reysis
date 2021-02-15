@@ -14,6 +14,7 @@ import navbarRoutes from './routes/navbar';
 import authenticationsRoutes from './routes/authentication';
 import userRoutes from './routes/user';
 import review from "./routes/review";
+import footer from "./routes/footer";
 
 // import { ConnectedRouter } from 'connected-react-router';
 
@@ -78,6 +79,7 @@ const App = () => {
                 {authenticationsRoutes}
                 {userRoutes}
                 {review}
+                {footer}
                 <Route component={NotFoundPage} key="notfound" />
             </Switch>
             <LoaderSpinner />
