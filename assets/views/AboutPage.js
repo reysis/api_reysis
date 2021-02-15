@@ -8,7 +8,7 @@ const AboutPage = () => {
     return (
         <main className="content-wrap about-page page">
             <div className="about-header">
-                <h1 className="mx-4">¡<span>Acerca de</span> Nosotros!</h1>
+                <h1 className="mx-4">¡Acerca de <span>Nosotros!</span></h1>
             </div>
             <div className="section-container container">
                 <LocalizacionSection />

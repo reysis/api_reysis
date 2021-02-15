@@ -17,7 +17,7 @@ const Whyus = () => {
             </div>
             <div className="whyus-container">
                 {
-                    why_us != undefined &&
+                    why_us !== undefined &&
                     why_us.map((why, index) => {
                         return (
                             <div key={index}

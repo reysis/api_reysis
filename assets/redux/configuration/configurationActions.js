@@ -32,7 +32,7 @@ export const loadConfiguration = () => dispatch => {
             let response = {}
             if (res['hydra:member'].length > 0) {
                 response = { ...res['hydra:member'][0] };
-                response.values = '<ul><li>Ullam aliquid qui sint.</li><li>Repellat rerum dolor accusamus.</li><li>Rerum quibusdam rerum sunt voluptatibus.</li></ul>'
+                /*response.values = '<ul><li>Ullam aliquid qui sint.</li><li>Repellat rerum dolor accusamus.</li><li>Rerum quibusdam rerum sunt voluptatibus.</li></ul>'
                 response.meetOurTeam = 'Ullam aliquid qui sint. Repellat rerum dolor accusamus sit quos nihil voluptas. Rerum quibusdam rerum sunt voluptatibus. Dignissimos magni culpa eligendi in debitis. Et et earum ducimus aut id.'
                 response.aboutUs = 'Rerum quibusdam rerum sunt voluptatibus. Dignissimos magni culpa eligendi in debitis. Et et earum ducimus aut id.'
                 response.whyUs = ["Garantía en nuestros servicios", "Garantía en nuestros servicios",
@@ -40,7 +40,7 @@ export const loadConfiguration = () => dispatch => {
                     "Garantía en nuestros servicios", "Personal capacitado"]
                 response.experienceYears = 16
                 response.clientsPerYear = 620
-                response.rating = 4.3
+                response.rating = 4.3*/
             }
 
             dispatch(configurationSuccess(response));
