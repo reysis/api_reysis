@@ -40,7 +40,7 @@ const Opinions = () => {
 			<div className="overlay"></div>
 			<div className="opinions-header">
 				<h2 className="mx-4 pb-2">¡Sus opiniones <span>cuentan!</span></h2>
-				<p>Cada una de ellas nos ha hecho crecer y su satisfacción<br /> nuestro principal objetivo</p>
+				<p>Cada una de ellas nos ha hecho crecer y su satisfacción<br /> es nuestro principal objetivo</p>
 			</div>
 			<div data-aos="fade-up" className="opinions-container container">
 				{
