@@ -31,20 +31,7 @@ export const serviceItemFetch = (id) => dispatch => {
     fetch(page)
         .then(res => res.json())
         .then(res => {
-            let images = [];
-            if (res['serviceImage'])
-                images.push({
-                    id: res['serviceImage']['@id'],
-                    url: res['serviceImage']['contentUrl']
-                })
-            const servicio = {
-                id: res['@id'],
-                nombre: res['nombre'],
-                descripcion: res['descripcion'],
-                shortDescription: res['shortDescription'],
-                images
-            }
-            dispatch(serviceShowSuccess(servicio));
+            dispatch(serviceShowSuccess(res));
         })
         .catch(error => {
             dispatch(serviceShowError(error.message));
