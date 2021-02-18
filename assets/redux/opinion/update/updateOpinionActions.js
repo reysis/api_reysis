@@ -45,12 +45,15 @@ export const updateOpinionFetch = ({
     })
     const headers = getHeaders(getState);
 
-    fetch(page, { method, body, headers })
+    // you must to "return" fetch
+    return fetch(page, { method, body, headers })
         .then(res => res.json())
         .then(res => {
             dispatch(updateOpinionSuccess(res));
+            return res // whatever you want
         })
         .catch(error => {
             dispatch(updateOpinionError(error.message));
+            throw error.message // whatever you want
         });
 };

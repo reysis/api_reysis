@@ -45,12 +45,14 @@ export const createOpinionFetch = ({
     })
     const headers = getHeaders(getState);
 
-    fetch(page, { method, body, headers })
+    return fetch(page, { method, body, headers })
         .then(res => res.json())
         .then(res => {
             dispatch(createOpinionSuccess(res));
+            return res
         })
         .catch(error => {
             dispatch(createOpinionError(error.message));
+            throw error.message
         });
 };
