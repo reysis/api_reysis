@@ -1,21 +1,21 @@
-import React, {useState, useEffect, useDebugValue} from 'react'
+import React, { useState, useEffect, useDebugValue } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons'
 import { faStar as faStarFull } from '@fortawesome/free-solid-svg-icons'
-import {useDispatch, useSelector} from "react-redux";
-import {updateOpinionFetch} from "../../redux/opinion/update/updateOpinionActions";
-import {createOpinionFetch} from "../../redux/opinion/create/createOpinionActions";
+import { useDispatch, useSelector } from "react-redux";
+import { updateOpinionFetch } from "../../redux/opinion/update/updateOpinionActions";
+import { createOpinionFetch } from "../../redux/opinion/create/createOpinionActions";
 import Toast from "../Utils/Toast";
 
 const ModalOpinion = ({ show, onHide, values }) => {
 
     const [countStar, setCountStar] = useState(values.stars)
-    const user = useSelector(state=> state.auth.token.authenticatedUser)
-    const opinion = useSelector(state => state.opinion.create.opinion)
-    const loading = useSelector(state=> state.opinion.create.loading)
-    const error = useSelector(state=> state.opinion.create.error)
+    const user = useSelector(state => state.auth.token.authenticatedUser)
+    // const opinion = useSelector(state => state.opinion.create.opinion)
+    const loading = useSelector(state => state.opinion.create.loading)
+    const error = useSelector(state => state.opinion.create.error)
 
     const dispatch = useDispatch();
     const [stars, setStars] = useState([
@@ -60,12 +60,12 @@ const ModalOpinion = ({ show, onHide, values }) => {
     const [buttonText, setButtonText] = useState("Enviar")
     const [reviewText, setReviewText] = useState(values.reviewText)
     const [disabledSubmit, setDisabledSubmit] = useState(true);
-    const [toasted, setToasted] = useState(false)
+    // const [toasted, setToasted] = useState(false)
 
-    const clearVariables = () =>{
+    const clearVariables = () => {
         setReviewText("");
         setCountStar(0);
-        setToasted(false);
+        // setToasted(false);
         setStar(0);
     }
 
@@ -73,24 +73,18 @@ const ModalOpinion = ({ show, onHide, values }) => {
         setReviewLength(reviewText.length)
     }, [reviewText])
 
-    useEffect(()=>{
-        if(opinion && !toasted){
-            onHide();
-            setToasted(true);
-            Toast.success("Gracias por enviarnos su opinión! Sus sugerencias nos ayudan a mejorar nuestro trabajo.")
-            clearVariables();
-        }
-    },[opinion])
+    const responseOK = () => {
+        onHide();
+        Toast.success("Gracias por enviarnos su opinión! Sus sugerencias nos ayudan a mejorar nuestro trabajo.")
+        clearVariables();
+    }
 
-    useEffect(()=>{
-        if(error && !toasted){
-            setToasted(true);
-            Toast.error(error)
-        }
-    },[error])
+    const responseError = (error) => {
+        Toast.error(error)
+    }
 
-    useEffect(()=>{
-        if(countStar !== 0 && reviewText !== "")
+    useEffect(() => {
+        if (countStar !== 0 && reviewText !== "")
             setDisabledSubmit(false);
         else
             setDisabledSubmit(true);
@@ -111,19 +105,23 @@ const ModalOpinion = ({ show, onHide, values }) => {
         }
     }, [loading])
 
-    const handleSubmit = ()=>{
-        if(values.id){
+    const handleSubmit = () => {
+        if (values.id) {
             dispatch(updateOpinionFetch({
                 reviewText,
                 stars: countStar,
                 iri: values.id
             }))
-        }else{
+                .then(res => responseOK())
+                .catch(error => responseError(error))
+        } else {
             dispatch(createOpinionFetch({
                 reviewText,
                 stars: countStar,
                 user: user['@id']
             }))
+                .then(res => responseOK())
+                .catch(error => responseError(error))
         }
     }
 
