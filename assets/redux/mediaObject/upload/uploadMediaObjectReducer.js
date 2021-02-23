@@ -2,7 +2,8 @@ import {
     UPLOAD_MEDIA_OBJECT_REQUEST,
     UPLOAD_MEDIA_OBJECT_SUCCESS,
     UPLOAD_MEDIA_OBJECT_ERROR,
-    UPLOAD_MEDIA_OBJECT_CLEAR_ERROR
+    UPLOAD_MEDIA_OBJECT_CLEAR_ERROR,
+    UPLOAD_MEDIA_OBJECT_CLEAR_ALL
 } from './uploadMediaObjectTypes'
 
 const initialState = {
@@ -35,6 +36,9 @@ const uploadMediaObjectReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 error: null
             }
+        case UPLOAD_MEDIA_OBJECT_CLEAR_ALL:
+            return initialState
+
         default:
             return state
     }

@@ -2,7 +2,9 @@ import React, {useCallback, useEffect, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import {Alert, Button, Col, Row} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {uploadFileFetch} from "../../redux/mediaObject/upload/uploadMediaObjectActions";
+import {uploadFileClearAll, uploadFileFetch} from "../../redux/mediaObject/upload/uploadMediaObjectActions";
+import Toast from "../Utils/Toast";
+import {userLoguedFetch} from "../../redux/auth/token/authTokenActions";
 
 function MyDropzone({setShow}) {
     const [file, setFile] = useState([]);
@@ -12,7 +14,8 @@ function MyDropzone({setShow}) {
     const errorSavingImage = useSelector(state=> state.mediaObject.upload.error);
     const image = useSelector(state=> state.mediaObject.upload.file);
     const user = useSelector(state=> state.auth.token.authenticatedUser);
-
+    const [disabledSubmit, setDisabledSubmit] = useState(true);
+    const [buttonText, setButtonText] = useState("Cambiar");
     const dispatch = useDispatch();
 
     const {getRootProps, getInputProps} = useDropzone({
@@ -50,6 +53,14 @@ function MyDropzone({setShow}) {
         </div>
     ));
 
+    useEffect(()=>{
+        if(!file.length){
+            setDisabledSubmit(true);
+        }else{
+            setDisabledSubmit(false);
+        }
+    }, [file])
+
     useEffect(() => () => {
         // Make sure to revoke the data uris to avoid memory leaks
         URL.revokeObjectURL(file.preview);
@@ -61,32 +72,44 @@ function MyDropzone({setShow}) {
             data: data,
             user: user['@id']
         }
-        dispatch(uploadFileFetch(values));
+        dispatch(uploadFileFetch(values))
     }
 
     useEffect(() => {
         if(image){
-            console.log(image);
+            Toast.success("Imagen cambiada satisfactoriamente!")
+            dispatch(uploadFileClearAll());
+            dispatch(userLoguedFetch(user['@id']))
+            setShow(false);
         }
     }, [image])
 
+    useEffect(()=>{
+        if(savingImageLoading){
+            setButtonText("Cambiando...")
+        }
+    }, [savingImageLoading])
+
+    useEffect(()=>{
+        if(errorSavingImage){
+            setButtonText("Error!");
+        }
+    }, [errorSavingImage])
+
+    useEffect(()=>{
+        if(errorSavingImage){
+            Toast.error(errorSavingImage);
+            dispatch(uploadFileClearAll());
+        }
+    }, [errorSavingImage])
+
     return (
         <section className="my-dropzone container">
-            { savingImageLoading &&
-                <Alert key="loading-alert" variant="info">
-                    Cambiando imagen por favor espere...
-                </Alert>
-            }
-            { errorSavingImage &&
-            <Alert key="loading-alert" variant="danger">
-                {errorSavingImage}
-            </Alert>
-            }
             <Row>
                 <Col sm={12} md={6} lg={6}>
                     <div {...getRootProps({className: 'dropzone'})}>
                         <input {...getInputProps()} />
-                        <p>Drag 'n' drop some files here, or click to select files</p>
+                        <p>Arrastre ficheros aqui, o de un click para seleccionar</p>
                     </div>
                 </Col>
                 <Col sm={12} md={6} lg={6}>
@@ -99,7 +122,13 @@ function MyDropzone({setShow}) {
             </Row>
             <Row>
                 <Col sm={12} md={6} lg={6}>
-                    <Button onClick={handleSubmit} variant="primary">Cambiar</Button>
+                    <Button
+                        onClick={handleSubmit}
+                        variant="primary"
+                        disabled={disabledSubmit}
+                    >
+                        {buttonText}
+                    </Button>
                 </Col>
                 <Col sm={12} md={6} lg={6}>
                     <Button

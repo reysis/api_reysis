@@ -1,33 +1,38 @@
-import { fetch } from '../../utils/dataAccess';
+import { fetch } from '../../../utils/dataAccess';
 import {
     OPINION_DELETE_ERROR,
     OPINION_DELETE_REQUEST,
-    OPINION_DELETE_SUCCESS
+    OPINION_DELETE_SUCCESS,
+    OPINION_DELETE_CLEAR_ALL
 } from './deleteOpinionTypes'
-export function opinionError(error) {
+import {getHeaders} from "../../utiles";
+export function opinionDeleteError(error) {
     return { type: OPINION_DELETE_ERROR, error };
 }
 
-export function loading(loading) {
-    return { type: OPINION_DELETE_REQUEST, loading };
+export function opinionDeleteRequest() {
+    return { type: OPINION_DELETE_REQUEST };
 }
 
-export function success(deleted) {
+export function opinionDeleteSuccess(deleted) {
     return { type: OPINION_DELETE_SUCCESS, deleted };
 }
 
-export function del(item) {
+export function opinionDelete(item) {
     return dispatch => {
-        dispatch(loading(true));
+        dispatch(opinionDeleteRequest());
 
-        return fetch(item['@id'], { method: 'DELETE' })
-            .then(() => {
-                dispatch(loading(false));
-                dispatch(success(item));
+        let headers = getHeaders();
+        return fetch(item, { method: 'DELETE', headers })
+            .then(res => {
+                dispatch(opinionDeleteSuccess(true));
             })
             .catch(e => {
-                dispatch(loading(false));
-                dispatch(error(e.message));
+                dispatch(opinionDeleteError(e.message));
             });
     };
+}
+
+export function opinionDeleteClearAll(){
+    return {type: OPINION_DELETE_CLEAR_ALL}
 }

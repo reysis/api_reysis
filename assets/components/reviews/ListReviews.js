@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import ReviewCard from "../layouts/ReviewCard";
-import { opinionFetch } from "../../redux/opinion/list/opinionListActions";
+import { opinionListFetch } from "../../redux/opinion/list/opinionListActions";
 import {getOpinionsFiltersURL} from "../../redux/requestFilters";
 
 const ListReviews = () => {
@@ -13,7 +13,7 @@ const ListReviews = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(opinionFetch(getOpinionsFiltersURL(1)))
+        dispatch(opinionListFetch(getOpinionsFiltersURL(1)))
     }, []);
 
 

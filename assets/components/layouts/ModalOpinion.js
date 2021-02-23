@@ -8,11 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateOpinionFetch } from "../../redux/opinion/update/updateOpinionActions";
 import { createOpinionFetch } from "../../redux/opinion/create/createOpinionActions";
 import Toast from "../Utils/Toast";
+import {opinionListFetch, opinionListSuccess} from "../../redux/opinion/list/opinionListActions";
+import {getOpinionsFiltersURL} from "../../redux/requestFilters";
 
 const ModalOpinion = ({ show, onHide, values }) => {
 
     const [countStar, setCountStar] = useState(values.stars)
     const user = useSelector(state => state.auth.token.authenticatedUser)
+    const reviews = useSelector(state=>state.opinion.list.opinions);
     // const opinion = useSelector(state => state.opinion.create.opinion)
     const loading = useSelector(state => state.opinion.create.loading)
     const error = useSelector(state => state.opinion.create.error)
@@ -112,7 +115,10 @@ const ModalOpinion = ({ show, onHide, values }) => {
                 stars: countStar,
                 iri: values.id
             }))
-                .then(res => responseOK())
+                .then(res => {
+                    dispatch(opinionListFetch(getOpinionsFiltersURL(1, user['@id'])))
+                    responseOK()
+                })
                 .catch(error => responseError(error))
         } else {
             dispatch(createOpinionFetch({
@@ -120,7 +126,10 @@ const ModalOpinion = ({ show, onHide, values }) => {
                 stars: countStar,
                 user: user['@id']
             }))
-                .then(res => responseOK())
+                .then(res => {
+                    dispatch(opinionListFetch(getOpinionsFiltersURL(1, user['@id'])))
+                    responseOK()
+                })
                 .catch(error => responseError(error))
         }
     }

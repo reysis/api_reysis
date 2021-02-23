@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card} from "react-bootstrap";
 import ShowStars from "./ShowStars";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import ModalOpinion from "./ModalOpinion";
+import Toast from "../Utils/Toast";
 
 const ReviewCard = ({
         title = "",
@@ -13,14 +14,22 @@ const ReviewCard = ({
         reviewText = "",
         stars = 0,
         owner = "",
-        id = null
+        id = null,
+        handleDeleteReview
 }) => {
     const authenticatedUser = useSelector(state=> state.auth.token.authenticatedUser)
+    const opinionDeleted = useSelector(state=> state.opinion.del.opinion);
+    const errorDeleting = useSelector(state=> state.opinion.del.error);
+    const loadingDelete = useSelector(state=> state.opinion.del.loading);
+    const [showComentarioModal, setShowComentarioModal] = useState(false)
+    const [deleteButtonText, setDeleteButtonText] = useState("Eliminar");
+    const dispatch = useDispatch();
+
     let userId = null;
     if(authenticatedUser)
         userId = authenticatedUser['@id'];
 
-    const [showComentarioModal, setShowComentarioModal] = useState(false)
+
     const values = {
         title,
         date,
@@ -39,9 +48,19 @@ const ReviewCard = ({
         setShowComentarioModal(true);
     }
 
-    const handleDelete = (id)=>{
-        console.log("eliminar", id)
-    }
+    useEffect(()=>{
+        if(errorDeleting){
+            Toast.error(errorDeleting);
+            setDeleteButtonText("Error!");
+            setTimeout(()=> { setDeleteButtonText("Eliminar")}, 1000)
+        }
+    }, [errorDeleting])
+
+    useEffect(()=>{
+        if(opinionDeleted){
+            Toast.success("Opinión eliminada satisfactoriamente!")
+        }
+    }, [opinionDeleted])
 
     return (
         <div>
@@ -59,8 +78,8 @@ const ReviewCard = ({
                             {userId === owner
                                 ? (
                                     <div>
-                                        <Button variant="secondary" onClick={() => handleEdit(id)}>Editar</Button>
-                                        <Button variant="danger" onClick={() => handleDelete(id)}>Eliminar</Button>
+                                        <Button variant="primary" onClick={() => handleEdit(id)}>Editar</Button>
+                                        <Button variant="danger" onClick={handleDeleteReview}>{deleteButtonText}</Button>
                                     </div>
                                 ) : (
                                     <footer>{owner}</footer>

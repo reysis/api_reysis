@@ -47,7 +47,7 @@ const TurnosContainer = () => {
     }, [turnoDeleteError])
 
     return (
-        <Row className="container turno-list__container">
+        <div id="turnos" className="container turno-list__container shadow-container">
             {
                 turnos && turnos.length === 0 &&
                     <div className="turno-list__nothing-to-display">
@@ -74,7 +74,7 @@ const TurnosContainer = () => {
                 loading &&
                 <LoaderLocalSpinner/>
             }
-        </Row>
+        </div>
     );
 };
 

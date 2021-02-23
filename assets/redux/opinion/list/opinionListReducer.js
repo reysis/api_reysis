@@ -14,11 +14,10 @@ const opinionListReducer = (state = initialState, { type, payload }) => {
                 loading: true
             }
         case OPINIONS_LIST_SUCCESS:
-            console.log(`REVIEWS DE UN USUARIO ${payload}`)
             return {
                 loading: false,
                 opinions: payload,
-                error: ''
+                error: null
             }
         case OPINIONS_LIST_ERROR:
             return {

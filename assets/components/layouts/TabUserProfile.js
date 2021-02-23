@@ -13,8 +13,8 @@ const TabUserProfile = ({user}) => {
     return (
         <Tab.Container className="user-profile-tab__container" id="left-tab" defaultActiveKey="first">
             <Row>
-                <Col sm={2}>
-                    <Nav variant="pills" className="flex-column">
+                <Col sm={3}>
+                    <Nav variant="pills" className="flex-column shadow-container">
                         <Nav.Item>
                             <Nav.Link eventKey="first">Información</Nav.Link>
                         </Nav.Item>
@@ -26,13 +26,13 @@ const TabUserProfile = ({user}) => {
                         </Nav.Item>
                     </Nav>
                 </Col>
-                <Col sm={10}>
+                <Col sm={9}>
                     <Tab.Content className="reviews-tab-content">
-                        <Tab.Pane eventKey="first">
+                        <Tab.Pane  eventKey="first">
                             <UserInformationContainer user={user}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="second" className="reviews-tap-pane">
-                            <ReviewsContainer userId={user['@id']}/>
+                            <ReviewsContainer />
                         </Tab.Pane>
                         <Tab.Pane eventKey="third">
                             <TurnosContainer />

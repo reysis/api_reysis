@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom'
 import {getIdFromUrl} from "../redux/utiles";
 
 const ServiceCard = ({ id, nombre, descripcion, images, loading }) => {
-
+	console.log(images);
 	/* using react hooks */
 	const card_button = useRef(null);
 	const card = useRef(null);
-	const [imageIndex, setImageIndex] = useState(0);
+	//const [imageIndex, setImageIndex] = useState(0);
 
 	/*useEffect(()=>{
 		const interval = setInterval( () =>{
@@ -25,7 +25,7 @@ const ServiceCard = ({ id, nombre, descripcion, images, loading }) => {
 			}
 		}, 4000);
 		return () => clearInterval(interval);
-	})*/
+	},[])*/
 
 	/* is the same that componentWillMount */
 	useEffect(() => {
@@ -50,7 +50,7 @@ const ServiceCard = ({ id, nombre, descripcion, images, loading }) => {
 						? <LoaderLocal />
 						: <figure ref={card}>
 							<div>
-								<img src={images[imageIndex]['contentUrl']} alt={"Servicio " + nombre} />
+								<img src={images} alt={"Servicio " + nombre} />
 							</div>
 							<figcaption>
 								<h3>{nombre}</h3>

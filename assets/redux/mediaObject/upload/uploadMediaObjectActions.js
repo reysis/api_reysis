@@ -2,7 +2,7 @@ import {
     UPLOAD_MEDIA_OBJECT_REQUEST,
     UPLOAD_MEDIA_OBJECT_SUCCESS,
     UPLOAD_MEDIA_OBJECT_ERROR,
-    UPLOAD_MEDIA_OBJECT_CLEAR_ERROR
+    UPLOAD_MEDIA_OBJECT_CLEAR_ERROR, UPLOAD_MEDIA_OBJECT_CLEAR_ALL
 } from "./uploadMediaObjectTypes";
 
 import { fetch } from "../../../utils/dataAccess";
@@ -56,5 +56,11 @@ export const uploadFileFetch = (value) => (dispatch, getState) => {
 export const uploadFileClearError = () => {
     return {
         type: UPLOAD_MEDIA_OBJECT_CLEAR_ERROR
+    };
+};
+
+export const uploadFileClearAll = () => {
+    return {
+        type: UPLOAD_MEDIA_OBJECT_CLEAR_ALL
     };
 };

@@ -21,14 +21,18 @@
     position: relative;
     height: 300px;
     width: 300px;
-    .user-profile-picture__image{
+    .user-profile-picture__image-container{
       position: relative;
-      width: 100% !important;
-      height: 100% !important;
+      width: 300px;
+      height: 300px;
       max-width: 300px !important;
       max-height: 300px !important;
       border-radius: 100%;
       margin: auto;
+      .user-profile-picture__image{
+        width: 100% !important;
+        height: 100% !important;
+      }
     }
     .user-profile-picture__button{
       position: absolute;

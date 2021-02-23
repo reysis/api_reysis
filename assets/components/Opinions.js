@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Carousel, CarouselItem, Image, Alert } from 'react-bootstrap';
-import { opinionFetch } from '../redux/opinion/list/opinionListActions';
+import { opinionListFetch } from '../redux/opinion/list/opinionListActions';
 import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +26,7 @@ const Opinions = () => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		dispatch(opinionFetch(getOpinionsFiltersURL(1)))
+		dispatch(opinionListFetch(getOpinionsFiltersURL(1)))
 	}, [])
 
 	return (

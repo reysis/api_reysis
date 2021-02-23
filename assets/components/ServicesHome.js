@@ -30,6 +30,7 @@ const ServicesHome = () => {
 		if(response){
 			if(response['hydra:view']){
 				setLastPage(decodeLastPage(response['hydra:view']['hydra:last']));
+				setTotalItems(response['hydra:view']['hydra:totalItems'])
 			}else{
 				setLastPage(1);
 			}
@@ -38,6 +39,7 @@ const ServicesHome = () => {
 
 	const goToPage = (pageNumber)=>{
 		if(pageNumber !== currentPage){
+			setCurrentPage(pageNumber);
 			if(response['hydra:view']){
 				dispatch(
 					servicesFetch(
@@ -55,19 +57,6 @@ const ServicesHome = () => {
 	const [serviceSpinners] = useState(() => {
 		const items = []
 		for (let i = 0; i < 12; i++) {
-			/* items.push(
-				<div key={"service-spinner" + i} className="col-md-6 col-lg-4 col-xs-12 text-center">
-					<div data-aos="fade" data-aos-delay={150} className="card-spinner animated-background bg">
-						<div className="title-spinner fg" />
-						<div className="description-spinner" >
-							<div className="fg" />
-							<div className="fg" />
-							<div className="fg" />
-						</div>
-						<div className="button-spinner fg" />
-					</div>
-				</div>
-			) */
 			items.push(<ServiceCard key={"service-spinner" + i} loading={true} />)
 		}
 		return items
@@ -91,13 +80,12 @@ const ServicesHome = () => {
 											id={service['@id']}
 											nombre={service['nombre']}
 											descripcion={service['shortDescription']}
-											images={service['serviceImages']}
+											images={service['urlPortada']}
 											loading={false}
 										/>
 									)
-								})
-
-								: serviceSpinners
+								}):
+								serviceSpinners
 						}
 					</Row>
 				</div>

@@ -12,8 +12,8 @@ const ProfilePicture = ({img}) => {
 
     return (
         <div className="user-profile-picture">
-            <div className="user-profile-picture__image">
-                <Image src={img} roundedCircle/>
+            <div className="user-profile-picture__image-container">
+                <Image src={img} roundedCircle fluid className="user-profile-picture__image"/>
                 <Button
                     className="user-profile-picture__button"
                     onClick={handleOnClick}

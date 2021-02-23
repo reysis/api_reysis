@@ -146,7 +146,7 @@ const UserInformationContainer = ({user}) => {
         }
     }, [name, nationality, username, email, password, address, ci, phones]);
     return (
-        <div className="user-profile-tab__container">
+        <div id="informacion" className="user-profile-tab__container">
             {!enableEdit &&
                 <Button className="user-profile-buttons" variant="primary" block type="submit" onClick={handleEdit}>
                     <FontAwesomeIcon icon={faUserEdit} />

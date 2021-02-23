@@ -1,8 +1,9 @@
 .turno-list__container{
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 10px;
+  align-items: baseline;
+  min-height: 500px;
+  max-height: 500px;
   .turno-list__nothing-to-display{
     display: flex;
     justify-content: center;

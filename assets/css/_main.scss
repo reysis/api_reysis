@@ -159,3 +159,21 @@ button:focus {
 	min-height: 100vh;
 }
 
+.flex-centered-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	flex-flow: column nowrap;
+}
+
+.shadow-container{
+	margin-bottom: 20px;
+	padding: 25px;
+	border: none;
+	border-radius: 6px;
+	box-shadow: 2px 6px 9px 0px #00000030;
+}
