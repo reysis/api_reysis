@@ -10,6 +10,9 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
@@ -28,6 +31,14 @@ use Doctrine\ORM\Mapping as ORM;
  *     }
  * )
  * @ORM\Entity(repositoryClass=ServicioRepository::class)
+ * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "nombre":"partial",
+ *          "description":"partial",
+ *      }
+ * )
  */
 class Servicio
 {
@@ -79,6 +90,11 @@ class Servicio
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $urlPortada;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $published = false;
 
     public function __construct()
     {
@@ -176,6 +192,18 @@ class Servicio
     public function setUrlPortada(?string $urlPortada): self
     {
         $this->urlPortada = $urlPortada;
+
+        return $this;
+    }
+
+    public function getPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(bool $published): self
+    {
+        $this->published = $published;
 
         return $this;
     }

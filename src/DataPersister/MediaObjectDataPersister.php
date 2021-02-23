@@ -39,11 +39,9 @@ class MediaObjectDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
-        $data->setUpdatedAt(new \DateTime());
 
         $uploadedFile = $this->createUploadedFile($data);
         $data->setFile($uploadedFile);
-        $data->setUpdatedAt(new \DateTime());
 
         if(($context['item_operation_name'] ?? null) === 'put'){
             //updateando una imagen existente

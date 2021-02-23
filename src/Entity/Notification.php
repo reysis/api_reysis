@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\NotificationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -23,6 +24,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     },
  * )
  * @ORM\Entity(repositoryClass=NotificationRepository::class)
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=false)
  */
 class Notification
 {
@@ -57,6 +59,21 @@ class Notification
      * @Groups({"notification:read", "admin:write", "admin:read"})
      */
     private $readed = false;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $deletedAt;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $toMarkAsUnread;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $toMarkAsReaded;
 
     public function getId(): ?int
     {
@@ -107,6 +124,42 @@ class Notification
     public function setReaded(bool $readed): self
     {
         $this->readed = $readed;
+
+        return $this;
+    }
+
+    public function getDeletedAt(): ?\DateTimeInterface
+    {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): self
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    public function getToMarkAsUnread(): ?bool
+    {
+        return $this->toMarkAsUnread;
+    }
+
+    public function setToMarkAsUnread(?bool $toMarkAsUnread): self
+    {
+        $this->toMarkAsUnread = $toMarkAsUnread;
+
+        return $this;
+    }
+
+    public function getToMarkAsReaded(): ?bool
+    {
+        return $this->toMarkAsReaded;
+    }
+
+    public function setToMarkAsReaded(?bool $toMarkAsReaded): self
+    {
+        $this->toMarkAsReaded = $toMarkAsReaded;
 
         return $this;
     }

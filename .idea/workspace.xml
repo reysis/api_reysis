@@ -2,13 +2,59 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/css/_buttons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/_scroll-bars.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210218190204.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210218192757.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210218195331.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210218200943.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210219033440.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210222051841.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Commands/ChangeNotificationToReadedCommand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Commands/DeleteOrphaneMediaObject.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Commands/EditingToOrphaneCommand.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/VotedBy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/SetAlreadyLikedSubscriber.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/VotedByRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/my-api_reysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my-api_reysis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/ServicioItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/ServicioItem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_service-item.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_service-item.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/service/show/serviceShowActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/service/show/serviceShowActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/ServicioItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ServicioItemPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/Opinions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Opinions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/ServiceCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/ServiceCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/ServicesHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/ServicesHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ModalOpinion.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ModalOpinion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ProfilePicture.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ProfilePicture.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ReviewCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ReviewCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ReviewsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ReviewsContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TabUserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TabUserProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/UserInformationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/UserInformationContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/reviews/ListReviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/reviews/ListReviews.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_turno_list.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_turno_list.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_user-profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_user-profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/delete/deleteOpinionActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/delete/deleteOpinionActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/delete/deleteOpinionReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/delete/deleteOpinionReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/delete/deleteOpinionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/delete/deleteOpinionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/list/opinionListActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/list/opinionListActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/list/opinionListReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/list/opinionListReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/MediaObjectDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/MediaObjectDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/MediaObject.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MediaObject.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Notification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reviews.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reviews.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/MediaObjectRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MediaObjectRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/NotificationRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/NotificationRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,6 +220,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
       <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/stof/doctrine-extensions-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -193,6 +240,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -252,7 +300,9 @@
       <workItem from="1612984941549" duration="4835000" />
       <workItem from="1613052131138" duration="969000" />
       <workItem from="1613242047267" duration="44592000" />
-      <workItem from="1613571224863" duration="15450000" />
+      <workItem from="1613571224863" duration="42082000" />
+      <workItem from="1613739844463" duration="2041000" />
+      <workItem from="1613858066985" duration="24777000" />
     </task>
     <servers />
   </component>

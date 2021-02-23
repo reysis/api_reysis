@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ReviewsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
@@ -96,6 +98,22 @@ class Reviews
      */
     private $isPublic = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=VotedBy::class, mappedBy="idReview", orphanRemoval=true)
+     */
+    private $likedBy;
+
+    /**
+     * @Groups({"reviews:read"})
+     * @var boolean
+     */
+    public $likedByMe;
+
+    public function __construct()
+    {
+        $this->likedBy = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -169,6 +187,36 @@ class Reviews
     public function setIsPublic(bool $isPublic): self
     {
         $this->isPublic = $isPublic;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|VotedBy[]
+     */
+    public function getLikedBy(): Collection
+    {
+        return $this->likedBy;
+    }
+
+    public function addLikedBy(VotedBy $likedBy): self
+    {
+        if (!$this->likedBy->contains($likedBy)) {
+            $this->likedBy[] = $likedBy;
+            $likedBy->setIdReview($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedBy(VotedBy $likedBy): self
+    {
+        if ($this->likedBy->removeElement($likedBy)) {
+            // set the owning side to null (unless already changed)
+            if ($likedBy->getIdReview() === $this) {
+                $likedBy->setIdReview(null);
+            }
+        }
 
         return $this;
     }

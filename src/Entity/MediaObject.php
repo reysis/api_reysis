@@ -10,6 +10,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\MediaObjectRepository;
 use App\Doctrine\SetContentUrlOnMediaObjectListener;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -38,6 +39,7 @@ use App\Doctrine\SetContentUrlOnMediaObjectListener;
  * )
  * @ORM\Entity(repositoryClass=MediaObjectRepository::class)
  * @ORM\EntityListeners({SetContentUrlOnMediaObjectListener::class})
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false, hardDelete=true)
  */
 class MediaObject
 {
@@ -69,7 +71,8 @@ class MediaObject
     public $filePath;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -101,6 +104,32 @@ class MediaObject
      * @ORM\JoinColumn(nullable=true)
      */
     private $servicio;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $deletedAt;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $orphane;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $editing;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $assigned;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
 
 
     public function getId(): ?int
@@ -153,9 +182,6 @@ class MediaObject
     public function setFile(?File $file): void
     {
         $this->file = $file;
-        if($file){
-            $this->setUpdatedAt(new \DateTime());
-        }
     }
 
     /**
@@ -172,21 +198,11 @@ class MediaObject
     public function setFilePath(?string $filePath): void
     {
         $this->filePath = $filePath;
-        if($filePath){
-            $this->setUpdatedAt(new \DateTime());
-        }
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
@@ -240,5 +256,58 @@ class MediaObject
         $this->servicio = $servicio;
 
         return $this;
+    }
+
+    public function getDeletedAt(): ?\DateTimeInterface
+    {
+        return $this->deletedAt;
+    }
+
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): self
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    public function getOrphane(): ?bool
+    {
+        return $this->orphane;
+    }
+
+    public function setOrphane(?bool $orphane): self
+    {
+        $this->orphane = $orphane;
+
+        return $this;
+    }
+
+    public function getEditing(): ?bool
+    {
+        return $this->editing;
+    }
+
+    public function setEditing(?bool $editing): self
+    {
+        $this->editing = $editing;
+
+        return $this;
+    }
+
+    public function getAssigned(): ?bool
+    {
+        return $this->assigned;
+    }
+
+    public function setAssigned(?bool $assigned): self
+    {
+        $this->assigned = $assigned;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
     }
 }

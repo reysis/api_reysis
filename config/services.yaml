@@ -84,3 +84,10 @@ services:
 
     App\Doctrine\SetContentUrlOnMediaObjectListener:
         tags: [ doctrine.orm.entity_listener ]
+
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ '@annotation_reader' ] ]

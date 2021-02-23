@@ -19,14 +19,13 @@ class NotificationRepository extends ServiceEntityRepository
         parent::__construct($registry, Notification::class);
     }
 
-    // /**
-    //  * @return Notification[] Returns an array of Notification objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Notification[] Returns an array of Notification objects
+     */
+    public function findByToMarkAsReaded($value)
     {
         return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
+            ->andWhere('n.toMarkAsReaded = :val')
             ->setParameter('val', $value)
             ->orderBy('n.id', 'ASC')
             ->setMaxResults(10)
@@ -34,7 +33,20 @@ class NotificationRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    /**
+     * @return Notification[] Returns an array of Notification objects
+     */
+    public function findByToMarkAsUnreaded($value)
+    {
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.toMarkAsUnread = :val')
+            ->setParameter('val', $value)
+            ->orderBy('n.id', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Notification

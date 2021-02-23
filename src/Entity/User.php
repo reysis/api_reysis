@@ -216,6 +216,11 @@ class User implements UserInterface
      */
     private $profilePicture;
 
+    /**
+     * @ORM\OneToMany(targetEntity=VotedBy::class, mappedBy="idUser", orphanRemoval=true)
+     */
+    private $likedReviews;
+
     public function __construct()
     {
         $this->phoneNumbers = new ArrayCollection();
@@ -223,6 +228,7 @@ class User implements UserInterface
         $this->reviews = new ArrayCollection();
         $this->socialMedias = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->likedReviews = new ArrayCollection();
     }
 
     /**
@@ -607,6 +613,36 @@ class User implements UserInterface
     public function setProfilePicture(MediaObject $profilePicture): self
     {
         $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|VotedBy[]
+     */
+    public function getLikedReviews(): Collection
+    {
+        return $this->likedReviews;
+    }
+
+    public function addLikedReview(VotedBy $likedReview): self
+    {
+        if (!$this->likedReviews->contains($likedReview)) {
+            $this->likedReviews[] = $likedReview;
+            $likedReview->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedReview(VotedBy $likedReview): self
+    {
+        if ($this->likedReviews->removeElement($likedReview)) {
+            // set the owning side to null (unless already changed)
+            if ($likedReview->getIdUser() === $this) {
+                $likedReview->setIdUser(null);
+            }
+        }
 
         return $this;
     }
