@@ -18,6 +18,7 @@ class SetContentUrlOnMediaObjectListener
 
     public function postLoad(MediaObject $mediaObject)
     {
-        $mediaObject->setContentUrl($this->customUploaderHelper->getPublicPath($mediaObject->getFilePath()));
+        if($mediaObject->getFilePath())
+            $mediaObject->setContentUrl($this->customUploaderHelper->getPublicPath($mediaObject->getFilePath()));
     }
 }

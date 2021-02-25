@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import defaultUserProfile from '../assets/default-user.png'
 
 // hasta q se haga el system file
 import user_opinion from '../assets/opinion-user-1.png';
@@ -31,6 +32,8 @@ const Opinions = () => {
 
 	return (
 		<section
+			data-aos="fade-up"
+			data-aos-delay="500"
 			id="opinions"
 			className="opinions-component section-padding"
 			style={{
@@ -53,7 +56,7 @@ const Opinions = () => {
 											<Carousel.Item key={item['@id']}>
 												<OpinionsItem
 													// autor={autor}
-													 image={item['user']['profilePicture']['contentUrl']}
+													image={item['user']['profilePicture'] ? item['user']['profilePicture']['contentUrl'] : defaultUserPicture}
 													reviewText={item['reviewText']}
 													stars={item['stars']}
 													likes={item['likes']}
@@ -85,7 +88,7 @@ const Opinions = () => {
 							</div>
 						)
 				}
-				<div data-aos="fade-up" data-aos-delay="500" className="opinions-button__container">
+				<div className="opinions-button__container">
 					<Link to="/reviews">
 						<button className="opinions-button__see-all">Ver todas</button>
 					</Link>

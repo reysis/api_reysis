@@ -48,7 +48,7 @@ function ReviewsContainer() {
     };
 
     useEffect(()=>{
-        if(reviews && reviews['hydra:view']){
+        if(reviews && reviews['hydra:totalItems'] !== 0){
             setTotalItems(reviews['hydra:view']['hydra:totalItems']);
             setLastPage(decodeLastPage(reviews['hydra:view']['hydra:last']))
         }else{
@@ -106,7 +106,7 @@ function ReviewsContainer() {
 
     return (
         <div id="reviews" data-aos="fade-up" className="opinions-container container shadow-container">
-            {reviews && reviews['hydra:view'] &&
+            {reviews && reviews['hydra:totalItems'] !== 0 &&
                 <PaginationSystem
                     loading={loadingReviews}
                     totalItems={totalItems}
@@ -115,7 +115,7 @@ function ReviewsContainer() {
                     goToPage={goToPage}
                 />
             }
-            {reviews && reviews['hydra:member'] &&
+            {reviews && reviews['hydra:totalItems'] !== 0 &&
             <Button variant="primary" block type="submit" onClick={()=>setShowComentarioModal(true)}>
                 <FontAwesomeIcon icon={faComment} />
             </Button>
@@ -136,14 +136,14 @@ function ReviewsContainer() {
                     />
                 })
             }
-            {!reviews &&
+            {reviews && reviews['hydra:totalItems'] === 0 &&
                 <div className="flex-centered-container">
                     <p>No ha enviado ninguna opinion aun... Ayúdenos a crecer!</p>
                     <button onClick={()=> setShowComentarioModal(true)} className="standard-button">Enviar Opinión!</button>
                 </div>
 
             }
-            {reviews && reviews['hydra:view'] &&
+            {reviews && reviews['hydra:totalItems'] !== 0 &&
             <PaginationSystem
                 loading={loadingReviews}
                 totalItems={reviews['hydra:view']['hydra:totalItems']}

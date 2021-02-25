@@ -13,7 +13,7 @@ import {
     faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 
-import userProfile from '../../assets/opinion-img-1.jpg';
+import userProfile from '../../assets/default-user.png';
 import { useLocation, useHistory } from 'react-router-dom';
 import ModalOpinion from './ModalOpinion';
 import NavUserProfile from './NavUserProfile';
@@ -123,10 +123,10 @@ const NavUser = () => {
                     <div className={`nav-user__menu ${profileShow ? "show" : ""}`}>
                         <ul className="nav-user__menu-items">
                             {
-                                authenticated
+                                user
                                     ? <li key={1} onClick={perfilClick} className="nav-user__menu-items__item item-selectionable nav-user__item-perfil">
                                         <div className="nav-user__item--photo">
-                                            <Image src={userProfile} />
+                                            <Image src={user['profilePicture'] ? user['profilePicture']['contentUrl'] : userProfile} />
                                         </div>
                                         <div className="nav-user__item--right">
                                             <span className="title">{name}</span>

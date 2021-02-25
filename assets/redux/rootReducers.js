@@ -7,6 +7,7 @@ import availableDate from './availableDate';
 import auth from './auth';
 import opinion from './opinion';
 import service from './service';
+import statistics from './statistic';
 import faq from './faq/faqReducer';
 import notification from './notification/notificationReducer'
 import contactMessage from './contact_message/messageReducer'
@@ -21,6 +22,7 @@ export default combineReducers({
     auth,
     service,
     opinion,
+    statistics,
     faq,
     notification,
     contactMessage,

@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Statistic from './Statistic';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartArea, faChartLine, faChartBar } from '@fortawesome/free-solid-svg-icons';
+import {faChartArea, faChartLine, faChartBar, faStar} from '@fortawesome/free-solid-svg-icons';
 
 import statsBackground from '../assets/count-bg.jpg';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {statisticsListFetch} from "../redux/statistic/list/statisticsListActions";
 
 const Estadisticas = () => {
 
-    const experienceYears = useSelector(state => state.configuration.configurations.experienceYears)
-    const clientsPerYear = useSelector(state => state.configuration.configurations.clientsPerYear)
-    const rating = useSelector(state => state.configuration.configurations.rating)
+    const statistics = useSelector(state => state.statistics.list.statistics)
+    const error = useSelector(state => state.statistics.list.error)
+    const loading = useSelector(state => state.statistics.list.loading)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(statisticsListFetch())
+    }, []);
+
 
     const [statistic] = useState([
         { title: "Años de experiencia", img: faChartArea },
-        { title: "Media anual de clientes", img: faChartLine },
-        { title: "Rating", img: faChartBar },
+        { title: "Rating", img: faStar },
+        { title: "Porcentaje de equipos reparados", img: faChartBar },
     ])
 
     return (
@@ -31,28 +38,28 @@ const Estadisticas = () => {
             <div className="overlay" />
             <div className="statistic-container container">
                 {
-                    experienceYears != undefined &&
+                    statistics &&
                     <Statistic
                         title={statistic[0].title}
-                        value={experienceYears}
+                        value={statistics[0]['yearsOfExperience']}
                         img={statistic[0].img}
                         aosDelay={300}
                     />
                 }
                 {
-                    clientsPerYear != undefined &&
+                    statistics &&
                     <Statistic
                         title={statistic[1].title}
-                        value={clientsPerYear}
+                        value={statistics[0]['mediaRating']}
                         img={statistic[1].img}
                         aosDelay={500}
                     />
                 }
                 {
-                    rating != undefined &&
+                    statistics &&
                     <Statistic
                         title={statistic[2].title}
-                        value={rating}
+                        value={statistics[0]['fixedEquips']}
                         img={statistic[2].img}
                         aosDelay={700}
                     />

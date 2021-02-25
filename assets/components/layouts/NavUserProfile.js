@@ -6,20 +6,21 @@ import {
     faCaretDown
 } from '@fortawesome/free-solid-svg-icons';
 
-import userProfile from '../../assets/opinion-img-1.jpg';
+import userProfile from '../../assets/default-user.png';
 import { useSelector } from 'react-redux';
 
 const NavUserProfile = ({ name, profileShow }) => {
 
     const authenticated = useSelector(state => state.auth.login.authenticated)
     const loading = useSelector(state => state.auth.login.loading)
+    const user = useSelector(state => state.auth.token.authenticatedUser);
 
     return (
         <>
             <div className={`nav-user__perfil--nav-photo ${profileShow ? "show" : ""} ${loading ? "loading" : ""}`}>
                 {
-                    authenticated
-                        ? <Image src={userProfile} />
+                    user
+                        ? <Image src={user['profilePicture'] ? user['profilePicture']['contentUrl'] : userProfile} />
                         : <FontAwesomeIcon icon={faCaretDown} />
                 }
                 <div className={`nav-user__perfil--nav-photo__loading ${loading ? "loading" : ""}`} />

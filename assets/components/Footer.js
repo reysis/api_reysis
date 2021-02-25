@@ -17,7 +17,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import LogoFoter from '../assets/logo-footer.png';
-import userProfile from '../assets/opinion-img-1.jpg';
+import userProfile from '../assets/default-user.png';
 
 const Footer = () => {
 

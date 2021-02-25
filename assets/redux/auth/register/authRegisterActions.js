@@ -36,7 +36,6 @@ export const registerFetch = (value) => dispatch => {
     const body = JSON.stringify({
         persona: { ...value.persona },
         phoneNumbers: { ...value.phoneNumbers },
-        profilePicture: {...value.profilePicture},
         address: { ...value.address },
         username: value.username,
         email: value.email,
