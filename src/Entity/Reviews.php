@@ -12,6 +12,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use App\Doctrine\SetLikededOnReviewListener;
 
 /**
  * @ApiResource(
@@ -51,6 +52,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *     }
  * )
  * @ORM\Entity(repositoryClass=ReviewsRepository::class)
+ * @ORM\EntityListeners({SetLikededOnReviewListener::class})
  */
 class Reviews
 {
@@ -99,7 +101,7 @@ class Reviews
     private $isPublic = false;
 
     /**
-     * @ORM\OneToMany(targetEntity=VotedBy::class, mappedBy="idReview", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=LikeReview::class, mappedBy="idReview", orphanRemoval=true)
      */
     private $likedBy;
 
@@ -107,7 +109,23 @@ class Reviews
      * @Groups({"reviews:read"})
      * @var boolean
      */
-    public $likedByMe;
+    public $likedByMe = false;
+
+    /**
+     * @return bool
+     */
+    public function isLikedByMe(): bool
+    {
+        return $this->likedByMe;
+    }
+
+    /**
+     * @param bool $likedByMe
+     */
+    public function setLikedByMe(bool $likedByMe): void
+    {
+        $this->likedByMe = $likedByMe;
+    }
 
     public function __construct()
     {
@@ -192,14 +210,14 @@ class Reviews
     }
 
     /**
-     * @return Collection|VotedBy[]
+     * @return Collection|LikeReview[]
      */
     public function getLikedBy(): Collection
     {
         return $this->likedBy;
     }
 
-    public function addLikedBy(VotedBy $likedBy): self
+    public function addLikedBy(LikeReview $likedBy): self
     {
         if (!$this->likedBy->contains($likedBy)) {
             $this->likedBy[] = $likedBy;
@@ -209,7 +227,7 @@ class Reviews
         return $this;
     }
 
-    public function removeLikedBy(VotedBy $likedBy): self
+    public function removeLikedBy(LikeReview $likedBy): self
     {
         if ($this->likedBy->removeElement($likedBy)) {
             // set the owning side to null (unless already changed)

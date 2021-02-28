@@ -26,7 +26,7 @@ const Estadisticas = () => {
         { title: "Rating", img: faStar },
         { title: "Porcentaje de equipos reparados", img: faChartBar },
     ])
-
+    console.log("STATISTICS: ",statistics)
     return (
         <section
             id="statistic"
@@ -38,7 +38,7 @@ const Estadisticas = () => {
             <div className="overlay" />
             <div className="statistic-container container">
                 {
-                    statistics &&
+                    statistics && statistics.length &&
                     <Statistic
                         title={statistic[0].title}
                         value={statistics[0]['yearsOfExperience']}
@@ -47,7 +47,7 @@ const Estadisticas = () => {
                     />
                 }
                 {
-                    statistics &&
+                    statistics && statistics.length &&
                     <Statistic
                         title={statistic[1].title}
                         value={statistics[0]['mediaRating']}
@@ -56,7 +56,7 @@ const Estadisticas = () => {
                     />
                 }
                 {
-                    statistics &&
+                    statistics && statistics.length &&
                     <Statistic
                         title={statistic[2].title}
                         value={statistics[0]['fixedEquips']}

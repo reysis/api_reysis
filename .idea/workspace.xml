@@ -2,33 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/assets/default-service.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/assets/default-user.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/statistic/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/statistic/list/statisticsListActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/statistic/list/statisticsListReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/statistic/list/statisticsListTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210223192346.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210223200559.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Estadistica.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/EstadisticaRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/components/layouts/LikeReviewSystem.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210226184559.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210226192140.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/LikeReviewsFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/StatisticsFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataPersister/LikeReviewDataPersister.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Doctrine/SetLikededOnReviewListener.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/opinion-img-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/service1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets/serviceImage.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/Estadisticas.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Estadisticas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Footer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/Opinions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Opinions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavUserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavUserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/ReviewsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/ReviewsContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/user/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/user/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/UserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_tabs.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_tabs.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/auth/register/authRegisterActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/auth/register/authRegisterActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/rootReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/rootReducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Doctrine/SetContentUrlOnMediaObjectListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Doctrine/SetContentUrlOnMediaObjectListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Statistics.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/OpinionsItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/OpinionsItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ReviewFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ReviewFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reviews.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reviews.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/VotedBy.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/LikeReview.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/SetAlreadyLikedSubscriber.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/VotedByRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LikeReviewRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +268,7 @@
       <workItem from="1613571224863" duration="42082000" />
       <workItem from="1613739844463" duration="2041000" />
       <workItem from="1613858066985" duration="30651000" />
-      <workItem from="1614106362733" duration="6779000" />
+      <workItem from="1614106362733" duration="25107000" />
     </task>
     <servers />
   </component>

@@ -53,6 +53,9 @@ services:
         decoration_priority: -20
 
     #DATA PERSISTERS
+    App\DataPersister\LikeReviewDataPersister:
+        bind:
+            $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
     App\DataPersister\UserDataPersister:
         bind:
             $decoratedDataPersister: '@api_platform.doctrine.orm.data_persister'
@@ -82,7 +85,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
 
+   #ENTITY LISTNERS
     App\Doctrine\SetContentUrlOnMediaObjectListener:
+        tags: [ doctrine.orm.entity_listener ]
+    App\Doctrine\SetLikededOnReviewListener:
         tags: [ doctrine.orm.entity_listener ]
 
     gedmo.listener.timestampable:

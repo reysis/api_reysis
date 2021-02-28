@@ -217,7 +217,7 @@ class User implements UserInterface
     private $profilePicture;
 
     /**
-     * @ORM\OneToMany(targetEntity=VotedBy::class, mappedBy="idUser", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=LikeReview::class, mappedBy="idUser", orphanRemoval=true)
      */
     private $likedReviews;
 
@@ -618,14 +618,14 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|VotedBy[]
+     * @return Collection|LikeReview[]
      */
     public function getLikedReviews(): Collection
     {
         return $this->likedReviews;
     }
 
-    public function addLikedReview(VotedBy $likedReview): self
+    public function addLikedReview(LikeReview $likedReview): self
     {
         if (!$this->likedReviews->contains($likedReview)) {
             $this->likedReviews[] = $likedReview;
@@ -635,7 +635,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function removeLikedReview(VotedBy $likedReview): self
+    public function removeLikedReview(LikeReview $likedReview): self
     {
         if ($this->likedReviews->removeElement($likedReview)) {
             // set the owning side to null (unless already changed)

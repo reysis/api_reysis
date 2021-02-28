@@ -4,15 +4,18 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ShowStars from "./layouts/ShowStars";
 import Moment from 'react-moment'
+import LikeReviewSystem from "./layouts/LikeReviewSystem";
 
-const OpinionsItem = ({ image, autor, reviewText, stars, likes, datePublished }) => {
-
-    const [like, setLike] = useState(likes)
-
-    const likeClick = () => {
-        setLike(like => like + 1)
-    }
-
+const OpinionsItem = ({
+    id,
+    image,
+    autor,
+    reviewText,
+    stars,
+    likes,
+    datePublished,
+    alreadyLiked
+}) => {
     return (
         <Carousel.Caption>
             <div className="image-shadow-container">
@@ -30,10 +33,7 @@ const OpinionsItem = ({ image, autor, reviewText, stars, likes, datePublished })
                 <div className="carousel-stars">
                     <ShowStars times={stars}/>
                 </div>
-                <div onClick={likeClick} className="carousel-likes">
-                    <FontAwesomeIcon icon={faThumbsUp} />
-                    <span>{like} Likes</span>
-                </div>
+                <LikeReviewSystem likes={likes} alreadyLiked={alreadyLiked} idReview={id}/>
             </div>
         </Carousel.Caption>
     )

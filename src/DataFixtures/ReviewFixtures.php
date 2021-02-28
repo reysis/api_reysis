@@ -4,6 +4,7 @@
 namespace App\DataFixtures;
 
 
+use App\Entity\LikeReview;
 use App\Entity\Reviews;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -19,7 +20,7 @@ class ReviewFixtures extends BaseFixture implements DependentFixtureInterface
             $review->setDatePublished($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $review->setReviewText($this->faker->paragraph);
             $review->setUser($this->getRandomReference('normal_users'));
-            $review->setLikes($this->faker->numberBetween(0, 2000));
+            $review->setLikes(0);
             $review->setStars($this->faker->numberBetween(1,5));
             $review->setIsPublic($this->faker->boolean);
             $manager->persist($review);

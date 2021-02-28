@@ -56,11 +56,13 @@ const Opinions = () => {
 											<Carousel.Item key={item['@id']}>
 												<OpinionsItem
 													// autor={autor}
+													id={item['@id']}
 													image={item['user']['profilePicture'] ? item['user']['profilePicture']['contentUrl'] : defaultUserPicture}
 													reviewText={item['reviewText']}
 													stars={item['stars']}
 													likes={item['likes']}
 													datePublished={item['datePublished']}
+													alreadyLiked={item['likedByMe']}
 												/>
 											</Carousel.Item>
 										)
