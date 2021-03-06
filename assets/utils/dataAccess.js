@@ -16,8 +16,6 @@ export function fetch(id, options = {}) {
     && null === options.headers.get('Content-Type'))
     options.headers.set('Content-Type', MIME_TYPE);
 
-  console.log(options)
-
   return global.fetch(new URL(id, ENTRYPOINT), options)
     .then(response => {
       if (response.ok) {
@@ -25,7 +23,6 @@ export function fetch(id, options = {}) {
       }
       return response.json()
         .then(json => {
-          console.log(json)
 
             if(json['message'] === 'Expired JWT Token'){
                 throw new Error("Expired JWT Token");

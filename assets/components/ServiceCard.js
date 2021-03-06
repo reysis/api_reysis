@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import {getIdFromUrl} from "../redux/utiles";
 
 const ServiceCard = ({ id, nombre, descripcion, images, loading }) => {
-	console.log(images);
 	/* using react hooks */
 	const card_button = useRef(null);
 	const card = useRef(null);

@@ -64,7 +64,6 @@ const NavUser = () => {
     }, [pathname])
 
     useEffect(() => {
-        console.log(user);
         if (authenticated && user) {
             setName(user.persona.nombre)
         }

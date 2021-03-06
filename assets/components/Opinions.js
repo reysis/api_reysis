@@ -19,6 +19,7 @@ import {getOpinionsFiltersURL} from "../redux/requestFilters";
 import {Link} from "react-router-dom";
 
 const Opinions = () => {
+	const [arrayOfOpinions, setArrayOfOpinions] = useState([]);
 
 	const loading = useSelector(state => state.opinion.list.loading)
 	const opinions = useSelector(state => state.opinion.list.opinions)
@@ -29,6 +30,28 @@ const Opinions = () => {
 	useEffect(() => {
 		dispatch(opinionListFetch(getOpinionsFiltersURL(1)))
 	}, [])
+
+	useEffect(()=>{
+		console.log("CAMBIO OPINIONS!");
+		if(opinions){
+			setArrayOfOpinions(opinions['hydra:member'].map(item=>{
+				return (
+					<Carousel.Item key={item['@id']}>
+						<OpinionsItem
+							// autor={autor}
+							id={item['@id']}
+							image={item['user']['profilePicture'] ? item['user']['profilePicture']['contentUrl'] : defaultUserPicture}
+							reviewText={item['reviewText']}
+							stars={item['stars']}
+							likes={item['likes']}
+							datePublished={item['datePublished']}
+							alreadyLiked={item['likedByMe']}
+						/>
+					</Carousel.Item>
+				)
+			}));
+		}
+	}, [opinions])
 
 	return (
 		<section
@@ -47,27 +70,10 @@ const Opinions = () => {
 			</div>
 			<div data-aos="fade-up" className="opinions-container container">
 				{
-					loading !== undefined && !loading && error !== undefined && !error && opinions
+					arrayOfOpinions !== []
 						? (
 							<Carousel>
-								{
-									opinions['hydra:member'].map(item => {
-										return (
-											<Carousel.Item key={item['@id']}>
-												<OpinionsItem
-													// autor={autor}
-													id={item['@id']}
-													image={item['user']['profilePicture'] ? item['user']['profilePicture']['contentUrl'] : defaultUserPicture}
-													reviewText={item['reviewText']}
-													stars={item['stars']}
-													likes={item['likes']}
-													datePublished={item['datePublished']}
-													alreadyLiked={item['likedByMe']}
-												/>
-											</Carousel.Item>
-										)
-									})
-								}
+								{arrayOfOpinions}
 							</Carousel>
 						)
 						: (

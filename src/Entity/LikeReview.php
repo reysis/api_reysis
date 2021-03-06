@@ -9,11 +9,13 @@ use Doctrine\ORM\Mapping\UniqueConstraint;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
  *     collectionOperations={
- *          "get" = {"security" = "is_granted('ROLE_ADMIN')"},
+ *          "get" = {"security" = "is_granted('ROLE_USER')"},
  *          "post" = {
  *              "security"="is_granted('IS_AUTHENTICATED_ANONYMOUSLY')",
  *              "validation_groups"={"Default", "create"}
@@ -36,6 +38,13 @@ use Doctrine\ORM\Mapping as ORM;
  *              name="like_review_unique",
  *              columns={"id_review_id", "id_user_id"}
  *          )
+ *      }
+ * )
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "idUser":"exact",
+ *          "idReview":"exact",
  *      }
  * )
  */

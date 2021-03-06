@@ -28,14 +28,20 @@ class LikeReviewDataPersister implements ContextAwareDataPersisterInterface
         return $data instanceof LikeReview;
     }
 
+    /**
+     * @param LikeReview $data
+     * @param array $context
+     * @return object|void
+     */
     public function persist($data, array $context = [])
     {
-        dump($data, $context);
+        $data->getIdReview()->setLikes( $data->getIdReview()->getLikes() + 1 );
         $this->decoratedDataPersister->persist($data);
     }
 
     public function remove($data, array $context = [])
     {
+        $data->getIdReview()->setLikes( $data->getIdReview()->getLikes() - 1 );
         $this->decoratedDataPersister->remove($data);
     }
 }

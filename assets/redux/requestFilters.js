@@ -10,7 +10,7 @@ export const getOpinionsFiltersURL = (
     let url = "/api/reviews?";
 
     if(user !== ""){
-        url === "/api/reviews?" ? (url += 'user=' + user.replace('/','%2F')) : (url += '&user=' + user.replace('/','%2F'));
+        url === "/api/reviews?" ? (url += 'user=' + user.replace(/\//g,'%2F')) : (url += '&user=' + user.replace(/\//g,'%2F'));
     }
     if(before)
         url === "/api/reviews?" ? (url += "datePublished%5Bbefore%5D=" + before) : (url += "&datePublished%5Bbefore%5D=" + before);
@@ -56,6 +56,19 @@ export const getServiceFilters = (pag = null,) =>{
 
     if(pag)
         url === "/api/servicios?" ? ( url += 'page=' + pag) : (url += '&page=' + pag);
+
+    return url;
+}
+
+export const getLikeReviewFilters = (pag = null, idUser = null, idReview = null) =>{
+    let url = "/api/like-reviews?"
+
+    if(idUser)
+        url === "/api/like-reviews?" ? url += 'idUser=' + idUser.replace(/\//g,'%2F') : (url += '&idUser=' + idUser.replace(/\//g,'%2F'));
+    if(idReview)
+        url === "/api/like-reviews?" ? url += 'idReview=' + idReview.replace(/\//g,'%2F') : (url += '&idReview=' + idReview.replace(/\//g,'%2F'));
+    if(pag)
+        url === "/api/like-reviews?" ? (url += 'page' + pag) : (url += '&page=' + pag);
 
     return url;
 }

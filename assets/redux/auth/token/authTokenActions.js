@@ -47,7 +47,6 @@ export const loadUserLoading = (loading) =>{
 }
 
 export const tokenClearState = () => {
-    console.log("LIMPIANDO DENTRO DE LA ACTION");
     return{
         type: AUTH_TOKEN_CLEAR_STATE,
     }
@@ -77,11 +76,9 @@ export const updateUserAuthenticated = (user) =>{
 export const userLoguedFetch = (id) => (dispatch, getState) =>{
     dispatch(loadUserLoading(true))
     const headers = getHeaders(getState);
-    console.log(id);
     fetch(id, {headers})
         .then(res => res.json())
         .then(res => {
-            console.log("LO CARGO BIEN");
             dispatch(loadUserSuccess(res));
         })
         .catch(error => {
@@ -96,7 +93,6 @@ export const authRefreshToken = (refreshToken)=> dispatch =>{
     dispatch(refreshTokenLoading(true));
 
     let headers = new Headers();
-    console.log(refreshToken);
     headers.set('Content-Type', 'application/ld+json');
     const body = JSON.stringify({
         'refresh_token': refreshToken
@@ -109,9 +105,6 @@ export const authRefreshToken = (refreshToken)=> dispatch =>{
             const token = res.token
             const location = res.location
             const refreshToken = res['refresh_token']
-            console.log(token);
-            console.log(location);
-            console.log(refreshToken);
             dispatch(saveTokensToStorage({
                 token,
                 refreshToken: refreshToken,

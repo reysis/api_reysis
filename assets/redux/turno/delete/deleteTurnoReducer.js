@@ -11,7 +11,6 @@ const initialState = {
 }
 
 const turnoDeleteReducer = (state = initialState, { type, payload }) => {
-    console.log("PAYLOAD:", payload);
     switch (type) {
         case TURNO_DELETE_REQUEST:
             return {

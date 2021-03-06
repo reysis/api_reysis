@@ -26,7 +26,6 @@ const Estadisticas = () => {
         { title: "Rating", img: faStar },
         { title: "Porcentaje de equipos reparados", img: faChartBar },
     ])
-    console.log("STATISTICS: ",statistics)
     return (
         <section
             id="statistic"
