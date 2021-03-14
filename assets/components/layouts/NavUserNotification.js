@@ -2,15 +2,24 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faCircle, faEllipsisH, faTimes } from '@fortawesome/free-solid-svg-icons'
-import { notificationGet, notificationReadPut } from '../../redux/notification/notificationActions'
+import {faBell, faCircle, faEllipsisH, faEye, faEyeSlash, faTimes, faTrash} from '@fortawesome/free-solid-svg-icons'
+import {
+    notificationAssign,
+    notificationGet,
+    notificationReadPut,
+    notificationSuccess
+} from '../../redux/notification/list/notificationListActions'
 
 import { DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from 'reactstrap'
 import Moment from 'react-moment'
+import {notificationDelete} from "../../redux/notification/delete/notificationDeleteAction";
+import ModalNotification from "./ModalNotification";
 
 const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
 
     const [nonreadNotification, setNonreadNotification] = useState('')
+    const [showModal, setShowModal] = useState(false);
+    const [valuesModal, setValuesModal] = useState({});
 
     const loading = useSelector(state => state.notification.loading)
     const error = useSelector(state => state.notification.error)
@@ -26,13 +35,14 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
             dispatch(notificationGet(currentPage + 1))
     }
 
-    const notificationsNonReaded = useSelector(state => state.notification.notifications).filter(({ readed }) => !readed)
-    const notificationsReaded = useSelector(state => state.notification.notifications).filter(({ readed }) => readed)
-
+    const notificationsNonReaded = useSelector(state => state.notification.list.notifications).filter(({ readed }) => !readed)
+    const notificationsReaded = useSelector(state => state.notification.list.notifications).filter(({ readed }) => readed)
+    const notifications = useSelector(state=> state.notification.list.notifications);
     const dispatch = useDispatch()
 
-    const currentPage = useSelector(state => state.notification.currentPage)
-    const lastPage = useSelector(state => state.notification.lastPage)
+    const totalItems = useSelector(state=> state.notification.list.totalItems);
+    const currentPage = useSelector(state => state.notification.list.currentPage)
+    const lastPage = useSelector(state => state.notification.list.lastPage)
 
     useEffect(() => {
         dispatch(notificationGet())
@@ -56,12 +66,19 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
         // setShowNotification(true);
     }
 
-    const markAll = () => {
-
+    const handleShowNotification = (values) => {
+        setValuesModal(values);
+        setShowModal(true);
     }
 
-    const deleteAll = () => {
+    const handleHideModal = () => {
+        setShowModal(false);
+    }
 
+    const handleDeleteNotification = (idNotification, readed) => {
+        dispatch(notificationDelete(idNotification));
+        let arrayOfNotifications = notifications.filter(({id})=>id !== idNotification)
+        dispatch(notificationAssign(arrayOfNotifications));
     }
 
     return (
@@ -79,27 +96,6 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                 </div>
                 <div className={`nav-notification__menu ${notificationShow ? "show" : ""}`}>
                     <div className="nav-notification__menu--background">
-                        <div className="nav-notification__menu-header">
-                            <UncontrolledDropdown setActiveFromChild>
-                                <DropdownToggle tag="span" className="" caret>
-                                    Notificaciones
-                                </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem onClick={() => markAll()} tag="span">Marcar todas como leídas</DropdownItem>
-                                    <DropdownItem onClick={() => deleteAll()} tag="span">Eliminar todas</DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                            {/* <span className="nav-notification__menu-header--notification">Notificaciones</span>
-                            <div className="nav-notification__menu-header--menu_button" onClick={() => notificationSubMenuShowClick()}>
-                                <FontAwesomeIcon icon={faEllipsisH} />
-                            </div>
-                            <div className="nav-notification__menu-header--menu">
-                                <ul className="nav-notification__menu-header--menu-list">
-                                    <li className="nav-notification__menu-header--menu_list--item">Marcar todas como leídas</li>
-                                    <li className="nav-notification__menu-header--menu_list--item">Eliminar todas</li>
-                                </ul>
-                            </div> */}
-                        </div>
                         <ul ref={notificationListRef} className="nav-notification__menu-items">
                             {
                                 !(notificationsReaded.length || notificationsNonReaded.length) && !loading &&
@@ -117,18 +113,25 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                                 !error &&
                                 notificationsNonReaded.map(({ id, description, date, readed }) => {
                                     return (
-                                        <li key={id} onClick={(e) => itemClick(e, id)} className="nav-notification__menu-items__item">
+                                        <li key={id} className="nav-notification__menu-items__item">
                                             <div className="nav-notification__menu-items__item-container" >
                                                 <div className="nav-notification__menu-items__item-container-left" >
                                                     <span className={readed ? "nav-notification__menu-items__item-container-left--text" : "nav-notification__menu-items__item-container-left--text nonreaded"} >{description}</span>
                                                     <Moment fromNow className="nav-notification__menu-items__item-container-left--date">{date}</Moment>
                                                 </div>
                                                 <div className={readed ? "nav-notification__menu-items__item-container-right" : "nav-notification__menu-items__item-container-right nonreaded"}>
-                                                    {
-                                                        readed
-                                                            ? <FontAwesomeIcon icon={faCircle} />
-                                                            : <FontAwesomeIcon onClick={(e) => readedClick(e, id)} icon={faCircle} />
-                                                    }
+                                                    <div className="flex-centered-container">
+                                                        <FontAwesomeIcon
+                                                            icon={faEye}
+                                                            className="font-awesome-icon"
+                                                            onClick={()=>handleShowNotification({id, description, date, readed})}
+                                                        />
+                                                        <FontAwesomeIcon
+                                                            icon={faTrash}
+                                                            className="font-awesome-icon"
+                                                            onClick={()=>handleDeleteNotification(id, readed)}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
@@ -143,18 +146,25 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                                 !error &&
                                 notificationsReaded.map(({ id, description, date, readed }) => {
                                     return (
-                                        <li key={id} onClick={(e) => itemClick(e, id)} className="nav-notification__menu-items__item">
+                                        <li key={id} className="nav-notification__menu-items__item">
                                             <div className="nav-notification__menu-items__item-container" >
                                                 <div className="nav-notification__menu-items__item-container-left" >
                                                     <span className={readed ? "nav-notification__menu-items__item-container-left--text" : "nav-notification__menu-items__item-container-left--text nonreaded"} >{description}</span>
                                                     <Moment fromNow className="nav-notification__menu-items__item-container-left--date">{date}</Moment>
                                                 </div>
                                                 <div className={readed ? "nav-notification__menu-items__item-container-right" : "nav-notification__menu-items__item-container-right nonreaded"}>
-                                                    {/* {
-                                                        readed
-                                                            ? <FontAwesomeIcon icon={faCircle} />
-                                                            : <FontAwesomeIcon onClick={(e) => readedClick(e, id)} icon={faCircle} />
-                                                    } */}
+                                                    <div className="flex-centered-container">
+                                                        <FontAwesomeIcon
+                                                            icon={faEyeSlash}
+                                                            className="font-awesome-icon"
+                                                            onClick={()=>handleShowNotification({id, description, date, readed})}
+                                                        />
+                                                        <FontAwesomeIcon
+                                                            icon={faTrash}
+                                                            className="font-awesome-icon"
+                                                            onClick={()=>handleDeleteNotification(id, readed)}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
@@ -172,6 +182,7 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                     </div>
                 </div>
             </div>
+            <ModalNotification show={showModal} onHide={handleHideModal} values={valuesModal}/>
         </div>
     )
 }

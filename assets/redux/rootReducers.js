@@ -9,7 +9,7 @@ import opinion from './opinion';
 import service from './service';
 import statistics from './statistic';
 import faq from './faq/faqReducer';
-import notification from './notification/notificationReducer'
+import notification from './notification'
 import contactMessage from './contact_message/messageReducer'
 import configuration from './configuration/configurationReducer'
 import user from './user';

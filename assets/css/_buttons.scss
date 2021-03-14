@@ -21,3 +21,11 @@
     border: 2px solid $color-primary !important;
   }
 }
+
+.font-awesome-icon{
+  margin: 8px;
+  color: $color-primary;
+  &:hover {
+    color: #222;
+  }
+}

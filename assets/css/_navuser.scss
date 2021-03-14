@@ -362,6 +362,8 @@
                         flex-direction: column;
                         margin: auto;
                         margin-left: 0;
+                        min-width: 215px;
+                        max-width: 215px;
                         // padding: 0 5px;
 
                         &--text {

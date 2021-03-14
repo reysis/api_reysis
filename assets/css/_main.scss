@@ -170,6 +170,18 @@ button:focus {
 	flex-flow: column nowrap;
 }
 
+.flex-right-container-row{
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	flex-flow: row wrap;
+	margin-left: auto;
+}
+
 .shadow-container{
 	margin-bottom: 20px;
 	padding: 25px;

@@ -1,7 +1,12 @@
 import {
-    NOTIFICATION_LIST_REQUEST, NOTIFICATION_LIST_SUCCESS, NOTIFICATION_LIST_ERROR,
-    NOTIFICATION_ITEM_READING, NOTIFICATION_ITEM_READED, NOTIFICATION_ITEM_READERROR
-} from './notificationTypes'
+    NOTIFICATION_LIST_REQUEST,
+    NOTIFICATION_LIST_SUCCESS,
+    NOTIFICATION_LIST_ERROR,
+    NOTIFICATION_ITEM_READING,
+    NOTIFICATION_ITEM_READED,
+    NOTIFICATION_ITEM_READERROR,
+    NOTIFICATION_LIST_ASSIGN
+} from './notificationListTypes'
 
 const initialState = {
     loading: false,
@@ -12,7 +17,7 @@ const initialState = {
     error: ''
 }
 
-const notificationReducer = (state = initialState, { type, payload }) => {
+const notificationListReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case NOTIFICATION_LIST_REQUEST:
             return {
@@ -42,9 +47,14 @@ const notificationReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 notifications: state.notifications.map(v => (v.id == payload ? { ...v, readed: true } : v))
             }
+        case NOTIFICATION_LIST_ASSIGN:
+            return{
+                ...state,
+                notifications: payload
+            }
         default:
             return state
     }
 }
 
-export default notificationReducer
+export default notificationListReducer
