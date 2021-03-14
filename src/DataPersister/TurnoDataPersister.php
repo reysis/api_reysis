@@ -12,8 +12,11 @@ use App\Entity\User;
 use App\Repository\AvailableDateRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Mime\Email;
 
 class TurnoDataPersister implements ContextAwareDataPersisterInterface
 {
@@ -22,7 +25,7 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
     private $logger;
     private AvailableDateRepository $availableDateRepository;
     private EntityManagerInterface $entityManager;
-    private \Swift_Mailer $mailer;
+    private MailerInterface $mailer;
 
     public function __construct(
         DataPersisterInterface $decoratedDataPersister,
@@ -30,7 +33,7 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
         LoggerInterface $logger,
         AvailableDateRepository $availableDateRepository,
         EntityManagerInterface $entityManager,
-        \Swift_Mailer $mailer
+        MailerInterface $mailer
     )
     {
         $this->decoratedDataPersister = $decoratedDataPersister;
@@ -116,19 +119,21 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
     /**
      * @param Turno $turno
      * @ArrayCollection $context
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
     private function sendAppointmentConfirmationMail($turno, $context)
     {
+        $message = null;
         if(($context['collection_operation_name'] ?? null) === 'post') {
-            $message = (new \Swift_Message('Cita confirmada!'))
-                ->setFrom('admin@reysis.com')
-                ->setTo($turno->getUser()->getEmail())
-                ->setBody(sprintf('Su reservación para %s ha sido confirmada', $turno->getFecha()->format('Y-m-d H:i:s')));
+            $message = (new TemplatedEmail())
+                ->from('admin@reysis.com')
+                ->to($turno->getUser()->getEmail())
+                ->htmlTemplate('emails/turno.html.twig');
         }else if(($context['item_operation_name'] ?? null) === 'put'){
-            $message = (new \Swift_Message('Cita reprogramada!'))
-                ->setFrom('admin@reysis.com')
-                ->setTo($turno->getUser()->getEmail())
-                ->setBody(sprintf('Su reservación ha sido reprogramada para %s', $turno->getFecha()->format('Y-m-d H:i:s')));
+            $message = (new TemplatedEmail())
+                ->from('admin@reysis.com')
+                ->to($turno->getUser()->getEmail())
+                ->htmlTemplate('emails/re-turno.html.twig');
         }
         $this->mailer->send($message);
     }

@@ -2,35 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/components/layouts/ModalLogin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/_keyframes.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/opinion/like/likeReviewActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/opinion/like/likeReviewReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/opinion/like/likeReviewTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/opinion/showLike/showLikeActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/opinion/showLike/showLikeReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/opinion/showLike/showLikeTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/opinion/unlike/unlikeReviewActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/opinion/unlike/unlikeReviewReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/opinion/unlike/unlikeReviewTypes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/components/layouts/ModalNotification.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/notification/delete/notificationDeleteAction.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/notification/delete/notificationDeleteReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/notification/delete/notificationDeleteTypes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/notification/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataProvider/MarkReadNotificationDataProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/emails/re-turno.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/emails/turno.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/my-api_reysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/my-api_reysis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Estadisticas.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Estadisticas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Opinions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Opinions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/ServiceCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/ServiceCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/LikeReviewSystem.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/LikeReviewSystem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_navbar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_navbar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_opinions.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_opinions.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_phone-formulary.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_phone-formulary.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/auth/token/authTokenActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/auth/token/authTokenActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/opinion/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/opinion/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/requestFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/requestFilters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/turno/delete/deleteTurnoReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/delete/deleteTurnoReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/utiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/utiles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/utils/dataAccess.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/utils/dataAccess.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataPersister/LikeReviewDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/LikeReviewDataPersister.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/LikeReview.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/LikeReview.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavUserNotification.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavUserNotification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_buttons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_buttons.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_navuser.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_navuser.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/notification/notificationActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/notification/list/notificationListActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/notification/notificationReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/notification/list/notificationListReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/notification/notificationTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/notification/list/notificationListTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/rootReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/rootReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/dev/swiftmailer.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/swiftmailer.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/test/swiftmailer.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/ContactMessageDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/ContactMessageDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/TurnoDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/TurnoDataPersister.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,6 +195,11 @@
       <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
       <path value="$PROJECT_DIR$/vendor/stof/doctrine-extensions-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/amqp-messenger" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mailer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/redis-messenger" />
+      <path value="$PROJECT_DIR$/vendor/symfony/messenger" />
+      <path value="$PROJECT_DIR$/vendor/symfony/doctrine-messenger" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hKBoZkwuI7RwqzyRtS4NniRUlv" />
@@ -224,11 +227,11 @@
       <recent name="D:\trabajo pagiNA\api_reysis\src\Test\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\trabajo pagiNA\api_reysis\assets\redux\notification\list" />
       <recent name="D:\trabajo pagiNA\api_reysis\public_html\uploads\user_images" />
       <recent name="D:\trabajo pagiNA\api_reysis\src\Test" />
       <recent name="D:\trabajo pagiNA\api_reysis\tests\Functional" />
       <recent name="D:\trabajo pagiNA\my-api_reysis\src\DataFixtures\images" />
-      <recent name="D:\trabajo pagiNA\my-api_reysis\assets\fonts" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -279,7 +282,10 @@
       <workItem from="1613571224863" duration="42082000" />
       <workItem from="1613739844463" duration="2041000" />
       <workItem from="1613858066985" duration="30651000" />
-      <workItem from="1614106362733" duration="67549000" />
+      <workItem from="1614106362733" duration="69988000" />
+      <workItem from="1615423433806" duration="4938000" />
+      <workItem from="1615584536642" duration="7243000" />
+      <workItem from="1615732355323" duration="16133000" />
     </task>
     <servers />
   </component>

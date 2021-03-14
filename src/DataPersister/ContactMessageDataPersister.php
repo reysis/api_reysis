@@ -12,13 +12,14 @@ use Psr\Log\LoggerInterface;
 class ContactMessageDataPersister implements ContextAwareDataPersisterInterface
 {
     private DataPersisterInterface $decoratedDataPersister;
-    private \Swift_Mailer $mailer;
     private LoggerInterface $logger;
 
-    public function __construct(DataPersisterInterface $decoratedDataPersister, \Swift_Mailer $mailer, LoggerInterface $logger)
+    public function __construct(
+        DataPersisterInterface $decoratedDataPersister,
+        LoggerInterface $logger
+    )
     {
         $this->decoratedDataPersister = $decoratedDataPersister;
-        $this->mailer = $mailer;
         $this->logger = $logger;
     }
 
@@ -34,18 +35,7 @@ class ContactMessageDataPersister implements ContextAwareDataPersisterInterface
     {
         $this->logger->info(sprintf('Se esta Persistiendo el usuario'));
 
-        if(!$data->getId()){
-            $mensaje = (new \Swift_Message('Usuario se ha puesto en contacto'))
-                        ->setFrom($data->getFromEmail())
-                        ->setTo('admin@reysis.com')
-                        ->setBody(
-                            $data->getMessage()
-                        );
-            $this->mailer->send($mensaje);
-
-            $this->logger->info(sprintf('Se ha enviado el correo satisfactoriamente!'));
-            $data->setDateSent(new \DateTime());
-        }
+        //Sent an email
         $this->decoratedDataPersister->persist($data);
     }
 
