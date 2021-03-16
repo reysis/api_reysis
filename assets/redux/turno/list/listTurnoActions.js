@@ -37,7 +37,6 @@ export const listTurnoFetch = () => (dispatch, getState) => {
     fetch(page, {headers})
         .then(res => res.json())
         .then(res => {
-            console.log(res);
             dispatch(listTurnoSuccess(res['hydra:member']));
         })
         .catch(error => {

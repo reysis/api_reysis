@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210315143347.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/whyus/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/whyus/list/whyusListActions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/whyus/list/whyusListReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/whyus/list/whyusListTypes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210316135926.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/WhyUsFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/WhyUs.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/WhyUsRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/turno/create/createTurnoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/create/createTurnoActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/mailer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/mailer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataPersister/TurnoDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/TurnoDataPersister.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Turno.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Turno.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/WhyUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/WhyUs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/rootReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/rootReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/turno/list/listTurnoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/list/listTurnoActions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,6 +272,7 @@
       <workItem from="1615584536642" duration="7243000" />
       <workItem from="1615732355323" duration="24081000" />
       <workItem from="1615829029791" duration="3601000" />
+      <workItem from="1615861823181" duration="4028000" />
     </task>
     <servers />
   </component>

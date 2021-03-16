@@ -14,6 +14,7 @@ import contactMessage from './contact_message/messageReducer'
 import configuration from './configuration/configurationReducer'
 import user from './user';
 import mediaObject from './mediaObject';
+import whyus from './whyus';
 
 export default combineReducers({
     router: connectRouter(history),
@@ -28,5 +29,6 @@ export default combineReducers({
     contactMessage,
     configuration,
     user,
-    mediaObject
+    mediaObject,
+    whyus
 });

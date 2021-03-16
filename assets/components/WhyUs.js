@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {listWhyusFetch} from "../redux/whyus/list/whyusListActions";
 
 const Whyus = () => {
 
-    const why_us = [
-        "Garantía en nuestros servicios",
-        "Rapides en el trabajo",
-        "Personal capacitado",
-        "Compromiso en su satisfacción",
-        "Servicio a domicilio",
-        "Experiencia profesional"
-    ]
+    const whyus = useSelector(state=> state.whyus.list.whyus);
+    const error = useSelector(state=> state.whyus.list.error);
+    const loading = useSelector(state=> state.whyus.list.loading);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(listWhyusFetch())
+    }, [])
 
     return (
         <section id="whyus" className="whyus-component section-padding">
@@ -23,8 +24,8 @@ const Whyus = () => {
                 <p>Tener un equipo roto ya es un problema serio que no puede dejarse en manos de principiantes,<br />ayudarlo a solucionarlo con total garantía y profesionalidad es nuestro trabajo</p>
             </div>
             <div className="whyus-container">
-                {
-                    why_us.map((why, index) => {
+                {whyus &&
+                    whyus.map((why, index) => {
                         return (
                             <div key={index}
                                  data-aos={index % 2 ? "fade-left" : "fade-right"}
@@ -33,7 +34,7 @@ const Whyus = () => {
                                 <div className="p-2 icon-whyus">
                                     <FontAwesomeIcon icon={faCheckSquare}/>
                                 </div>
-                                <div className="p-2 reason-whyus">{why}</div>
+                                <div className="p-2 reason-whyus">{why['reason']}</div>
                             </div>
                         )
                     })
