@@ -4,7 +4,7 @@ import { Link, Redirect, useLocation } from 'react-router-dom';
 import { Container, Form, Button, InputGroup, Alert } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationTriangle, faHammer } from '@fortawesome/free-solid-svg-icons';
+import {faExclamationTriangle, faHammer, faTruckLoading} from '@fortawesome/free-solid-svg-icons';
 
 import TurnoCalendar from "./TurnoCalendar";
 import TurnoAuth from './TurnoAuth';
@@ -25,6 +25,7 @@ const Create = ({ locations }) => {
 	const [disabledForm, setDisabledForm] = useState(true)
 
 	const [defecto, setDefecto] = useState("");
+	const [domicilio, setDomicilio] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -75,9 +76,11 @@ const Create = ({ locations }) => {
 		let [hour, minute] = time.split(':');
 		console.log("USER: ", user);
 		const fecha = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, minute);
+		let domicilioValue = domicilio === 'on';
 		dispatch(createTurnoFetch({
 			fecha: fecha.toUTCString(),
 			defecto,
+			domicilio: domicilioValue,
 			user: user['@id']
 		}))
 	}
@@ -116,6 +119,18 @@ const Create = ({ locations }) => {
 							</label>
 						</InputGroup.Prepend>
 						<Form.Control type="text" placeholder="Defecto del equipo" value={defecto} onChange={(e) => setDefecto(e.target.value)} />
+					</InputGroup>
+				</Form.Group>
+
+				<Form.Group>
+					<InputGroup>
+						<Form.Check
+							type="checkbox"
+							size="lg"
+							checked={domicilio}
+							onChange={(e) => setDomicilio(e.target.value)}
+							label="El servicio a domicilio esta disponible, marque esta casilla si necesita que vayamos por usted!"
+						/>
 					</InputGroup>
 				</Form.Group>
 				<Form.Group>

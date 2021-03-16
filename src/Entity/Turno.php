@@ -79,6 +79,12 @@ class Turno
      */
     private $user;
 
+    /**
+     * @Groups({"turno:read", "turno:write"})
+     * @ORM\Column(type="boolean")
+     */
+    private $domicilio = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,6 +122,18 @@ class Turno
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDomicilio(): ?bool
+    {
+        return $this->domicilio;
+    }
+
+    public function setDomicilio(bool $domicilio): self
+    {
+        $this->domicilio = $domicilio;
 
         return $this;
     }
