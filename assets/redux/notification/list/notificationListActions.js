@@ -1,6 +1,12 @@
 import {
-    NOTIFICATION_LIST_REQUEST, NOTIFICATION_LIST_SUCCESS, NOTIFICATION_LIST_ERROR,
-    NOTIFICATION_ITEM_READING, NOTIFICATION_ITEM_READED, NOTIFICATION_ITEM_READERROR, NOTIFICATION_LIST_ASSIGN
+    NOTIFICATION_LIST_REQUEST,
+    NOTIFICATION_LIST_SUCCESS,
+    NOTIFICATION_LIST_ERROR,
+    NOTIFICATION_ITEM_READING,
+    NOTIFICATION_ITEM_READED,
+    NOTIFICATION_ITEM_READERROR,
+    NOTIFICATION_LIST_ASSIGN,
+    NOTIFICATION_ITEM_UNREADED
 } from './notificationListTypes'
 import { fetch } from '../../../utils/dataAccess'
 
@@ -76,6 +82,13 @@ export const notificationReaded = id => {
     }
 }
 
+export const notificationUnread = id => {
+    return {
+        type: NOTIFICATION_ITEM_UNREADED,
+        payload: id
+    }
+}
+
 export const notificationReadError = error => {
     return {
         type: NOTIFICATION_ITEM_READERROR,
@@ -83,16 +96,20 @@ export const notificationReadError = error => {
     }
 }
 
-export const notificationReadPut = (id) => (dispatch, getState) => {
+export const notificationReadPut = (id, readed) => (dispatch, getState) => {
     dispatch(notificationReading())
+    console.log(readed);
     const options = {
         method: 'PUT',
-        body: JSON.stringify({ readed: true }),
+        body: JSON.stringify({ readed: readed }),
         headers: getHeaders(getState)
     }
     fetch(id, options)
         .then(() => {
-            dispatch(notificationReaded(id))
+            if(readed === true)
+                dispatch(notificationReaded(id))
+            else
+                dispatch(notificationUnread(id))
         })
         .catch(error => {
             dispatch(notificationReadError(error.message))

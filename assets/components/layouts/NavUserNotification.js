@@ -69,6 +69,11 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
     const handleShowNotification = (values) => {
         setValuesModal(values);
         setShowModal(true);
+        dispatch(notificationReadPut(values['id'], true))
+    }
+
+    const handleUnshowNotification = (id) => {
+        dispatch(notificationReadPut(id, false))
     }
 
     const handleHideModal = () => {
@@ -157,7 +162,7 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
                                                         <FontAwesomeIcon
                                                             icon={faEyeSlash}
                                                             className="font-awesome-icon"
-                                                            onClick={()=>handleShowNotification({id, description, date, readed})}
+                                                            onClick={()=>handleUnshowNotification(id)}
                                                         />
                                                         <FontAwesomeIcon
                                                             icon={faTrash}

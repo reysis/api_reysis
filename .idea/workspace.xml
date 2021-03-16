@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/redux/whyus/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/whyus/list/whyusListActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/whyus/list/whyusListReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/redux/whyus/list/whyusListTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210316135926.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataFixtures/WhyUsFixtures.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/WhyUs.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/WhyUsRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/WhyUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/WhyUs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/rootReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/rootReducers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/turno/list/listTurnoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/list/listTurnoActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavUserNotification.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavUserNotification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/notification/list/notificationListActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/notification/list/notificationListActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/notification/list/notificationListReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/notification/list/notificationListReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/notification/list/notificationListTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/notification/list/notificationListTypes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +265,7 @@
       <workItem from="1615584536642" duration="7243000" />
       <workItem from="1615732355323" duration="24081000" />
       <workItem from="1615829029791" duration="3601000" />
-      <workItem from="1615861823181" duration="4028000" />
+      <workItem from="1615861823181" duration="6085000" />
     </task>
     <servers />
   </component>

@@ -5,7 +5,10 @@ import {
     NOTIFICATION_ITEM_READING,
     NOTIFICATION_ITEM_READED,
     NOTIFICATION_ITEM_READERROR,
-    NOTIFICATION_LIST_ASSIGN
+    NOTIFICATION_LIST_ASSIGN,
+    NOTIFICATION_ITEM_UNREADED,
+    NOTIFICATION_ITEM_UNREADERROR,
+    NOTIFICATION_ITEM_UNREADING
 } from './notificationListTypes'
 
 const initialState = {
@@ -46,6 +49,11 @@ const notificationListReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 notifications: state.notifications.map(v => (v.id == payload ? { ...v, readed: true } : v))
+            }
+        case NOTIFICATION_ITEM_UNREADED:
+            return {
+                ...state,
+                notifications: state.notifications.map(v => (v.id == payload ? { ...v, readed: false } : v))
             }
         case NOTIFICATION_LIST_ASSIGN:
             return{
