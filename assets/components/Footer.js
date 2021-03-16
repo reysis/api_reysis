@@ -13,7 +13,7 @@ import { faFacebook, faInstagram, faLinkedin, faWhatsapp } from '@fortawesome/fr
 import {
     faEnvelope, faQuestionCircle, faUserSecret,
     faSitemap, faEye, faBullseye,
-    faUsers, faArrowCircleUp
+    faUsers, faArrowCircleUp, faCheck, faUserTie
 } from '@fortawesome/free-solid-svg-icons';
 
 import LogoFoter from '../assets/logo-footer.png';
@@ -127,6 +127,10 @@ const Footer = () => {
                         <div className="pr-2"><FontAwesomeIcon icon={faUserSecret} /></div>
                         Terminos y privacidad
                     </Link>
+                    <Link className="menu-item d-flex flex-row" to="/garanty">
+                        <div className="pr-2"><FontAwesomeIcon icon={faCheck} /></div>
+                        Garantías
+                    </Link>
                 </div>
                 <div data-aos="fade-up" className="our-company-menu menu-footer">
                     <h3 className="menu-title">Nuestra compañía</h3>
@@ -141,6 +145,10 @@ const Footer = () => {
                     <Link className="menu-item d-flex flex-row" to="/vision">
                         <div className="pr-2"><FontAwesomeIcon icon={faEye} /></div>
                         Visión
+                    </Link>
+                    <Link className="menu-item d-flex flex-row" to="/vision">
+                        <div className="pr-2"><FontAwesomeIcon icon={faUserTie} /></div>
+                        Valores
                     </Link>
                 </div>
                 <div data-aos="fade-up" className="website-menu menu-footer">

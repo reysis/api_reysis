@@ -97,6 +97,22 @@ class Configurations
      */
     private $termsAndCondition;
 
+    /**
+     * Explicación de los términos de la garantía
+     *
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"configurations:read", "admin:write"})
+     */
+    private $garantia;
+
+    /**
+     * Valores de la empresa
+     *
+     * @Groups({"configurations:read", "admin:write"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $valores;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -194,6 +210,30 @@ class Configurations
     public function setTermsAndCondition(string $termsAndCondition): self
     {
         $this->termsAndCondition = $termsAndCondition;
+
+        return $this;
+    }
+
+    public function getGarantia(): ?string
+    {
+        return $this->garantia;
+    }
+
+    public function setGarantia(string $garantia): self
+    {
+        $this->garantia = $garantia;
+
+        return $this;
+    }
+
+    public function getValores(): ?string
+    {
+        return $this->valores;
+    }
+
+    public function setValores(string $valores): self
+    {
+        $this->valores = $valores;
 
         return $this;
     }

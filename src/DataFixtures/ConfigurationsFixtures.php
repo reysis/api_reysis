@@ -23,12 +23,16 @@ class ConfigurationsFixtures extends BaseFixture
            $termsAndConditions = "";
            $whoWeAre = "";
            $whatWeDo = "";
+           $garantia = "";
+           $valores = "";
            for($j = 0; $j < $amongOfParagraph;$j++){
                $mision = $mision. $this->faker->paragraph(4,true).'</br>' ;
                $vision = $vision. $this->faker->paragraph(6,true).'</br>' ;
                $termsAndConditions = $termsAndConditions. $this->faker->paragraph(6,true).'</br>' ;
                $whatWeDo = $whatWeDo. $this->faker->paragraph(2,true).'</br>' ;
                $whoWeAre = $whoWeAre. $this->faker->paragraph(3,true).'</br>' ;
+               $garantia = $garantia. $this->faker->paragraph(3,true).'</br>' ;
+               $valores = $valores. $this->faker->paragraph(5,true).'</br>' ;
            }
            $configuration->setMision($mision);
            $configuration->setVision($vision);
@@ -36,6 +40,8 @@ class ConfigurationsFixtures extends BaseFixture
            $configuration->setTermsAndCondition($termsAndConditions);
            $configuration->setWhatWeDo($whatWeDo);
            $configuration->setWhoWeAre($whoWeAre);
+           $configuration->setGarantia($garantia);
+           $configuration->setValores($garantia);
 
            return $configuration;
         });
