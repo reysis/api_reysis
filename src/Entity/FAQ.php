@@ -27,7 +27,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "delete" ={"security" = "is_granted('ROLE_ADMIN')"}
  *      },
  *     attributes={
- *          "pagination_items_per_page" = 10
+ *          "pagination_enabled"=false
  *     },
  * )
  * @ApiFilter(PropertyFilter::class)

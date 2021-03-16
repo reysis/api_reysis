@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/components/Garantia.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/components/Valores.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/views/GarantiaPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/views/ValoresPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20210316165704.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/routes/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/routes/navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ConfigurationsFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ConfigurationsFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Configurations.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Configurations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/FAQ.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FAQ.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,7 +262,7 @@
       <workItem from="1615584536642" duration="7243000" />
       <workItem from="1615732355323" duration="24081000" />
       <workItem from="1615829029791" duration="3601000" />
-      <workItem from="1615861823181" duration="10432000" />
+      <workItem from="1615861823181" duration="11803000" />
     </task>
     <servers />
   </component>
