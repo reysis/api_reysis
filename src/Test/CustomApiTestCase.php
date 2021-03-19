@@ -223,4 +223,33 @@ class CustomApiTestCase extends ApiTestCase
 
         return $profilePicture;
     }
+
+    protected function checkAnonimousAccessGranted($client, $url)
+    {
+        //Comprobando que anonimamente se acceda al recurso
+        $client->request('GET', $url,[
+            'headers'=> ['ContentType'=>'application/json+ld'],
+        ]);
+        $this->assertResponseStatusCodeSame(200);
+        $this->assertJsonContains(['hydra:totalItems' => 0]);
+    }
+
+    protected function checkAnonimousAccessDenied($client, $url)
+    {
+        //Comprobando que anonimamente se acceda al recurso
+        $client->request('GET', $url,[
+            'headers'=> ['ContentType'=>'application/json+ld'],
+        ]);
+        $this->assertResponseStatusCodeSame(403);
+    }
+
+    protected function grantAdminAccess($user)
+    {
+        $em = self::$container->get('doctrine')->getManager();
+        $user = $em->getRepository(User::class)->find($user->getId());
+        $user->setRoles(['ROLE_ADMIN']);
+        $em->flush();
+
+        return $user;
+    }
 }

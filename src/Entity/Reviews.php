@@ -18,7 +18,7 @@ use App\Doctrine\SetLikededOnReviewListener;
  * @ApiResource(
  *     collectionOperations={
  *          "get",
- *          "post" = {"security_post_denormalize"="is_granted('ROLE_USER')"},
+ *          "post" = {"security_post_denormalize"="is_granted('POST_REVIEW', object)"},
  *     },
  *     itemOperations={
  *          "get" = {

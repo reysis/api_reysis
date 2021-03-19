@@ -21,10 +21,17 @@ class ReviewsVoter extends Voter
 
     protected function supports(string $attribute, $subject)
     {
-        return in_array($attribute, ['REVIEW_PUT', 'ERASE'])
+        return in_array($attribute, ['REVIEW_PUT', 'ERASE', 'POST_REVIEW'])
             && $subject instanceof Reviews;
     }
 
+    /**
+     * @param string $attribute
+     * @param Reviews $subject
+     * @param TokenInterface $token
+     * @return bool
+     * @throws \Exception
+     */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token)
     {
         $user = $token->getUser();
@@ -37,8 +44,9 @@ class ReviewsVoter extends Voter
 
         switch ($attribute){
             case 'REVIEW_PUT':
+            case 'POST_REVIEW':
             case 'ERASE':
-                if($this->security->isGranted('ROLE_USER') || $subject->getUser() === $user)
+                if($this->security->isGranted('ROLE_USER') && $subject->getUser() === $user)
                     return true;
                 return false;
         }
