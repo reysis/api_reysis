@@ -65,14 +65,13 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @ORM\OneToOne(targetEntity=Persona::class, cascade={"persist", "remove"})
-     * @Groups({"owner:read", "user:write", "admin:write", "admin:read"})
+     * @Groups({"owner:read", "user:write"})
      * @Assert\NotBlank(groups={"create"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"admin:read","admin:write"})
      */
     private $roles = [];
 
@@ -86,7 +85,7 @@ class User implements UserInterface
      * Una variable temporal para almacenar la password y poder encriptarla en el proceso de normalización
      *
      * @var string The plain password
-     * @Groups({"user:write", "admin:write", "admin:read"})
+     * @Groups({"user:write"})
      * @Assert\NotBlank(groups={"create"})
      * @SerializedName("password")
      */
@@ -96,20 +95,19 @@ class User implements UserInterface
      * @ApiProperty(iri="http://schema.org/email")
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Email()
-     * @Groups({"owner:read", "user:write", "admin:write", "admin:read"})
+     * @Groups({"owner:read", "user:write"})
      */
     private $email;
 
     /**
      * Retorna verdadero si este es el usuario autenticado actualmente
-    */
+     */
     private $isMe = false;
 
     /**
      * Fecha en la que se registró el usuario, solamente se llena cuando al usuario se le va a prestar un servicio
      *
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"admin:read", "admin:write"})
      */
     private $dateRegistered;
 
@@ -117,7 +115,6 @@ class User implements UserInterface
      * Ultima fecha en la que se edito la información de este usuario
      *
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"admin:read", "admin:write"})
      */
     private $lastEdited;
 
@@ -125,7 +122,6 @@ class User implements UserInterface
      * Ultima fecha en la que se logueo el usuario
      *
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"admin:read", "admin:write"})
      */
     private $lastLoggued;
 
@@ -134,7 +130,7 @@ class User implements UserInterface
      *
      * @ORM\ManyToOne(targetEntity=Address::class, inversedBy="users", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"user:write", "owner:read", "admin:write", "admin:item:get"})
+     * @Groups({"user:write", "owner:read", "admin:item:get"})
      * @Assert\Valid()
      * @Assert\NotBlank(groups={"create"})
      */
@@ -148,7 +144,7 @@ class User implements UserInterface
      *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="phonenumber_id", referencedColumnName="id", unique=true)}
      *      )
-     * @Groups({"user:write", "owner:read", "admin:item:get", "admin:write"})
+     * @Groups({"user:write", "owner:read", "admin:item:get"})
      * @Assert\NotBlank(groups={"create"})
      * @Assert\Valid()
      */
@@ -159,7 +155,7 @@ class User implements UserInterface
      * Nacionalidad del usuario, ya sea una empresa o una Persona
      *
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user:write","owner:read", "admin:read", "admin:write"})
+     * @Groups({"user:write","owner:read"})
      * @Assert\NotBlank(groups={"create"})
      */
     private $nationality;
@@ -168,7 +164,7 @@ class User implements UserInterface
      * Turnos pendientes de este usuario
      *
      * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:write","owner:read", "admin:item:get", "admin:write"})
+     * @Groups({"user:write","owner:read", "admin:item:get"})
      */
     private $turnos;
 
@@ -176,19 +172,19 @@ class User implements UserInterface
      * Reviews que ha realizado este usuario
      *
      * @ORM\OneToMany(targetEntity=Reviews::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:write","owner:read", "admin:item:get", "admin:write"})
+     * @Groups({"user:write","owner:read", "admin:item:get"})
      */
     private $reviews;
 
     /**
      * @ORM\OneToMany(targetEntity=SocialMedia::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"user:read", "user:item:get", "admin:write", "admin:item:get"})
+     * @Groups({"user:read", "user:item:get", "admin:item:get"})
      */
     private $socialMedias;
 
     /**
      * @ORM\OneToMany(targetEntity=Notification::class, mappedBy="user", orphanRemoval=true)
-     * @Groups({"owner:read", "admin:write", "admin:item:get"})
+     * @Groups({"owner:read", "admin:item:get"})
      */
     private $notifications;
 
@@ -201,7 +197,7 @@ class User implements UserInterface
      * @var Persona
      *
      * @ORM\OneToOne(targetEntity=Persona::class, inversedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user:read", "user:write", "admin:write", "admin:item:get"})
+     * @Groups({"user:read", "user:write", "admin:item:get", "reviews:read"})
      * @Assert\NotBlank(groups={"create"})
      */
     private $persona;
@@ -210,7 +206,7 @@ class User implements UserInterface
      * @ApiProperty(
      *     readableLink=true
      * )
-     * @Groups({"user:read", "user:write", "admin:write", "reviews:read"})
+     * @Groups({"user:read", "user:write", "reviews:read"})
      * @ORM\OneToOne(targetEntity=MediaObject::class, inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
@@ -314,7 +310,7 @@ class User implements UserInterface
      * Get the plain password
      *
      * @return  string
-     */ 
+     */
     public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
@@ -326,7 +322,7 @@ class User implements UserInterface
      * @param  string  $plainPassword  The plain password
      *
      * @return  self
-     */ 
+     */
     public function setPlainPassword(string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
@@ -337,7 +333,7 @@ class User implements UserInterface
 
     /**
      * Get the value of email
-     */ 
+     */
     public function getEmail()
     {
         return $this->email;
@@ -347,7 +343,7 @@ class User implements UserInterface
      * Set the value of email
      *
      * @return  self
-     */ 
+     */
     public function setEmail($email)
     {
         $this->email = $email;

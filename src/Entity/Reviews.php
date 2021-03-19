@@ -48,7 +48,7 @@ use App\Doctrine\SetLikededOnReviewListener;
  * @ApiFilter(
  *     DateFilter::class,
  *     properties={
-            "datePublished"
+ *          "datePublished"
  *     }
  * )
  * @ORM\Entity(repositoryClass=ReviewsRepository::class)
@@ -65,37 +65,36 @@ class Reviews
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"reviews:read", "reviews:write","user:item:get", "admin:read"})
+     * @Groups({"reviews:read", "reviews:write","user:item:get"})
      */
     private $reviewText;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"reviews:read", "user:item:get", "admin:read"})
+     * @Groups({"reviews:read", "user:item:get"})
      */
     private $datePublished;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"reviews:read", "reviews:write","user:item:get", "admin:read"})
+     * @Groups({"reviews:read", "reviews:write","user:item:get"})
      */
     private $user;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"reviews:read", "reviews:write","user:item:get", "admin:read"})
+     * @Groups({"reviews:read", "reviews:write","user:item:get"})
      */
     private $likes = 0;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"reviews:read", "reviews:write","user:item:get", "admin:read"})
+     * @Groups({"reviews:read", "reviews:write","user:item:get"})
      */
     private $stars = 0;
 
     /**
-     * @Groups({"admin:write", "admin:read"})
      * @ORM\Column(type="boolean")
      */
     private $isPublic = false;

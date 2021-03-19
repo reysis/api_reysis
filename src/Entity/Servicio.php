@@ -92,6 +92,7 @@ class Servicio
     private $urlPortada;
 
     /**
+     * @Groups({"servicio:read", "admin:write"})
      * @ORM\Column(type="boolean")
      */
     private $published = false;
