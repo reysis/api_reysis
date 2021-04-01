@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_cards.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_cards.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_turno_list.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_turno_list.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,7 +269,7 @@
       <workItem from="1616949800916" duration="36499000" />
       <workItem from="1617050864584" duration="8029000" />
       <workItem from="1617127156386" duration="4231000" />
-      <workItem from="1617200427700" duration="61687000" />
+      <workItem from="1617200427700" duration="62974000" />
     </task>
     <servers />
   </component>

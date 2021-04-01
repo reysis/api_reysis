@@ -1,6 +1,7 @@
 .turno-list__container{
   display: flex;
   justify-content: flex-start;
+  flex-flow: row wrap;
   align-items: baseline;
   min-height: 500px;
   .turno-list__nothing-to-display{

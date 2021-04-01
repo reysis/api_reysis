@@ -14,7 +14,7 @@ const TurnoCard = ({defecto, date, index, time, id, deleteTurno, taller, domicil
                     <Card.Header>
                         <Card.Title>Turno No. {index}</Card.Title>
                     </Card.Header>
-                    <Card.Subtitle>
+                    <Card.Subtitle className="m-auto">
                         Detalles de su turno
                     </Card.Subtitle>
                     <Card.Text>
