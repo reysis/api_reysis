@@ -48,7 +48,7 @@ class ServicioFixtures extends BaseFixture
             $servicio = new Servicio();
             $servicio->setDescription($this->faker->paragraph);
             $servicio->setShortDescription($this->faker->sentence);
-            $servicio->setNombre($this->faker->sentence(2,true));
+            $servicio->setNombre(sprintf("%s_%d",$this->faker->sentence(2,true), $i));
 
             $amountOfImagesPerService = $this->faker->numberBetween(1,3);
 

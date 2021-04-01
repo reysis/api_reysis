@@ -33,7 +33,7 @@ class Address
      * Calle donde esta ubicada
      *
      * @ORM\Column(type="string", length=100)
-     * @Groups({"user:write", "owner:read", "turno:write", "admin:item:get", "admin:write"})
+     * @Groups({"user:write", "owner:read", "turno:read", "turno:write", "equiposervicio:read"})
      */
     private $postAddress;
 
@@ -41,7 +41,7 @@ class Address
      * Algunas indicaciones extras que quiera dar el usuario
      *
      * @ORM\Column(type="string", length=100, nullable=true)
-     * @Groups({"user:write", "owner:read", "turno:write", "admin:item:get", "admin:write"})
+     * @Groups({"user:write", "owner:read", "turno:read","turno:write", "equiposervicio:read"})
      */
     private $indications;
 
@@ -50,6 +50,11 @@ class Address
      * @ORM\OneToMany(targetEntity=User::class, mappedBy="address", orphanRemoval=true)
      */
     private $users;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Taller::class, mappedBy="address", cascade={"persist", "remove"})
+     */
+    private $taller;
 
     public function __construct()
     {
@@ -135,5 +140,22 @@ class Address
     public function setIndications($indications): void
     {
         $this->indications = $indications;
+    }
+
+    public function getTaller(): ?Taller
+    {
+        return $this->taller;
+    }
+
+    public function setTaller(Taller $taller): self
+    {
+        // set the owning side of the relation if necessary
+        if ($taller->getAddress() !== $this) {
+            $taller->setAddress($this);
+        }
+
+        $this->taller = $taller;
+
+        return $this;
     }
 }

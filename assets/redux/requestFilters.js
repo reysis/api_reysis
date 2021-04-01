@@ -28,26 +28,30 @@ export const getOpinionsFiltersURL = (
     return url;
 }
 
-export const setAvailableDateURLFilters = (
+export const getTDURLFilters = (
     pag = null,
     before = null,
     strictlyBefore = null,
     after = null,
     strictlyAfter = null,
+    servicioEquipo = null
 ) =>{
-    let url = "/api/available-dates?";
+    let url = "/api/turno-disponibles?";
 
     if(before)
-        url === "/api/available-dates?" ? (url += "date%5Bbefore%5D=" + before) : (url += "&date%5Bbefore%5D=" + before);
+        url === "/api/turno-disponibles?" ? (url += "date%5Bbefore%5D=" + before) : (url += "&date%5Bbefore%5D=" + before);
     if(strictlyBefore)
-        url === "/api/available-dates?" ? (url += "date%5Bstrictly_before%5D=" + strictlyBefore) : (url += "&date%5Bstrictly_before%5D=" + strictlyBefore);
+        url === "/api/turno-disponibles?" ? (url += "date%5Bstrictly_before%5D=" + strictlyBefore) : (url += "&date%5Bstrictly_before%5D=" + strictlyBefore);
     if(after)
-        url === "/api/available-dates?" ? (url += "date%5Bafter%5D=" + after) : (url += "&date%5Bafter%5D=" + after);
+        url === "/api/turno-disponibles?" ? (url += "date%5Bafter%5D=" + after) : (url += "&date%5Bafter%5D=" + after);
     if(strictlyAfter)
-        url === "/api/available-dates?" ? (url += "date%5Bstrictly_after%5D=" + strictlyAfter) : (url += "&date%5Bstrictly_after%5D=" + strictlyAfter);
+        url === "/api/turno-disponibles?" ? (url += "date%5Bstrictly_after%5D=" + strictlyAfter) : (url += "&date%5Bstrictly_after%5D=" + strictlyAfter);
+    if(servicioEquipo)
+        url === "/api/turno-disponibles?" ? (url += "servicioTaller=" + servicioEquipo.replace(/\//g,'%2F')) : (url += "&servicioTaller=" + servicioEquipo.replace(/\//g,'%2F'));
     if(pag)
-        url === "/api/available-dates?" ? ( url += 'page=' + pag) : (url += '&page=' + pag);
+        url === "/api/turno-disponibles?" ? ( url += 'page=' + pag) : (url += '&page=' + pag);
 
+    console.log(url);
     return url;
 }
 
@@ -69,6 +73,17 @@ export const getLikeReviewFilters = (pag = null, idUser = null, idReview = null)
         url === "/api/like-reviews?" ? url += 'idReview=' + idReview.replace(/\//g,'%2F') : (url += '&idReview=' + idReview.replace(/\//g,'%2F'));
     if(pag)
         url === "/api/like-reviews?" ? (url += 'page' + pag) : (url += '&page=' + pag);
+
+    return url;
+}
+
+export const getESFilters = (pag = null, servicio = null, equipo) =>{
+    let url = "/api/equipo-servicios?";
+
+    if(servicio)
+        url === "/api/equipo-servicios?" ? url += 'servicio=' + servicio.replace(/\//g,'%2F') : (url += '&servicio=' + servicio.replace(/\//g,'%2F'));
+    if(equipo)
+        url === "/api/equipo-servicios?" ? url += 'equipo=' + equipo.replace(/\//g,'%2F') : (url += '&equipo=' + equipo.replace(/\//g,'%2F'));
 
     return url;
 }

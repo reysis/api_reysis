@@ -63,10 +63,14 @@ const TurnosContainer = () => {
                         key={index}
                         id={item['@id']}
                         defecto={item['defecto']}
-                        date={getFormatedDate(isoStringToDate(item['fecha']))}
-                        time={getHoursFromDate(isoStringToDate(item['fecha']))}
+                        date={item['detalles']['date']['dia'] + "/" + item['detalles']['date']['mes'] +"/" + item['detalles']['date']['year']}
+                        time={item['detalles']['date']['hora'] + ":" + item['detalles']['date']['minutos'] +" " + item['detalles']['date']['amPm']}
+                        taller={item['detalles']['servicioTaller']['taller']}
                         index={index + 1}
                         deleteTurno={()=>handleDeleteTurno(item['@id'])}
+                        domicilio={item['domicilio']}
+                        equipo={item['detalles']['servicioTaller']['servicioAEquipo']['equipo']['nombre']}
+                        servicio={item['detalles']['servicioTaller']['servicioAEquipo']['servicio']['nombre']}
                     />
                 })
             }

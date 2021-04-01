@@ -8,8 +8,10 @@ use ApiPlatform\Core\DataPersister\ContextAwareDataPersisterInterface;
 use ApiPlatform\Core\DataPersister\DataPersisterInterface;
 use App\Entity\AvailableDate;
 use App\Entity\Turno;
+use App\Entity\TurnoDisponible;
 use App\Entity\User;
 use App\Repository\AvailableDateRepository;
+use App\Repository\TurnoDisponibleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -23,15 +25,15 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
     private $decoratedDataPersister;
     private $userPasswordEncoder;
     private $logger;
-    private AvailableDateRepository $availableDateRepository;
     private EntityManagerInterface $entityManager;
     private MailerInterface $mailer;
+    private TurnoDisponibleRepository $turnoDisponibleRepository;
 
     public function __construct(
         DataPersisterInterface $decoratedDataPersister,
         UserPasswordEncoderInterface $userPasswordEncoder,
         LoggerInterface $logger,
-        AvailableDateRepository $availableDateRepository,
+        TurnoDisponibleRepository $turnoDisponibleRepository,
         EntityManagerInterface $entityManager,
         MailerInterface $mailer
     )
@@ -39,14 +41,13 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
         $this->decoratedDataPersister = $decoratedDataPersister;
         $this->userPasswordEncoder = $userPasswordEncoder;
         $this->logger = $logger;
-        $this->availableDateRepository = $availableDateRepository;
         $this->entityManager = $entityManager;
         $this->mailer = $mailer;
+        $this->turnoDisponibleRepository = $turnoDisponibleRepository;
     }
 
     public function supports($data, array $context = []): bool
     {
-        dump($data);
         return $data instanceof Turno;
     }
     /**
@@ -58,33 +59,38 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
     {
         dump($data, $context);
         if(($context['collection_operation_name'] ?? null) === 'post'){
-            $this->decrementAvailableTurno($data->getFecha());
+            $this->decrementAvailableTurno(
+                $data->getDetalles()
+            );
             $this->sendAppointmentConfirmationMail($data, $context);
         }
         if(($context['item_operation_name'] ?? null) == 'put'){
+            /**
+             * @var Turno $oldObject
+             */
             $oldObject = $this->entityManager
                 ->getUnitOfWork()
                 ->getOriginalEntityData($data);
 
-            if($oldObject['fecha'] !== $data->getFecha()){
-                $this->decrementAvailableTurno($data->getFecha());
+            if($oldObject['detalles'] !== $data->getDetalles()){
+                $this->decrementAvailableTurno($data->getDetalles());
                 /**
-                 * @var AvailableDate $dateBeforeUpdate
+                 * @var TurnoDisponible $turnoDisponibleBeforeUpdate
                  */
-                $dateBeforeUpdate = $this->availableDateRepository->findOneByDate($oldObject['fecha']);
-                if(!$dateBeforeUpdate){
-                    $newDateAvailable = new AvailableDate();
-                    $newDateAvailable->setOriginalAmount(1);
-                    $newDateAvailable->setAmountAvailable(1);
-                    $newDateAvailable->setDate($oldObject['fecha']);
-                    $this->entityManager->persist($newDateAvailable);
+                $turnoDisponibleBeforeUpdate = $this->turnoDisponibleRepository->findById($oldObject['detalles']->getId());
+                if(!$turnoDisponibleBeforeUpdate){
+                    $newTurnoAvailable = new TurnoDisponible();
+                    $newTurnoAvailable->setOriginalAmount(1);
+                    $newTurnoAvailable->setAmountAvailable(1);
+                    $newTurnoAvailable->setDate($oldObject['detalles']->getDate());
+                    $this->entityManager->persist($newTurnoAvailable);
                     $this->entityManager->flush();
                 }else{
                     $this->incrementAvailableTurno($oldObject['fecha']);
                 }
             }
         }
-
+        dump($data);
         $this->decoratedDataPersister->persist($data);
     }
 
@@ -94,27 +100,23 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
      */
     public function remove($data, array $context = [])
     {
-        $this->incrementAvailableTurno($data->getFecha());
+        $this->incrementAvailableTurno($data->getDetalles());
         $this->decoratedDataPersister->remove($data);
     }
 
-    private function decrementAvailableTurno(\DateTimeInterface $date)
+    private function decrementAvailableTurno(TurnoDisponible $turnoDisponible)
     {
-        $availableDate = $this->availableDateRepository->findOneByDate($date);
-        if($availableDate->getAmountAvailable() === 1){
-            $this->entityManager->remove($availableDate);
+        if($turnoDisponible->getAmountAvailable() === 1){
+            $this->entityManager->remove($turnoDisponible);
         }else {
-            $availableDate->setAmountAvailable($availableDate->getAmountAvailable() - 1);
-            $this->entityManager->persist($availableDate);
+            $turnoDisponible->setAmountAvailable($turnoDisponible->getAmountAvailable() - 1);
         }
         $this->entityManager->flush();
     }
 
-    private function incrementAvailableTurno(\DateTimeInterface $date)
+    private function incrementAvailableTurno(TurnoDisponible $turnoDisponible)
     {
-        $availableDate = $this->availableDateRepository->findOneByDate($date);
-        $availableDate->setAmountAvailable($availableDate->getAmountAvailable() + 1);
-        $this->entityManager->persist($availableDate);
+        $turnoDisponible->setAmountAvailable($turnoDisponible->getAmountAvailable() + 1);
         $this->entityManager->flush();
     }
 

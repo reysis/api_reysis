@@ -189,3 +189,35 @@ button:focus {
 	border-radius: 6px;
 	box-shadow: 2px 6px 9px 0px #00000030;
 }
+.blue-background-container{
+	background: $color-primary;
+	margin-bottom: -1em;
+	color: $color-white;
+	text-align: center;
+
+	h2 {
+		text-transform: uppercase;
+	}
+
+	button {
+		font-weight: 500;
+		outline: white;
+	}
+}
+
+.form-headers {
+
+	h2 {
+		font-size: 2em;
+		font-weight: 500;
+		text-transform: uppercase;
+
+		span {
+			color: $color-primary
+		}
+	}
+
+	&>span {
+		color: $color-muted;
+	}
+}

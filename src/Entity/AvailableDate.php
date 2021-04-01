@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AvailableDateRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -29,10 +31,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *          "pagination_items_per_page" = 30
  *     }
  * )
- * @ApiFilter(
- *     DateFilter::class, properties={"date"}
- * )
- * @UniqueEntity({"date"})
  * @ORM\Entity(repositoryClass=AvailableDateRepository::class)
  */
 class AvailableDate
@@ -45,33 +43,150 @@ class AvailableDate
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity=TurnoDisponible::class, mappedBy="availableDate", orphanRemoval=true)
+     */
+    private $turnosDisponibles;
+
+    /**
+     * @Groups({"turnodisponible:read", "availabledate:write", "availabledate:read", "turno:read"})
+     * @ORM\Column(type="integer")
+     */
+    private $dia;
+
+    /**
+     * @Groups({"turnodisponible:read", "availabledate:write", "availabledate:read", "turno:read"})
+     * @ORM\Column(type="integer")
+     */
+    private $mes;
+
+    /**
+     * @Groups({"turnodisponible:read", "availabledate:write", "availabledate:read", "turno:read"})
+     * @ORM\Column(type="integer")
+     */
+    private $year;
+
+    /**
+     * @Groups({"turnodisponible:read", "availabledate:write", "availabledate:read", "turno:read"})
+     * @ORM\Column(type="integer")
+     */
+    private $hora;
+
+    /**
+     * @Groups({"turnodisponible:read", "availabledate:write", "availabledate:read", "turno:read"})
+     * @ORM\Column(type="integer")
+     */
+    private $minutos;
+
+    /**
      * @ORM\Column(type="datetime")
-     * @Groups({"availabledate:read", "admin:write"})
-     * @Assert\NotBlank
      */
     private $date;
 
     /**
-     * The current amount of available appointments for the day
-     *
-     * @ORM\Column(type="integer")
-     * @Groups({"availabledate:read", "admin:write"})
-     * @Assert\NotBlank
+     * @Groups({"turnodisponible:read", "availabledate:write", "availabledate:read", "turno:read"})
+     * @ORM\Column(type="string", length=255)
      */
-    private $amountAvailable;
+    private $amPm;
 
-    /**
-     * The max amount of available appointments for the day
-     *
-     * @ORM\Column(type="integer")
-     * @Groups({"admin:read","admin:write"})
-     * @Assert\NotBlank
-     */
-    private $originalAmount;
+    public function __construct()
+    {
+        $this->turnosDisponibles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+
+    /**
+     * @return Collection|TurnoDisponible[]
+     */
+    public function getTurnosDisponibles(): Collection
+    {
+        return $this->turnosDisponibles;
+    }
+
+    public function addTurnosDisponible(TurnoDisponible $turnosDisponible): self
+    {
+        if (!$this->turnosDisponibles->contains($turnosDisponible)) {
+            $this->turnosDisponibles[] = $turnosDisponible;
+            $turnosDisponible->setAvailableDate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTurnosDisponible(TurnoDisponible $turnosDisponible): self
+    {
+        if ($this->turnosDisponibles->removeElement($turnosDisponible)) {
+            // set the owning side to null (unless already changed)
+            if ($turnosDisponible->getAvailableDate() === $this) {
+                $turnosDisponible->setAvailableDate(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDia(): ?int
+    {
+        return $this->dia;
+    }
+
+    public function setDia(int $dia): self
+    {
+        $this->dia = $dia;
+
+        return $this;
+    }
+
+    public function getMes(): ?int
+    {
+        return $this->mes;
+    }
+
+    public function setMes(int $mes): self
+    {
+        $this->mes = $mes;
+
+        return $this;
+    }
+
+    public function getYear(): ?int
+    {
+        return $this->year;
+    }
+
+    public function setYear(int $year): self
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    public function getHora(): ?int
+    {
+        return $this->hora;
+    }
+
+    public function setHora(int $hora): self
+    {
+        $this->hora = $hora;
+
+        return $this;
+    }
+
+    public function getMinutos(): ?int
+    {
+        return $this->minutos;
+    }
+
+    public function setMinutos(int $minutos): self
+    {
+        $this->minutos = $minutos;
+
+        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -86,26 +201,14 @@ class AvailableDate
         return $this;
     }
 
-    public function getAmountAvailable(): ?int
+    public function getAmPm(): ?string
     {
-        return $this->amountAvailable;
+        return $this->amPm;
     }
 
-    public function setAmountAvailable(int $amountAvailable): self
+    public function setAmPm(string $amPm): self
     {
-        $this->amountAvailable = $amountAvailable;
-
-        return $this;
-    }
-
-    public function getOriginalAmount(): ?int
-    {
-        return $this->originalAmount;
-    }
-
-    public function setOriginalAmount(int $originalAmount): self
-    {
-        $this->originalAmount = $originalAmount;
+        $this->amPm = $amPm;
 
         return $this;
     }

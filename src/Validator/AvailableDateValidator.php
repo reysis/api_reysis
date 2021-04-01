@@ -3,24 +3,25 @@
 namespace App\Validator;
 
 use App\Entity\Turno;
+use App\Entity\TurnoDisponible;
 use App\Repository\AvailableDateRepository;
+use App\Repository\TurnoDisponibleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class AvailableDateValidator extends ConstraintValidator
 {
-
-    private AvailableDateRepository $availableDateRepository;
     private EntityManagerInterface $entityManager;
+    private TurnoDisponibleRepository $turnoDisponibleRepository;
 
     public function __construct(
-        AvailableDateRepository $availableDateRepository,
+        TurnoDisponibleRepository $turnoDisponibleRepository,
         EntityManagerInterface $entityManager
     )
     {
-        $this->availableDateRepository = $availableDateRepository;
         $this->entityManager = $entityManager;
+        $this->turnoDisponibleRepository = $turnoDisponibleRepository;
     }
 
     /**
@@ -29,6 +30,7 @@ class AvailableDateValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
+        dump($value);
         /* @var $constraint \App\Validator\AvailableDate */
 
         if (null === $value || '' === $value) {
@@ -47,7 +49,7 @@ class AvailableDateValidator extends ConstraintValidator
             $this->checkDisponibility($value, $constraint);
         }else{
             //PUT operation
-            if($value->getFecha() === $oldObject['fecha']){
+            if($value->getDetalles() === $oldObject['detalles']){
                 return;
             }else{
                 $this->checkDisponibility($value, $constraint);
@@ -62,16 +64,7 @@ class AvailableDateValidator extends ConstraintValidator
      */
     public function checkDisponibility($value, AvailableDate $constraint): void
     {
-        $availableDate = $this->availableDateRepository->findOneByDate($value->getFecha());
-        if (!$availableDate) {
-            $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ value }}', $value->getFecha()->format('Y-m-d H:i:s'))
-                ->addViolation();
-            return;
-        }
-
-        if ($availableDate->getAmountAvailable() === 0) {
-            // TODO: implement the validation here
+        if ($value->getDetalles()->getAmountAvailable() === 0) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ value }}', $value->getFecha()->format('Y-m-d H:i:s'))
                 ->addViolation();

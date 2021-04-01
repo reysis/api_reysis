@@ -30,14 +30,14 @@ export const createTurnoError = error => {
 	};
 };
 
-export const createTurnoFetch = ({fecha, defecto, domicilio,user}) => (dispatch, getState) => {
+export const createTurnoFetch = ({detalles, defecto, domicilio,user}) => (dispatch, getState) => {
 	dispatch(createTurnoRequest());
 
 	const page = "/api/turnos";
 	const method = "POST"
-	console.log(fecha, defecto, domicilio, user);
+	console.log(detalles, defecto, domicilio, user);
 	const body = JSON.stringify({
-		fecha: fecha,
+		detalles: detalles,
 		defecto: defecto,
 		domicilio: domicilio,
 		user: user

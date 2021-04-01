@@ -2,8 +2,68 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/components/turno/stepComponents/Steps.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/equipo/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/equipo/list/equipoListActions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/equipo/list/equipoListReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/equipo/list/equipoListTypes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/equipoServicio/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/equipoServicio/list/listEquipoServicioActions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/equipoServicio/list/listEquipoServicioReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/equipoServicio/list/listEquipoServicioTypes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/list/listTallerBrindaServicioActions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/list/listTallerBrindaServicioReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/list/listTallerBrindaServicioTypes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/turnoDisponible/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleActions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleTypes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210319141101.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210328181927.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210329050639.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210331222500.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210331232022.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20210401195815.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/EquipoFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/EquipoServicioFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TallerBrindaServicioFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TallerFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/TurnoDisponibleFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataPersister/AvailableDateDataPersister.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Equipo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/EquipoServicio.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/TallerBrindaServicio.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/TurnoDisponible.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/EquipoRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/EquipoServicioRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/TallerBrindaServicioRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/TurnoDisponibleRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/FAQ.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FAQ.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnosContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/turno/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/turno/Show.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Show.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/turno/TurnoCalendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/TurnoCalendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_turno_list.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_turno_list.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_user-profile.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_user-profile.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/auth/login/authLoginReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/auth/login/authLoginReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/requestFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/requestFilters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/rootReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/rootReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/turno/create/createTurnoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/create/createTurnoActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/routes/turno.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/routes/turno.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AvailableDateFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AvailableDateFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ServicioFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ServicioFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/ContactMessageDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/ContactMessageDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataPersister/TurnoDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/TurnoDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/AvailableDate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/AvailableDate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Turno.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Turno.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +322,12 @@
       <workItem from="1615584536642" duration="7243000" />
       <workItem from="1615732355323" duration="24081000" />
       <workItem from="1615829029791" duration="3601000" />
-      <workItem from="1615861823181" duration="11803000" />
+      <workItem from="1615861823181" duration="27928000" />
+      <workItem from="1616606277883" duration="3145000" />
+      <workItem from="1616949800916" duration="36499000" />
+      <workItem from="1617050864584" duration="8029000" />
+      <workItem from="1617127156386" duration="4231000" />
+      <workItem from="1617200427700" duration="59177000" />
     </task>
     <servers />
   </component>
@@ -283,5 +348,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/components/turno/TurnoCalendar.js</url>
+          <line>119</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

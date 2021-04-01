@@ -35,7 +35,7 @@ class ContactMessageDataPersister implements ContextAwareDataPersisterInterface
     {
         $this->logger->info(sprintf('Se esta Persistiendo el usuario'));
 
-        //Sent an email
+        // TODO Sent an email
         $this->decoratedDataPersister->persist($data);
     }
 

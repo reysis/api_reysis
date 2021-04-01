@@ -1,0 +1,3 @@
+export const LIST_TBS_REQUEST = 'LIST_TBS_REQUEST'
+export const LIST_TBS_SUCCESS = 'LIST_TBS_SUCCESS'
+export const LIST_TBS_ERROR = 'LIST_TBS_ERROR'

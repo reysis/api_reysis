@@ -5,6 +5,8 @@ import {
 } from './authLoginTypes';
 
 const initialState = {
+    marlon: "algo",
+    daniel: "otra cosa",
     loading: false,
     authenticated: null,
     error: null,

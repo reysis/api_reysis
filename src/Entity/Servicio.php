@@ -7,6 +7,8 @@ use App\Repository\ServicioRepository;
 use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping\Table;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,6 +41,10 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *          "description":"partial",
  *      }
  * )
+ * @UniqueEntity(
+ *     fields={"nombre"}
+ *
+ * )
  */
 class Servicio
 {
@@ -51,8 +57,8 @@ class Servicio
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
-     * @Groups({"servicio:read", "admin:write"})
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Groups({"servicio:read", "equipo:read", "equiposervicio:read", "turno:read"})
      * @Assert\NotBlank
      */
     private $nombre;
@@ -97,9 +103,16 @@ class Servicio
      */
     private $published = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=EquipoServicio::class, mappedBy="servicio", orphanRemoval=true)
+     */
+    private $sePrestaAEquipo;
+
     public function __construct()
     {
         $this->serviceImages = new ArrayCollection();
+        $this->esPrestadoEn = new ArrayCollection();
+        $this->sePrestaAEquipo = new ArrayCollection();
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
@@ -205,6 +218,36 @@ class Servicio
     public function setPublished(bool $published): self
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|EquipoServicio[]
+     */
+    public function getSePrestaAEquipo(): Collection
+    {
+        return $this->sePrestaAEquipo;
+    }
+
+    public function addSePrestaAEquipo(EquipoServicio $sePrestaAEquipo): self
+    {
+        if (!$this->sePrestaAEquipo->contains($sePrestaAEquipo)) {
+            $this->sePrestaAEquipo[] = $sePrestaAEquipo;
+            $sePrestaAEquipo->setServicio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSePrestaAEquipo(EquipoServicio $sePrestaAEquipo): self
+    {
+        if ($this->sePrestaAEquipo->removeElement($sePrestaAEquipo)) {
+            // set the owning side to null (unless already changed)
+            if ($sePrestaAEquipo->getServicio() === $this) {
+                $sePrestaAEquipo->setServicio(null);
+            }
+        }
 
         return $this;
     }

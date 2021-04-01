@@ -1,0 +1,3 @@
+export const LIST_ES_REQUEST = 'LIST_ES_REQUEST'
+export const LIST_ES_SUCCESS = 'LIST_ES_SUCCESS'
+export const LIST_ES_ERROR = 'LIST_ES_ERROR'

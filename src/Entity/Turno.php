@@ -55,13 +55,6 @@ class Turno
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Groups({"turno:read", "turno:write", "user:read"})
-     * @Assert\NotBlank()
-     */
-    private $fecha;
-
-    /**
      * Una breve descripción del defecto
      * 
      * @ORM\Column(type="string", length=255)
@@ -85,21 +78,16 @@ class Turno
      */
     private $domicilio = false;
 
+    /**
+     * @Groups({"turno:read", "turno:write"})
+     * @ORM\OneToOne(targetEntity=TurnoDisponible::class, inversedBy="turno", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $detalles;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFecha(): ?\DateTimeInterface
-    {
-        return $this->fecha;
-    }
-
-    public function setFecha(\DateTimeInterface $fecha): self
-    {
-        $this->fecha = $fecha;
-
-        return $this;
     }
 
     public function getDefecto(): ?string
@@ -134,6 +122,18 @@ class Turno
     public function setDomicilio(bool $domicilio): self
     {
         $this->domicilio = $domicilio;
+
+        return $this;
+    }
+
+    public function getDetalles(): ?TurnoDisponible
+    {
+        return $this->detalles;
+    }
+
+    public function setDetalles(TurnoDisponible $detalles): self
+    {
+        $this->detalles = $detalles;
 
         return $this;
     }

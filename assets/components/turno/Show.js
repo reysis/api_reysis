@@ -2,7 +2,7 @@
 // import { connect } from 'react-redux';
 // import { Link, Redirect } from 'react-router-dom';
 // import PropTypes from 'prop-types';
-// import { retrieve, reset } from '../../actions/turno/show';
+// import { retrieve, reset } from '../../actions/turno/list';
 // import { del } from '../../actions/turno/delete';
 
 // class Show extends Component {
@@ -114,7 +114,7 @@
 //     }
 
 //     return (
-//       <Link to={`../../${type}/show/${encodeURIComponent(items)}`}>
+//       <Link to={`../../${type}/list/${encodeURIComponent(items)}`}>
 //         {items}
 //       </Link>
 //     );
@@ -122,10 +122,10 @@
 // }
 
 // const mapStateToProps = state => ({
-//   retrieved: state.turno.show.retrieved,
-//   error: state.turno.show.error,
-//   loading: state.turno.show.loading,
-//   eventSource: state.turno.show.eventSource,
+//   retrieved: state.turno.list.retrieved,
+//   error: state.turno.list.error,
+//   loading: state.turno.list.loading,
+//   eventSource: state.turno.list.eventSource,
 //   deleteError: state.turno.del.error,
 //   deleteLoading: state.turno.del.loading,
 //   deleted: state.turno.del.deleted
