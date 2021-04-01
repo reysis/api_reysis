@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.dev" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.prod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/Opinions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Opinions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/LikeReviewSystem.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/LikeReviewSystem.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/MyDropzone.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavUserNotification.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavUserNotification.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/TurnoCalendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/TurnoCalendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/config/entrypoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/config/entrypoint.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/auth/login/authLoginActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/auth/login/authLoginActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/availableDate/list/availableDateActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/availableDate/list/availableDateActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/availableDate/list/availableDateReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/availableDate/list/availableDateReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/contact_message/messageActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/contact_message/messageActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/faq/faqActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/faq/faqActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/mediaObject/upload/uploadMediaObjectActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/notification/list/notificationListActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/notification/list/notificationListActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/requestFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/requestFilters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/turno/create/createTurnoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/create/createTurnoActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/turno/show/showTurnoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turno/show/showTurnoActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/redux/user/update/updateUserActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/user/update/updateUserActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/views/ServicioItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ServicioItemPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataPersister/TurnoDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/TurnoDataPersister.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataPersister/UserDataPersister.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +266,7 @@
       <workItem from="1616949800916" duration="36499000" />
       <workItem from="1617050864584" duration="8029000" />
       <workItem from="1617127156386" duration="4231000" />
-      <workItem from="1617200427700" duration="61122000" />
+      <workItem from="1617200427700" duration="61687000" />
     </task>
     <servers />
   </component>
