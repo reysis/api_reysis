@@ -29,7 +29,6 @@ export const faqFetch = (page = "/api/f-a-qs") => dispatch => {
         .then(res => {
             const response = []
             res['hydra:member'].forEach(value => {
-                console.log(value);
                 let category = value['category']
                 if (!category || category.length == 0)
                     category = "General"

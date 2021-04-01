@@ -51,7 +51,6 @@ export const getTDURLFilters = (
     if(pag)
         url === "/api/turno-disponibles?" ? ( url += 'page=' + pag) : (url += '&page=' + pag);
 
-    console.log(url);
     return url;
 }
 

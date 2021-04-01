@@ -253,26 +253,9 @@ const Create = ({ locations }) => {
 	}, [taller, idServicioEquipo]);
 
 	useEffect(()=>{
-		// console.log("TURNOS: ",turnosDisponibles)
-		// console.log("idServicio: ", idServicio);
-		// console.log("idEquipo: ", idEquipo);
-		// console.log("idTallerBS: ", idTallerBrindaServicio)
-		// console.log("DATE:", date);
-		// console.log("TIME:", time);
 		if(turnosDisponibles && idServicio && idEquipo && idTallerBrindaServicio && date && time){
 			turnosDisponibles.map((turno)=>{
 				let timer = time.split(":");
-				// console.log(timer);
-				// console.log(date);
-				// console.log(turno)
-				// console.log(turno['servicioTaller']['@id'] , idTallerBrindaServicio)
-				// console.log(turno['servicioTaller']['servicioAEquipo']['servicio'] , idServicio)
-				// console.log(turno['servicioTaller']['servicioAEquipo']['equipo'] , idEquipo)
-				// console.log(turno['date']['dia'] , date.getDate())
-				// console.log(turno['date']['mes'] , date.getMonth()+1)
-				// console.log(turno['date']['year'] , date.getFullYear())
-				// console.log(turno['date']['hora'] , parseInt(timer[0]))
-				// console.log(turno['date']['minutos'] , parseInt(timer[1]))
 				if(turno['servicioTaller']['@id'] === idTallerBrindaServicio
 					&& turno['servicioTaller']['servicio'] === servicio['@id']
 					&& turno['servicioTaller']['equipo'] === equipo['@id']
@@ -282,7 +265,6 @@ const Create = ({ locations }) => {
 					&& turno['date']['hora'] === parseInt(timer[0])
 					&& turno['date']['minutos'] === parseInt(timer[1])
 				){
-					console.log("Entro a la condicion", turno['@id'])
 					setDetalles(turno['@id'])
 				}
 			})
@@ -292,7 +274,6 @@ const Create = ({ locations }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		let [hour, minute] = time.split(':');
-		console.log("DETALLES: ", detalles);
 		const fecha = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, minute);
 		let domicilioValue = domicilio === 'on';
 		dispatch(createTurnoFetch({

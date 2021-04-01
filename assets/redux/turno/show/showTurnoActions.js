@@ -33,8 +33,6 @@ export const showTurnoFetch = (id) => (dispatch, getState) => {
   const page = "/api/turnos/" + id;
   const method = "GET"
   const headers = getHeaders(getState);
-  console.log(getState());
-  console.log(headers);
   return fetch(page, {method, headers})
       .then(res => res.json())
       .then(res => {

@@ -44,7 +44,6 @@ export const updateUserFetch = (id, {
 
     const page = id;
     let values ={};
-    console.log(values);
     const method = "PUT";
 
     if(phones.length){
@@ -110,7 +109,6 @@ export const updateUserFetch = (id, {
 
     const body = JSON.stringify(values);
     const headers = getHeaders(getState);
-    console.log(body);
     return fetch(page, {method, body, headers})
         .then(res => res.json())
         .then(res => {

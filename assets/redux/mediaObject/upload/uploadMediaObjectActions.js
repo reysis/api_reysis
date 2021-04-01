@@ -34,13 +34,11 @@ export const uploadFileFetch = (value) => (dispatch, getState) => {
 
     const page = "/api/media-objects";
     const method = "POST"
-    console.log(value.filename);
     const body = JSON.stringify({
         filename: value.filename,
         data: value.data,
         user: value.user
     })
-    console.log(body);
     const headers = getHeaders(getState);
 
     fetch(page, { method, body, headers })

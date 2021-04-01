@@ -35,7 +35,6 @@ export const createTurnoFetch = ({detalles, defecto, domicilio,user}) => (dispat
 
 	const page = "/api/turnos";
 	const method = "POST"
-	console.log(detalles, defecto, domicilio, user);
 	const body = JSON.stringify({
 		detalles: detalles,
 		defecto: defecto,

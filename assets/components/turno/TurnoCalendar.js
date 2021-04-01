@@ -105,11 +105,6 @@ const TurnoCalendar = ({ taller, handleDate, handleTime, onChangeDate, onChangeT
     }, [valueTime, optionTime])
 
     const isSameDay = (date_1, date_2) => {
-        // console.log(date_1)
-        // console.log(date_2)
-        // console.log(date_1['year'], date_2.getFullYear())
-        // console.log(date_1['mes'], date_2.getMonth())
-        // console.log(date_1['dia'],  date_2.getDate())
         return date_1['year'] === date_2.getFullYear()
             && date_1['mes'] === date_2.getMonth()+1
             && date_1['dia'] === date_2.getDate();

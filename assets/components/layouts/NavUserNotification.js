@@ -56,14 +56,8 @@ const NavUserNotification = ({ notificationShow, handleNotificationShow }) => {
     }, [notificationsNonReaded])
 
     const readedClick = (e, id) => {
-        console.log("readedClick", e)
         e.stopPropagation()
         dispatch(notificationReadPut(id))
-    }
-
-    const itemClick = (e, id) => {
-        console.log("itemClick", e)
-        // setShowNotification(true);
     }
 
     const handleShowNotification = (values) => {

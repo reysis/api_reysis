@@ -32,7 +32,6 @@ const Opinions = () => {
 	}, [])
 
 	useEffect(()=>{
-		console.log("CAMBIO OPINIONS!");
 		if(opinions){
 			setArrayOfOpinions(opinions['hydra:member'].map(item=>{
 				return (

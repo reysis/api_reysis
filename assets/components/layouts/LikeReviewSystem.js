@@ -42,7 +42,6 @@ const LikeReviewSystem = ({likes, idReview, alreadyLiked}) => {
     useEffect(()=>{
         if(unliked && idReview === unlikedReview){
             array = opinions;
-            console.log(unlikedReview);
             let index = array['hydra:member'].findIndex(value => {
                 return value['@id'] === unlikedReview
             })
@@ -67,7 +66,6 @@ const LikeReviewSystem = ({likes, idReview, alreadyLiked}) => {
                     Toast.error(error);
                 })
             }else{
-                console.log("UNLIKE");
                 setUnlikedReview(idReview);
                 dispatch(showLikeFetch(getLikeReviewFilters(null,user['@id'], idReview)))
                     .then(res=>{

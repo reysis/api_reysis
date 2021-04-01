@@ -19,7 +19,6 @@ export const notificationRequest = () => {
 }
 
 export const notificationSuccess = notifications => {
-    console.log(notifications);
     return {
         type: NOTIFICATION_LIST_SUCCESS,
         payload: notifications
@@ -50,7 +49,6 @@ export const notificationGet = (pag = 1) => (dispatch, getState) => {
     fetch(page, { headers })
         .then(res => res.json())
         .then(res => {
-            console.log(res);
             const notifications = res['hydra:member'].map(value => {
                 return {
                     ...value,
@@ -98,7 +96,6 @@ export const notificationReadError = error => {
 
 export const notificationReadPut = (id, readed) => (dispatch, getState) => {
     dispatch(notificationReading())
-    console.log(readed);
     const options = {
         method: 'PUT',
         body: JSON.stringify({ readed: readed }),

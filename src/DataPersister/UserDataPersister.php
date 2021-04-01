@@ -51,7 +51,6 @@ class UserDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
-        //dump($data);
         if(($context['item_operation_name'] ?? null) === 'put'){
             $this->logger->info(sprintf('Usuario %s esta siendo actualizado', $data->getId()));
             if($data->getProfilePicture()->getFilename() !== "" && $data->getProfilePicture()->getData() !== ""){

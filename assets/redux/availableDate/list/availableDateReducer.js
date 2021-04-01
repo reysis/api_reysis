@@ -18,7 +18,6 @@ const availableDateListReducer = (state = initialState, { type, payload }) => {
                 loading: true
             }
         case AVAILABLE_DATE_LIST_SUCCESS:
-            console.log(`REVIEWS DE UN USUARIO ${payload}`)
             return {
                 loading: false,
                 availableDates: payload,

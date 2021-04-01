@@ -29,12 +29,9 @@ function MyDropzone({setShow}) {
             acceptedFiles.forEach((file) => {
                 const reader = new FileReader()
 
-                reader.onabort = () => console.log('file reading was aborted')
-                reader.onerror = () => console.log('file reading has failed')
-                reader.onload = () => {
+                 reader.onload = () => {
                     // Do whatever you want with the file contents
                     let b64 = reader.result.replace(/^data:.+;base64,/, '');
-                    console.log(b64);
                     setData(b64);
                     setFilename(file.path);
                 }

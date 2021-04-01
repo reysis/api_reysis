@@ -30,7 +30,6 @@ export const listTurnoDisponibleError = error => {
 
 export const listTurnoDisponibleFetch = (url) => (dispatch, getState) => {
     dispatch(listTurnoDisponibleRequest());
-    console.log(url);
     const headers = getHeaders(getState);
 
     fetch(url, {headers})

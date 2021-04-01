@@ -26,7 +26,6 @@ const ServicioItemPage = ({ match }) => {
                 setHtmlState(draftjsToHtml(jsonState))
             }
             catch (error) {
-                console.log(error)
                 setHtmlState("<p>Sin descripción</p>")
             }
         }
@@ -34,7 +33,6 @@ const ServicioItemPage = ({ match }) => {
 
     useEffect(() => {
         const serviceItem = decodeURIComponent(match.params.id)
-        console.log(serviceItem);
         dispatch(serviceItemFetch(serviceItem))
     }, [])
 

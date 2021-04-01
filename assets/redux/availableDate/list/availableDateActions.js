@@ -29,14 +29,11 @@ export const availableDateFetch = (url) => async dispatch => {
     dispatch(availableDateRequest());
 
     try {
-        console.log(url);
         const review_resp = await fetch(url);
         const response = await review_resp.json();
-        console.log(response);
         dispatch(availableDateSuccess(response));
     }
     catch (error) {
-        console.error(error.message)
         dispatch(availableDateError(error.message));
     }
 }

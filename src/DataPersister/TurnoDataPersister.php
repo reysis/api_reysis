@@ -57,7 +57,6 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
      */
     public function persist($data, array $context = [])
     {
-        dump($data, $context);
         if(($context['collection_operation_name'] ?? null) === 'post'){
             $this->decrementAvailableTurno(
                 $data->getDetalles()
@@ -90,7 +89,6 @@ class TurnoDataPersister implements ContextAwareDataPersisterInterface
                 }
             }
         }
-        dump($data);
         $this->decoratedDataPersister->persist($data);
     }
 
