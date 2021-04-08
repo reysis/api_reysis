@@ -54,9 +54,11 @@ export const getTDURLFilters = (
     return url;
 }
 
-export const getServiceFilters = (pag = null,) =>{
+export const getServiceFilters = (pag = null, nombreEquipo=null) =>{
     let url = "/api/servicios?";
 
+    if(nombreEquipo)
+        url += 'sePrestaAEquipo.equipo.nombre=' + nombreEquipo;
     if(pag)
         url === "/api/servicios?" ? ( url += 'page=' + pag) : (url += '&page=' + pag);
 
@@ -76,13 +78,27 @@ export const getLikeReviewFilters = (pag = null, idUser = null, idReview = null)
     return url;
 }
 
-export const getESFilters = (pag = null, servicio = null, equipo) =>{
+export const getESFilters = (pag = null, servicio = null, equipo=null) =>{
     let url = "/api/equipo-servicios?";
 
     if(servicio)
         url === "/api/equipo-servicios?" ? url += 'servicio=' + servicio.replace(/\//g,'%2F') : (url += '&servicio=' + servicio.replace(/\//g,'%2F'));
     if(equipo)
         url === "/api/equipo-servicios?" ? url += 'equipo=' + equipo.replace(/\//g,'%2F') : (url += '&equipo=' + equipo.replace(/\//g,'%2F'));
+    if(pag)
+        url === "/api/like-reviews?" ? (url += 'page' + pag) : (url += '&page=' + pag);
 
+    return url;
+}
+
+export const getTallerBrindaServicios = (page = null, idEquipo = null, idServicio = null) =>{
+    let url = "/api/taller-brinda-servicios?";
+
+    if(idEquipo)
+        url === "/api/taller-brinda-servicios?" ? url += "servicioAEquipo.equipo=" + idEquipo.replace(/\//g, '%2F') : url += "&servicioAEquipo.equipo=" + idEquipo.replace(/\//g, '%2F');
+    if(idServicio)
+        url === "/api/taller-brinda-servicios?" ? url += "servicioAEquipo.servicio=" + idServicio.replace(/\//g, '%2F') : url += "&servicioAEquipo.servicio=" + idServicio.replace(/\//g, '%2F');
+    if(page)
+        url === "/api/like-reviews?" ? (url += 'page' + page) : (url += '&page=' + page);
     return url;
 }

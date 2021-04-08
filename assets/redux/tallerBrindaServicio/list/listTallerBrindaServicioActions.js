@@ -1,7 +1,7 @@
 import {
     LIST_TBS_SUCCESS,
     LIST_TBS_REQUEST,
-    LIST_TBS_ERROR
+    LIST_TBS_ERROR, LIST_TBS_CLEAR_ALL
 } from "./listTallerBrindaServicioTypes";
 
 import { fetch } from "../../../utils/dataAccess";
@@ -43,3 +43,9 @@ export const listTBSFetch = (url) => (dispatch, getState) => {
             throw error.message;
         });
 };
+
+export const listTBSClearAll = () =>{
+    return {
+        type: LIST_TBS_CLEAR_ALL
+    }
+}

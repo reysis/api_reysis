@@ -2,10 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_cards.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_cards.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_turno_list.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_turno_list.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/turno/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/turno/stepComponents/Steps.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/stepComponents/Steps.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/config/entrypoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/config/entrypoint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/requestFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/requestFilters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/rootReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/rootReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/list/listTallerBrindaServicioActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/list/listTallerBrindaServicioActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/list/listTallerBrindaServicioReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/list/listTallerBrindaServicioReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/list/listTallerBrindaServicioTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/tallerBrindaServicio/list/listTallerBrindaServicioTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/turnoDisponible/list/listTurnoDisponibleTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Address.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/EquipoServicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/EquipoServicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Servicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Servicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Taller.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Taller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TallerBrindaServicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TallerBrindaServicio.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,7 +285,8 @@
       <workItem from="1616949800916" duration="36499000" />
       <workItem from="1617050864584" duration="8029000" />
       <workItem from="1617127156386" duration="4231000" />
-      <workItem from="1617200427700" duration="62974000" />
+      <workItem from="1617200427700" duration="93028000" />
+      <workItem from="1617847512889" duration="1651000" />
     </task>
     <servers />
   </component>
@@ -297,7 +314,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/components/turno/TurnoCalendar.js</url>
           <line>114</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

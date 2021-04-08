@@ -53,14 +53,14 @@ class EquipoServicio
     private $id;
 
     /**
-     * @Groups({"equipo:read", "turnodisponible:read", "equiposervicio:read", "turno:read"})
+     * @Groups({"equipo:read", "turnodisponible:read", "equiposervicio:read", "tallerbrindaservicio:read","turno:read"})
      * @ORM\ManyToOne(targetEntity=Servicio::class, inversedBy="sePrestaAEquipo")
      * @ORM\JoinColumn(nullable=false)
      */
     private $servicio;
 
     /**
-     * @Groups({"turnodisponible:read", "turno:read"})
+     * @Groups({"turnodisponible:read", "turno:read", "servicio:read", "tallerbrindaservicio:read"})
      * @ORM\ManyToOne(targetEntity=Equipo::class, inversedBy="reciveServicios")
      * @ORM\JoinColumn(nullable=false)
      */

@@ -221,3 +221,25 @@ button:focus {
 		color: $color-muted;
 	}
 }
+
+.vl {
+	border-bottom: 2px solid grey;
+	height: unset;
+	width: 100%;
+	padding: 2px 0 2px 0;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+@media only screen and (min-width:768px){
+	/* For mobile phones: */
+	.vl{
+		border-left: 2px solid grey;
+		border-bottom: unset;
+		height: 100px;
+		width: unset;
+		padding: unset;
+		margin-bottom: unset;
+		margin-top: unset;
+	}
+}

@@ -1,7 +1,8 @@
 import {
     LIST_TURNO_DISPONIBLE_SUCCESS,
     LIST_TURNO_DISPONIBLE_REQUEST,
-    LIST_TURNO_DISPONIBLE_ERROR
+    LIST_TURNO_DISPONIBLE_ERROR,
+    LIST_TURNO_CLEAR_ALL
 } from "./listTurnoDisponibleTypes";
 
 import { fetch } from "../../../utils/dataAccess";
@@ -41,3 +42,9 @@ export const listTurnoDisponibleFetch = (url) => (dispatch, getState) => {
             dispatch(listTurnoDisponibleError(error.message));
         });
 };
+
+export const listTurnoDisponibleClearAll = ()=>{
+    return{
+        type: LIST_TURNO_CLEAR_ALL
+    }
+}

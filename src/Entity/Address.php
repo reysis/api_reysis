@@ -33,7 +33,7 @@ class Address
      * Calle donde esta ubicada
      *
      * @ORM\Column(type="string", length=100)
-     * @Groups({"user:write", "owner:read", "turno:read", "turno:write", "equiposervicio:read"})
+     * @Groups({"user:write", "owner:read", "turno:read", "turno:write", "equiposervicio:read", "tallerbrindaservicio:read"})
      */
     private $postAddress;
 
@@ -41,7 +41,7 @@ class Address
      * Algunas indicaciones extras que quiera dar el usuario
      *
      * @ORM\Column(type="string", length=100, nullable=true)
-     * @Groups({"user:write", "owner:read", "turno:read","turno:write", "equiposervicio:read"})
+     * @Groups({"user:write", "owner:read", "turno:read","turno:write", "equiposervicio:read", "tallerbrindaservicio:read"})
      */
     private $indications;
 

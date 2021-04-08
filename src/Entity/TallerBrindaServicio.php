@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
@@ -28,6 +29,13 @@ use ApiPlatform\Core\Annotation\ApiFilter;
  *      },
  * )
  * @ApiFilter(PropertyFilter::class)
+ * @ApiFilter(
+ *      SearchFilter::class,
+ *      properties={
+ *          "servicioAEquipo.servicio":"exact",
+ *          "servicioAEquipo.equipo":"exact"
+ *      }
+ * )
  * @ORM\Entity(repositoryClass=TallerBrindaServicioRepository::class)
  */
 class TallerBrindaServicio
@@ -40,7 +48,7 @@ class TallerBrindaServicio
     private $id;
 
     /**
-     * @Groups({"equiposervicio:read", "turnodisponible:read", "turno:read"})
+     * @Groups({"equiposervicio:read", "turnodisponible:read", "turno:read", "tallerbrindaservicio:read"})
      * @ORM\ManyToOne(targetEntity=Taller::class, inversedBy="brindaServicios")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -53,7 +61,7 @@ class TallerBrindaServicio
     private $turnoDisponibles;
 
     /**
-     * @Groups({"turnodisponible:read", "turno:read"})
+     * @Groups({"turnodisponible:read", "turno:read", "tallerbrindaservicio:read"})
      * @ORM\ManyToOne(targetEntity=EquipoServicio::class, inversedBy="tallerBrindaServicios")
      * @ORM\JoinColumn(nullable=false)
      */

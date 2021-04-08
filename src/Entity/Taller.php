@@ -23,20 +23,20 @@ class Taller
     private $id;
 
     /**
-     * @Groups({"equiposervicio:read", "turno:read"})
+     * @Groups({"equiposervicio:read", "turno:read", "tallerbrindaservicio:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $nombre;
 
     /**
-     * @Groups({"equiposervicio:read", "turno:read"})
+     * @Groups({"equiposervicio:read", "turno:read", "tallerbrindaservicio:read"})
      * @ORM\OneToOne(targetEntity=Address::class, inversedBy="taller", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $address;
 
     /**
-     * @Groups({"equiposervicio:read", "turno:read"})
+     * @Groups({"equiposervicio:read", "turno:read", "tallerbrindaservicio:read"})
      * @ORM\Column(type="string", length=255)
      */
     private $alias;

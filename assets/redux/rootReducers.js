@@ -18,11 +18,13 @@ import mediaObject from './mediaObject';
 import whyus from './whyus';
 import equipo from './equipo';
 import equipoServicio from './equipoServicio';
+import tallerBrindaServicio from './tallerBrindaServicio';
 
 export default combineReducers({
     router: connectRouter(history),
     turno,
     turnoDisponible,
+    tallerBrindaServicio,
     availableDate,
     auth,
     service,

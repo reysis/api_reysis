@@ -1,7 +1,8 @@
 import {
     LIST_TBS_ERROR,
     LIST_TBS_REQUEST,
-    LIST_TBS_SUCCESS
+    LIST_TBS_SUCCESS,
+    LIST_TBS_CLEAR_ALL
 } from './listTallerBrindaServicioTypes'
 
 const initialState = {
@@ -29,6 +30,8 @@ const listTBSReducer = (state = initialState, { type, payload }) => {
                 equipos: null,
                 error: payload
             }
+        case LIST_TBS_CLEAR_ALL:
+            return initialState;
         default:
             return state
     }

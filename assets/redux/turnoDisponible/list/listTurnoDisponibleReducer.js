@@ -1,7 +1,8 @@
 import {
     LIST_TURNO_DISPONIBLE_ERROR,
     LIST_TURNO_DISPONIBLE_REQUEST,
-    LIST_TURNO_DISPONIBLE_SUCCESS
+    LIST_TURNO_DISPONIBLE_SUCCESS,
+    LIST_TURNO_CLEAR_ALL
 } from './listTurnoDisponibleTypes'
 
 const initialState = {
@@ -29,6 +30,8 @@ const listTurnoDisponiblesReducer = (state = initialState, { type, payload }) =>
                 turnosDisponibles: null,
                 error: payload
             }
+        case LIST_TURNO_CLEAR_ALL:
+            return initialState
         default:
             return state
     }

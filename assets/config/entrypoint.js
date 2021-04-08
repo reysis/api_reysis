@@ -1,1 +1,1 @@
-export const ENTRYPOINT = 'https://reysis.com';
+export const ENTRYPOINT = 'http://localhost:8000';

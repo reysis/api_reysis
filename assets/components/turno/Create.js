@@ -25,9 +25,14 @@ import {changeTimeZone} from "../../redux/utiles";
 import Toast from "../Utils/Toast";
 import {listEquipoFetch} from "../../redux/equipo/list/equipoListActions";
 import {listESFetch} from "../../redux/equipoServicio/list/listEquipoServicioActions";
-import {getESFilters, getTDURLFilters} from "../../redux/requestFilters";
-import {Horario, First, Last, Second} from './stepComponents/Steps';
-import {listTurnoDisponibleFetch} from "../../redux/turnoDisponible/list/listTurnoDisponibleActions";
+import {getESFilters, getServiceFilters, getTallerBrindaServicios, getTDURLFilters} from "../../redux/requestFilters";
+import {Horario, First, Last, Second, WizardHeader} from './stepComponents/Steps';
+import {
+	listTurnoDisponibleClearAll,
+	listTurnoDisponibleFetch
+} from "../../redux/turnoDisponible/list/listTurnoDisponibleActions";
+import {servicesFetch} from "../../redux/service/list/serviceListActions";
+import {listTBSClearAll, listTBSFetch} from "../../redux/tallerBrindaServicio/list/listTallerBrindaServicioActions";
 
 const Create = ({ locations }) => {
 
@@ -41,6 +46,16 @@ const Create = ({ locations }) => {
 	const [arrayEquipos, setArrayEquipos] = useState([]);
 	const errorEquipos = useSelector(state=> state.equipo.list.error);
 
+	/*Variables de Servicios*/
+	const loadingServicios = useSelector(state=> state.service.list.loading);
+	const services = useSelector(state=> state.service.list.services);
+	const errorService = useSelector(state=> state.service.list.error);
+
+	/*Variables de Talleres*/
+	const talleresBS = useSelector(state=> state.tallerBrindaServicio.list.talleres)
+	const errorTalleresBS = useSelector(state=> state.tallerBrindaServicio.list.error);
+	const loadingTalleresBS = useSelector(state=> state.tallerBrindaServicio.list.loading);
+
 	/*Variables de Turno */
 	const loading = useSelector(state => state.turno.create.loading)
 	const turno = useSelector(state => state.turno.create.turno)
@@ -52,8 +67,9 @@ const Create = ({ locations }) => {
 	const authenticated = useSelector(state => state.auth.login.authenticated)
 	const user = useSelector(state => state.auth.token.authenticatedUser)
 	const serverConfig = useSelector(state=> state.configuration.configurations)
+
 	const [servicios, setServicios] = useState([]);
-	const [servicio, setServicio] = useState("");
+	const [servicio, setServicio] = useState(null);
 	const [taller, setTaller] = useState("");
 	const [arrayTallers, setArrayTalleres] = useState([]);
 	const [date, setDate] = useState(new Date())
@@ -66,7 +82,7 @@ const Create = ({ locations }) => {
 	const [tallerToShow, setTallerToShow] = useState(null);
 	const [idTallerBrindaServicio, setIdTallerBrindaServicio] = useState(null);
 
-	const [equipo, setEquipo] = useState("");
+	const [equipo, setEquipo] = useState(null);
 	const [idEquipo, setIdEquipo] = useState("");
 	const [idServicio, setIdServicio] = useState("");
 	const [idServicioEquipo, setIdServicioEquipo] = useState(null);
@@ -78,17 +94,34 @@ const Create = ({ locations }) => {
 
 	const [userAuth, setUserAuth] = useState(null)
 
+	const setAllToInitialState = ()=>{
+		setServicios([]);
+		setServicio(null);
+		setTaller("");
+		setArrayTalleres([]);
+		setDate(new Date())
+		setTime(null)
+		setSeccionDelDia("am");
+		setDisabledForm(true)
+		setDisableNext(true);
+		setDisableNext2(true);
+		setDisableNext3(true);
+		setTallerToShow(null);
+		setIdTallerBrindaServicio(null);
+		setEquipo("");
+		setIdEquipo("");
+		setIdServicio("");
+		setIdServicioEquipo(null);
+		setDefecto("");
+		setDomicilio(false);
+		setDetalles(null);
+		setUserAuth(null)
+	}
+
 	//Primera peticion
 	useEffect(()=>{
 		dispatch(listEquipoFetch())
 	}, [])
-
-	//Cargar los equipos al renderizar
-	useEffect(()=>{
-		if(equipo){
-			dispatch(listESFetch(getESFilters(1, null, equipo['@id'])));
-		}
-	}, [equipo])
 
 	//Cuando carguen los equipos ponerlos en el combobox
 	useEffect(()=>{
@@ -101,81 +134,98 @@ const Create = ({ locations }) => {
 		}
 	}, [equipos])
 
+	//Buscando los servicios en la BD
+	useEffect(()=>{
+		if(equipo){
+			dispatch(servicesFetch(getServiceFilters(1, equipo)))
+		}
+	}, [equipo])
+
 	//Poner los servicios que se asocian con ese equipo en el combobox de servicios
 	useEffect(()=>{
-		if(equipos){
-			equipos.map((item)=>{
-				if(item['nombre'] === equipo){
-					setServicios(
-						item['reciveServicios'].map((service, index)=>{
-							return <option key={index} value={service['servicio']['nombre']}>{service['servicio']['nombre']}</option>
-						})
-					)
-				}
-			})
+		if(equipo && services){
+			setServicios(
+				services['hydra:member'].map((item, index)=>{
+					return <option key={index} value={item['nombre']}>{item['nombre']}</option>
+				})
+			)
 		}
-	}, [equipo, equipos])
+	}, [equipo, services])
 
 	//Manejar el cambio en la seleccion de equipo
 	const handleChange = (e) => {
 		setEquipo(e.target.value);
 	}
 
+	//Manejar el cambio de servicio
+	const handleChangeServicio = (e) => {
+		setServicio(e.target.value);
+	}
+
+	//Actualizar el id de Equipo cuando el usuario cambie
 	useEffect(()=>{
-		if(equipo){
+		if(equipo && equipos){
 			equipos.map((value)=>{
 				if(value['nombre'] === equipo){
 					setIdEquipo(value['@id'])
 				}
 			})
 		}
-	}, [equipo])
+	}, [equipo, equipos])
 
+	//Actualizar el id de Servicio cuando el usuario cambie
 	useEffect(()=>{
-		if(servicio && equipo_servicio){
-			equipo_servicio['hydra:member'].map((value)=>{
-				if(value['servicio']['nombre'] === servicio){
-					setIdServicio(value['servicio']['@id'])
+		if(servicio && services){
+			services['hydra:member'].map((value)=>{
+				if(value['nombre'] === servicio){
+					setIdServicio(value['@id'])
 				}
 			})
 		}
-	}, [servicio, equipo_servicio])
-
-	//Manejar el cambio de servicio
-	const handleChangeServicio = (e) => {
-		setServicio(e.target.value);
-	}
+	}, [servicio, services])
 
 	//Buscar exactamente los talleres que brindan servicio para ese equipo
-	useEffect(()=>{
-		if(equipo && servicio ){
-			dispatch(listESFetch(getESFilters(1, idServicio, idEquipo)));
+	const handleNext1 =()=>{
+		if(idServicio && idEquipo && !talleresBS){
+			dispatch(listTBSFetch(getTallerBrindaServicios(1, idEquipo, idServicio)));
 		}
-	}, [equipo, servicio])
+	}
 
 	//Comprobar que haya algun taller que preste ese servicio para ese equipo
 	useEffect(()=>{
-		if(equipo_servicio && equipo_servicio['hydra:member'][0]['tallerBrindaServicios'].length === 0){
+		if(talleresBS && talleresBS['totalItems'] === 0){
 			Toast.info("Actualmente ninguno de nuestros tallers esta prestando este servicio. Perdone las molestias que esto pueda ocasionarle. Intente de nuevo en otra ocasión!")
 		}
-	}, [equipo_servicio])
+	}, [talleresBS])
 
 	//Rellenar el combobox de taller
 	useEffect(()=>{
-		if(equipo_servicio){
+		if(talleresBS){
+			//guardando el ID del par equipo-servicio
+			talleresBS.map((value, index)=>{
+				if(value['servicioAEquipo']['servicio'] === idServicio && value['servicioAEquipo']['equipo'] === idEquipo){
+					setIdServicioEquipo(value['@id'])
+				}
+			})
+			console.log("Rellenando el combobox");
 			setArrayTalleres(
-				equipo_servicio['hydra:member'][0]['tallerBrindaServicios'].map((tallerBS, index)=>{
+				talleresBS.map((tallerBS, index)=>{
 					return <option key={index} value={tallerBS['taller']['alias']}>{tallerBS['taller']['alias']}</option>
 				})
 			)
 		}
-	}, [equipo_servicio])
+	}, [talleresBS])
+
+	const firstHandleGoBack = () =>{
+		dispatch(listTBSClearAll());
+		setTallerToShow(null);
+		setTaller(null);
+	}
 
 	//Manejar el cambio del combobox de taller
 	useEffect(()=>{
-		if(taller && equipo_servicio){
-			setIdServicioEquipo(equipo_servicio['hydra:member'][0]['@id'])
-			equipo_servicio['hydra:member'][0]['tallerBrindaServicios'].map((tallerBS, index)=>{
+		if(taller){
+			talleresBS.map((tallerBS, index)=>{
 				if(tallerBS['taller']['alias'] === taller){
 					setIdTallerBrindaServicio(tallerBS['@id'])
 					setTallerToShow(tallerBS['taller']);
@@ -239,7 +289,7 @@ const Create = ({ locations }) => {
 	}, [time])
 
 	//carga las fechas disponibles al cargar el componente
-	useEffect(()=>{
+	const handleNext2=()=>{
 		if(taller && idServicioEquipo){
 			let date = new Date(); // Now
 			date.setDate(date.getDate() + 30);
@@ -250,7 +300,13 @@ const Create = ({ locations }) => {
 				getTDURLFilters(1, null,date, null,today, idTallerBrindaServicio)
 			))
 		}
-	}, [taller, idServicioEquipo]);
+	}
+
+	const handleBack2=()=>{
+		setTime(null);
+		setDate(new Date());
+		dispatch(listTurnoDisponibleClearAll());
+	}
 
 	useEffect(()=>{
 		if(turnosDisponibles && idServicio && idEquipo && idTallerBrindaServicio && date && time){
@@ -282,6 +338,7 @@ const Create = ({ locations }) => {
 			domicilio: domicilioValue,
 			user: user['@id']
 		}))
+		setAllToInitialState();
 	}
 
 	useEffect(() => {
@@ -293,6 +350,14 @@ const Create = ({ locations }) => {
 				|| (!authenticated && !userAuth)
 		})
 	}, [date, time, defecto, userAuth, loading])
+
+    const transitions = {
+        enterRight: 'animated enterRight',
+        enterLeft: 'animated enterLeft',
+        exitRight: 'animated exitRight',
+        exitLeft: 'animated exitLeft',
+        intro: 'animated intro',
+    };
 
 	if (redirect)
 		return (
@@ -309,6 +374,8 @@ const Create = ({ locations }) => {
 							) : (
 						<StepWizard
 							isHashEnabled
+                            transitions={transitions}
+                            nav={<WizardHeader/>}
 						>
 							<First
                                 hashKey={'equipo'}
@@ -318,6 +385,9 @@ const Create = ({ locations }) => {
                                 handleChangeServicio={handleChangeServicio}
                                 handleChange={handleChange}
 								disabledNext={disableNext}
+								loadingEquipos={loadingEquipos}
+								loadingServicios={loadingServicios}
+								handleNext={handleNext1}
                             />
 							<Second
                                 hashKey={'taller'}
@@ -331,6 +401,9 @@ const Create = ({ locations }) => {
 								defecto={defecto}
 								setDefecto={setDefecto}
 								isActiveDomicilio={serverConfig['domicilio']}
+								handleGoBack={firstHandleGoBack}
+								loadingTalleres={loadingTalleresBS}
+								handleNext={handleNext2}
                             />
 							<Horario
                                 hashKey={'horario'}
@@ -340,6 +413,8 @@ const Create = ({ locations }) => {
                                 setTime={setTime}
 								disabledNext={disableNext3}
 								setSeccionDelDia={setSeccionDelDia}
+								handleNext={()=>{}}
+								handleGoBack={handleBack2}
                             />
 							<Last
 								hashKey={'TheEnd!'}

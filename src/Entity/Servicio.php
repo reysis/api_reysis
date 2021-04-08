@@ -39,11 +39,11 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *      properties={
  *          "nombre":"partial",
  *          "description":"partial",
+ *          "sePrestaAEquipo.equipo.nombre":"exact"
  *      }
  * )
  * @UniqueEntity(
  *     fields={"nombre"}
- *
  * )
  */
 class Servicio
@@ -92,18 +92,19 @@ class Servicio
     private $shortDescription;
 
     /**
-     * @Groups({"servicio:read", "admin:write"})
+     * @Groups({"servicio:read"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $urlPortada;
 
     /**
-     * @Groups({"servicio:read", "admin:write"})
+     * @Groups({"servicio:read"})
      * @ORM\Column(type="boolean")
      */
     private $published = false;
 
     /**
+     * @Groups({"servicio:read"})
      * @ORM\OneToMany(targetEntity=EquipoServicio::class, mappedBy="servicio", orphanRemoval=true)
      */
     private $sePrestaAEquipo;
