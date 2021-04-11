@@ -1,0 +1,27 @@
+.ast-required {
+  color: #f21c31;
+  font-weight: 500;
+  font-size: 1.2em;
+  margin-left: 0.3em;
+}
+
+.notif-required {
+  color: #f21c31 !important;
+}
+
+.input-password-content {
+  .input-password {
+    position: relative;
+    &-show {
+      height: 20px;
+      position: absolute;
+      right: 20px;
+      top: 7px;
+      color: $color-primary;
+      &:hover {
+        cursor: pointer;
+        color: $color-primary;
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ import {getIdFromUrl} from "../../redux/utiles";
 
 const TurnoCard = ({defecto, date, index, time, id, deleteTurno, taller, domicilio, equipo, servicio}) => {
     return (
-        <Col md={6} sm={12} lg={6}>
+        <Col md={12} sm={12} lg={6}>
             <Card className="turno-card__container">
                 <Card.Body>
                     <Card.Header>

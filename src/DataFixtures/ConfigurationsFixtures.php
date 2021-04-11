@@ -42,6 +42,7 @@ class ConfigurationsFixtures extends BaseFixture
            $configuration->setWhoWeAre($whoWeAre);
            $configuration->setGarantia($garantia);
            $configuration->setValores($garantia);
+           $configuration->setMaxPlaningDays(35);
 
            return $configuration;
         });

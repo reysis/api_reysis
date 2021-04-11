@@ -80,10 +80,26 @@ class Turno
 
     /**
      * @Groups({"turno:read", "turno:write"})
-     * @ORM\OneToOne(targetEntity=TurnoDisponible::class, inversedBy="turno", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=TurnoDisponible::class, inversedBy="turno")
      * @ORM\JoinColumn(nullable=false)
      */
     private $detalles;
+
+    /**
+     * @return bool
+     */
+    public function isDomicilio(): bool
+    {
+        return $this->domicilio;
+    }
+
+    /**
+     * @param bool $domicilio
+     */
+    public function setDomicilio(bool $domicilio): void
+    {
+        $this->domicilio = $domicilio;
+    }
 
     public function getId(): ?int
     {
@@ -114,24 +130,12 @@ class Turno
         return $this;
     }
 
-    public function getDomicilio(): ?bool
-    {
-        return $this->domicilio;
-    }
-
-    public function setDomicilio(bool $domicilio): self
-    {
-        $this->domicilio = $domicilio;
-
-        return $this;
-    }
-
     public function getDetalles(): ?TurnoDisponible
     {
         return $this->detalles;
     }
 
-    public function setDetalles(TurnoDisponible $detalles): self
+    public function setDetalles(?TurnoDisponible $detalles): self
     {
         $this->detalles = $detalles;
 

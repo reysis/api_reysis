@@ -63,60 +63,41 @@ const Create = ({ locations }) => {
 	const [redirect, setRedirect] = useState(false);
 
 	const turnosDisponibles = useSelector(state =>state.turnoDisponible.list.turnosDisponibles);
+	const loadingTurnosDisponibles = useSelector(state=> state.turnoDisponible.list.loading)
+	const errorLoadingTurnosDisponibles = useSelector(state=> state.turnoDisponible.list.error);
 
 	const authenticated = useSelector(state => state.auth.login.authenticated)
 	const user = useSelector(state => state.auth.token.authenticatedUser)
 	const serverConfig = useSelector(state=> state.configuration.configurations)
 
-	const [servicios, setServicios] = useState([]);
-	const [servicio, setServicio] = useState(null);
-	const [taller, setTaller] = useState("");
-	const [arrayTallers, setArrayTalleres] = useState([]);
-	const [date, setDate] = useState(new Date())
-	const [time, setTime] = useState(null)
-	const [seccionDelDia, setSeccionDelDia] = useState("am");
-	const [disabledForm, setDisabledForm] = useState(true)
-	const [disableNext, setDisableNext] = useState(true);
-	const [disableNext2, setDisableNext2] = useState(true);
-	const [disableNext3, setDisableNext3] = useState(true);
-	const [tallerToShow, setTallerToShow] = useState(null);
-	const [idTallerBrindaServicio, setIdTallerBrindaServicio] = useState(null);
-
-	const [equipo, setEquipo] = useState(null);
-	const [idEquipo, setIdEquipo] = useState("");
-	const [idServicio, setIdServicio] = useState("");
-	const [idServicioEquipo, setIdServicioEquipo] = useState(null);
-	const [defecto, setDefecto] = useState("");
-	const [domicilio, setDomicilio] = useState(false);
-	const [detalles, setDetalles] = useState(null);
-
 	const dispatch = useDispatch();
 
-	const [userAuth, setUserAuth] = useState(null)
+	const [formState, setFormState] = useState({
+		equipo: '',
+		servicio: '',
+		taller: '',
+		date: new Date(),
+		time: false,
+		domicilio: serverConfig['domicilio'],
+		defecto: '',
+		amPm: ''
+	})
+	const [servicios, setServicios] = useState(null);
+	const [idEquipo, setIdEquipo] = useState(null);
+	const [idServicio, setIdServicio] = useState(null);
+	const [idServicioEquipo, setIdServicioEquipo] = useState(null);
+	const [idTallerBrindaServicio, setIdTallerBrindaServicio] = useState(null);
+	const [arrayTalleres, setArrayTalleres] = useState([]);
+	const [tallerToShow, setTallerToShow] = useState(null);
+	const [detalles, setDetalles] = useState(null);
+	const [domicilio, setDomicilio] = useState(false);
+	const [disabledForm, setDisabledForm] = useState(false);
 
-	const setAllToInitialState = ()=>{
-		setServicios([]);
-		setServicio(null);
-		setTaller("");
-		setArrayTalleres([]);
-		setDate(new Date())
-		setTime(null)
-		setSeccionDelDia("am");
-		setDisabledForm(true)
-		setDisableNext(true);
-		setDisableNext2(true);
-		setDisableNext3(true);
-		setTallerToShow(null);
-		setIdTallerBrindaServicio(null);
-		setEquipo("");
-		setIdEquipo("");
-		setIdServicio("");
-		setIdServicioEquipo(null);
-		setDefecto("");
-		setDomicilio(false);
-		setDetalles(null);
-		setUserAuth(null)
-	}
+	useEffect(()=>{
+		if(serverConfig){
+			setDomicilio(serverConfig['domicilio'])
+		}
+	}, [serverConfig])
 
 	//Primera peticion
 	useEffect(()=>{
@@ -136,67 +117,66 @@ const Create = ({ locations }) => {
 
 	//Buscando los servicios en la BD
 	useEffect(()=>{
-		if(equipo){
-			dispatch(servicesFetch(getServiceFilters(1, equipo)))
+		if(formState.equipo){
+			dispatch(servicesFetch(getServiceFilters(1, formState.equipo)))
 		}
-	}, [equipo])
+	}, [formState.equipo])
 
 	//Poner los servicios que se asocian con ese equipo en el combobox de servicios
 	useEffect(()=>{
-		if(equipo && services){
+	    if(formState.equipo === null || formState.equipo === '')
+	        setServicios(null);
+		if(formState.equipo && services){
 			setServicios(
 				services['hydra:member'].map((item, index)=>{
 					return <option key={index} value={item['nombre']}>{item['nombre']}</option>
 				})
 			)
 		}
-	}, [equipo, services])
-
-	//Manejar el cambio en la seleccion de equipo
-	const handleChange = (e) => {
-		setEquipo(e.target.value);
-	}
-
-	//Manejar el cambio de servicio
-	const handleChangeServicio = (e) => {
-		setServicio(e.target.value);
-	}
+	}, [formState.equipo, services])
 
 	//Actualizar el id de Equipo cuando el usuario cambie
 	useEffect(()=>{
-		if(equipo && equipos){
-			equipos.map((value)=>{
-				if(value['nombre'] === equipo){
-					setIdEquipo(value['@id'])
-				}
-			})
+		dispatch(listTBSClearAll());
+		setFormState({...formState, servicio: ''})
+		if(equipos){
+			if(formState.equipo === "")
+				setIdEquipo(null);
+			else{
+				equipos.map((value)=>{
+					if(value['nombre'] === formState.equipo){
+						setIdEquipo(value['@id'])
+					}
+				})
+			}
 		}
-	}, [equipo, equipos])
+	}, [formState.equipo, equipos])
 
 	//Actualizar el id de Servicio cuando el usuario cambie
 	useEffect(()=>{
-		if(servicio && services){
-			services['hydra:member'].map((value)=>{
-				if(value['nombre'] === servicio){
-					setIdServicio(value['@id'])
-				}
-			})
+		dispatch(listTBSClearAll());
+		setTallerToShow(null)
+		if(services){
+			if(formState.servicio === ""){
+				console.log("entro aqui")
+				setIdServicio(null);
+			}
+			else{
+				services['hydra:member'].map((value)=>{
+					if(value['nombre'] === formState.servicio){
+						setIdServicio(value['@id'])
+					}
+				})
+			}
 		}
-	}, [servicio, services])
+	}, [formState.servicio, services])
 
 	//Buscar exactamente los talleres que brindan servicio para ese equipo
-	const handleNext1 =()=>{
+	useEffect(()=>{
 		if(idServicio && idEquipo && !talleresBS){
 			dispatch(listTBSFetch(getTallerBrindaServicios(1, idEquipo, idServicio)));
 		}
-	}
-
-	//Comprobar que haya algun taller que preste ese servicio para ese equipo
-	useEffect(()=>{
-		if(talleresBS && talleresBS['totalItems'] === 0){
-			Toast.info("Actualmente ninguno de nuestros tallers esta prestando este servicio. Perdone las molestias que esto pueda ocasionarle. Intente de nuevo en otra ocasión!")
-		}
-	}, [talleresBS])
+	}, [idEquipo, idServicio, talleresBS])
 
 	//Rellenar el combobox de taller
 	useEffect(()=>{
@@ -204,10 +184,9 @@ const Create = ({ locations }) => {
 			//guardando el ID del par equipo-servicio
 			talleresBS.map((value, index)=>{
 				if(value['servicioAEquipo']['servicio'] === idServicio && value['servicioAEquipo']['equipo'] === idEquipo){
-					setIdServicioEquipo(value['@id'])
+					setIdServicioEquipo(value['servicioAEquipo']['@id'])
 				}
 			})
-			console.log("Rellenando el combobox");
 			setArrayTalleres(
 				talleresBS.map((tallerBS, index)=>{
 					return <option key={index} value={tallerBS['taller']['alias']}>{tallerBS['taller']['alias']}</option>
@@ -216,25 +195,21 @@ const Create = ({ locations }) => {
 		}
 	}, [talleresBS])
 
-	const firstHandleGoBack = () =>{
-		dispatch(listTBSClearAll());
-		setTallerToShow(null);
-		setTaller(null);
-	}
-
 	//Manejar el cambio del combobox de taller
 	useEffect(()=>{
-		if(taller){
+		if(formState.taller === null || formState.taller === ""){
+			setIdTallerBrindaServicio(null)
+			setTallerToShow(null);
+		}
+		if(formState.taller){
 			talleresBS.map((tallerBS, index)=>{
-				if(tallerBS['taller']['alias'] === taller){
+				if(tallerBS['taller']['alias'] === formState.taller){
 					setIdTallerBrindaServicio(tallerBS['@id'])
 					setTallerToShow(tallerBS['taller']);
 				}
 			})
 		}
-	}, [taller, equipo_servicio])
-
-	const location = useLocation()
+	}, [formState.taller, equipo_servicio])
 
 	useEffect(()=>{
 		if(turno){
@@ -250,106 +225,63 @@ const Create = ({ locations }) => {
 		}
 	}, [error])
 
-	useEffect(() => {
-		if (location && location.state) {
-			//setDate(location.state.date)
-			//setTime(location.state.time)
-			location.state.defecto && setDefecto(location.state.defecto)
-		}
-	}, [location])
-
-	useEffect(()=>{
-		if(!servicio ||
-			!equipo ||
-			(equipo_servicio && equipo_servicio['hydra:member'].length !== 0 && equipo_servicio['hydra:member'][0]['tallerBrindaServicios'].length === 0)
-		){
-			setDisableNext(true);
-		}
-		else{
-			setDisableNext(false);
-		}
-	}, [servicio, equipo, equipo_servicio])
-
-	useEffect(()=>{
-		if(!taller || !defecto){
-			setDisableNext2(true);
-		}
-		else{
-			setDisableNext2(false);
-		}
-	}, [taller, defecto])
-
-	useEffect(()=>{
-		if(time === null){
-			setDisableNext3(true);
-		}
-		else{
-			setDisableNext3(false);
-		}
-	}, [time])
-
 	//carga las fechas disponibles al cargar el componente
-	const handleNext2=()=>{
-		if(taller && idServicioEquipo){
+	useEffect(()=>{
+		setFormState({...formState, date: new Date(), time: null})
+		if(formState.taller && idServicioEquipo && idTallerBrindaServicio){
 			let date = new Date(); // Now
 			date.setDate(date.getDate() + 30);
 			date = date.getFullYear() + '-' + (date.getMonth()+1) + "-" +date.getDay();
 			let today = new Date();
 			today = today.getFullYear() + '-' + (today.getMonth()+1) + "-" +today.getDay();
 			dispatch(listTurnoDisponibleFetch(
-				getTDURLFilters(1, null,date, null,today, idTallerBrindaServicio)
+				getTDURLFilters(1, null,formState.date, null,today, idTallerBrindaServicio)
 			))
 		}
-	}
-
-	const handleBack2=()=>{
-		setTime(null);
-		setDate(new Date());
-		dispatch(listTurnoDisponibleClearAll());
-	}
+	}, [formState.taller, idServicioEquipo, idTallerBrindaServicio])
 
 	useEffect(()=>{
-		if(turnosDisponibles && idServicio && idEquipo && idTallerBrindaServicio && date && time){
-			turnosDisponibles.map((turno)=>{
-				let timer = time.split(":");
-				if(turno['servicioTaller']['@id'] === idTallerBrindaServicio
-					&& turno['servicioTaller']['servicio'] === servicio['@id']
-					&& turno['servicioTaller']['equipo'] === equipo['@id']
-					&& turno['date']['dia'] === date.getDate()
-					&& turno['date']['mes'] === date.getMonth() + 1
-					&& turno['date']['year'] === date.getFullYear()
-					&& turno['date']['hora'] === parseInt(timer[0])
-					&& turno['date']['minutos'] === parseInt(timer[1])
+		if(turnosDisponibles && idServicio && idEquipo && idTallerBrindaServicio && formState.date && formState.time){
+			turnosDisponibles.map((item)=>{
+				let timer = formState.time.split(":");
+				if(item['servicioTaller']['@id'] === idTallerBrindaServicio
+					&& item['servicioTaller']['servicioAEquipo']['servicio'] === idServicio
+					&& item['servicioTaller']['servicioAEquipo']['equipo'] === idEquipo
+					&& item['date']['dia'] === formState.date.getDate()
+					&& item['date']['mes'] === formState.date.getMonth() + 1
+					&& item['date']['year'] === formState.date.getFullYear()
+					&& item['date']['hora'] === parseInt(timer[0])
+					&& item['date']['minutos'] === parseInt(timer[1])
 				){
-					setDetalles(turno['@id'])
+					setDetalles(item['@id'])
 				}
 			})
 		}
-	}, [idTallerBrindaServicio, servicio, equipo, date, time, turnosDisponibles])
+	}, [idTallerBrindaServicio, formState.servicio, formState.equipo, formState.date, formState.time, turnosDisponibles])
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		let [hour, minute] = time.split(':');
-		const fecha = new Date(date.getFullYear(), date.getMonth(), date.getDate(), hour, minute);
-		let domicilioValue = domicilio === 'on';
+		let [hour, minute] = formState.time.split(':');
+		const fecha = new Date(formState.date.getFullYear(), formState.date.getMonth(), formState.date.getDate(), hour, minute);
+		let domicilioValue = formState.domicilio === 'on';
 		dispatch(createTurnoFetch({
 			detalles: detalles,
-			defecto,
+			defecto: formState.defecto,
 			domicilio: domicilioValue,
 			user: user['@id']
 		}))
-		setAllToInitialState();
+		//setAllToInitialState();
 	}
 
 	useEffect(() => {
 		setDisabledForm(() => {
-			return !date
-				|| !time
-				|| !defecto
+			return !formState.date
+				|| !formState.time
+				|| !formState.defecto
 				|| loading
-				|| (!authenticated && !userAuth)
+				|| (!authenticated && !user)
 		})
-	}, [date, time, defecto, userAuth, loading])
+	}, [formState.date, formState.time, formState.defecto, user, loading])
 
     const transitions = {
         enterRight: 'animated enterRight',
@@ -361,8 +293,7 @@ const Create = ({ locations }) => {
 
 	if (redirect)
 		return (
-			//<Redirect to={`edit/${encodeURIComponent(turno['@id'])}`} />
-				<Redirect to="/turnos" />
+			<Redirect to="/turnos" />
 		);
 	return (
 		<Container className="create-turno">
@@ -370,7 +301,9 @@ const Create = ({ locations }) => {
 				<div className='row'>
 					<div className={`col-12 col-sm-6}`}>
 						{loadingEquipos ? (
-							<Spinner>Loading...</Spinner>
+							<Spinner
+								animation="border"
+								variant="primary"/>
 							) : (
 						<StepWizard
 							isHashEnabled
@@ -380,52 +313,33 @@ const Create = ({ locations }) => {
 							<First
                                 hashKey={'equipo'}
                                 arrayEquipos={arrayEquipos}
-                                servicios={servicios}
-                                servicio={servicio}
-                                handleChangeServicio={handleChangeServicio}
-                                handleChange={handleChange}
-								disabledNext={disableNext}
-								loadingEquipos={loadingEquipos}
+								arrayServicios={servicios}
+                                setFormState={setFormState}
+								currentStep={1}
+                                formState={formState}
 								loadingServicios={loadingServicios}
-								handleNext={handleNext1}
                             />
 							<Second
                                 hashKey={'taller'}
-                                taller={taller}
                                 tallerToShow={tallerToShow}
-                                arrayTallers={arrayTallers}
-                                setTaller={setTaller}
-								disabledNext={disableNext2}
-								domicilio={domicilio}
-								setDomicilio={setDomicilio}
-								defecto={defecto}
-								setDefecto={setDefecto}
+                                arrayTallers={arrayTalleres}
+								formState={formState}
+								setFormState={setFormState}
 								isActiveDomicilio={serverConfig['domicilio']}
-								handleGoBack={firstHandleGoBack}
 								loadingTalleres={loadingTalleresBS}
-								handleNext={handleNext2}
                             />
 							<Horario
                                 hashKey={'horario'}
-                                date={date}
-                                time={time}
-                                setDate={setDate}
-                                setTime={setTime}
-								disabledNext={disableNext3}
-								setSeccionDelDia={setSeccionDelDia}
-								handleNext={()=>{}}
-								handleGoBack={handleBack2}
+                                formState={formState}
+								setFormState={setFormState}
+								loadingTurnos={loadingTurnosDisponibles}
                             />
 							<Last
 								hashKey={'TheEnd!'}
-								taller={taller}
-								servicio={servicio}
-								fecha={date}
-								time={time}
-								equipo={equipo}
+								formState={formState}
 								submit={handleSubmit}
-								disableNext={detalles}
-								seccionDelDia={seccionDelDia}
+								disableNext={formState.detalles}
+								//seccionDelDia={seccionDelDia}
 							/>
 						</StepWizard>)
 						}

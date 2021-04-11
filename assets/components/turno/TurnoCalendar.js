@@ -6,8 +6,9 @@ import {faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
 import TurnoCalendarListTime from './TurnoCalendarListTime';
 import LoaderLocalSpinner from '../LoaderLocal';
 import {useDispatch, useSelector} from "react-redux";
+import {FormText} from "reactstrap";
 
-const TurnoCalendar = ({ taller, handleDate, handleTime, onChangeDate, onChangeTime, setSeccionDelDia }) => {
+const TurnoCalendar = ({ formState, setFormState, setSeccionDelDia, check }) => {
 
     const [planningDays] = useState(35)
     const [minDate, setMinDate] = useState(null);
@@ -23,41 +24,29 @@ const TurnoCalendar = ({ taller, handleDate, handleTime, onChangeDate, onChangeT
     const [formatedYear, setFormatedYear] = useState(" ")
     const [formatedTime, setFormatedTime] = useState("Elija una hora")
     const [turnoTimes, setTurnoTimes] = useState([])
-    const [valueDate, setValueDate] = useState(handleDate);
     const [optionTime, setOptionTime] = useState(0)
-    const [valueTime, setValueTime] = useState(handleTime);
+    const [valueTime, setValueTime] = useState(formState.time);
     const daysText = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
     const monthsText = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-
-
-    //Cambia la fecha escogida en el componente padre
-    useEffect(() => {
-        onChangeDate(valueDate)
-    }, [valueDate])
-
-    //cambia la hora escogida en el componente padre
-    useEffect(() => {
-        onChangeTime(valueTime)
-    }, [valueTime])
 
     useEffect(()=>{
         if(turnosDisponibles){
             let arrayOfTurnos = [];
             turnosDisponibles.map(item=>{
-                if(isSameDay(item.date, valueDate)){
-                    arrayOfTurnos.push(item.date['hora'] + ":" + item.date['minutos']);
+                if(isSameDay(item.date, formState.date)){
+                    arrayOfTurnos.push(item.date['hora'] + ":" + item.date['minutos'] +" "+ item.date['amPm']);
                 }
             });
             setTurnoTimes(arrayOfTurnos);
         }
-    },[valueDate])
+    },[formState.date])
 
 
     useEffect(() => {
         if (turnosDisponibles){
             let array = [];
             turnosDisponibles.map(item=>{
-                if(isSameDay(item.date, valueDate)){
+                if(isSameDay(item.date, formState.date)){
                     array.push(item.date['hora'] + ':' + item.date['minutos']);
                 }
             });
@@ -70,19 +59,19 @@ const TurnoCalendar = ({ taller, handleDate, handleTime, onChangeDate, onChangeT
     }, [turnosDisponibles])
 
     useEffect(() => {
-        if (valueDate) {
-            setFormatedDate(`${daysText[valueDate.getDay()]}, ${monthsText[valueDate.getMonth()]} ${valueDate.getDate()}`)
-            setFormatedYear(valueDate.getFullYear())
+        if (formState.date) {
+            setFormatedDate(`${daysText[formState.date.getDay()]}, ${monthsText[formState.date.getMonth()]} ${formState.date.getDate()}`)
+            setFormatedYear(formState.date.getFullYear())
         }
         else {
             setFormatedDate("Seleccione una fecha")
             setFormatedYear(" ")
         }
-    }, [valueDate])
+    }, [formState.date])
 
     useEffect(() => {
-        if (valueTime) {
-            let [hour, minutes] = valueTime.split(':');
+        if (formState.time) {
+            let [hour, minutes] = formState.time.split(':');
             let hv = hour
             let ap = ""
             if (optionTime === 0) {
@@ -94,7 +83,6 @@ const TurnoCalendar = ({ taller, handleDate, handleTime, onChangeDate, onChangeT
                 if (hv === 0)
                     hv = 12
             }
-            setSeccionDelDia(ap);
             let hs = hv.toString()
             let ms = minutes.toString()
             let h = hs.length === 1 ? `0${hs}` : hs
@@ -102,7 +90,7 @@ const TurnoCalendar = ({ taller, handleDate, handleTime, onChangeDate, onChangeT
             setFormatedTime(`${h}:${m}${ap}`)
         }
         else setFormatedTime("Elija una hora")
-    }, [valueTime, optionTime])
+    }, [formState.date, optionTime])
 
     const isSameDay = (date_1, date_2) => {
         return date_1['year'] === date_2.getFullYear()
@@ -144,8 +132,8 @@ const TurnoCalendar = ({ taller, handleDate, handleTime, onChangeDate, onChangeT
                             tileDisabled={tileDisable}
                             minDate={minDate}
                             maxDate={maxDate}
-                            value={valueDate}
-                            onChange={setValueDate}
+                            value={formState.date}
+                            onChange={v => setFormState({...formState, date: v})}
                         />
                     </div>
             }
@@ -157,8 +145,8 @@ const TurnoCalendar = ({ taller, handleDate, handleTime, onChangeDate, onChangeT
                         </div>
                         <TurnoCalendarListTime
                             turnoTimes={turnoTimes}
-                            value={valueTime}
-                            onChange={setValueTime}
+                            value={formState.time}
+                            onChange={v => setFormState({...formState, time: v})}
                             optionTime={optionTime}
                             setOptionTime={setOptionTime}
                         />
@@ -173,6 +161,7 @@ const TurnoCalendar = ({ taller, handleDate, handleTime, onChangeDate, onChangeT
                         }
                     </div>
             }
+            {check && <FormText className="notif-required">Seleccione una fecha y una hora por favor</FormText>}
         </div>
     )
 }

@@ -1,7 +1,9 @@
 import {Card, Col, Container, Form, ProgressBar, Row, Spinner} from "react-bootstrap";
-import React from "react";
+import React, {useState} from "react";
 import TurnoCalendar from "../TurnoCalendar";
 import {Label} from "reactstrap";
+import {Input, InputChecker, InputTextArea, Option} from "../../layouts/Inputs";
+import {useSelector} from "react-redux";
 
 export const WizardHeader = props => {
     const dots = [];
@@ -17,31 +19,47 @@ export const WizardHeader = props => {
     return <div className="nav">{dots}</div>;
 };
 
-const Stats = (props) => (
-    <div className="">
-        <Row className="justify-content-between m-2 p-2">
-            <Col lg={2} sm={12}>
-                { props.step > 1 &&
-                <button className='btn btn-primary btn-block' onClick={()=>{props.handleGoBack();props.previousStep();}}>Ir Atras</button>
-                }
-            </Col>
-            <Col lg={2} sm={12}>
-                { props.step < props.totalSteps ?
-                    <button className='btn btn-primary btn-block' onClick={()=>{props.handleNext();props.nextStep();}} disabled={props.disabledNext}>Siguiente</button>
-                    :
-                    <button className='btn btn-success btn-block' onClick={props.nextStep}>Enviar</button>
-                }
-            </Col>
-        </Row>
-        <Row className='p-5 mx-auto'>
-            <Col lg={12} sm={12}>
-                <ProgressBar animated now={props.step * 100 / props.totalSteps} />
-            </Col>
-        </Row>
-    </div>
-);
+const WizardNav = (props) => {
+    const prevClick = () => {
+        props.previousStep();
+    };
+
+    const nextClick = () => {
+        console.log(props.isChecked());
+        props.isChecked() && props.nextStep();
+    };
+
+    return (
+        <div className="">
+            <Row className="justify-content-between m-2 p-2">
+                <Col lg={2} sm={12}>
+                    { props.currentStep > 1 &&
+                    <button className='btn btn-primary btn-block' onClick={prevClick}>Ir Atras</button>
+                    }
+                </Col>
+                <Col lg={2} sm={12}>
+                    { props.currentStep < props.totalSteps ?
+                        <button className='btn btn-primary btn-block' onClick={nextClick}>Siguiente</button>
+                        :
+                        <button className='btn btn-success btn-block' onClick={props.nextStep}>Enviar</button>
+                    }
+                </Col>
+            </Row>
+            <Row className='p-5 mx-auto'>
+                <Col lg={12} sm={12}>
+                    <ProgressBar animated now={props.step * 100 / props.totalSteps} />
+                </Col>
+            </Row>
+        </div>);
+};
 
 export const First = props => {
+    const [check, setCheck] = useState(false)
+    const isCheked = () =>{
+        const b = props.formState.equipo !== '' && props.formState.servicio !== '';
+        setCheck(!b);
+        return b;
+    }
     return (
         <div className="container">
             <Row>
@@ -53,106 +71,56 @@ export const First = props => {
             </Row>
             <Row className={"justify-content-between"}>
                 <Col lg={5} sm={12} className="flex-centered-container">
-                    <label>Escoja un equipo</label>
-                    <Form.Control value={props.equipo} onChange={props.handleChange} as="select" id="equipos">
-                        <option selected value="none" hidden disabled>Escoja el tipo de equipo...</option>
-                        {props.arrayEquipos}
-                    </Form.Control>
+                    <Option
+                        value={props.formState.equipo}
+                        id={"select-equipo"}
+                        text={"Escoja un equipo"}
+                        onChange={v => props.setFormState({...props.formState, equipo: v})}
+                        options={props.arrayEquipos}
+                        check={check}
+                        defaultValue={""}
+                        required
+                    />
                 </Col>
                 <div className="vl"/>
                 <Col lg={5} sm={12} className="flex-centered-container">
-                    {!props.servicios &&
+                    {!props.arrayServicios &&
                         <p>Esperando por la seleccion de un equipo...</p>
                     }
-                    {props.loadingServicios ?
+                    {props.loadingServicios &&
                         <Spinner variant="primary" animation="border" role="status">
                             <span className="sr-only">Loading...</span>
-                        </Spinner> :
+                        </Spinner>
+                    }
+                    {!props.loadingServicios && props.arrayServicios &&
                         <React.Fragment>
-                            <label>Escoja que servicio requiere</label>
-                            <Form.Control value={props.servicio} onChange={props.handleChangeServicio} as="select" id="servicios">
-                                <option selected value="none" hidden disabled>Escoja el servicio...</option>
-                                {props.servicios}
-                            </Form.Control>
+                            <Option
+                                defaultValue={""}
+                                check={check}
+                                options={props.arrayServicios}
+                                text={"Escoja que servicio requiere"}
+                                loading={props.loadingServicios}
+                                onChange={v => props.setFormState({...props.formState, servicio: v})}
+                                id={"select-servicios"}
+                                value={props.formState.servicio}
+                                required
+                            />
                         </React.Fragment>
                     }
                 </Col>
             </Row>
-            <Stats step={1} {...props} handleNext={props.handleNext} disabledNext={props.disabledNext} />
-        </div>
-    );
-};
-
-export const Horario = (props) => {
-    return (
-        <div>
-            <Row>
-                <Col lg={12} sm={12}>
-                    <div className="form-headers text-center my-4">
-                        <h2 className='text-center'><span>Seleccionemos el horario apropiado</span></h2>
-                    </div>
-                </Col>
-            </Row>
-            <TurnoCalendar
-                taller={props.tallerToShow}
-                handleDate={props.date}
-                onChangeDate={props.setDate}
-                handleTime={props.time}
-                onChangeTime={props.setTime}
-                setSeccionDelDia={props.setSeccionDelDia}
-            />
-            <Stats step={3} {...props} disabledNext={props.disabledNext}/>
-        </div>
-    );
-};
-
-export const Last = (props) => {
-    return (
-        <div>
-            <Row>
-                <Col lg={12} sm={12}>
-                    <div className="form-headers text-center my-4">
-                        <h2 className='text-center'><span>Verifiquemos que todo esta bien!</span></h2>
-                    </div>
-                </Col>
-            </Row>
-
-            <Card className="text-center">
-                <Card.Header>Detalles del Turno</Card.Header>
-                <Card.Body>
-                    <Row>
-                        <Col>
-                            <Label>Equipo: </Label>
-                            <span> <strong>{props.equipo}</strong></span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Label>Taller: </Label>
-                            <span> <strong>{props.taller}</strong></span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Label>Servicio: </Label>
-                            <span> <strong>{props.servicio}</strong></span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Label>Fecha: </Label>
-                            <span> <strong>{props.fecha.getDate()+"/" + (props.fecha.getMonth() + 1) + "/" + props.fecha.getFullYear() + " " + props.time + " " + props.seccionDelDia}</strong></span>
-                        </Col>
-                    </Row>
-                    <Card.Footer className="text-muted">Si todo esta correcto por favor confirme su reserva</Card.Footer>
-                </Card.Body>
-            </Card>
-            <Stats step={4} {...props} nextStep={props.submit} disabledNext={props.disableNext} />
+            <WizardNav currentStep={1} {...props} isChecked={isCheked} />
         </div>
     );
 };
 
 export const Second = props => {
+    const [check, setCheck] = useState(false);
+    const isChecked = () =>{
+        const b = props.formState.taller !== '' && props.formState.defecto !== '';
+        setCheck(!b);
+        return b;
+    }
     return (
         <div className={`container ${props.loadingTalleres ? "flex-centered-container": ""}`}>
             {props.loadingTalleres ?
@@ -170,29 +138,36 @@ export const Second = props => {
                     <Row>
                         <Col lg={6} sm={12} className="p-2">
                             <div className="p-2">
-                                <label>Escoja el taller que desea</label>
-                                <Form.Control value={props.taller} onChange={(e)=>props.setTaller(e.target.value)} as="select" id="talleres">
-                                    <option value="none">Seleccione el taller...</option>
-                                    {props.arrayTallers}
-                                </Form.Control>
+                                <Option
+                                    value={props.formState.taller}
+                                    id={"select-talleres"}
+                                    loading={props.loadingTalleres}
+                                    onChange={v => props.setFormState({...props.formState, taller: v})}
+                                    text={"Escoja el taller que desea"}
+                                    required
+                                    options={props.arrayTallers}
+                                    check={check}
+                                    defaultValue={""}
+                                />
                             </div>
                             <div className="p-2">
-                                <label>Escriba una breve descripción de su defecto</label>
-                                <Form.Control
-                                    type="textarea"
-                                    placeholder="Defecto del equipo"
-                                    value={props.defecto}
-                                    onChange={(e) => props.setDefecto(e.target.value)}
+                                <InputTextArea
+                                    id={"defecto-textArea"}
+                                    value={props.formState.defecto}
+                                    onChange={v => props.setFormState({...props.formState, defecto: v})}
+                                    placeholder={"Una pequeña descripcion de los problemas que presente su equipo..."}
+                                    text={"Escriba una breve descripción de su defecto"}
+                                    required
+                                    check={check}
                                 />
                             </div>
                             <div>
                                 {props.isActiveDomicilio &&
-                                    <Form.Check
-                                        type="checkbox"
-                                        size="lg"
-                                        checked={props.domicilio}
-                                        onChange={(e)=>props.setDomicilio(e.target.value)}
-                                        label="El servicio a domicilio esta disponible, marque esta casilla si necesita que vayamos por usted!"
+                                    <InputChecker
+                                        text={"El servicio a domicilio esta disponible, marque esta casilla si necesita que vayamos por usted!"}
+                                        onChange={v => props.setFormState({...props.formState, domicilio: v === 'on'})}
+                                        value={props.formState.domicilio ? "on" :"off"}
+                                        id={"check-domicilio"}
                                     />
                                 }
                             </div>
@@ -214,9 +189,83 @@ export const Second = props => {
                             }
                         </Col>
                     </Row>
-                    <Stats step={2} {...props} handleGoBack={props.handleGoBack}/>
+                    <WizardNav currentStep={2} {...props} isChecked={isChecked}/>
                 </React.Fragment>)
             }
+        </div>
+    );
+};
+
+export const Horario = (props) => {
+    const [check, setCheck] = useState(false);
+    const isChecked = () =>{
+        const b = props.formState.date !== null && props.formState.time !== null;
+        setCheck(!b);
+        return b;
+    }
+    return (
+        <div>
+            <Row>
+                <Col lg={12} sm={12}>
+                    <div className="form-headers text-center my-4">
+                        <h2 className='text-center'><span>Seleccionemos el horario apropiado</span></h2>
+                    </div>
+                </Col>
+            </Row>
+            <TurnoCalendar
+                taller={props.tallerToShow}
+                formState={props.formState}
+                setFormState={props.setFormState}
+                setSeccionDelDia={props.setSeccionDelDia}
+                check={check}
+            />
+            <WizardNav currentStep={3} {...props} isChecked={isChecked}/>
+        </div>
+    );
+};
+
+export const Last = (props) => {
+    return (
+        <div>
+            <Row>
+                <Col lg={12} sm={12}>
+                    <div className="form-headers text-center my-4">
+                        <h2 className='text-center'><span>Verifiquemos que todo esta bien!</span></h2>
+                    </div>
+                </Col>
+            </Row>
+
+            <Card className="text-center">
+                <Card.Header>Detalles del Turno</Card.Header>
+                <Card.Body>
+                    <Row>
+                        <Col>
+                            <Label>Equipo: </Label>
+                            <span> <strong>{props.formState.equipo}</strong></span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Label>Taller: </Label>
+                            <span> <strong>{props.formState.taller}</strong></span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Label>Servicio: </Label>
+                            <span> <strong>{props.formState.servicio}</strong></span>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Label>Fecha: </Label>
+                            <span> <strong>{props.formState.date.getDate()+"/" + (props.formState.date.getMonth() + 1) + "/" + props.formState.date.getFullYear() + " " + props.formState.time}</strong></span>
+                        </Col>
+                    </Row>
+                    <Card.Footer className="text-muted">Si todo esta correcto por favor confirme su reserva</Card.Footer>
+                </Card.Body>
+            </Card>
+            <WizardNav currentStep={4} {...props} nextStep={props.submit} disabledNext={props.disableNext} />
         </div>
     );
 };

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TurnoDisponibleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
@@ -78,9 +80,14 @@ class TurnoDisponible
     private $originalAmount;
 
     /**
-     * @ORM\OneToOne(targetEntity=Turno::class, mappedBy="detalles", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Turno::class, mappedBy="detalles", orphanRemoval=true)
      */
     private $turno;
+
+    public function __construct()
+    {
+        $this->turno = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -135,19 +142,32 @@ class TurnoDisponible
         return $this;
     }
 
-    public function getTurno(): ?Turno
+    /**
+     * @return Collection|Turno[]
+     */
+    public function getTurno(): Collection
     {
         return $this->turno;
     }
 
-    public function setTurno(Turno $turno): self
+    public function addTurno(Turno $turno): self
     {
-        // set the owning side of the relation if necessary
-        if ($turno->getDetalles() !== $this) {
+        if (!$this->turno->contains($turno)) {
+            $this->turno[] = $turno;
             $turno->setDetalles($this);
         }
 
-        $this->turno = $turno;
+        return $this;
+    }
+
+    public function removeTurno(Turno $turno): self
+    {
+        if ($this->turno->removeElement($turno)) {
+            // set the owning side to null (unless already changed)
+            if ($turno->getDetalles() === $this) {
+                $turno->setDetalles(null);
+            }
+        }
 
         return $this;
     }

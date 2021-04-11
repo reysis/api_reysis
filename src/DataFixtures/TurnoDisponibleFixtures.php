@@ -21,7 +21,7 @@ class TurnoDisponibleFixtures extends BaseFixture implements DependentFixtureInt
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(15, 'TURNO_DISPONIBLE', function ($i) use ($manager){
+        $this->createMany(60, 'TURNO_DISPONIBLE', function ($i) use ($manager){
             $turnoDisponible = new TurnoDisponible();
 
             /**

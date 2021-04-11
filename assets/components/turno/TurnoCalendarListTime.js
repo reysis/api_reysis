@@ -18,11 +18,11 @@ const TurnoCalendarListTime = ({ turnoTimes, value, onChange, optionTime, setOpt
 
     return (
         <div className="turno-calendar__list">
-            <div className="turno-calendar__options">
-                <span onClick={() => optionClick(0)} className={optionTime === 0 ? "current" : ""}>am/pm</span>
-                <span>-</span>
-                <span onClick={() => optionClick(1)} className={optionTime === 1 ? "current" : ""}>24h</span>
-            </div>
+            {/*<div className="turno-calendar__options">*/}
+            {/*    <span onClick={() => optionClick(0)} className={optionTime === 0 ? "current" : ""}>am/pm</span>*/}
+            {/*    <span>-</span>*/}
+            {/*    <span onClick={() => optionClick(1)} className={optionTime === 1 ? "current" : ""}>24h</span>*/}
+            {/*</div>*/}
             <div className="turno-calendar__items">
                 {
                     turnoTimes.length !== 0

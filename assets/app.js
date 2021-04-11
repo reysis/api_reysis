@@ -50,7 +50,7 @@ const App = () => {
         }
     },[authenticated])
 
-    useEffect(() => {
+    useEffect(async () => {
         AOS.init({
             easing: 'ease-in-sine',
             duration: 1000,
@@ -58,7 +58,7 @@ const App = () => {
             once: true
         })
         if(localStorage.getItem('user')){
-            dispatch(authRefreshToken(localStorage.getItem('refreshToken')))
+            await dispatch(authRefreshToken(localStorage.getItem('refreshToken')))
         }
         dispatch(loadConfiguration())
     }, [])

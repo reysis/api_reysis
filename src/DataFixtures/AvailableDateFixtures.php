@@ -12,7 +12,7 @@ class AvailableDateFixtures extends BaseFixture
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(15,'AVAILABLE_DATE',function ($i) use ($manager){
+        $this->createMany(20,'AVAILABLE_DATE',function ($i) use ($manager){
             $availableDate = new AvailableDate();
             /**
              * @var \DateTime $date

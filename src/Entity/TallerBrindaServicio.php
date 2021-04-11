@@ -7,6 +7,7 @@ use App\Repository\TallerBrindaServicioRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
@@ -37,6 +38,11 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *      }
  * )
  * @ORM\Entity(repositoryClass=TallerBrindaServicioRepository::class)
+ * @UniqueEntity(
+ *      fields={"servicioAEquipo","taller"},
+ *      errorPath="taller",
+ *      message="Este taller ya brinda ese servicio a al equipo seleccionado"
+ * )
  */
 class TallerBrindaServicio
 {

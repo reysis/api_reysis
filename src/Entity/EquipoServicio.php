@@ -8,10 +8,12 @@ use App\Repository\EquipoServicioRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Table;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ApiResource(
@@ -40,6 +42,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ORM\Entity(repositoryClass=EquipoServicioRepository::class)
  * @UniqueEntity(
  *      fields={"servicio","equipo"},
+ *      errorPath="servicio",
  *      message="Este servicio ya ha sido asociado a este equipo"
  * )
  */

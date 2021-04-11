@@ -113,6 +113,11 @@ class Configurations
      */
     private $valores;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $maxPlaningDays;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -234,6 +239,18 @@ class Configurations
     public function setValores(string $valores): self
     {
         $this->valores = $valores;
+
+        return $this;
+    }
+
+    public function getMaxPlaningDays(): ?int
+    {
+        return $this->maxPlaningDays;
+    }
+
+    public function setMaxPlaningDays(int $maxPlaningDays): self
+    {
+        $this->maxPlaningDays = $maxPlaningDays;
 
         return $this;
     }
