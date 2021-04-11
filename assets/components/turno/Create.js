@@ -158,7 +158,6 @@ const Create = ({ locations }) => {
 		setTallerToShow(null)
 		if(services){
 			if(formState.servicio === ""){
-				console.log("entro aqui")
 				setIdServicio(null);
 			}
 			else{

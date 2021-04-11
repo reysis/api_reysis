@@ -25,7 +25,6 @@ const WizardNav = (props) => {
     };
 
     const nextClick = () => {
-        console.log(props.isChecked());
         props.isChecked() && props.nextStep();
     };
 

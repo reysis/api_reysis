@@ -2,60 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/components/layouts/Inputs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/_input.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/TurnoCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/turno/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/TurnoCalendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/TurnoCalendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/TurnoCalendarListTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/TurnoCalendarListTime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/TurnoCalendarTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/TurnoCalendarTime.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/components/turno/stepComponents/Steps.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/stepComponents/Steps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_cards.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_cards.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210203152134.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210203152635.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210203153130.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210203194511.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210204144501.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210210155440.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210210155739.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210211141450.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210218190204.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210218192757.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210218195331.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210218200943.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210219033440.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210222051841.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210223192346.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210223200139.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210223200559.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210226184559.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210226192140.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210315143347.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210316135926.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210316165704.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210319031117.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210319141101.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210328181927.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20210411140543.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210329050639.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210329135336.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210330031106.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210331222500.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210331232022.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210401195815.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20210401203114.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AvailableDateFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AvailableDateFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ConfigurationsFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ConfigurationsFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/TurnoDisponibleFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/TurnoDisponibleFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Configurations.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Configurations.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/EquipoServicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/EquipoServicio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Taller.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Taller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TallerBrindaServicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TallerBrindaServicio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Turno.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Turno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/TurnoDisponible.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TurnoDisponible.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -325,7 +274,7 @@
       <workItem from="1617847512889" duration="15701000" />
       <workItem from="1618067061775" duration="21138000" />
       <workItem from="1618151663786" duration="391000" />
-      <workItem from="1618152546716" duration="1782000" />
+      <workItem from="1618152546716" duration="2169000" />
     </task>
     <servers />
   </component>

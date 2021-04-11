@@ -30,7 +30,6 @@ class AvailableDateValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        dump($value);
         /* @var $constraint \App\Validator\AvailableDate */
 
         if (null === $value || '' === $value) {
