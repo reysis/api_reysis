@@ -12,6 +12,7 @@ const Phones = ({phones, setPhones, enableEdit}) => {
     const [animation, setAnimation] = useState('');
 
     const [phoneTypes] = useState([
+        "",
         "Casa",
         "Personal",
         "Trabajo"
@@ -111,15 +112,16 @@ const Phones = ({phones, setPhones, enableEdit}) => {
                                 id="register-phone-type"
                                 className="custom-select"
                                 as="select"
-                                defaultValue={phoneType}
+                                value={phoneType}
                                 onChange={(e) => setPhoneType(e.target.value)}
                                 required={true}
                             >
-                                <option value="" >Tipo de Télefono ...</option>
                                 {
-                                    phoneTypes.map((value, index) => (
-                                        <option key={index} value={value}>{value}</option>
-                                    ))
+                                    phoneTypes.map((value, index) => {
+                                        if(value === '')
+                                            return <option key={index} value={""}>Tipo de Teléfono</option>
+                                        return <option key={index} value={value}>{value}</option>
+                                    })
                                 }
                             </Form.Control>
                         </InputGroup>

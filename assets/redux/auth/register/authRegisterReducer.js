@@ -22,12 +22,13 @@ const authRegisterReducer = (state = initialState, {type, payload})=>{
         case AUTH_REGISTER_REQUEST:
             return {
                 ...state,
-                loading: payload
+                loading: true
             }
         case AUTH_REGISTER_ERROR:
             return {
                 ...state,
-                error: payload
+                error: payload,
+                loading: false
             }
         default:
             return state;

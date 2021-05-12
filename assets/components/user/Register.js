@@ -14,6 +14,7 @@ import Toast from "../Utils/Toast";
 const Register = () => {
 
     const [name, setName] = useState("")
+    const [changedName, setChangedName] = useState(false);
     const [lastname, setLastname] = useState("")
     const [cid, setCid] = useState("")
     const [username, setUsername] = useState("")
@@ -40,19 +41,31 @@ const Register = () => {
     const [validPassword, setValidPassword] = useState(false)
     const [validCid, setValidCid] = useState(false)
     const [validUsername, setValidUsername] = useState(false)
+    const [invalidPhones, setInvalidPhones] = useState(false);
+    const [invalidPass, setInvalidPass] = useState(false);
+    const [buttonText, setButtonText] = useState('Registrarse')
     // const [validPhone, setValidPhone] = useState(false)
 
     var timeout = null,
         timeout2 = null,
         timeout3 = null,
         timeout4 = null,
-        timeout5 = null
+        timeout5 = null,
+        timeout6 = null,
+        timeout7 = null
 
     const authLoading = useSelector(state => state.auth.register.loading)
     const authAuthenticated = useSelector(state => state.auth.login.authenticated)
     const authError = useSelector(state => state.auth.register.error)
 
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(authLoading)
+            setButtonText('Registrando...')
+        if(!authLoading)
+            setButtonText('Registrarse')
+    }, [authLoading])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -66,7 +79,26 @@ const Register = () => {
             || !validEmail
             || !phones.length
             || !address.length
-            || authLoading) return;
+            || authLoading){
+            if(!phones.length){
+                if(timeout6)
+                    clearTimeout(timeout6);
+
+                setInvalidPhones(true)
+                timeout6 = setTimeout(()=>{
+                    setInvalidPhones(false)
+                    },5000);
+            }else if(!validPassword || !arePasswordMatch){
+                if(timeout7)
+                    clearTimeout(timeout7);
+
+                setInvalidPass(true)
+                timeout7 = setTimeout(()=>{
+                    setInvalidPass(false)
+                },5000);
+            }
+            return;
+        }
 
 
         const persona = {
@@ -167,7 +199,6 @@ const Register = () => {
         return <Redirect to='/' />
     return (
         <Container>
-            <Alert role={"status"} variant={"info"} show={authLoading}>Loading...</Alert>
             <Row>
                 <Form id="form-register" onSubmit={handleSubmit} className="mx-auto my-3 pb-3 col-xl-9 col-lg-10 col-md-12 form-register">
                     <Row>
@@ -192,7 +223,7 @@ const Register = () => {
                                                 <FontAwesomeIcon icon={faUser} />
                                             </label>
                                         </InputGroup.Prepend>
-                                        <Form.Control type="name" id="register-name" placeholder="Nombre" value={name} onChange={(e) => setName(e.target.value)} required={true} />
+                                        <Form.Control type="name" id="register-name" placeholder="Nombre" value={name} onChange={(e) => {setChangedName(true); setName(e.target.value)}} required={true} />
                                     </InputGroup>
                                 </Form.Group>
                                 <Form.Group as={Col} md={6}>
@@ -213,7 +244,7 @@ const Register = () => {
                                             <FontAwesomeIcon icon={faIdCard} />
                                         </label>
                                     </InputGroup.Prepend>
-                                    <Form.Control type="id" id="register-cid" placeholder="Carner Identidad" title="El carnet de identidad tiene 11 números" value={cid} isValid={cid.length && validCid} isInvalid={cid.length && !validCid} onChange={(e) => setCid(e.target.value)} required={true} />
+                                    <Form.Control type="id" id="register-cid" placeholder="Carnet Identidad" title="El carnet de identidad tiene 11 números" value={cid} isValid={cid.length && validCid} isInvalid={cid.length && !validCid} onChange={(e) => setCid(e.target.value)} required={true} />
                                 </InputGroup>
                             </Form.Group>
 
@@ -258,7 +289,7 @@ const Register = () => {
                                                 <FontAwesomeIcon icon={faLock} />
                                             </label>
                                         </InputGroup.Prepend>
-                                        <Form.Control type="password" id="register-password" title="Mínimo 6 caracteres, al menos 1 mayúscula, minúscula y número" placeholder="Contraseña" isValid={password.length && arePasswordMatch && validPassword} isInvalid={password.length >= 6 && !validPassword} value={password} onChange={(e) => setPassword(e.target.value)} required={true} />
+                                        <Form.Control type="password" id="register-password" title="Mínimo 6 caracteres, al menos 1 mayúscula, minúscula y número" placeholder="Contraseña" isValid={arePasswordMatch && validPassword} isInvalid={password.length >= 6 &&!validPassword} value={password} onChange={(e) => setPassword(e.target.value)} required={true} />
                                     </InputGroup>
                                 </Form.Group>
                                 <Form.Group as={Col} md={6}>
@@ -272,6 +303,8 @@ const Register = () => {
                                     </InputGroup>
                                 </Form.Group>
                             </Form.Row>
+                            {invalidPhones && <Alert variant="danger">Introduzca al menos un teléfono</Alert>}
+                            {invalidPass && <Alert variant="danger">La contraseña que introdujo no cumple los requisitos o no coinciden por favor verifique</Alert>}
                             <Phones phones={phones} setPhones={setPhones} enableEdit={true} />
 
                             <Form.Group className="register-condition-term">
@@ -279,7 +312,7 @@ const Register = () => {
                             </Form.Group>
 
                             <Form.Group className="register-submit">
-                                <Button variant="primary" block disabled={disabledForm} type="submit">Registrarse</Button>
+                                <Button variant="primary" block type="submit">{buttonText}</Button>
                             </Form.Group>
 
                             <Form.Group className="d-md-none register-sub-text">

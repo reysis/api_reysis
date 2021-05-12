@@ -40,6 +40,11 @@ const NavigationBar = ({ authenticated, username, pathname }) => {
                             <span>Home</span>
                         </NavLink>
                     </li>
+                    <li className={`nav-item ${pathname == "/services" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
+                        <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/services">
+                            <span>Servicios</span>
+                        </NavLink>
+                    </li>
                     <li className={`nav-item ${pathname == "/turnos/create" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
                         <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/turnos/create">
                             <span>Hacer Cita</span>

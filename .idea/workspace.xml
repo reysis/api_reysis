@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/Create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/turno/stepComponents/Steps.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/turno/stepComponents/Steps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validator/AvailableDateValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/Phones.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Phones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/user/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/user/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/redux/auth/register/authRegisterReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/redux/auth/register/authRegisterReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/ServiciosPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ServiciosPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +276,8 @@
       <workItem from="1617847512889" duration="15701000" />
       <workItem from="1618067061775" duration="21138000" />
       <workItem from="1618151663786" duration="391000" />
-      <workItem from="1618152546716" duration="2169000" />
+      <workItem from="1618152546716" duration="4827000" />
+      <workItem from="1620824969083" duration="6189000" />
     </task>
     <servers />
   </component>
