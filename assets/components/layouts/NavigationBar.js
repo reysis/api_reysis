@@ -37,7 +37,7 @@ const NavigationBar = ({ authenticated, username, pathname }) => {
                     */}
                     <li className={`nav-item ${pathname == "/" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
                         <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/">
-                            <span>Home</span>
+                            <span>Inicio</span>
                         </NavLink>
                     </li>
                     <li className={`nav-item ${pathname == "/services" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
@@ -62,7 +62,7 @@ const NavigationBar = ({ authenticated, username, pathname }) => {
                     </li>
                     <li className={`nav-item ${pathname == "/faq" ? "current" : ""} ${showMenu ? "menu-show" : ""}`}>
                         <NavLink onClick={() => setShowMenu(false)} className="nav-link" to="/faq">
-                            <span>FAQ</span>
+                            <span>Preguntas frecuentes</span>
                         </NavLink>
                     </li>
                     {/* {
