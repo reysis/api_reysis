@@ -140,14 +140,10 @@ const Footer = () => {
                     </Link>
                     <Link className="menu-item d-flex flex-row" to="/mission">
                         <div className="pr-2"><FontAwesomeIcon icon={faBullseye} /></div>
-                        Misión
+                        Misión y Visión
                     </Link>
-                    <Link className="menu-item d-flex flex-row" to="/vision">
+                    <Link className="menu-item d-flex flex-row" to="/valores">
                         <div className="pr-2"><FontAwesomeIcon icon={faEye} /></div>
-                        Visión
-                    </Link>
-                    <Link className="menu-item d-flex flex-row" to="/vision">
-                        <div className="pr-2"><FontAwesomeIcon icon={faUserTie} /></div>
                         Valores
                     </Link>
                 </div>
@@ -167,7 +163,7 @@ const Footer = () => {
                     <div className="contact-items d-flex flex-row">
                         <a
                             target="_blank"
-                            href="https://www.linkedin.com/"
+                            href="#"
                             className="item li"
                             id="linkedin-tooltip"
                         ><FontAwesomeIcon icon={faLinkedin} /></a>
@@ -176,7 +172,7 @@ const Footer = () => {
                         </UncontrolledTooltip>
                         <a
                             target="_blank"
-                            href="https://www.facebook.com/"
+                            href="#"
                             className="item fb"
                             id="facebook-tooltip"
                         ><FontAwesomeIcon icon={faFacebook} /></a>
@@ -185,7 +181,7 @@ const Footer = () => {
                         </UncontrolledTooltip>
                         <a
                             target="_blank"
-                            href="https://www.instagram.com/"
+                            href="#"
                             className="item ig"
                             id="instagram-tooltip"
                         ><FontAwesomeIcon icon={faInstagram} /></a>
@@ -194,7 +190,7 @@ const Footer = () => {
                         </UncontrolledTooltip>
                         <a
                             target="_blank"
-                            href="https://web.whatsapp.com/"
+                            href="#"
                             className="item wa"
                             id="whatsapp-tooltip"
                         ><FontAwesomeIcon icon={faWhatsapp} /></a>

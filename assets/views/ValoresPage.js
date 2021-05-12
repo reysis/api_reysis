@@ -4,7 +4,7 @@ import Valores from "../components/Valores";
 const ValoresPage = () => {
     return (
         <main className="content-wrap about-page page">
-            <div className="about-header">
+            <div className="page-header">
                 <h1 className="mx-4">¡Esto nos identifica, <span>nuestros valores!</span></h1>
             </div>
             <div className="container">

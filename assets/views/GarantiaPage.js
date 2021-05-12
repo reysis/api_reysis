@@ -7,7 +7,7 @@ import Mision from "../components/Mision";
 const GarantiaPage = () => {
     return (
         <main className="content-wrap about-page page">
-            <div className="about-header">
+            <div className="page-header">
                 <h1 className="mx-4">¡Estas son nuestras <span>Garantías!</span></h1>
             </div>
             <div className="container">

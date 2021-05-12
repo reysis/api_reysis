@@ -19,6 +19,7 @@ const Phones = ({phones, setPhones, enableEdit}) => {
     ])
 
     const handleDeletePhone = (id) =>{
+        enableEdit &&
         setPhones(phones.filter( (currentValue, index)=> {
             return index !== id
         } ));
@@ -46,14 +47,18 @@ const Phones = ({phones, setPhones, enableEdit}) => {
         let array = [phones.map((item, index)=>{
             return (
                 <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{item.number}</td>
-                    <td>{item.phoneType}</td>
-                    <td>
-                        <div onClick={()=>handleDeletePhone(index)}>
-                            <FontAwesomeIcon icon={faTrash} color="red"/>
-                        </div>
-                    </td>
+                    {item.number &&
+                        <>
+                            <td>{index + 1}</td>
+                            <td>{item.number}</td>
+                            <td>{item.phoneType}</td>
+                            <td>
+                                <div onClick={()=> handleDeletePhone(index)}>
+                                    <FontAwesomeIcon icon={faTrash} color="red"/>
+                                </div>
+                            </td>
+                        </>
+                    }
                 </tr>
             )
         })];

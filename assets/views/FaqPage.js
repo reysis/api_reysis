@@ -21,8 +21,9 @@ const FaqPage = () => {
 
     return (
         <main className="content-wrap faq-page page">
-            <div className="question-header">
-                <h1 className="mx-4"><span>Preguntas</span> Frecuentes</h1>
+
+            <div className="page-header">
+                <h1 className="mx-4">Preguntas <span>Frecuentes</span></h1>
             </div>
             <Alert role={"status"} variant={"info"} show={loading}>
                 Loading...

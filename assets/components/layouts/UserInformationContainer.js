@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Col, Form, InputGroup, Row} from "react-bootstrap";
+import {Button, Col, Form, InputGroup, Row, Alert} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faAddressBook,
@@ -36,6 +36,7 @@ const UserInformationContainer = ({user}) => {
     const [validPassword, setValidPassword] = useState(false)
     const [validCid, setValidCid] = useState(false)
     const [validUsername, setValidUsername] = useState(false)
+    const [invalidPhones, setInvalidPhones] = useState(false);
 
     const userGlobal = useSelector(state=> state.user.update.user);
     const authenticatedUser = useSelector(state=> state.auth.user);
@@ -44,12 +45,32 @@ const UserInformationContainer = ({user}) => {
 
     const dispatch = useDispatch();
 
-    var timeout = null, timeout2 = null, timeout3 = null, timeout4 = null, timeout5 = null;
+    var timeout = null, timeout2 = null, timeout3 = null, timeout4 = null, timeout5 = null, timeout6 = null;
+
+    useEffect(()=>{
+        if(user){
+            setPhones(
+                user['phoneNumbers'].map((value, index)=>{
+                    return {
+                        number: value.number,
+                        phoneType: value.phoneType
+                    }
+                })
+            )
+        }
+    }, [user])
 
     const handleEdit = () =>{
         let statusNow = !enableEdit
         if(!statusNow){
-            setPhones([]);
+            setPhones(
+                user['phoneNumbers'].map((value, index)=>{
+                    return {
+                        number: value.number,
+                        phoneType: value.phoneType
+                    }
+                })
+            );
             setUsername("");
             setIndications("");
             setAddress("");
@@ -66,6 +87,15 @@ const UserInformationContainer = ({user}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if(phones.length === 0){
+            timeout6 && clearTimeout(timeout6);
+            setInvalidPhones(true);
+            timeout6 = setTimeout(()=>{
+                setInvalidPhones(false);
+            }, 5000)
+            return;
+        }
+
         dispatch(updateUserFetch(user['@id'],{
             username,
             password,
@@ -78,7 +108,6 @@ const UserInformationContainer = ({user}) => {
             nationality,
             user
         }));
-
     }
 
     useEffect(()=>{
@@ -129,22 +158,6 @@ const UserInformationContainer = ({user}) => {
         }
     }, [password, passwordCheck])
 
-    useEffect(() =>{
-        if(username !== ""
-            || name !== ""
-            || lastname !== ""
-            || password !== ""
-            || email !== ""
-            || phones.length
-            || address !== ""
-            || indications !== ""
-            || nationality !== ""
-            || ci !== ""){
-            setDisableSubmit(false)
-        }else{
-            setDisableSubmit(true);
-        }
-    }, [name, nationality, username, email, password, address, ci, phones]);
     return (
         <div id="informacion" className="user-profile-tab__container">
             {!enableEdit &&
@@ -157,7 +170,7 @@ const UserInformationContainer = ({user}) => {
                     <FontAwesomeIcon icon={faUndo} />
                 </Button>
             }
-            <Form className="my-3 pb-3 col-xl-9 col-lg-12 col-md-12 form-update" onSubmit={handleSubmit}>
+            <Form className="my-3 pb-3 col-xl-12 col-lg-12 col-md-12 form-update">
                 <Row className="form-update-main-row">
                     <Col md={10} className="form-update-main-col">
                         <Form.Group className="form-header text-center my-4">
@@ -359,15 +372,20 @@ const UserInformationContainer = ({user}) => {
                                 </InputGroup>
                             </Form.Group>
                         </Form.Row>
-                        { enableEdit &&
-                            <Form.Group className="register-submit">
-                                <Button disabled={disableSubmit} variant="primary" block type="submit">Salvar</Button>
-                            </Form.Group>
-                        }
                     </Col>
                 </Row>
             </Form>
-            <Phones phones={phones} setPhones={setPhones} enableEdit={enableEdit}/>
+            <Row>
+                <Col>
+                    {invalidPhones && <Alert variant="danger">Debe introducir al menos un teléfono</Alert>}
+                    <Phones phones={phones} setPhones={setPhones} enableEdit={enableEdit}/>
+                    { enableEdit &&
+                    <Form.Group className="register-submit">
+                        <Button onClick={handleSubmit} variant="primary" block type="submit">Salvar</Button>
+                    </Form.Group>
+                    }
+                </Col>
+            </Row>
         </div>
     );
 };

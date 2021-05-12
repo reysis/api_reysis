@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import LoaderSpinner from "../components/Loader";
 import draftjsToHtml from 'draftjs-to-html';
+import {Row, Col} from 'react-bootstrap';
 
 const ServicioItemPage = ({ match }) => {
 
@@ -39,12 +40,18 @@ const ServicioItemPage = ({ match }) => {
     return (
         <main className="content-wrap service-item-page page">
             {service &&
-                <div style={{backgroundImage: `url(${service['urlPortada']})`}} className="service-item-page__header-container">
-                    {/*<Image fluid src={service['urlPortada']} className="image-header"/>*/}
-                    <div className="page-header">
-                        <h1>Servicio <span>{service.nombre}</span></h1>
-                    </div>
-                </div>
+                <Row>
+                    <Col sm={12} lg={3}>
+                        <div className="service-item-page__imagen-container">
+                            <Image fluid src={service['urlPortada']} className="image-header"/>
+                        </div>
+                    </Col>
+                    <Col sm={12} lg={9} className="service-item-page__header-container">
+                        <div className="page-header">
+                            <h1>Servicio <span>{service.nombre}</span></h1>
+                        </div>
+                    </Col>
+                </Row>
             }
             {loading &&
                 <LoaderSpinner />

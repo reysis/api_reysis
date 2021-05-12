@@ -3,8 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="83f53fb4-4644-4134-8484-1abadee8ccd1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/NavigationBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/_navuser.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_navuser.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/Phones.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/Phones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/components/layouts/UserInformationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/components/layouts/UserInformationContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/_service-item.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/_service-item.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/AboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/AboutPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/FaqPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/FaqPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/GarantiaPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/GarantiaPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/ServicioItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ServicioItemPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/TurnosCreatePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/TurnosCreatePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/views/ValoresPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/views/ValoresPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PhoneNumber.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +283,7 @@
       <workItem from="1618067061775" duration="21138000" />
       <workItem from="1618151663786" duration="391000" />
       <workItem from="1618152546716" duration="4827000" />
-      <workItem from="1620824969083" duration="6706000" />
+      <workItem from="1620824969083" duration="14773000" />
     </task>
     <servers />
   </component>
